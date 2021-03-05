@@ -39,7 +39,7 @@ public class YukiProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{
@@ -47,7 +47,7 @@ public class YukiProjectiles
 					double offsetY = (new Random().nextInt(4) + 2.0D - 2.0D) / 2.0D;
 					double offsetZ = (new Random().nextInt(4) + 2.0D - 2.0D) / 2.0D;
 	
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_YUKI, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_YUKI, 
 							posX + offsetX, 
 							posY + offsetY, 
 							posZ + offsetZ, 

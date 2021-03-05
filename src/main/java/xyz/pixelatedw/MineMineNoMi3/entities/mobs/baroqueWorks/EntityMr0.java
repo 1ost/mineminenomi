@@ -19,15 +19,15 @@ public class EntityMr0 extends PirateData
 		super.applyEntityAttributes(); 
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(55.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.2D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(300.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
 		
 		ExtendedEntityData props = ExtendedEntityData.get(this);
 		
 		props.setUsedFruit("sunasuna");
 		props.setIsLogia(true);
 		
-		this.setDoriki(500 + this.worldObj.rand.nextInt(50));
-		this.setBelly(1000 + this.worldObj.rand.nextInt(100));
+		this.setDoriki(500 + this.world.rand.nextInt(50));
+		this.setBelly(1000 + this.world.rand.nextInt(100));
 	}
 }

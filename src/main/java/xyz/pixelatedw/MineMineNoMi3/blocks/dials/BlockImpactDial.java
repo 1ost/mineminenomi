@@ -2,8 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.blocks.dials;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -22,7 +22,7 @@ public class BlockImpactDial extends BlockContainer
 
 	public BlockImpactDial()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.425F, 0.75F);
 	}  
 
@@ -43,7 +43,7 @@ public class BlockImpactDial extends BlockContainer
     	if(entity instanceof EntityLivingBase)
     	{
     		world.newExplosion(entity, entity.posX, entity.posY, entity.posZ, 3, false, true);
-    		world.setBlock(x, y, z, Blocks.air);   		
+    		world.setBlock(x, y, z, Blocks.AIR);
     	}
     }
     

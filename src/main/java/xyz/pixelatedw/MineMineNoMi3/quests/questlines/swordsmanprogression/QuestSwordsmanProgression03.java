@@ -97,7 +97,7 @@ public class QuestSwordsmanProgression03 extends Quest implements IKillQuest, IP
 	@Override
 	public boolean isTarget(EntityPlayer player, EntityLivingBase target)
 	{
-		BiomeGenBase biome = player.worldObj.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
+		BiomeGenBase biome = player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
 		ItemStack heldItem = player.getHeldItem();
 		
 		if((biome.biomeName.equalsIgnoreCase(BiomeGenBase.extremeHills.biomeName) || biome.biomeName.equalsIgnoreCase(BiomeGenBase.extremeHillsPlus.biomeName)) 

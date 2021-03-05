@@ -1,7 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.entities.mobs.ai.abilities.rokushiki;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.RokushikiProjectiles.Rankyaku;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.EntityNewMob;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.ai.EntityAICooldown;
@@ -49,16 +49,16 @@ public class EntityAIRankyaku extends EntityAICooldown
     public void execute()
     {
     	double d0 = entity.getDistanceSqToEntity(entity.getAttackTarget());
-		float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0));
+		float f = MathHelper.sqrt_float(MathHelper.sqrt(d0));
 		double d1 = entity.getAttackTarget().posX - entity.posX;
 		double d2 = entity.getAttackTarget().boundingBox.minY + entity.getAttackTarget().height / 2.0F - (entity.posY + entity.height / 2.0F);
 		double d3 = entity.getAttackTarget().posZ - entity.posZ;
     	
-    	Rankyaku projectile = new Rankyaku(this.entity.worldObj, this.entity, ListAttributes.RANKYAKU);
+    	Rankyaku projectile = new Rankyaku(this.entity.world, this.entity, ListAttributes.RANKYAKU);
     	
     	projectile.posY = entity.posY + entity.height / 2.0F + 0.5D;
 		projectile.setThrowableHeading(d1 + entity.getRNG().nextGaussian(), d2, d3 + entity.getRNG().nextGaussian(), 1, 0);
-		entity.worldObj.spawnEntityInWorld(projectile);
+		entity.world.spawnEntity(projectile);
     	
     	this.entity.setCurrentAI(this);
 	    this.setOnCooldown(true); 	

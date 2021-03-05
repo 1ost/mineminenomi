@@ -26,7 +26,7 @@ public class StructureCamp extends Structure
 		if(flagBiome || flagSpecialCheck || flagAboveGround)
 			return false;
 		
-		WySchematicHelper.build(sch, world, posX, posY - 7, posZ, Blocks.bedrock);
+		WySchematicHelper.build(sch, world, posX, posY - 7, posZ, Blocks.BEDROCK);
 		populate(posX, posY, posZ, world, sch.getName());
 
 		return true;

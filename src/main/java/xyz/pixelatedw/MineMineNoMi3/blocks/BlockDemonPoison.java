@@ -2,8 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
@@ -28,7 +28,7 @@ public class BlockDemonPoison extends Block
 	
 	public BlockDemonPoison()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 	}  
@@ -57,16 +57,16 @@ public class BlockDemonPoison extends Block
     		
     		if(!props.getUsedFruit().equals("dokudoku"))
     		{
-    			if(!((EntityLivingBase)entity).isPotionActive(Potion.poison.id))
+    			if(!((EntityLivingBase)entity).isPotionActive(Potion.getPotionById(19)))
     			{
-    				((EntityLivingBase)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 2));
+    				((EntityLivingBase)entity).addPotionEffect(new PotionEffect(Potion.getPotionById(19), 300, 2));
     			}
     		}
     		else
     		{
-    			if(!((EntityLivingBase)entity).isPotionActive(Potion.regeneration.id))
+    			if(!((EntityLivingBase)entity).isPotionActive(Potion.getPotionById(10)))
     			{
-    				((EntityLivingBase)entity).addPotionEffect(new PotionEffect(Potion.regeneration.id, 50, 1, true));
+    				((EntityLivingBase)entity).addPotionEffect(new PotionEffect(Potion.getPotionById(10), 50, 1, true, false));
     			}
     		}
     	}
@@ -85,14 +85,14 @@ public class BlockDemonPoison extends Block
     
     public void updateTick(World world, int x, int y, int z, Random rand) 
     {
-    	if(world.getBlock(x, y - 1, z) == Blocks.air || world.getBlock(x, y - 1, z) instanceof BlockBush)
-    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.air)));
+    	if(world.getBlock(x, y - 1, z) == Blocks.AIR || world.getBlock(x, y - 1, z) instanceof BlockBush)
+    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.AIR)));
 
     	if(ticks > 0)
     		ticks--;
     	else
     	{
-    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.air)));
+    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.AIR)));
     		ticks = 250 + rand.nextInt(50);
     	}
     	

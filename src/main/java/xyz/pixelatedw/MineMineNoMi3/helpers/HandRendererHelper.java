@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
@@ -59,7 +59,7 @@ public class HandRendererHelper
 		RenderHelper.enableStandardItemLighting();
 		Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
 		
-        int i2 = mc.theWorld.getLightBrightnessForSkyBlocks(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ), 0);
+        int i2 = mc.theWorld.getLightBrightnessForSkyBlocks(MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ), 0);
         int j = i2 % 65536;
         int k = i2 / 65536;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
@@ -126,11 +126,11 @@ public class HandRendererHelper
 
 		if (props.getZoanPoint().toLowerCase().equals("n/a"))
 		{
-			render = RenderManager.instance.getEntityRenderObject(mc.thePlayer);
+			render = RenderManager.instance.getEntityRenderObject(mc.player);
 			RenderPlayer renderplayer = (RenderPlayer) render;
 			float i = 1.0F;
 			GL11.glScalef(i, i, i);
-			renderplayer.renderFirstPersonArm(mc.thePlayer);
+			renderplayer.renderFirstPersonArm(mc.player);
 		} 
 		else
 		{
@@ -148,7 +148,7 @@ public class HandRendererHelper
 			GL11.glScalef(i, i, i);
 			GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glTranslatef(0.2f, 0.0f, -0.5f);
-			renderZoan.renderFirstPersonArm(mc.thePlayer);
+			renderZoan.renderFirstPersonArm(mc.player);
 		}
 
 		GL11.glPopMatrix();

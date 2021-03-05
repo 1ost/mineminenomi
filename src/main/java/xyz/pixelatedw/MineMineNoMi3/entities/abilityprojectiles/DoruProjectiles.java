@@ -3,7 +3,6 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.abilities.effects.DFEffectDoruLock;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityAttribute;
@@ -51,7 +50,7 @@ public class DoruProjectiles
 			super(world, player, attr);		
 		}
 		
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{			
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{						

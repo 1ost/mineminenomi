@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.commands;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +30,7 @@ public class CommandRemoveDF extends CommandBase
 		
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		AbilityProperties abilityProps = AbilityProperties.get(player);
-		ExtendedWorldData worldProps = ExtendedWorldData.get(player.worldObj);
+		ExtendedWorldData worldProps = ExtendedWorldData.get(player.world);
 
 		worldProps.removeDevilFruitFromWorld(props.getUsedFruit());
 		

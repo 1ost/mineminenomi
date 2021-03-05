@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityAttribute;
@@ -57,7 +56,7 @@ public class ExtraProjectiles
 		public void onUpdate()
 		{
 			super.onUpdate();
-			if(!this.worldObj.isRemote)
+			if(!this.world.isRemote)
 			{
 				if(life <= 0)
 					this.setDead();
@@ -110,16 +109,16 @@ public class ExtraProjectiles
 		@Override
 		public void onUpdate()
 		{
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX, (int)this.posY - 1, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX + 1, (int)this.posY - 1, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX - 1, (int)this.posY - 1, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX + 1, (int)this.posY - 1, (int)this.posZ + 1, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX + 1, (int)this.posY - 1, (int)this.posZ - 1, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX - 1, (int)this.posY - 1, (int)this.posZ + 1, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX, (int)this.posY - 1, (int)this.posZ + 1, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX, (int)this.posY - 1, (int)this.posZ - 1, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX - 1, (int)this.posY - 1, (int)this.posZ - 1, ListMisc.SkyBlock, 1, 3, "air");
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)this.posX, (int)this.posY - 2, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX, (int)this.posY - 1, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX + 1, (int)this.posY - 1, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX - 1, (int)this.posY - 1, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX + 1, (int)this.posY - 1, (int)this.posZ + 1, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX + 1, (int)this.posY - 1, (int)this.posZ - 1, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX - 1, (int)this.posY - 1, (int)this.posZ + 1, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX, (int)this.posY - 1, (int)this.posZ + 1, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX, (int)this.posY - 1, (int)this.posZ - 1, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX - 1, (int)this.posY - 1, (int)this.posZ - 1, ListMisc.SkyBlock, 1, 3, "air");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)this.posX, (int)this.posY - 2, (int)this.posZ, ListMisc.SkyBlock, 1, 3, "air");
 			
 			super.onUpdate();
 		}
@@ -139,7 +138,7 @@ public class ExtraProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			WyHelper.doExplosion(this.getThrower(), this.posX, this.posY, this.posZ, 4);
 		}	

@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -31,7 +30,7 @@ public class YamiProjectiles
 	
 	public static class Liberation extends AbilityProjectile
 	{
-		private Block[] randomBlocks = new Block[] {Blocks.stone, Blocks.sand, Blocks.grass, Blocks.dirt, Blocks.gravel, Blocks.clay, Blocks.cobblestone};
+		private Block[] randomBlocks = new Block[] {Blocks.STONE, Blocks.SAND, Blocks.GRASS, Blocks.DIRT, Blocks.GRAVEL, Blocks.CLAY, Blocks.COBBLESTONE};
 		
 		public Liberation(World world)
 		{super(world);}
@@ -44,9 +43,9 @@ public class YamiProjectiles
 			super(world, player, attr);		
 		}
 		
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
-			this.worldObj.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, randomBlocks[this.rand.nextInt(randomBlocks.length)]);
+			this.world.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, randomBlocks[this.rand.nextInt(randomBlocks.length)]);
 		}
 	}	
 	
@@ -63,11 +62,11 @@ public class YamiProjectiles
 			super(world, player, attr);		
 		}	
 
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(MainConfig.enableGriefing)
 			{
-				WyHelper.createFilledSphere(this.worldObj, (int)this.posX, (int)this.posY, (int)this.posZ, 3, ListMisc.Darkness, "air");
+				WyHelper.createFilledSphere(this.world, (int)this.posX, (int)this.posY, (int)this.posZ, 3, ListMisc.Darkness, "air");
 					
 				WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_DARKMATTER, this.posX, this.posY, this.posZ), this.dimension, this.posX, this.posY, this.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 			}

@@ -47,7 +47,7 @@ public class Ability
 				if(this.attr.isRepeater())
 					startRepeater(player);
 				else
-					player.worldObj.spawnEntityInWorld(this.projectile);
+					player.world.spawnEntity(this.projectile);
 			}
 			
 			if(this.attr.getPotionEffectsForUser() != null)
@@ -91,8 +91,8 @@ public class Ability
 		{	
 			try 
 			{
-				if(!player.worldObj.isRemote && this.currentSpawn % this.ticksForRepeaterFreq == 0)
-					player.worldObj.spawnEntityInWorld(this.projectile.getClass().getDeclaredConstructor(World.class, EntityLivingBase.class, AbilityAttribute.class).newInstance(player.worldObj, player, attr));
+				if(!player.world.isRemote && this.currentSpawn % this.ticksForRepeaterFreq == 0)
+					player.world.spawnEntity(this.projectile.getClass().getDeclaredConstructor(World.class, EntityLivingBase.class, AbilityAttribute.class).newInstance(player.world, player, attr));
 			} 
 			catch (Exception e) 
 			{
@@ -122,7 +122,7 @@ public class Ability
 				WyNetworkHelper.sendTo(new PacketAbilitySync(AbilityProperties.get(player)), (EntityPlayerMP) player);
 				if(this.attr.getPotionEffectsForUser() != null)
 					for(PotionEffect p : this.attr.getPotionEffectsForUser())	
-						player.removePotionEffect(p.getPotionID());
+						player.removePotionEffect(p.getPotion());
 				
 				endPassive(player);
 			}
@@ -132,7 +132,7 @@ public class Ability
 				WyNetworkHelper.sendTo(new PacketAbilitySync(AbilityProperties.get(player)), (EntityPlayerMP) player);
 				if(this.attr.getPotionEffectsForUser() != null)
 					for(PotionEffect p : this.attr.getPotionEffectsForUser())				
-						player.addPotionEffect(new PotionEffect(p.getPotionID(), Integer.MAX_VALUE, p.getAmplifier(), true));
+						player.addPotionEffect(new PotionEffect(p.getPotion(), Integer.MAX_VALUE, p.getAmplifier(), true, false));
 				
 				this.sendShounenScream(player);
 				
@@ -160,7 +160,7 @@ public class Ability
 	{
 		if(this.attr.getPotionEffectsForUser() != null)
 			for(PotionEffect p : this.attr.getPotionEffectsForUser())	
-				player.removePotionEffect(p.getPotionID());
+				player.removePotionEffect(p.getPotion());
 	}
 	
 	public void startPassive(EntityPlayer player) {}
@@ -214,13 +214,13 @@ public class Ability
 			if(this.attr.isRepeater())
 				startRepeater(player);
 			else
-				player.worldObj.spawnEntityInWorld(projectile);
+				player.world.spawnEntity(projectile);
 		}
 		
 		this.sendShounenScream(player, 2);
 		
 		if(this.attr.getAbilityExplosionPower() > 0)
-			player.worldObj.newExplosion(player, player.posX, player.posY, player.posZ, this.attr.getAbilityExplosionPower(), this.attr.canAbilityExplosionSetFire(), MainConfig.enableGriefing ? this.attr.canAbilityExplosionDestroyBlocks() : false);		
+			player.world.newExplosion(player, player.posX, player.posY, player.posZ, this.attr.getAbilityExplosionPower(), this.attr.canAbilityExplosionSetFire(), MainConfig.enableGriefing ? this.attr.canAbilityExplosionDestroyBlocks() : false);		
 				
     	if(!WyHelper.isDevBuild() && !player.capabilities.isCreativeMode)
     		WyTelemetry.addAbilityStat(this.getAttribute().getAbilityTexture(), this.getAttribute().getAttributeName(), 1);
@@ -244,10 +244,10 @@ public class Ability
 	{
 		if(this.attr.getPotionEffectsForHit() != null)
 			for(PotionEffect p : this.attr.getPotionEffectsForHit())				
-				target.addPotionEffect(new PotionEffect(p.getPotionID(), p.getDuration(), p.getAmplifier(), true)); 
+				target.addPotionEffect(new PotionEffect(p.getPotion(), p.getDuration(), p.getAmplifier(), true, false));
 
 		if(this.attr.getAbilityExplosionPower() > 0)
-			player.worldObj.newExplosion(target, target.posX, target.posY, target.posZ, this.attr.getAbilityExplosionPower(), this.attr.canAbilityExplosionSetFire(), MainConfig.enableGriefing ? this.attr.canAbilityExplosionDestroyBlocks() : false);		
+			player.world.newExplosion(target, target.posX, target.posY, target.posZ, this.attr.getAbilityExplosionPower(), this.attr.canAbilityExplosionSetFire(), MainConfig.enableGriefing ? this.attr.canAbilityExplosionDestroyBlocks() : false);		
 
 		passiveActive = false;
 		startCooldown();
@@ -285,7 +285,7 @@ public class Ability
 	protected void sendShounenScream(EntityPlayer player, int part)
 	{
 		if(MainConfig.enableAnimeScreaming)
-    		WyNetworkHelper.sendToAllAround(new PacketShounenScream(player.getCommandSenderName(), this.attr.getAbilityDisplayName(), part), player.dimension, player.posX, player.posY, player.posZ, 15);
+    		WyNetworkHelper.sendToAllAround(new PacketShounenScream(player.getCommandSenderEntity().getName(), this.attr.getAbilityDisplayName(), part), player.dimension, player.posX, player.posY, player.posZ, 15);
 	}
 	
 	public void reset()

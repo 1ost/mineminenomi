@@ -3,7 +3,7 @@ package xyz.pixelatedw.MineMineNoMi3.api.abilities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.RayTraceResult;
 
 public class AbilityTask 
 {
@@ -22,7 +22,7 @@ public class AbilityTask
 	
 	public void onItemHit(ItemStack itemStack, EntityLivingBase target, EntityLivingBase attacker) {}
 	
-	public void onProjectileHit(AbilityProjectile abilityProjectile, MovingObjectPosition hit) {}
+	public void onProjectileHit(AbilityProjectile abilityProjectile, RayTraceResult hit) {}
 
 	
 }

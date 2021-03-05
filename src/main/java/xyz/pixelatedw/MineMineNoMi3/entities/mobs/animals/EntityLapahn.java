@@ -58,15 +58,15 @@ public class EntityLapahn extends EntityNewMob
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
 	}
 
 	@Override
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		if (!this.worldObj.isRemote)
+		if (!this.world.isRemote)
 		{
 
 		}
@@ -108,7 +108,7 @@ public class EntityLapahn extends EntityNewMob
 	public void setEnraged(boolean value)
 	{
 		this.isEnraged = value;
-		IAttributeInstance attackAttribute = this.getEntityAttribute(SharedMonsterAttributes.attackDamage);
+		IAttributeInstance attackAttribute = this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		if (value && attackAttribute.getModifier(this.rageModeUUID) == null)
 			attackAttribute.applyModifier(rageModeModifier);
 		else if (!value && attackAttribute.getModifier(this.rageModeUUID) != null)
@@ -140,15 +140,15 @@ public class EntityLapahn extends EntityNewMob
 	{
 		if (distance > 5)
 		{
-			if (this.worldObj.isRemote)
+			if (this.world.isRemote)
 			{
 				for (int i = 0; i < 256; i++)
 				{
 					double posX = this.posX + WyMathHelper.randomWithRange(-5, 5) + WyMathHelper.randomDouble();
 					double posZ = this.posZ + WyMathHelper.randomWithRange(-5, 5) + WyMathHelper.randomDouble();
 
-					this.worldObj.spawnParticle("explode", posX, this.posY + 0.5, posZ, 0, 0.1, 0);
-					this.worldObj.spawnParticle("smoke", posX, this.posY + 0.5, posZ, 0, 0.1, 0);
+					this.world.spawnParticle("explode", posX, this.posY + 0.5, posZ, 0, 0.1, 0);
+					this.world.spawnParticle("smoke", posX, this.posY + 0.5, posZ, 0, 0.1, 0);
 				}
 			}
 

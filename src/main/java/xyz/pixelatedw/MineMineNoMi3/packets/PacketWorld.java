@@ -1,8 +1,10 @@
 package xyz.pixelatedw.MineMineNoMi3.packets;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -43,11 +45,11 @@ public class PacketWorld implements IMessage
 	{
 		public IMessage onMessage(final PacketWorld message, final MessageContext ctx) 
 		{
-			EntityPlayer player = ctx.getServerHandler().playerEntity;
+			EntityPlayer player = ctx.getServerHandler().player;
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 
 			if(message.blockId != -1)
-				player.worldObj.setBlock(message.posX, message.posY, message.posZ, Block.getBlockById(message.blockId));
+				player.world.setBlockState(new BlockPos(message.posX, message.posY, message.posZ), (IBlockState) Block.getBlockById(message.blockId));
 			
 			return null;
 		}

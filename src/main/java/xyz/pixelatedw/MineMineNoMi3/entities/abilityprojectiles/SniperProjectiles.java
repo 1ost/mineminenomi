@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -46,19 +45,19 @@ public class SniperProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			for(int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(8); i++)
 			{
-				int a1 = worldObj.rand.nextInt(10) - 5;
-				int a2 = worldObj.rand.nextInt(10) - 5;
+				int a1 = world.rand.nextInt(10) - 5;
+				int a2 = world.rand.nextInt(10) - 5;
 				
-				DevilFruitsHelper.placeBlockIfAllowed(worldObj, (int)posX + a1, (int)posY - 3 , (int)posZ + a2, Blocks.cactus, 2, "air");
-				DevilFruitsHelper.placeBlockIfAllowed(worldObj, (int)posX + a1, (int)posY - 2 , (int)posZ + a2, Blocks.cactus, 2, "air");	
-				DevilFruitsHelper.placeBlockIfAllowed(worldObj, (int)posX + a1, (int)posY - 1 , (int)posZ + a2, Blocks.cactus, 2, "air");	
-				DevilFruitsHelper.placeBlockIfAllowed(worldObj, (int)posX + a1, (int)posY , (int)posZ + a2, Blocks.cactus, 2, "air");		
-				DevilFruitsHelper.placeBlockIfAllowed(worldObj, (int)posX + a1, (int)posY + 1, (int)posZ + a2, Blocks.cactus, 2, "air");		
-				DevilFruitsHelper.placeBlockIfAllowed(worldObj, (int)posX + a1, (int)posY + 2, (int)posZ + a2, Blocks.cactus, 2, "air");	
+				DevilFruitsHelper.placeBlockIfAllowed(world, (int)posX + a1, (int)posY - 3 , (int)posZ + a2, Blocks.CACTUS, 2, "air");
+				DevilFruitsHelper.placeBlockIfAllowed(world, (int)posX + a1, (int)posY - 2 , (int)posZ + a2, Blocks.CACTUS, 2, "air");
+				DevilFruitsHelper.placeBlockIfAllowed(world, (int)posX + a1, (int)posY - 1 , (int)posZ + a2, Blocks.CACTUS, 2, "air");
+				DevilFruitsHelper.placeBlockIfAllowed(world, (int)posX + a1, (int)posY , (int)posZ + a2, Blocks.CACTUS, 2, "air");
+				DevilFruitsHelper.placeBlockIfAllowed(world, (int)posX + a1, (int)posY + 1, (int)posZ + a2, Blocks.CACTUS, 2, "air");
+				DevilFruitsHelper.placeBlockIfAllowed(world, (int)posX + a1, (int)posY + 2, (int)posZ + a2, Blocks.CACTUS, 2, "air");
 			}
 		}
 	}
@@ -91,16 +90,16 @@ public class SniperProjectiles
 		}
 
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
-			EntityKemuriBoshiCloud smokeCloud = new EntityKemuriBoshiCloud(worldObj);
+			EntityKemuriBoshiCloud smokeCloud = new EntityKemuriBoshiCloud(world);
 			smokeCloud.setLife(100);
 			smokeCloud.setLocationAndAngles(this.posX, (this.posY + 1), this.posZ, 0, 0);
 			smokeCloud.motionX = 0;
 			smokeCloud.motionZ = 0;
 			smokeCloud.motionY = 0;	
 			smokeCloud.setThrower((EntityPlayer) this.getThrower());
-			this.worldObj.spawnEntityInWorld(smokeCloud);		
+			this.world.spawnEntity(smokeCloud);
 		}	
 	}
 	
@@ -115,10 +114,10 @@ public class SniperProjectiles
 		public void onUpdate()
 		{
 			super.onUpdate();
-			if(!this.worldObj.isRemote)
+			if(!this.world.isRemote)
 			{				
 				for(EntityLivingBase target : WyHelper.getEntitiesNear(this, 5))
-					target.addPotionEffect(new PotionEffect(Potion.poison.id, 100, 1));
+					target.addPotionEffect(new PotionEffect(Potion.getPotionById(19), 100, 1));
 			}
 			WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_KEMURIBOSHI, this.posX, this.posY, this.posZ), this.dimension, this.posX, this.posY, this.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 		}
@@ -145,7 +144,7 @@ public class SniperProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null)
 			{

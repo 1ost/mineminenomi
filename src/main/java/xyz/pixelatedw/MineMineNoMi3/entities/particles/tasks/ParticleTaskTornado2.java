@@ -58,7 +58,7 @@ public class ParticleTaskTornado2 extends TimerTask
 							Minecraft.getMinecraft().effectRenderer.addEffect(clone);
 						}
 						else							
-							player.worldObj.spawnParticle((String) particle, this.posX + x, this.posY - 0.7 + y, this.posZ + z, 0.0D, 0.0D, 0.0D);
+							player.world.spawnParticle((String) particle, this.posX + x, this.posY - 0.7 + y, this.posZ + z, 0.0D, 0.0D, 0.0D);
 						Thread.sleep(1);
 					} 
 					catch (InterruptedException e) 

@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -58,13 +58,13 @@ public class MokuAbilities
 			double mZ = MathHelper.cos(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4;
 			double mY = -MathHelper.sin((player.rotationPitch + 0) / 180.0F * (float)Math.PI) * 0.4;		        
 				
-			double f2 = MathHelper.sqrt_double(mX * mX + mY * mY + mZ * mZ);
+			double f2 = MathHelper.sqrt(mX * mX + mY * mY + mZ * mZ);
 			mX /= f2;
 			mY /= f2;
 			mZ /= f2;
-			mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-			mY += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-			mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+			mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+			mY += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+			mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 			mX *= 5;
 			mY *= 1.5;
 			mZ *= 5;
@@ -97,7 +97,7 @@ public class MokuAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new MokuProjectiles.WhiteSnake(player.worldObj, player, attr);
+			this.projectile = new MokuProjectiles.WhiteSnake(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -112,7 +112,7 @@ public class MokuAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new MokuProjectiles.WhiteOut(player.worldObj, player, attr);
+			this.projectile = new MokuProjectiles.WhiteOut(player.world, player, attr);
 			super.use(player);
 		}
 	}

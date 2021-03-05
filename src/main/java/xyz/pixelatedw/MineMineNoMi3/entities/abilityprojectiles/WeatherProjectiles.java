@@ -13,8 +13,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -66,13 +65,13 @@ public class WeatherProjectiles
 		@Override
 		public void setDead()
 		{
-			if(!this.worldObj.isRemote)
+			if(!this.world.isRemote)
 			{
-				EntityWeatherCloud weatherCloud = new EntityWeatherCloud(worldObj);
+				EntityWeatherCloud weatherCloud = new EntityWeatherCloud(world);
 				weatherCloud.setLife(200);
 				weatherCloud.setThrower((EntityPlayer) this.getThrower());
 				weatherCloud.setPositionAndRotation(this.posX, this.posY, this.posZ, 0, 0);
-				this.worldObj.spawnEntityInWorld(weatherCloud);
+				this.world.spawnEntity(weatherCloud);
 			}
 			super.setDead();
 		}
@@ -94,7 +93,7 @@ public class WeatherProjectiles
 		@Override
 		public void onUpdate()
 		{
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for(int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(5); i++)
 				{
@@ -102,7 +101,7 @@ public class WeatherProjectiles
 					double offsetY = WyMathHelper.randomDouble() / 4;
 					double offsetZ = WyMathHelper.randomDouble() / 4;
 				    
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_MOKU2, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MOKU2,
 							posX + offsetX, 
 							posY + offsetY, 
 							posZ + offsetZ, 
@@ -111,7 +110,7 @@ public class WeatherProjectiles
 					particle.setAlphaF(0.5F);
 					MainMod.proxy.spawnCustomParticles(this, particle);
 					
-					particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_MOKU, 
+					particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MOKU,
 							posX + offsetX, 
 							posY + offsetY, 
 							posZ + offsetZ, 
@@ -126,18 +125,18 @@ public class WeatherProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
 				double mX = -MathHelper.sin(this.getThrower().rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.getThrower().rotationPitch / 180.0F * (float)Math.PI) * 0.4;
 				double mZ = MathHelper.cos(this.getThrower().rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.getThrower().rotationPitch / 180.0F * (float)Math.PI) * 0.4;
 					
-				double f2 = MathHelper.sqrt_double(mX * mX + this.getThrower().motionY * this.getThrower().motionY + mZ * mZ);
+				double f2 = MathHelper.sqrt(mX * mX + this.getThrower().motionY * this.getThrower().motionY + mZ * mZ);
 				mX /= f2;
 				mZ /= f2;
-				mX += this.getThrower().worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-				mZ += this.getThrower().worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mX += this.getThrower().world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mZ += this.getThrower().world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 				mX *= 2;
 				mZ *= 2;
 				
@@ -180,7 +179,7 @@ public class WeatherProjectiles
 		public void onUpdate()
 		{
 			super.onUpdate();
-			if(!this.worldObj.isRemote)
+			if(!this.world.isRemote)
 			{
 				List weatherBallsNear = WyHelper.getEntitiesNear(this, new double[] {4, 1, 4}, WeatherBall.class);
 				if(weatherBallsNear.size() > 0 && this.ticksExisted > 100)
@@ -194,7 +193,7 @@ public class WeatherProjectiles
 
 					if(heatBalls.size() > 0)
 					{
-						EntityWeatherCloud weatherCloud = new EntityWeatherCloud(worldObj);
+						EntityWeatherCloud weatherCloud = new EntityWeatherCloud(world);
 						weatherCloud.setThrower((EntityPlayer) this.getThrower());
 						weatherCloud.setPositionAndRotation(this.posX, this.posY, this.posZ, 0, 0);
 						weatherCloud.addWeatherBall(this);
@@ -205,7 +204,7 @@ public class WeatherProjectiles
 							hb.setDead();
 						}
 						
-						this.worldObj.spawnEntityInWorld(weatherCloud);
+						this.world.spawnEntity(weatherCloud);
 						if(this.getThrower() != null)
 							DevilFruitsHelper.sendShounenScream((EntityPlayer) this.getThrower(), "Thunderbolt Tempo", 0);
 						
@@ -296,7 +295,7 @@ public class WeatherProjectiles
 		@Override
 		public void onUpdate()
 		{
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for(int i = 0; i < 100; i++)
 				{
@@ -304,7 +303,7 @@ public class WeatherProjectiles
 					double offsetY = WyMathHelper.randomWithRange(-2, 0) + WyMathHelper.randomDouble();
 					double offsetZ = WyMathHelper.randomWithRange(-12, 12) + (WyMathHelper.randomDouble() * 7);
 					    
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GORO2, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GORO2,
 							posX + offsetX, 
 							posY + offsetY, 
 							posZ + offsetZ, 
@@ -313,7 +312,7 @@ public class WeatherProjectiles
 						
 					MainMod.proxy.spawnCustomParticles(this, particle);
 					
-					particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_MOKU2, 
+					particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MOKU2,
 							posX + offsetX + WyMathHelper.randomDouble(), 
 							posY + offsetY + WyMathHelper.randomDouble(), 
 							posZ + offsetZ + WyMathHelper.randomDouble(), 
@@ -326,7 +325,7 @@ public class WeatherProjectiles
 			
 			super.onUpdate();
 			
-			if(!this.worldObj.isRemote)
+			if(!this.world.isRemote)
 			{
 				if(life <= 0 || this.getThrower() == null)
 					this.setDead();
@@ -348,14 +347,14 @@ public class WeatherProjectiles
 							if(this.ticksExisted % thunderTimer == 0)
 							{
 								WyNetworkHelper.sendTo(new PacketPlayer("ElThorThunder", entity.posX, entity.posY, entity.posZ), (EntityPlayerMP) this.getThrower());
-								EntityLightningBolt thunder = new EntityLightningBolt(worldObj, entity.posX, entity.posY, entity.posZ);
+								EntityLightningBolt thunder = new EntityLightningBolt(world, entity.posX, entity.posY, entity.posZ);
 								AbilityExplosion exp = WyHelper.newExplosion(this, entity.posX, entity.posY, entity.posZ, 1);
 								exp.setFireAfterExplosion(false);
 								exp.setDestroyBlocks(false);
 								exp.setSmokeParticles("");
 								exp.doExplosion();
 								
-								this.worldObj.spawnEntityInWorld(thunder);
+								this.world.spawnEntity(thunder);
 								if(!this.superCharged)
 									break;
 							}

@@ -33,10 +33,10 @@ public class EntityMarineCaptain extends MarineData
 		super.applyEntityAttributes(); 
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
 
-		if(!this.worldObj.isRemote)
+		if(!this.world.isRemote)
 		{
 			Item[] randomSword = new Item[] {ListMisc.MarineSword, null};
 			
@@ -68,10 +68,10 @@ public class EntityMarineCaptain extends MarineData
     	if(swordStack != null)
     		this.setCurrentItemOrArmor(0, swordStack);
     	
-		if(!this.worldObj.isRemote)
+		if(!this.world.isRemote)
 		{
-			this.setDoriki(15 + this.worldObj.rand.nextInt(50) + this.threat);
-			this.setBelly(20 + this.worldObj.rand.nextInt(20) + (this.threat / 2));
+			this.setDoriki(15 + this.world.rand.nextInt(50) + this.threat);
+			this.setBelly(20 + this.world.rand.nextInt(20) + (this.threat / 2));
 		}
     }
     

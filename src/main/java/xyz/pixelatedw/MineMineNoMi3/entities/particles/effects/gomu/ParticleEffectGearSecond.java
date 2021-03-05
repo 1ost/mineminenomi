@@ -17,7 +17,7 @@ public class ParticleEffectGearSecond extends ParticleEffect
 			double offsetY = (new Random().nextInt(20) + 1.0D - 10.0D) / 15.0D;
 			double offsetZ = (new Random().nextInt(20) + 1.0D - 10.0D) / 15.0D;
 	      
-			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), posX + offsetX, (posY + 0.5) + offsetY, posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+			player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), posX + offsetX, (posY + 0.5) + offsetY, posZ + offsetZ, 0.0D, 0.0D, 0.0D);
 		}	
 	}
 

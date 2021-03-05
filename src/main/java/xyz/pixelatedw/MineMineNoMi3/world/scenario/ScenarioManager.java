@@ -33,7 +33,7 @@ public class ScenarioManager
 	{
 		WyDebug.info("Check coords : X:" + posX + " Y:" + posY + " Z:" + posZ);
 		
-		if(world.getBlock(posX, posY, posZ) == Blocks.air)
+		if(world.getBlock(posX, posY, posZ) == Blocks.AIR)
 			return true;
 
 		return false;

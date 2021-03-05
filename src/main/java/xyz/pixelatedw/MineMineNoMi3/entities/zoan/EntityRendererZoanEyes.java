@@ -18,32 +18,32 @@ public class EntityRendererZoanEyes extends EntityRenderer
 	@Override
 	public void updateCameraAndRender(float partialTick)
 	{
-		if (mc.thePlayer == null || mc.thePlayer.isPlayerSleeping())
+		if (mc.player == null || mc.player.isPlayerSleeping())
 		{
 			super.updateCameraAndRender(partialTick);
 			return;
 		}
 
-		mc.thePlayer.yOffset -= offsetY;
+		mc.player.yOffset -= offsetY;
 		super.updateCameraAndRender(partialTick);
-		mc.thePlayer.yOffset = 1.62F;
+		mc.player.yOffset = 1.62F;
 	}
 
 	@Override
 	public void getMouseOver(float partialTick)
 	{
-		if (mc.thePlayer == null || mc.thePlayer.isPlayerSleeping())
+		if (mc.player == null || mc.player.isPlayerSleeping())
 		{
 			super.getMouseOver(partialTick);
 			return;
 		}
 
-		mc.thePlayer.posY += offsetY;
-		mc.thePlayer.prevPosY += offsetY;
-		mc.thePlayer.lastTickPosY += offsetY;
+		mc.player.posY += offsetY;
+		mc.player.prevPosY += offsetY;
+		mc.player.lastTickPosY += offsetY;
 		super.getMouseOver(partialTick);
-		mc.thePlayer.posY -= offsetY;
-		mc.thePlayer.prevPosY -= offsetY;
-		mc.thePlayer.lastTickPosY -= offsetY;
+		mc.player.posY -= offsetY;
+		mc.player.prevPosY -= offsetY;
+		mc.player.lastTickPosY -= offsetY;
 	}
 }

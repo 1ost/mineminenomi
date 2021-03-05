@@ -25,14 +25,14 @@ public class ParticleEffectChloroBallCloud extends ParticleEffect
 			double motionZ = WyMathHelper.randomDouble() / 8;
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_DOKU,
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_DOKU,
 							posX + offsetX, 
 							posY + offsetY, 
 							posZ + offsetZ, 
 							motionX, 
 							0.05D, 
 							motionZ)
-					.setParticleScale(1.2F).setParticleGravity(0).setParticleAge(5 + player.worldObj.rand.nextInt(2)));
+					.setParticleScale(1.2F).setParticleGravity(0).setParticleAge(5 + player.world.rand.nextInt(2)));
 		}	
 	}
 

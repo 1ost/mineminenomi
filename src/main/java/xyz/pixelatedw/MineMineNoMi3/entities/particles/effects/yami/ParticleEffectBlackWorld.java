@@ -20,28 +20,28 @@ public class ParticleEffectBlackWorld extends ParticleEffect
 			double offsetZ = (new Random().nextInt(40) + 1.0D - 20.0D) / 2.0D;
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_DARKNESS, 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_DARKNESS, 
 							posX + offsetX + new Random().nextInt(5), 
 							posY + offsetY, 
 							posZ + offsetZ + new Random().nextInt(5), 
 							0, 0, 0)
-					.setParticleScale(1.2F).setParticleGravity(-1 + (player.worldObj.rand.nextInt(2) * -1)).setParticleAge(30 + player.worldObj.rand.nextInt(10)));
+					.setParticleScale(1.2F).setParticleGravity(-1 + (player.world.rand.nextInt(2) * -1)).setParticleAge(30 + player.world.rand.nextInt(10)));
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_DARKNESS, 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_DARKNESS, 
 							posX + offsetX + new Random().nextInt(5), 
 							posY + 1.5 + offsetY, 
 							posZ + offsetZ + new Random().nextInt(5), 
 							0, 0, 0)
-					.setParticleScale(1.2F).setParticleGravity(-1 + (player.worldObj.rand.nextInt(2) * -1)).setParticleAge(30 + player.worldObj.rand.nextInt(10)));
+					.setParticleScale(1.2F).setParticleGravity(-1 + (player.world.rand.nextInt(2) * -1)).setParticleAge(30 + player.world.rand.nextInt(10)));
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_DARKNESS, 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_DARKNESS, 
 							posX + offsetX + new Random().nextInt(5), 
 							posY + 2.5 + offsetY, 
 							posZ + offsetZ + new Random().nextInt(5), 
 							0, 0, 0)
-					.setParticleScale(1.2F).setParticleGravity(-1 + (player.worldObj.rand.nextInt(2) * -1)).setParticleAge(30 + player.worldObj.rand.nextInt(10)));
+					.setParticleScale(1.2F).setParticleGravity(-1 + (player.world.rand.nextInt(2) * -1)).setParticleAge(30 + player.world.rand.nextInt(10)));
 		}		
 
 	}

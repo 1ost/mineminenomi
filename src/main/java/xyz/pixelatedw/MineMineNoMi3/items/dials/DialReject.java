@@ -21,7 +21,7 @@ public class DialReject extends Item
     @Override
 	public boolean hitEntity(ItemStack itemStack, EntityLivingBase user, EntityLivingBase target)
     {
-		if(!user.worldObj.isRemote)
+		if(!user.world.isRemote)
 		{
 	    	if(!user.isSneaking())
 	    	{

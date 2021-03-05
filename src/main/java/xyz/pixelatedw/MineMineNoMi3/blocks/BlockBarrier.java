@@ -2,8 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -17,7 +17,7 @@ public class BlockBarrier extends Block
 {	
 	public BlockBarrier()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 	} 
 	
 	public boolean isOpaqueCube() {return false;}

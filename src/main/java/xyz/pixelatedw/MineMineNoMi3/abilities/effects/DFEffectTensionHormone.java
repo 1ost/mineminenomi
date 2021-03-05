@@ -17,15 +17,15 @@ public class DFEffectTensionHormone extends DFEffect
 
 	public void onEffectStart(EntityLivingBase entity)
 	{
-		entity.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 1));
-		entity.addPotionEffect(new PotionEffect(Potion.jump.id, 600, 1));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 600, 1));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 600, 1));
 		entity.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 600, 1));
-		entity.addPotionEffect(new PotionEffect(Potion.resistance.id, 600, 1));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 600, 1));
 	}
 
 	public void onEffectEnd(EntityLivingBase entity)
 	{
-		entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 300, 1));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 300, 1));
 	}
 		
 }

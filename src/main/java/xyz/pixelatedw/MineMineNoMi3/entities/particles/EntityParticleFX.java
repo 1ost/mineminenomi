@@ -122,7 +122,7 @@ public class EntityParticleFX extends EntityFX
     
     public EntityParticleFX clone(double posX, double posY, double posZ, double motionX, double motionY, double motionZ)
     {
-    	EntityParticleFX clone = new EntityParticleFX(this.worldObj, this.texture,
+    	EntityParticleFX clone = new EntityParticleFX(this.world, this.texture,
     			posX, posY, posZ,
     			motionX, motionY, motionZ)
     			.setParticleScale(this.particleScale).setParticleGravity(this.particleGravity).setParticleAge(this.particleMaxAge);

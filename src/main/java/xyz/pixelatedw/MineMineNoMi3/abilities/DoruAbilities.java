@@ -33,7 +33,7 @@ public class DoruAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new DoruProjectiles.CandleLock(player.worldObj, player, attr);
+			this.projectile = new DoruProjectiles.CandleLock(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -79,21 +79,21 @@ public class DoruAbilities
 					{
 						for(int x = 0; x < 1; x++)
 							for(int z = -5; z < 5; z++)
-								player.worldObj.setBlock(((int) player.posX + 6) - x, (int) player.posY + y, (int) player.posZ - z, ListMisc.WaxBlock);
+								player.world.setBlock(((int) player.posX + 6) - x, (int) player.posY + y, (int) player.posZ - z, ListMisc.WaxBlock);
 						for(int x = 0; x < 1; x++)
 							for(int z = -5; z < 5; z++)
-								player.worldObj.setBlock(((int) player.posX - 5) - x, (int) player.posY + y, (int) player.posZ - z, ListMisc.WaxBlock);
+								player.world.setBlock(((int) player.posX - 5) - x, (int) player.posY + y, (int) player.posZ - z, ListMisc.WaxBlock);
 						for(int x = -5; x < 5; x++)
 							for(int z = 0; z < 1; z++)
-								player.worldObj.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ + 6) - z, ListMisc.WaxBlock);
+								player.world.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ + 6) - z, ListMisc.WaxBlock);
 						for(int x = -5; x < 5; x++)
 							for(int z = 0; z < 1; z++)
-								player.worldObj.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ - 5) - z, ListMisc.WaxBlock);
+								player.world.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ - 5) - z, ListMisc.WaxBlock);
 					}
 					for(int x = -5; x < 5; x++)
 						for(int y = 0; y < 1; y++)
 							for(int z = -5; z < 5; z++)
-						  		player.worldObj.setBlock((int) player.posX - x, ((int) player.posY + 4) + y, (int) player.posZ - z, ListMisc.WaxBlock);
+						  		player.world.setBlock((int) player.posX - x, ((int) player.posY + 4) + y, (int) player.posZ - z, ListMisc.WaxBlock);
 				}
 				
 				super.use(player);
@@ -115,13 +115,13 @@ public class DoruAbilities
 				if(MainConfig.enableGriefing)
 				{
 					if(WyHelper.get4Directions(player) == WyHelper.Direction.NORTH)
-						WyHelper.createFilledCube(player.worldObj, player.posX, player.posY, player.posZ - 3, new int[] {3, 4, 1}, ListMisc.WaxBlock, "air", "foliage");
+						WyHelper.createFilledCube(player.world, player.posX, player.posY, player.posZ - 3, new int[] {3, 4, 1}, ListMisc.WaxBlock, "air", "foliage");
 					if(WyHelper.get4Directions(player) == WyHelper.Direction.SOUTH)
-						WyHelper.createFilledCube(player.worldObj, player.posX, player.posY, player.posZ + 3, new int[] {3, 4, 1}, ListMisc.WaxBlock, "air", "foliage");
+						WyHelper.createFilledCube(player.world, player.posX, player.posY, player.posZ + 3, new int[] {3, 4, 1}, ListMisc.WaxBlock, "air", "foliage");
 					if(WyHelper.get4Directions(player) == WyHelper.Direction.EAST)
-						WyHelper.createFilledCube(player.worldObj, player.posX + 3, player.posY, player.posZ, new int[] {1, 4, 3}, ListMisc.WaxBlock, "air", "foliage");
+						WyHelper.createFilledCube(player.world, player.posX + 3, player.posY, player.posZ, new int[] {1, 4, 3}, ListMisc.WaxBlock, "air", "foliage");
 					if(WyHelper.get4Directions(player) == WyHelper.Direction.WEST)
-						WyHelper.createFilledCube(player.worldObj, player.posX - 3, player.posY, player.posZ, new int[] {1, 4, 3}, ListMisc.WaxBlock, "air", "foliage");
+						WyHelper.createFilledCube(player.world, player.posX - 3, player.posY, player.posZ, new int[] {1, 4, 3}, ListMisc.WaxBlock, "air", "foliage");
 				}
 					
 				super.use(player);
@@ -138,7 +138,7 @@ public class DoruAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new DoruProjectiles.DoruDoruArtsMori(player.worldObj, player, attr);
+			this.projectile = new DoruProjectiles.DoruDoruArtsMori(player.world, player, attr);
 			super.use(player);
 		} 
 	}

@@ -20,7 +20,7 @@ public class ParticleEffectDesertGirasole extends ParticleEffect
 			for (int j = 0; j < 90; j++)
 			{
 				MainMod.proxy.spawnCustomParticles(player,
-						new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_SUNA2,
+						new EntityParticleFX(player.world, ID.PARTICLE_ICON_SUNA2,
 								posX + offsetX,
 								posY - 0.5 - (0.15 * j),
 								posZ + offsetZ,

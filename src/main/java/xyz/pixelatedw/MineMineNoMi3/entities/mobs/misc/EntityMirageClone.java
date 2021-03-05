@@ -38,8 +38,8 @@ public class EntityMirageClone extends EntityMob
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(10);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
 	}
     
 	@Override
@@ -49,7 +49,7 @@ public class EntityMirageClone extends EntityMob
 	@Override
 	public void setDead()
 	{
-		if(!this.worldObj.isRemote)
+		if(!this.world.isRemote)
 			WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_KEMURIBOSHI, this.posX, this.posY, this.posZ), this.dimension, this.posX, this.posY, this.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 		super.setDead();
 	}
@@ -57,7 +57,7 @@ public class EntityMirageClone extends EntityMob
 	@Override
 	public void onEntityUpdate()
 	{
-		if(!this.worldObj.isRemote && this.owner == null)
+		if(!this.world.isRemote && this.owner == null)
 			this.setDead();
 
 	    this.setRevengeTarget(this.owner);

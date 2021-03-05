@@ -57,7 +57,7 @@ public class ParticleTaskWave extends TimerTask
 						Minecraft.getMinecraft().effectRenderer.addEffect(clone);
 					}
 					else							
-						player.worldObj.spawnParticle((String) particle, this.posX + WyMathHelper.randomWithRange(-3, 3) + x, this.posY + y, this.posZ + WyMathHelper.randomWithRange(-3, 3) + z, 0.0D, 0.0D, 0.0D);
+						player.world.spawnParticle((String) particle, this.posX + WyMathHelper.randomWithRange(-3, 3) + x, this.posY + y, this.posZ + WyMathHelper.randomWithRange(-3, 3) + z, 0.0D, 0.0D, 0.0D);
 					Thread.sleep(1);
 				} 
 				catch (InterruptedException e) 

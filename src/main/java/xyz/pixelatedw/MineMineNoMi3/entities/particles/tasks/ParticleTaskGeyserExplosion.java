@@ -42,7 +42,7 @@ public class ParticleTaskGeyserExplosion extends TimerTask
 					//if(this.fxName.contains("custom_"))
 					//	MainMod.proxy.spawnCustomParticles(this.player, this.fxName.replace("custom_", ""), this.posX + x, this.posY + y, this.posZ + z, 0.0D, 0.0D, 0.0D);
 					//else							
-					//	player.worldObj.spawnParticle(fxName, this.posX + x, this.posY + y, this.posZ + z, 0.0D, 0.0D, 0.0D);
+					//	player.world.spawnParticle(fxName, this.posX + x, this.posY + y, this.posZ + z, 0.0D, 0.0D, 0.0D);
 					Thread.sleep(1);
 				} 
 				catch (InterruptedException e) 

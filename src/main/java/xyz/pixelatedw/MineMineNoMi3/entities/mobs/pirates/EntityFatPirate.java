@@ -31,13 +31,13 @@ public class EntityFatPirate extends PirateData
 		super.applyEntityAttributes(); 
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
 			
-		this.setDoriki(15 + this.worldObj.rand.nextInt(15));
-		this.setBelly(10 + this.worldObj.rand.nextInt(20));
+		this.setDoriki(15 + this.world.rand.nextInt(15));
+		this.setBelly(10 + this.world.rand.nextInt(20));
 
-		if(!this.worldObj.isRemote)
+		if(!this.world.isRemote)
 		{
 			Item[] randomSword = new Item[] {ListMisc.MarineSword, null};
 			if(this.rand.nextInt(100) <= 20)

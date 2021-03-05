@@ -50,7 +50,7 @@ public class DoctorAbilities
 		@Override
 		public void endCharging(EntityPlayer player)
 		{
-			EntityPotion entitypotion = new EntityPotion(player.worldObj, player, 32732);
+			EntityPotion entitypotion = new EntityPotion(player.world, player, 32732);
 			entitypotion.rotationPitch -= -20.0F;
 
 			int potionType = (int) WyMathHelper.randomWithRange(0, 3);
@@ -65,7 +65,7 @@ public class DoctorAbilities
 					entitypotion.setPotionDamage(32696); break;
 			}
 			
-			player.worldObj.spawnEntityInWorld(entitypotion);
+			player.world.spawnEntity(entitypotion);
 
 			int damage = player.getCurrentArmor(2).getItemDamage() + 10 <= player.getCurrentArmor(2).getMaxDamage() ? 10 : player.getCurrentArmor(2).getMaxDamage() - player.getCurrentArmor(2).getItemDamage();
 			
@@ -108,19 +108,19 @@ public class DoctorAbilities
 				switch(effect)
 				{
 					case 0:
-						entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 1)); break;
+						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 200, 1)); break;
 					case 1:
-						entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 200, 1)); break;
+						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 200, 1)); break;
 					case 2:
-						entity.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 200, 1)); break;
+						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(4), 200, 1)); break;
 					case 3:
-						entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 1)); break;
+						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 200, 1)); break;
 					case 4:
-						entity.addPotionEffect(new PotionEffect(Potion.poison.id, 200, 1)); break;
+						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(19), 200, 1)); break;
 					case 5:
 						entity.addPotionEffect(new PotionEffect(Potion.wither.id, 200, 1)); break;
 					case 6:
-						entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 1)); break;
+						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 200, 1)); break;
 				}
 			}
 			

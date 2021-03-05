@@ -1,7 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.items.weapons;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -73,7 +73,7 @@ public class KujaBow extends Item
 	
 				if (!world.isRemote)
 				{
-					world.spawnEntityInWorld(entityarrow);
+					world.spawnEntity(entityarrow);
 					WyTelemetry.addMiscStat("kujaArrowsShot", "Kuja Arrows Shot", 1);
 				}
 			}

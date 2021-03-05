@@ -2,12 +2,12 @@ package xyz.pixelatedw.MineMineNoMi3.packets;
 
 import java.util.UUID;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -70,7 +70,7 @@ public class PacketSyncInfo implements IMessage
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(PacketSyncInfo message, MessageContext ctx) 
 		{
-			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayer player = Minecraft.getMinecraft().player;
 			ExtendedEntityData props = ExtendedEntityData.get(player);	 
 			int entityID = message.entityId;
 			
@@ -78,12 +78,12 @@ public class PacketSyncInfo implements IMessage
 			{
 				EntityPlayer target = null;
 	
-				//System.out.println(Arrays.toString(Minecraft.getMinecraft().theWorld.playerEntities.toArray()));
+				//System.out.println(Arrays.toString(Minecraft.getMinecraft().world.playerEntities.toArray()));
 				
-				for(Object o : Minecraft.getMinecraft().theWorld.playerEntities)
+				for(Object o : Minecraft.getMinecraft().world.playerEntities)
 				{
 					EntityPlayer t = (EntityPlayer)o;
-					if(t.getDisplayName().equalsIgnoreCase(message.user))
+					if(t.getName().equalsIgnoreCase(message.user))
 					{
 						target = t;
 						break;
@@ -101,7 +101,7 @@ public class PacketSyncInfo implements IMessage
 			{
 				Entity target = null;
 				
-				for (Object e : player.worldObj.loadedEntityList)
+				for (Object e : player.world.loadedEntityList)
 				{
 					if(e instanceof EntityLivingBase)
 					{

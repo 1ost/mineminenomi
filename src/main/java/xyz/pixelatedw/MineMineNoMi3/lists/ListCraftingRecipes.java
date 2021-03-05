@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.lists;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ public class ListCraftingRecipes
 				{ "...", "X.X", ".X.", 'X', Items.clay_ball });
 		
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.Cannon, 1), new Object[]
-				{ "...", "XXX", ".YY", 'X', Blocks.iron_block, 'Y', Blocks.planks });
+				{ "...", "XXX", ".YY", 'X', Blocks.IRON_BLOCK, 'Y', Blocks.PLANKS });
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.CannonBall, 1), new Object[]
 				{ "...", ".XX", ".XX", 'X', Items.iron_ingot });
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.CannonBall, 1), new Object[]
@@ -34,7 +34,7 @@ public class ListCraftingRecipes
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.PerfectClimaTact, 1), new Object[]
 				{ "EME", "BXI", "EFE", 'X', ListMisc.ClimaTact, 'E', ListMisc.DialEisen, 'F', ListMisc.DialFlash, 'I', ListMisc.DialFire, 'B', ListMisc.DialBreath, 'M', ListMisc.DialMilky });
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.Mace, 1), new Object[]
-				{ ".X.", ".X.", ".Y.", 'X', Blocks.iron_block, 'Y', Items.iron_ingot });
+				{ ".X.", ".X.", ".Y.", 'X', Blocks.IRON_BLOCK, 'Y', Items.iron_ingot });
 		
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.KairosekiBars, 16), new Object[]
 				{ "...", "XXX", "XXX", 'X', ListMisc.DenseKairoseki });
@@ -44,7 +44,7 @@ public class ListCraftingRecipes
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.Umbrella), new Object[]
 				{ "OOO", ".X.", ".X.", 'X', Items.stick, 'O', Blocks.wool });	
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.Scissors), new Object[]
-				{ ".OO", "XOO", "XX.", 'X', Blocks.cobblestone, 'O', Items.iron_ingot });	
+				{ ".OO", "XOO", "XX.", 'X', Blocks.COBBLESTONE, 'O', Items.iron_ingot });
 		
 		GameRegistry.addShapedRecipe(new ItemStack(ListMisc.ColaBackpack), new Object[]
 				{ "X.X", "XOX", "X.X", 'X', ListMisc.UltraCola, 'O', Items.iron_ingot });	

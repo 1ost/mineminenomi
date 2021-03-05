@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -44,7 +43,7 @@ public class HieProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -57,7 +56,7 @@ public class HieProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for(int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(5); i++)
 				{
@@ -66,7 +65,7 @@ public class HieProjectiles
 					double offsetZ = WyMathHelper.randomWithRange(-1, 1);
 				      
 					MainMod.proxy.spawnCustomParticles(this,
-							new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_HIE, 
+							new EntityParticleFX(this.world, ID.PARTICLE_ICON_HIE,
 									posX + offsetX + this.rand.nextFloat(), 
 									posY + offsetY + this.rand.nextFloat(), 
 									posZ + offsetZ + this.rand.nextFloat(), 
@@ -93,7 +92,7 @@ public class HieProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -102,20 +101,20 @@ public class HieProjectiles
 				new DFEffectHieSlowness(entity, 100);
 			}
 			
-			DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, (int)posX, (int)posY, (int)posZ, Blocks.packed_ice, "core", "foliage");
+			DevilFruitsHelper.placeBlockIfAllowed(this.world, (int)posX, (int)posY, (int)posZ, Blocks.PACKED_ICE, "core", "foliage");
 		}
 		
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				double offsetX = this.rand.nextFloat() * 1 - 0.5;
 				double offsetY = this.rand.nextFloat() * 1 - 0.5;
 				double offsetZ = this.rand.nextFloat() * 1 - 0.5;
 			      
 				MainMod.proxy.spawnCustomParticles(this,
-						new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_HIE, 
+						new EntityParticleFX(this.world, ID.PARTICLE_ICON_HIE,
 								posX + offsetX, 
 								posY + offsetY, 
 								posZ + offsetZ, 
@@ -141,7 +140,7 @@ public class HieProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -152,7 +151,7 @@ public class HieProjectiles
 			
 			if(MainConfig.enableGriefing)
 			{
-				WyHelper.createEmptySphere(this.worldObj, (int)this.posX, (int)this.posY, (int)this.posZ, 6, Blocks.packed_ice, "air", "foliage");
+				WyHelper.createEmptySphere(this.world, (int)this.posX, (int)this.posY, (int)this.posZ, 6, Blocks.PACKED_ICE, "air", "foliage");
 			}
 		}
 	}

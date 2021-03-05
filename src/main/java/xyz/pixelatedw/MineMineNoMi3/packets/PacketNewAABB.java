@@ -1,10 +1,11 @@
 package xyz.pixelatedw.MineMineNoMi3.packets;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,26 +52,26 @@ public class PacketNewAABB implements IMessage
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(PacketNewAABB message, MessageContext ctx)
 		{
-			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayer player = Minecraft.getMinecraft().player;
 
 			player.width = message.sizeX;
 			player.height = message.sizeY;
 
-			double minX = player.boundingBox.minX;
-			double minY = player.boundingBox.minY;
-			double minZ = player.boundingBox.minZ;
+			double minX = player.getEntityBoundingBox().minX;
+			double minY = player.getEntityBoundingBox().minY;
+			double minZ = player.getEntityBoundingBox().minZ;
 			double maxX = minX + message.sizeX;
 			double maxY = minY + message.sizeY;
 			double maxZ = minZ + message.sizeZ;
 			
-			player.boundingBox.setBounds(
+			player.setEntityBoundingBox(new AxisAlignedBB(
 					minX, 
 					minY, 
 					minZ, 
 					maxX, 
 					maxY, 
 					maxZ
-				);
+				));
 
 			return null;
 		}
@@ -85,21 +86,21 @@ public class PacketNewAABB implements IMessage
 			player.width = message.sizeX;
 			player.height = message.sizeY;
 					
-			double minX = player.boundingBox.minX;
-			double minY = player.boundingBox.minY;
-			double minZ = player.boundingBox.minZ;
+			double minX = player.getEntityBoundingBox().minX;
+			double minY = player.getEntityBoundingBox().minY;
+			double minZ = player.getEntityBoundingBox().minZ;
 			double maxX = minX + message.sizeX;
 			double maxY = minY + message.sizeY;
 			double maxZ = minZ + message.sizeZ;
-			
-			player.boundingBox.setBounds(
-					minX, 
-					minY, 
-					minZ, 
-					maxX, 
-					maxY, 
+
+			player.setEntityBoundingBox(new AxisAlignedBB(
+					minX,
+					minY,
+					minZ,
+					maxX,
+					maxY,
 					maxZ
-				);	
+			));
 			return new PacketNewAABB(message.sizeX, message.sizeY, message.sizeZ);
 		}
 	}

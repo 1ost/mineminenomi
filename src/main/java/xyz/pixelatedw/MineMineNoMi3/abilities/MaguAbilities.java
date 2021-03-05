@@ -38,9 +38,9 @@ public class MaguAbilities
 		{
 			if(!this.isOnCooldown)
 			{				
-				final World world = player.worldObj;
+				final World world = player.world;
 				if(MainConfig.enableGriefing)
-					WyHelper.createFilledSphere(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 10, Blocks.flowing_lava, "core");				
+					WyHelper.createFilledSphere(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 10, Blocks.FLOWING_LAVA, "core");
 				
 				super.use(player);
 			}
@@ -56,7 +56,7 @@ public class MaguAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new MaguProjectiles.DaiFunka(player.worldObj, player, attr);
+			this.projectile = new MaguProjectiles.DaiFunka(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -70,7 +70,7 @@ public class MaguAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new MaguProjectiles.Meigo(player.worldObj, player, attr);
+			this.projectile = new MaguProjectiles.Meigo(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -84,7 +84,7 @@ public class MaguAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new MaguProjectiles.DaiFunka(player.worldObj, player, attr);
+			this.projectile = new MaguProjectiles.DaiFunka(player.world, player, attr);
 			super.use(player);
 		} 
 	}

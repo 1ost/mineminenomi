@@ -15,18 +15,18 @@ public class ParticleEffectFirstAid extends ParticleEffect
 	{	
 		for (int i = 0; i < 64; i++)
 		{
-	        double motionX = WyMathHelper.randomWithRange(-3, 3) + player.worldObj.rand.nextDouble();
-	        double motionY = WyMathHelper.randomWithRange(-3, 3) + player.worldObj.rand.nextDouble();
-	        double motionZ = WyMathHelper.randomWithRange(-3, 3) + player.worldObj.rand.nextDouble();
+	        double motionX = WyMathHelper.randomWithRange(-3, 3) + player.world.rand.nextDouble();
+	        double motionY = WyMathHelper.randomWithRange(-3, 3) + player.world.rand.nextDouble();
+	        double motionZ = WyMathHelper.randomWithRange(-3, 3) + player.world.rand.nextDouble();
 	        
             double middlePoint = 0.1;
-            middlePoint *= player.worldObj.rand.nextFloat() * player.worldObj.rand.nextFloat() + 0.3F;
+            middlePoint *= player.world.rand.nextFloat() * player.world.rand.nextFloat() + 0.3F;
 	        
 	        motionX *= middlePoint / 2;
 	        motionY *= middlePoint / 2;
 	        motionZ *= middlePoint / 2;
 			
-	        EntityParticleFX p1 = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_YUKI,
+	        EntityParticleFX p1 = new EntityParticleFX(player.world, ID.PARTICLE_ICON_YUKI,
 					posX,
 					posY + 1,
 					posZ,

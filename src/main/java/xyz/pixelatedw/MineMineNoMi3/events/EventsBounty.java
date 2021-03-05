@@ -2,10 +2,9 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.HashMap;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -38,11 +37,11 @@ public class EventsBounty
 			
 			try
 			{
-				EntityNewMob mobToSpawn = clz.getDeclaredConstructor(World.class).newInstance(player.worldObj);				
+				EntityNewMob mobToSpawn = clz.getDeclaredConstructor(World.class).newInstance(player.world);
 				mobToSpawn.setAttackTarget(player);
 				mobToSpawn.onSpawnWithEgg((IEntityLivingData)null);
 				mobToSpawn.setPositionAndRotation(posX, player.posY, posZ, 180, 0);
-				player.worldObj.spawnEntityInWorld(mobToSpawn);
+				player.world.spawnEntity(mobToSpawn);
 			}
 			catch (Exception e)
 			{
@@ -54,7 +53,7 @@ public class EventsBounty
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent event)
 	{		
-		if(event.phase == Phase.END && event.side == Side.SERVER)
+		if(event.phase == TickEvent.Phase.END && event.side == Side.SERVER)
 		{
 			EntityPlayer player = event.player;
 			ExtendedEntityData props = ExtendedEntityData.get(player);
@@ -67,15 +66,15 @@ public class EventsBounty
 				
 				if(props.isPirate() || props.isRevolutionary() && bountyLevel > 0)
 				{
-					if(player.worldObj.isDaytime())
+					if(player.world.isDaytime())
 					{
-						float lightLevel = player.getBrightness(0);
-						boolean canSeeSky = player.worldObj.canBlockSeeTheSky((int)player.posX, (int)player.posY, (int)player.posZ);
+						float lightLevel = player.getBrightness();
+						boolean canSeeSky = player.world.canBlockSeeTheSky((int)player.posX, (int)player.posY, (int)player.posZ);
 		
 						if(player.ticksExisted % MainConfig.rateAmbushesSpawn == 0 && lightLevel > 0.9 && canSeeSky)
 						{
 							// true = marines; false = bounty hunters
-							boolean spawnType = player.worldObj.rand.nextBoolean();
+							boolean spawnType = player.world.rand.nextBoolean();
 							
 							if(bountyLevel <= 6)
 							{
@@ -93,10 +92,10 @@ public class EventsBounty
 							{
 								if(spawnType)
 								{
-									int lowLevelMobs = bountyLevel < 9 ? player.worldObj.rand.nextInt(10) + 5 : player.worldObj.rand.nextInt(10) + 10;
+									int lowLevelMobs = bountyLevel < 9 ? player.world.rand.nextInt(10) + 5 : player.world.rand.nextInt(10) + 10;
 									this.spawnAmbush(player, lowLevelMobs, EntityMarine.class);
 													
-									int mediumLevelMobs = bountyLevel < 9 ? 1 : player.worldObj.rand.nextInt(2) + 1;
+									int mediumLevelMobs = bountyLevel < 9 ? 1 : player.world.rand.nextInt(2) + 1;
 									this.spawnAmbush(player, mediumLevelMobs, EntityMarineCaptain.class);
 								}
 								else
@@ -133,9 +132,9 @@ public class EventsBounty
 						{						
 							if(BountyHelper.issueBountyForPlayer(event.player))
 							{				
-								EntityWantedPostersPackage pkg = new EntityWantedPostersPackage(player.worldObj);
+								EntityWantedPostersPackage pkg = new EntityWantedPostersPackage(player.world);
 								pkg.setLocationAndAngles(player.posX + WyMathHelper.randomWithRange(-10, 10), player.posY + 30, player.posZ + WyMathHelper.randomWithRange(-10, 10), 0, 0);
-								player.worldObj.spawnEntityInWorld(pkg);
+								player.world.spawnEntity(pkg);
 							}
 							
 							this.cachedPositions.remove(player);					

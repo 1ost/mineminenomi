@@ -26,7 +26,7 @@ public class DialImpact extends Item
 		{
 	    	if(!player.isSneaking())
 	    	{
-				player.addPotionEffect(new PotionEffect(Potion.resistance.id, 1, 100));
+				player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 1, 100));
 				world.newExplosion(player, player.posX, player.posY, player.posZ, 3, false, MainConfig.enableGriefing);
 				
 		    	if(!player.capabilities.isCreativeMode)

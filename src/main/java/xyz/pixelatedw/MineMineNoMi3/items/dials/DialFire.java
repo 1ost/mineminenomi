@@ -34,7 +34,7 @@ public class DialFire extends Item
 				fireball.accelerationX = look.xCoord * 0.2;
 				fireball.accelerationY = look.yCoord * 0.2;
 				fireball.accelerationZ = look.zCoord * 0.2;
-				world.spawnEntityInWorld(fireball);	
+				world.spawnEntity(fireball);
 				
 		    	if(!player.capabilities.isCreativeMode)
 		    		WyTelemetry.addMiscStat("fireDialsUsed", "Fire Dials Used", 1);

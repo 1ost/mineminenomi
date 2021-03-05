@@ -81,9 +81,9 @@ public class HoruAbilities
 		{
 			super.hitEntity(player, target);
 			
-			target.addPotionEffect(new PotionEffect(Potion.confusion.id, 600, 1));
-			target.addPotionEffect(new PotionEffect(Potion.weakness.id, 600, 1));
-			target.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 0));
+			target.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 600, 1));
+			target.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 600, 1));
+			target.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 600, 0));
 		}
 	}
 }

@@ -10,9 +10,10 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.AbilityExplosion;
@@ -43,10 +44,10 @@ public class AbilityProjectile extends EntityThrowable
 		this.ticks = attr.getProjectileTicks();
 		this.maxticks = ticks;
 		this.user = player;
-		
+
 		if(this.getThrower() != null && this.getThrower() instanceof EntityPlayer && DevilFruitsHelper.checkForRestriction((EntityPlayer) this.getThrower()))
 			this.setDead();
-		
+
 		if (this.attr != null)
 		{
 			this.setLocationAndAngles(this.user.posX, this.user.posY + this.user.getEyeHeight(), this.user.posZ, this.user.rotationYaw, this.user.rotationPitch);
@@ -63,13 +64,13 @@ public class AbilityProjectile extends EntityThrowable
 		return this.attr;
 	}
 
-	public void tasksImapct(MovingObjectPosition hit)
+	public void tasksImapct(RayTraceResult hit)
 	{
 	};
 
 	@Override
 	public void onEntityUpdate()
-	{	
+	{
 		if (this.attr != null)
 		{
 			if (ticks <= 0)
@@ -91,7 +92,7 @@ public class AbilityProjectile extends EntityThrowable
 		{
 			Vec3 vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
 			Vec3 vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-			MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(vec31, vec3, false, true, false);
+			RayTraceResult movingobjectposition = this.world.func_147447_a(vec31, vec3, false, true, false);
 			vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
 			vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 			
@@ -100,7 +101,7 @@ public class AbilityProjectile extends EntityThrowable
 			double sizeZ = this.attr.getProjectileCollisionSizes()[2];
 			
 			Entity entity = null;
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(sizeX, sizeY, sizeZ));
+			List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(sizeX, sizeY, sizeZ));
 			double d0 = 0.0D;
 			int i;
 			float f1;
@@ -112,7 +113,7 @@ public class AbilityProjectile extends EntityThrowable
 				if (entity1.canBeCollidedWith() && (entity1 != this.getThrower() || this.ticksExisted >= 5))
 				{
 					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(sizeX, sizeY, sizeZ);
-					MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
+					RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 					
 					if (movingobjectposition1 != null)
 					{
@@ -128,7 +129,7 @@ public class AbilityProjectile extends EntityThrowable
 			}
 			
 			if (entity != null)
-				movingobjectposition = new MovingObjectPosition(entity);
+				movingobjectposition = new RayTraceResult(entity);
 			
 			if (movingobjectposition != null && movingobjectposition.entityHit != null)
 				this.onImpact(movingobjectposition);
@@ -136,9 +137,9 @@ public class AbilityProjectile extends EntityThrowable
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition hit)
+	protected void onImpact(RayTraceResult hit)
 	{
-		if (!this.worldObj.isRemote)
+		if (!this.world.isRemote)
 		{
 			if (this.attr != null)
 			{
@@ -183,9 +184,9 @@ public class AbilityProjectile extends EntityThrowable
 
 					tasksImapct(hit);
 
-					Material hitMat = this.worldObj.getBlock(hit.blockX, hit.blockY, hit.blockZ).getMaterial();
+					Material hitMat = this.world.getBlock(hit.blockX, hit.blockY, hit.blockZ).getMaterial();
 
-					if (!this.attr.canProjectileMoveThroughBlocks() && (hitMat != Material.plants && hitMat != Material.vine && hitMat != Material.water))
+					if (!this.attr.canProjectileMoveThroughBlocks() && (hitMat != Material.plants && hitMat != Material.vine && hitMat != Material.WATER))
 						this.setDead();
 				}
 			}

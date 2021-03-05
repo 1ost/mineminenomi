@@ -14,7 +14,7 @@ public class ParticleEffectTenseiNoSoen extends ParticleEffect
 	public void spawn(EntityPlayer player, double posX, double posY, double posZ)
 	{
 		Timer timer = new Timer(true); 
-		EntityParticleFX particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_BLUEFLAME, 
+		EntityParticleFX particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_BLUEFLAME, 
 				posX, 
 				posY + 4, 
 				posZ, 

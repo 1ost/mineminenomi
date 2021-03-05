@@ -1,12 +1,10 @@
 package xyz.pixelatedw.MineMineNoMi3.api.debug;
 
+import xyz.pixelatedw.MineMineNoMi3.ID;
+
 import java.lang.management.ManagementFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import cpw.mods.fml.common.FMLLog;
-import xyz.pixelatedw.MineMineNoMi3.ID;
-import xyz.pixelatedw.MineMineNoMi3.MainMod;
 
 public class WyDebug
 {

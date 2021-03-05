@@ -20,7 +20,7 @@ public class ParticleEffectWhiteLauncher extends ParticleEffect
 			double offsetZ = (new Random().nextInt(20) + 1.0D - 10.0D) / 15.0D;
 	      
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MOKU, 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_MOKU, 
 							posX + offsetX, 
 							posY + 1 + offsetY, 
 							posZ + offsetZ, 

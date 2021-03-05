@@ -37,7 +37,7 @@ public class DFEffectSakeDrunk extends DFEffect
 	public void onEffectStart(EntityLivingBase entity)
 	{
 		if(this.stacks >= 3)
-			entity.addPotionEffect(new PotionEffect(Potion.confusion.id, this.timer, 1));
+			entity.addPotionEffect(new PotionEffect(Potion.getPotionById(9), this.timer, 1));
 	}
 
 	@Override

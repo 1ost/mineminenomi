@@ -42,7 +42,7 @@ public class BariProjectiles
 		
 		public void onUpdate()
 		{	
-			if(!this.worldObj.isRemote)
+			if(!this.world.isRemote)
 			{
 				if(this.getThrower() == null)
 					return;
@@ -58,7 +58,7 @@ public class BariProjectiles
 						return;
 					}
 					
-					((BariAbilities.BarrierbilityStairs)ability).fillBlocksList(WyHelper.createFilledCube(this.worldObj, this.posX, this.posY - 2, this.posZ, new int[] {1, 1, 1}, ListMisc.Barrier, "air", "nogrief"));
+					((BariAbilities.BarrierbilityStairs)ability).fillBlocksList(WyHelper.createFilledCube(this.world, this.posX, this.posY - 2, this.posZ, new int[] {1, 1, 1}, ListMisc.Barrier, "air", "nogrief"));
 				}
 
 			}

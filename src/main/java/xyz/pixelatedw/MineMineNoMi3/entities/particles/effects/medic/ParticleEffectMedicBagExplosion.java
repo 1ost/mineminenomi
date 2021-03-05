@@ -29,10 +29,10 @@ public class ParticleEffectMedicBagExplosion extends ParticleEffect
 				z = t * Math.sin(theta);
 										
 				double motionX = x / 4;
-				double motionY = 0.05 + (player.worldObj.rand.nextDouble() / 7);
+				double motionY = 0.05 + (player.world.rand.nextDouble() / 7);
 				double motionZ = z / 4;
 
-				EntityParticleFX p1 = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_YUKI, 
+				EntityParticleFX p1 = new EntityParticleFX(player.world, ID.PARTICLE_ICON_YUKI, 
 						posX + (x * 0.75), 
 						posY + y, 
 						posZ + (z * 0.75), 
@@ -42,7 +42,7 @@ public class ParticleEffectMedicBagExplosion extends ParticleEffect
 				.setParticleScale(2F).setParticleAge(4);	
 				p1.setRBGColorF(0F, 0.8F, 0F);
 				
-				EntityParticleFX p2 = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_YUKI, 
+				EntityParticleFX p2 = new EntityParticleFX(player.world, ID.PARTICLE_ICON_YUKI, 
 						posX + (x * 2.0), 
 						posY + y, 
 						posZ + (z * 2.0), 
@@ -52,7 +52,7 @@ public class ParticleEffectMedicBagExplosion extends ParticleEffect
 				.setParticleScale(2.5F).setParticleAge(7);
 				p2.setRBGColorF(0F, 0.8F, 0F);
 				
-				EntityParticleFX p3 = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_YUKI, 
+				EntityParticleFX p3 = new EntityParticleFX(player.world, ID.PARTICLE_ICON_YUKI, 
 						posX + (x * 3.75), 
 						posY + y, 
 						posZ + (z * 3.75), 

@@ -2,7 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -32,7 +32,7 @@ public class GUIPlayer extends GuiScreen
 		this.player = player;
 		this.props = ExtendedEntityData.get(player);
 				 
-		//testEntity = new EntityMorgan(Minecraft.getMinecraft().theWorld);
+		//testEntity = new EntityMorgan(Minecraft.getMinecraft().world);
 		//testEntity.onSpawnWithEgg(null);
 	}
 
@@ -57,11 +57,11 @@ public class GUIPlayer extends GuiScreen
 		
 		//TODO DORIKI and COLA I18n strings
 		if(props.isCyborg())
-			mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + "COLA: " + EnumChatFormatting.RESET + props.getCola() + " / " + props.getMaxCola(), posX - 30, posY + 50, -1) ;
-		mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + "DORIKI: " + EnumChatFormatting.RESET + props.getDoriki(), posX - 30, posY + 70, -1);
-		mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + factionGUI + ": " + EnumChatFormatting.RESET + factionActual, posX - 30, posY + 90, -1);
-		mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + raceGUI + ": " + EnumChatFormatting.RESET + raceActual, posX - 30, posY + 110, -1);
-		mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + styleGUI + ": " + EnumChatFormatting.RESET + styleActual, posX - 30, posY + 130, -1);
+			mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "COLA: " + TextFormatting.RESET + props.getCola() + " / " + props.getMaxCola(), posX - 30, posY + 50, -1) ;
+		mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "DORIKI: " + TextFormatting.RESET + props.getDoriki(), posX - 30, posY + 70, -1);
+		mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + factionGUI + ": " + TextFormatting.RESET + factionActual, posX - 30, posY + 90, -1);
+		mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + raceGUI + ": " + TextFormatting.RESET + raceActual, posX - 30, posY + 110, -1);
+		mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + styleGUI + ": " + TextFormatting.RESET + styleActual, posX - 30, posY + 130, -1);
 
 		if(props.getBelly() > 0)
 		{
@@ -86,9 +86,9 @@ public class GUIPlayer extends GuiScreen
 				df = DevilFruitsHelper.getDevilFruitItem(props.getUsedFruit());
 								
 				if(props.hasYamiPower())
-					mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + yamiFruit.getDisplayName() + " + " + df.getDisplayName(), posX - 28, posY + 194, -1);
+					mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + yamiFruit.getDisplayName() + " + " + df.getDisplayName(), posX - 28, posY + 194, -1);
 				else
-					mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + df.getDisplayName(), posX - 28, posY + 194, -1);
+					mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + df.getDisplayName(), posX - 28, posY + 194, -1);
 				
 				if(props.hasYamiPower())
 					this.drawItemStack(yamiFruit, posX - 56, posY + 187, "");
@@ -96,7 +96,7 @@ public class GUIPlayer extends GuiScreen
 			}
 			else
 			{
-				mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + yamiFruit.getDisplayName(), posX - 28, posY + 194, -1);
+				mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + yamiFruit.getDisplayName(), posX - 28, posY + 194, -1);
 				this.drawItemStack(yamiFruit, posX - 50, posY + 190, "");
 			}
 			
@@ -112,7 +112,7 @@ public class GUIPlayer extends GuiScreen
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			this.mc.renderEngine.bindTexture(ID.TEXTURE_BOUNTYPOSTER);
 			this.drawTexturedModalRect(posX + 200, posY + 130, 0, 0, 180, 200);
-			mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + "" + props.getBounty(), posX + 220, posY + 208, -1);
+			mc.fontRenderer.drawStringWithShadow(TextFormatting.BOLD + "" + props.getBounty(), posX + 220, posY + 208, -1);
 			this.mc.renderEngine.bindTexture(ID.TEXTURE_CURRENCIES);
 			this.drawTexturedModalRect(posX + 200, posY + 195, 0, 32, 32, 64);
 		}
@@ -140,9 +140,9 @@ public class GUIPlayer extends GuiScreen
 	{
 		switch(button.id)
 		{
-			case 1: player.openGui(MainMod.getMineMineNoMi(), 4, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ); break;
-			case 2: player.openGui(MainMod.getMineMineNoMi(), 5, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ); break;
-			case 3: player.openGui(MainMod.getMineMineNoMi(), 6, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ); break;
+			case 1: player.openGui(MainMod.getMineMineNoMi(), 4, player.world, (int)player.posX, (int)player.posY, (int)player.posZ); break;
+			case 2: player.openGui(MainMod.getMineMineNoMi(), 5, player.world, (int)player.posX, (int)player.posY, (int)player.posZ); break;
+			case 3: player.openGui(MainMod.getMineMineNoMi(), 6, player.world, (int)player.posX, (int)player.posY, (int)player.posZ); break;
 		}
 	}
 	

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -56,13 +55,13 @@ public class GasuProjectiles
 		
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
-				double posXOffset = this.worldObj.rand.nextGaussian() * 0.42D;
-				double posYOffset = this.worldObj.rand.nextGaussian() * 0.22D;
-				double posZOffset = this.worldObj.rand.nextGaussian() * 0.42D;		
+				double posXOffset = this.world.rand.nextGaussian() * 0.42D;
+				double posYOffset = this.world.rand.nextGaussian() * 0.22D;
+				double posZOffset = this.world.rand.nextGaussian() * 0.42D;		
 				
-				EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GASU, 
+				EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GASU, 
 						posX + posXOffset, 
 						posY + posYOffset, 
 						posZ + posZOffset, 
@@ -71,11 +70,11 @@ public class GasuProjectiles
 				
 				MainMod.proxy.spawnCustomParticles(this, particle);
 				
-				posXOffset = this.worldObj.rand.nextGaussian() * 0.12D;
-				posYOffset = this.worldObj.rand.nextGaussian() * 0.06D;
-				posZOffset = this.worldObj.rand.nextGaussian() * 0.12D;		
+				posXOffset = this.world.rand.nextGaussian() * 0.12D;
+				posYOffset = this.world.rand.nextGaussian() * 0.06D;
+				posZOffset = this.world.rand.nextGaussian() * 0.12D;		
 				
-				particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GASU2, 
+				particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GASU2, 
 						posX + posXOffset, 
 						posY + posYOffset, 
 						posZ + posZOffset, 

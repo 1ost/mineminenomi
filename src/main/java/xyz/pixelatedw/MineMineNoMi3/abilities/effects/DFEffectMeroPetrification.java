@@ -17,9 +17,9 @@ public class DFEffectMeroPetrification extends DFEffect
 
 	public void onEffectStart(EntityLivingBase entity)
 	{
-		entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, this.timer, 1));
-		entity.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, this.timer, 1));
-		entity.addPotionEffect(new PotionEffect(Potion.jump.id, this.timer, -5));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2), this.timer, 1));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(4), this.timer, 1));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(8), this.timer, -5));
 	}
 
 	public void onEffectEnd(EntityLivingBase entity)

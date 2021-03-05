@@ -1,19 +1,15 @@
 package xyz.pixelatedw.MineMineNoMi3.packets;
 
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
 import xyz.pixelatedw.MineMineNoMi3.api.EnumParticleTypes;
@@ -21,6 +17,8 @@ import xyz.pixelatedw.MineMineNoMi3.api.debug.WyDebug;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.entities.particles.EntityParticleFX;
 import xyz.pixelatedw.MineMineNoMi3.entities.particles.ParticleManager;
+
+import java.util.Random;
 
 public class PacketParticles implements IMessage
 {
@@ -73,7 +71,7 @@ public class PacketParticles implements IMessage
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(PacketParticles message, MessageContext ctx) 
 		{
-			final EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+			final EntityPlayer player = Minecraft.getMinecraft().player;
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 				
 			String fx = message.fx;
@@ -88,7 +86,7 @@ public class PacketParticles implements IMessage
 				double offsetY = (new Random().nextInt(20) + 1.0D - 10.0D) / 15.0D;
 				double offsetZ = (new Random().nextInt(20) + 1.0D - 10.0D) / 15.0D;
 
-				EntityParticleFX logiaParticle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MERA, message.posX + offsetX, (message.posY + 1) + offsetY, message.posZ + offsetZ, 0D, 0.01D, 0D)
+				EntityParticleFX logiaParticle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_MERA, message.posX + offsetX, (message.posY + 1) + offsetY, message.posZ + offsetZ, 0D, 0.01D, 0D)
 						.setParticleAge(10);
 				
 				if(devilFruit.equals("meramera"))
@@ -104,7 +102,7 @@ public class PacketParticles implements IMessage
 				else if(devilFruit.equals("sunasuna"))
 					MainMod.proxy.spawnCustomParticles(player, logiaParticle.setParticleTexture(ID.PARTICLE_ICON_SUNA2));
 				else if(devilFruit.equals("magumagu"))
-					player.worldObj.spawnParticle(EnumParticleTypes.LAVA.getParticleName(), message.posX + offsetX, (message.posY + 1) + offsetY, message.posZ + offsetZ, 0D, 0D, 0D);
+					player.world.spawnParticle(EnumParticleTypes.LAVA.getParticleName(), message.posX + offsetX, (message.posY + 1) + offsetY, message.posZ + offsetZ, 0D, 0D, 0D);
 				else if(devilFruit.equals("gasugasu"))
 					MainMod.proxy.spawnCustomParticles(player, logiaParticle.setParticleTexture(ID.PARTICLE_ICON_GASU));
 				else if(devilFruit.equals("yukiyuki"))

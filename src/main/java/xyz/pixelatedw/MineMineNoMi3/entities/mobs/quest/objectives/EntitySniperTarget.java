@@ -21,7 +21,7 @@ public class EntitySniperTarget extends EntityMob implements IQuestObjective
 	public void applyEntityAttributes()
 	{ 
 		super.applyEntityAttributes(); 
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1);
 	}
 	
 	@Override
@@ -39,13 +39,13 @@ public class EntitySniperTarget extends EntityMob implements IQuestObjective
 	@Override
 	public void onEntityUpdate()
 	{
-		this.motionY /= 1.5 + this.worldObj.rand.nextDouble();
+		this.motionY /= 1.5 + this.world.rand.nextDouble();
 		this.fallDistance = 0;
 		
-		if(this.onGround && !this.worldObj.isRemote)
+		if(this.onGround && !this.world.isRemote)
 			this.setDead();
 		
-		if(this.isInWater() || this.isInsideOfMaterial(Material.lava))
+		if(this.isInWater() || this.isInsideOfMaterial(Material.LAVA))
 			this.setDead();
 		
 		super.onEntityUpdate();

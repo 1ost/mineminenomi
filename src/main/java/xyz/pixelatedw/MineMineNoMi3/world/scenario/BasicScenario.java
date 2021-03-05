@@ -28,14 +28,14 @@ public class BasicScenario extends Scenario
         {
         	for(int z = 0; z < scenarioZSize; z++)
         	{
-        		world.setBlock((int)dx + x, (int)dy, (int)dz + z, Blocks.stone);
+        		world.setBlock((int)dx + x, (int)dy, (int)dz + z, Blocks.STONE);
         	}
         }
 		WyDebug.info("Build Done In Dimension " + player.dimension);
 
-        //EntityMorgan target = new EntityMorgan(player.worldObj);
+        //EntityMorgan target = new EntityMorgan(player.world);
         //target.setPositionAndRotation(dx, dy + 1, dz + 8, 180, 0);
-        //world.spawnEntityInWorld(target);
+        //world.spawnEntity(target);
 	}
 
 	public void unload(EntityPlayer player, World world)
@@ -51,8 +51,8 @@ public class BasicScenario extends Scenario
         	{
 	        	for(int z = 0; z < scenarioZSize; z++)
 	        	{
-	        		if(world.getBlock((int)dx + x, (int)dy + y, (int)dz + z) != Blocks.air)
-	        			world.setBlock((int)dx + x, (int)dy + y, (int)dz + z, Blocks.air);    		
+	        		if(world.getBlock((int)dx + x, (int)dy + y, (int)dz + z) != Blocks.AIR)
+	        			world.setBlock((int)dx + x, (int)dy + y, (int)dz + z, Blocks.AIR);    		
 	        	}
         	}
         }

@@ -16,12 +16,12 @@ public class ParticleEffectIceAge extends ParticleEffect
 		for(int i = 0; i < 7; i++)
 		{
 			Timer timer = new Timer(true); 
-			EntityParticleFX particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_HIE, 
+			EntityParticleFX particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_HIE, 
 					posX, 
 					posY - 0.5, 
 					posZ, 
 					0, 0, 0)
-					.setParticleScale(1 + player.worldObj.rand.nextFloat());
+					.setParticleScale(1 + player.world.rand.nextFloat());
 			timer.schedule(ParticleTaskWave.Create(player, particle.posX, particle.posY, particle.posZ, particle, 20), 0);
 		}
 	}

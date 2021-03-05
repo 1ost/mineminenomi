@@ -21,10 +21,10 @@ public class ParticleEffectRaigo extends ParticleEffect
 			double offsetY = WyMathHelper.randomWithRange(-5, 5);
 			double offsetZ = WyMathHelper.randomWithRange(-55, 55);
 
-			EntityParticleFX particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_GORO3,
-					posX + offsetX + (player.worldObj.rand.nextDouble() * 5),
-					posY + 40 + offsetY + (player.worldObj.rand.nextDouble() * 5),
-					posZ + offsetZ + (player.worldObj.rand.nextDouble() * 5),
+			EntityParticleFX particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_GORO3,
+					posX + offsetX + (player.world.rand.nextDouble() * 5),
+					posY + 40 + offsetY + (player.world.rand.nextDouble() * 5),
+					posZ + offsetZ + (player.world.rand.nextDouble() * 5),
 					0, 0, 0)
 			.setParticleScale(100).setParticleAge(100);
 			

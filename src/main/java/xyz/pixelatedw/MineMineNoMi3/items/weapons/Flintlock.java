@@ -8,7 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityProjectile;
@@ -28,12 +28,12 @@ public class Flintlock extends Item
 			if (itemStack.getTagCompound().getInteger("bulletType") == 0)
 			{
 				itemStack.getTagCompound().setInteger("bulletType", 1);
-				itemStack.setStackDisplayName(EnumChatFormatting.RESET + "Flintlock <Kairoseki>");
+				itemStack.setStackDisplayName(TextFormatting.RESET + "Flintlock <Kairoseki>");
 			}
 			else if (itemStack.getTagCompound().getInteger("bulletType") == 1)
 			{
 				itemStack.getTagCompound().setInteger("bulletType", 0);
-				itemStack.setStackDisplayName(EnumChatFormatting.RESET + "Flintlock <Normal>");
+				itemStack.setStackDisplayName(TextFormatting.RESET + "Flintlock <Normal>");
 			}
 		}
 		else
@@ -49,9 +49,9 @@ public class Flintlock extends Item
 						int powder = itemStack.getTagCompound().getInteger("gunPowder");
 						if (!world.isRemote)
 						{
-							if (itemStack.getTagCompound().getInteger("bulletType") == 0) proj = new ExtraProjectiles.NormalBullet(player.worldObj, player, ListExtraAttributes.NORMAL_BULLET);
-							else if (itemStack.getTagCompound().getInteger("bulletType") == 1) proj = new ExtraProjectiles.KairosekiBullet(player.worldObj, player, ListExtraAttributes.KAIROSEKI_BULLET);
-							player.worldObj.spawnEntityInWorld(proj);
+							if (itemStack.getTagCompound().getInteger("bulletType") == 0) proj = new ExtraProjectiles.NormalBullet(player.world, player, ListExtraAttributes.NORMAL_BULLET);
+							else if (itemStack.getTagCompound().getInteger("bulletType") == 1) proj = new ExtraProjectiles.KairosekiBullet(player.world, player, ListExtraAttributes.KAIROSEKI_BULLET);
+							player.world.spawnEntity(proj);
 							
 							String id = (itemStack.getTagCompound().getInteger("bulletType") == 0 ? "normal" : "kairoseki");
 					    	WyTelemetry.addMiscStat(id + "BulletsShot", WyHelper.upperCaseFirst(id) + " Bullets Shot", 1);
@@ -87,7 +87,7 @@ public class Flintlock extends Item
 			itemStack.getTagCompound().setInteger("cooldown", 15);
 			
 			itemStack.getTagCompound().setInteger("bulletType", 0);
-			itemStack.setStackDisplayName(EnumChatFormatting.RESET + "Flintlock <Normal>");
+			itemStack.setStackDisplayName(TextFormatting.RESET + "Flintlock <Normal>");
 		}
 
 		if (!itemStack.getTagCompound().getBoolean("canUse"))

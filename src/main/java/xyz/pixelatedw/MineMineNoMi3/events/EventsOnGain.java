@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.events;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -68,12 +68,12 @@ public class EventsOnGain
 		
 		if(event.player != null && MainConfig.enableExtraHearts)		
 		{
-			IAttributeInstance maxHp = event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
+			IAttributeInstance maxHp = event.player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
 						
 			if(event.props.getDoriki() / 100 <= 20)
-				event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20);
+				event.player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20);
 			else
-				event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(event.props.getDoriki() / 100);
+				event.player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(event.props.getDoriki() / 100);
 		}
 	}	
 
@@ -116,16 +116,16 @@ public class EventsOnGain
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
 		}
 
-		if (event.source.getEntity() instanceof EntityPlayer)
+		if (event.getSource().getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
-			EntityLivingBase target = event.entityLiving;
+			EntityLivingBase target = event.getEntityLiving();
 
-			IAttributeInstance attrAtk = target.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.attackDamage);
-			IAttributeInstance attrHP = target.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.maxHealth);
+			IAttributeInstance attrAtk = target.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.ATTACK_DAMAGE);
+			IAttributeInstance attrHP = target.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.MAX_HEALTH);
 
-			int rng = player.worldObj.rand.nextInt(3) + 1;
+			int rng = player.world.rand.nextInt(3) + 1;
 			int plusBelly = 0;
 			long plusBounty = 0;
 			double plusDoriki = 0;
@@ -166,7 +166,7 @@ public class EventsOnGain
 					plusBounty = (entity.getDoriki() * 2) + rng;
 					plusBelly = entity.getBelly() + rng;
 
-					if (!player.worldObj.isRemote && !player.capabilities.isCreativeMode)
+					if (!player.world.isRemote && !player.capabilities.isCreativeMode)
 						WyTelemetry.addKillStat(WyHelper.getFancyName(target.getClass().getSimpleName()).replace("entity", ""), target.getClass().getSimpleName().replace("Entity", ""), 1);
 				}
 				else

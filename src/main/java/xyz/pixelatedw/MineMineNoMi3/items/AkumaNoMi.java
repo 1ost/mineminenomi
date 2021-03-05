@@ -55,7 +55,7 @@ public class AkumaNoMi extends ItemFood
     @Override
 	public boolean onEntityItemUpdate(EntityItem entityItem)
     {
-    	ExtendedWorldData worldProps = ExtendedWorldData.get(entityItem.worldObj);
+    	ExtendedWorldData worldProps = ExtendedWorldData.get(entityItem.world);
 
     	if( entityItem.isBurning())
     		worldProps.removeDevilFruitFromWorld(this);
@@ -98,7 +98,7 @@ public class AkumaNoMi extends ItemFood
 				props.setUsedFruit("yamidummy");
 		}
 
-		if (eatenFruit.equalsIgnoreCase("hitohito") && !player.worldObj.isRemote)
+		if (eatenFruit.equalsIgnoreCase("hitohito") && !player.world.isRemote)
 		{
 			WyHelper.sendMsgToPlayer(player, "You've gained some enlightenment");
 			if (props.isFishman())

@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.QuestProperties;
@@ -105,12 +105,12 @@ public class GUIQuests extends GuiScreen
 			
 			String questTitleToRender = questProps.getQuestIndexFromTracker(questIndex) != null ? questProps.getQuestIndexFromTracker(questIndex).getQuestID() : "none";
 			
-			mc.fontRenderer.drawString(EnumChatFormatting.BOLD + "" + EnumChatFormatting.UNDERLINE + I18n.format("quest." + questTitleToRender + ".name"), 0, 0, WyHelper.hexToRGB("#161616").getRGB());
+			mc.fontRenderer.drawString(TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + I18n.format("quest." + questTitleToRender + ".name"), 0, 0, WyHelper.hexToRGB("#161616").getRGB());
 		}
 		GL11.glPopMatrix();
 		
 		if(currentProgress != -1)
-			mc.fontRenderer.drawString(EnumChatFormatting.BOLD + I18n.format(ID.LANG_GUI_QUESTS_PROGRESS) + " : " + String.format("%.1f", currentProgress) + "%", posX + 5, posY + 65, WyHelper.hexToRGB("#161616").getRGB());
+			mc.fontRenderer.drawString(TextFormatting.BOLD + I18n.format(ID.LANG_GUI_QUESTS_PROGRESS) + " : " + String.format("%.1f", currentProgress) + "%", posX + 5, posY + 65, WyHelper.hexToRGB("#161616").getRGB());
 
 		if(currentDescription != null)
 		{
@@ -155,7 +155,7 @@ public class GUIQuests extends GuiScreen
 					questIndex = 0;
 				break;
 			
-			//case 1: player.openGui(MainMod.getMineMineNoMi(), 4, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+			//case 1: player.openGui(MainMod.getMineMineNoMi(), 4, player.world, (int)player.posX, (int)player.posY, (int)player.posZ);
 		}
 	}
 	

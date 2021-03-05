@@ -25,8 +25,8 @@ public class EntityMomonga extends MarineData
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(10);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(12.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(140.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(140.0D);
 	}
 
     protected void entityInit() 
@@ -44,7 +44,7 @@ public class EntityMomonga extends MarineData
 		{
 			
 			if(this.getHealth() < this.getMaxHealth()/2)
-				this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10);
+				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10);
 			
 			if(ticksBeforeSoru <= 0 && this.getDistanceSqToEntity(this.getAttackTarget()) < 250 && this.onGround)
 			{

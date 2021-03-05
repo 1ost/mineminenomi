@@ -20,7 +20,7 @@ public class ParticleEffectHeavyPunch extends ParticleEffect
             double offsetZ = (new Random().nextInt(10) + 1.0D - 10.0D) / 10.0D;
 
             MainMod.proxy.spawnCustomParticles(player,
-                    new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_KILO,
+                    new EntityParticleFX(player.world, ID.PARTICLE_ICON_KILO,
                             posX + offsetX,
                             posY + offsetY,
                             posZ + offsetZ,

@@ -1,12 +1,12 @@
 package xyz.pixelatedw.MineMineNoMi3.commands;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -80,7 +80,7 @@ public class CommandBounty extends CommandBase
 			props.setBounty(value);
 
 			if(WyDebug.isDebug())
-				WyHelper.sendMsgToPlayer(target, EnumChatFormatting.GREEN + "" + EnumChatFormatting.ITALIC + "[DEBUG] " + target.getCommandSenderName() + " now has " + value + " bounty");
+				WyHelper.sendMsgToPlayer(target, TextFormatting.GREEN + "" + TextFormatting.ITALIC + "[DEBUG] " + target.getCommandSenderName() + " now has " + value + " bounty");
 		}
 	}
 
@@ -106,7 +106,7 @@ public class CommandBounty extends CommandBase
 		}
 		
 		if(WyDebug.isDebug())
-			WyHelper.sendMsgToPlayer(target, EnumChatFormatting.GREEN + "" + EnumChatFormatting.ITALIC + "[DEBUG] Subtracted " + value + " bounty from " + target.getCommandSenderName());		
+			WyHelper.sendMsgToPlayer(target, TextFormatting.GREEN + "" + TextFormatting.ITALIC + "[DEBUG] Subtracted " + value + " bounty from " + target.getCommandSenderName());
 	}
 
 	private void add(EntityPlayer target, long value)
@@ -126,7 +126,7 @@ public class CommandBounty extends CommandBase
 		}
 		
 		if(WyDebug.isDebug())
-			WyHelper.sendMsgToPlayer(target, EnumChatFormatting.GREEN + "" + EnumChatFormatting.ITALIC + "[DEBUG] Added " + value + " bounty to " + target.getCommandSenderName());		
+			WyHelper.sendMsgToPlayer(target, TextFormatting.GREEN + "" + TextFormatting.ITALIC + "[DEBUG] Added " + value + " bounty to " + target.getCommandSenderName());
 	}
 
 	@Override

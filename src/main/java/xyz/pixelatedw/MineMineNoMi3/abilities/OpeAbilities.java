@@ -15,8 +15,7 @@ import net.minecraft.network.play.server.S0BPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.Values;
@@ -96,18 +95,18 @@ public class OpeAbilities
 					double mX = -MathHelper.sin(player.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * 0.4;
 					double mZ = MathHelper.cos(player.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * 0.4;
 
-					double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+					double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 					mX /= f2;
 					mZ /= f2;
-					mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-					mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+					mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+					mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 					mX *= 3;
 					mZ *= 3;
 
 					motion("=", mX, player.motionY, mZ, player);
 
-					if (player.worldObj instanceof WorldServer)
-						((WorldServer) player.worldObj).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+					if (player.world instanceof WorldServer)
+						((WorldServer) player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
 				}
 
 				super.use(player);
@@ -126,8 +125,8 @@ public class OpeAbilities
 			{
 				e.attackEntityFrom(DamageSource.causePlayerDamage(player), 20);
 
-				e.addPotionEffect(new PotionEffect(Potion.poison.id, 10 * 20, 0));
-				e.addPotionEffect(new PotionEffect(Potion.confusion.id, 10 * 20, 0));
+				e.addPotionEffect(new PotionEffect(Potion.getPotionById(19), 10 * 20, 0));
+				e.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 10 * 20, 0));
 			}
 		}
 	}
@@ -216,7 +215,7 @@ public static class Shambles extends Ability
 		{
 			if (!this.isOnCooldown)
 			{
-				MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);
+				RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 
 				if (mop != null)
 				{
@@ -224,7 +223,7 @@ public static class Shambles extends Ability
 					double j = mop.blockY;
 					double k = mop.blockZ;
 
-					List<EntityLivingBase> entityList = WyHelper.getEntitiesNear((int) i, (int) j, (int) k, player.worldObj, 4, EntityLivingBase.class);
+					List<EntityLivingBase> entityList = WyHelper.getEntitiesNear((int) i, (int) j, (int) k, player.world, 4, EntityLivingBase.class);
 
 					if (entityList.size() <= 0)
 						return;
@@ -260,7 +259,7 @@ public static class GammaKnife extends Ability
 	{
 		if (DevilFruitsHelper.isEntityInRoom(player))
 		{
-			this.projectile = new OpeProjectiles.GammaKnife(player.worldObj, player, attr);
+			this.projectile = new OpeProjectiles.GammaKnife(player.world, player, attr);
 			super.use(player);
 		}
 		else
@@ -326,8 +325,8 @@ public static class Room extends Ability
 		{
 			if (this.blockList.isEmpty())
 			{
-				this.blockList.addAll(WyHelper.createEmptySphere(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, 20, ListMisc.Ope, "air", "foliage", "liquids", "nogrief"));
-				player.worldObj.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.OpeMid);
+				this.blockList.addAll(WyHelper.createEmptySphere(player.world, (int) player.posX, (int) player.posY, (int) player.posZ, 20, ListMisc.Ope, "air", "foliage", "liquids", "nogrief"));
+				player.world.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.OpeMid);
 				this.blockList.add(new int[]
 					{
 							(int) player.posX, (int) player.posY, (int) player.posZ
@@ -343,8 +342,8 @@ public static class Room extends Ability
 	{
 		for (int[] blockPos : this.blockList)
 		{
-			if (player.worldObj.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.Ope || player.worldObj.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.OpeMid)
-				player.worldObj.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.air);
+			if (player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.Ope || player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.OpeMid)
+				player.world.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.AIR);
 		}
 		this.blockList = new ArrayList<int[]>();
 		this.startCooldown();

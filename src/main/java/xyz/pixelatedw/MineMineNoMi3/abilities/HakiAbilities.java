@@ -191,7 +191,7 @@ public class HakiAbilities
 		@Override
 		public void duringPassive(EntityPlayer player, int timer)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 99999, true));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 200, 99999, true));
 		}
 	}
 	

@@ -20,11 +20,11 @@ public class EntityBandit extends BanditData
 		super.applyEntityAttributes(); 
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
 		
-		this.setDoriki(10 + this.worldObj.rand.nextInt(3));
-		this.setBelly(5 + this.worldObj.rand.nextInt(10));
+		this.setDoriki(10 + this.world.rand.nextInt(3));
+		this.setBelly(5 + this.world.rand.nextInt(10));
 	}
 	
     @Override
@@ -40,8 +40,8 @@ public class EntityBandit extends BanditData
 		return new double[] {0, 0, -0.1};
 	}
 	
-	public int getDorikiPower() { return this.worldObj.rand.nextInt(3) + 10; }
-	public int getBellyInPockets() { return this.worldObj.rand.nextInt(10) + 1; }
+	public int getDorikiPower() { return this.world.rand.nextInt(3) + 10; }
+	public int getBellyInPockets() { return this.world.rand.nextInt(10) + 1; }
 	
 	@Override
 	protected void dropRareDrop(int i)

@@ -23,7 +23,7 @@ public class SeaKingMeat extends Item
 		{
 			player.heal(player.getMaxHealth() / 3.0F);
 			player.getFoodStats().addStats(5, 1);
-			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 0));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 100, 0));
 			if(!player.capabilities.isCreativeMode)
 				--itemStack.stackSize;
 		}

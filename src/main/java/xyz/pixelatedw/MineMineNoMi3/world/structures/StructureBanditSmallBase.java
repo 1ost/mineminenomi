@@ -29,7 +29,7 @@ public class StructureBanditSmallBase extends Structure
 		if(flagBiome || flagSpecialCheck || flagAboveGround)
 			return false;
 		
-		WySchematicHelper.build(sch, world, posX, posY - 33, posZ, Blocks.bedrock);
+		WySchematicHelper.build(sch, world, posX, posY - 33, posZ, Blocks.BEDROCK);
 		populate(sch, posX, posY, posZ, world);
 
 		return true;
@@ -100,11 +100,11 @@ public class StructureBanditSmallBase extends Structure
 
 		Consumer<TileEntityChest> treasureChestLoot = (chest) -> 
 		{
-			addChestLoot(world, chest, 60, Item.getItemFromBlock(Blocks.gold_block), 0, 2);
+			addChestLoot(world, chest, 60, Item.getItemFromBlock(Blocks.GOLD_BLOCK), 0, 2);
 			addChestLoot(world, chest, 50, ListMisc.BellyPouch, 1, 2);
 			addChestLoot(world, chest, 20, ListMisc.BellyPouch, 3, 5);
-			addChestLoot(world, chest, 20, Item.getItemFromBlock(Blocks.gold_block), 3, 7);
-			addChestLoot(world, chest, 5, Item.getItemFromBlock(Blocks.gold_block), 1, 3);
+			addChestLoot(world, chest, 20, Item.getItemFromBlock(Blocks.GOLD_BLOCK), 3, 7);
+			addChestLoot(world, chest, 5, Item.getItemFromBlock(Blocks.GOLD_BLOCK), 1, 3);
 			addChestLoot(world, chest, 5, ListMisc.Box1, 1, 0);
 			addChestLoot(world, chest, 2, ListMisc.Box2, 1, 0);
 		};

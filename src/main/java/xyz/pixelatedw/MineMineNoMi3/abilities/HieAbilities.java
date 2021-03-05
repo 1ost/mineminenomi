@@ -69,7 +69,7 @@ public class HieAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new HieProjectiles.IceBlockPartisan(player.worldObj, player, ListAttributes.ICE_BLOCK_PARTISAN);
+			this.projectile = new HieProjectiles.IceBlockPartisan(player.world, player, ListAttributes.ICE_BLOCK_PARTISAN);
 			super.use(player);
 		};	
 	}
@@ -86,7 +86,7 @@ public class HieAbilities
 		{
 			if(!this.isOnCooldown)
 			{		
-				final World world = player.worldObj;
+				final World world = player.world;
 
 				if(MainConfig.enableGriefing)
 				{
@@ -98,9 +98,9 @@ public class HieAbilities
 						int posY = (int) player.posY + j;
 						int posZ = (int) (player.posZ + k + (k < -WyMathHelper.randomWithRange(8, 12) || k > WyMathHelper.randomWithRange(8, 12) ? WyMathHelper.randomWithRange(-5, 5) : 0));
 						
-						if(!player.worldObj.isAirBlock(posX, posY, posZ) && player.worldObj.getBlock(posX, posY, posZ) != ListMisc.Ope
-								&& player.worldObj.getBlock(posX, posY, posZ) != ListMisc.OpeMid && player.worldObj.getBlock(posX, posY, posZ) != Blocks.bedrock)
-							player.worldObj.setBlock(posX, posY, posZ, Blocks.packed_ice);				
+						if(!player.world.isAirBlock(posX, posY, posZ) && player.world.getBlock(posX, posY, posZ) != ListMisc.Ope
+								&& player.world.getBlock(posX, posY, posZ) != ListMisc.OpeMid && player.world.getBlock(posX, posY, posZ) != Blocks.BEDROCK)
+							player.world.setBlock(posX, posY, posZ, Blocks.PACKED_ICE);				
 					}
 					
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_ICEAGE, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
@@ -126,7 +126,7 @@ public class HieAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new HieProjectiles.IceBall(player.worldObj, player, ListAttributes.ICE_BALL);
+			this.projectile = new HieProjectiles.IceBall(player.world, player, ListAttributes.ICE_BALL);
 			super.use(player);
 		};	
 	}
@@ -147,7 +147,7 @@ public class HieAbilities
 				{
 					for(EntityLivingBase l : WyHelper.getEntitiesNear(player, 25))
 					{
-						WyHelper.createFilledCube(l, new int[] {2, 4, 2}, Blocks.packed_ice, "air", "foliage");
+						WyHelper.createFilledCube(l, new int[] {2, 4, 2}, Blocks.PACKED_ICE, "air", "foliage");
 					}	
 				}
 			
@@ -166,7 +166,7 @@ public class HieAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new HieProjectiles.IceBlockPheasant(player.worldObj, player, ListAttributes.ICE_BLOCK_PHEASANT);
+			this.projectile = new HieProjectiles.IceBlockPheasant(player.world, player, ListAttributes.ICE_BLOCK_PHEASANT);
 			super.use(player);
 		};		
 	}

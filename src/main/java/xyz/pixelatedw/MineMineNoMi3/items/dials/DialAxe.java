@@ -25,9 +25,9 @@ public class DialAxe extends Item
 		{
 	    	if(!player.isSneaking())
 	    	{
-	    		AxeDialProjectile proj = new AxeDialProjectile(player.worldObj, player, ListExtraAttributes.DIAL_AXE);
+	    		AxeDialProjectile proj = new AxeDialProjectile(player.world, player, ListExtraAttributes.DIAL_AXE);
 				
-	    		world.spawnEntityInWorld(proj);
+	    		world.spawnEntity(proj);
 	    		
 		    	if(!player.capabilities.isCreativeMode)
 		    		WyTelemetry.addMiscStat("axeDialsUsed", "Axe Dials Used", 1);

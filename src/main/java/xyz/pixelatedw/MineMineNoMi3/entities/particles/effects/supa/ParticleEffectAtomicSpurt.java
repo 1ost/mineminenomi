@@ -17,8 +17,8 @@ public class ParticleEffectAtomicSpurt extends ParticleEffect
 			double offsetY = 0.25;
 			double offsetZ = WyMathHelper.randomDouble() / 2;
 
-			player.worldObj.spawnParticle(
-					EnumParticleTypes.BLOCK_CRACK.getParticleName() + "_" + Block.getIdFromBlock(player.worldObj.getBlock((int)posX, (int)posY - 1, (int)posZ)) + "_" + player.worldObj.getBlockMetadata((int)posX, (int)posY - 1, (int)posZ), 
+			player.world.spawnParticle(
+					EnumParticleTypes.BLOCK_CRACK.getParticleName() + "_" + Block.getIdFromBlock(player.world.getBlock((int)posX, (int)posY - 1, (int)posZ)) + "_" + player.world.getBlockMetadata((int)posX, (int)posY - 1, (int)posZ), 
 					posX + offsetX, 
 					posY, 
 					posZ + offsetZ, 

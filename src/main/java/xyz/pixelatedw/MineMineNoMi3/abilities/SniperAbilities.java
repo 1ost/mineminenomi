@@ -32,9 +32,9 @@ public class SniperAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			if(!player.worldObj.isRemote)
+			if(!player.world.isRemote)
 			{
-				this.projectile = new SniperProjectiles.SakuretsuSabotenBoshi(player.worldObj, player, attr);
+				this.projectile = new SniperProjectiles.SakuretsuSabotenBoshi(player.world, player, attr);
 				this.setPassiveActive(false);
 				super.use(player);
 			}
@@ -50,9 +50,9 @@ public class SniperAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			if(!player.worldObj.isRemote)
+			if(!player.world.isRemote)
 			{
-				this.projectile = new SniperProjectiles.RenpatsuNamariBoshi(player.worldObj, player, attr);
+				this.projectile = new SniperProjectiles.RenpatsuNamariBoshi(player.world, player, attr);
 				this.setPassiveActive(false);
 				super.use(player);
 			}
@@ -68,9 +68,9 @@ public class SniperAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			if(!player.worldObj.isRemote)
+			if(!player.world.isRemote)
 			{
-				this.projectile = new SniperProjectiles.KemuriBoshi(player.worldObj, player, attr);
+				this.projectile = new SniperProjectiles.KemuriBoshi(player.world, player, attr);
 				this.setPassiveActive(false);
 				super.use(player);
 			}
@@ -86,9 +86,9 @@ public class SniperAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			if(!player.worldObj.isRemote)
+			if(!player.world.isRemote)
 			{
-				this.projectile = new SniperProjectiles.KaenBoshi(player.worldObj, player, attr);
+				this.projectile = new SniperProjectiles.KaenBoshi(player.world, player, attr);
 				this.setPassiveActive(false);
 				super.use(player);
 			}

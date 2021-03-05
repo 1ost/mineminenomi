@@ -5,7 +5,6 @@ import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.api.EnumParticleTypes;
@@ -39,7 +38,7 @@ public class MaguProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null)
 				hit.entityHit.setFire(200);
@@ -54,7 +53,7 @@ public class MaguProjectiles
 				double offsetY = (new Random().nextInt(40) + 1.0D - 20.0D) / 40.0D;
 				double offsetZ = (new Random().nextInt(40) + 1.0D - 20.0D) / 40.0D;
 		      
-				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, -0.08D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, -0.08D, 0.0D);
 			}		
 			super.onUpdate();
 		}
@@ -74,13 +73,13 @@ public class MaguProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null)
 				hit.entityHit.setFire(100);
 			
 			if(MainConfig.enableGriefing)
-				DevilFruitsHelper.placeBlockIfAllowed(worldObj, hit.blockX, hit.blockY, hit.blockZ, Blocks.flowing_lava, "core", "foliage");
+				DevilFruitsHelper.placeBlockIfAllowed(world, hit.blockX, hit.blockY, hit.blockZ, Blocks.FLOWING_LAVA, "core", "foliage");
 		};
 		
 		@Override
@@ -92,8 +91,8 @@ public class MaguProjectiles
 				double offsetY = (new Random().nextInt(40) + 1.0D - 20.0D) / 10.0D;
 				double offsetZ = (new Random().nextInt(40) + 1.0D - 20.0D) / 10.0D;
 		      
-				this.worldObj.spawnParticle(EnumParticleTypes.LAVA.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
-				//this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, -2.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.LAVA.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+				//this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, -2.0D, 0.0D);
 			}		
 			super.onUpdate();
 		}

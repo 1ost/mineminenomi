@@ -40,15 +40,15 @@ public class GuraProjectiles
 		@Override
 		public void onUpdate()
 		{		
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{
 					if(i % 2 == 0)
-						this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleName(), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+						this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleName(), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 					else
 					{
-						EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GURA2, 
+						EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GURA2,
 								posX + this.rand.nextFloat() * 2 - 1, 
 								posY + this.rand.nextFloat() * 2 - 1, 
 								posZ + this.rand.nextFloat() * 2 - 1, 
@@ -80,15 +80,15 @@ public class GuraProjectiles
 		@Override
 		public void onUpdate()
 		{		
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(3); i++)
 				{
 					if(i % 2 == 0)
-						this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleName(), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+						this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleName(), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 					else
 					{
-						EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GURA2, 
+						EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GURA2,
 								posX + this.rand.nextFloat() * 2 - 1, 
 								posY + this.rand.nextFloat() * 2 - 1, 
 								posZ + this.rand.nextFloat() * 2 - 1, 

@@ -88,7 +88,7 @@ public class BlockWantedPoster extends BlockContainer
 		if(poster.getEntityName().isEmpty() || poster.getPosterBounty().isEmpty() || poster.getIssuedDate().isEmpty()) return;
 
 		stack.setTagCompound(ItemsHelper.setWantedData( poster.getEntityName(), Long.parseLong(poster.getPosterBounty().replace("L", "")) ));
-    	world.spawnEntityInWorld(new EntityItem(world, posX, posY + 1, posZ, stack));
+    	world.spawnEntity(new EntityItem(world, posX, posY + 1, posZ, stack));
     }
 	
 	public int quantityDropped(Random random)

@@ -26,7 +26,7 @@ public class StructureMarineLargeBase extends Structure
 		if(flagBiome || flagSpecialCheck || flagAboveGround)
 			return false;
 		
-		WySchematicHelper.build(sch, world, posX, posY - 19, posZ, Blocks.bedrock);
+		WySchematicHelper.build(sch, world, posX, posY - 19, posZ, Blocks.BEDROCK);
 		populate(sch, posX, posY + 2, posZ, world);
 
 		return true;

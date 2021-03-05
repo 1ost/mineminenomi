@@ -8,7 +8,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -44,13 +43,13 @@ public class JuryoProjectiles
 		
 		public void onUpdate()
 		{
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
-				double posXOffset = this.worldObj.rand.nextGaussian() * 0.52D;
-				double posYOffset = this.worldObj.rand.nextGaussian() * 0.52D;
-				double posZOffset = this.worldObj.rand.nextGaussian() * 0.52D;		
+				double posXOffset = this.world.rand.nextGaussian() * 0.52D;
+				double posYOffset = this.world.rand.nextGaussian() * 0.52D;
+				double posZOffset = this.world.rand.nextGaussian() * 0.52D;
 		
-				EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GASU, 
+				EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GASU,
 						posX + posXOffset, 
 						posY + posYOffset, 
 						posZ + posZOffset, 
@@ -62,7 +61,7 @@ public class JuryoProjectiles
 			super.onUpdate();
 		}
 		
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -73,18 +72,18 @@ public class JuryoProjectiles
 					int posY = (int)hit.entityHit.posY - 1;
 					int posZ = (int)hit.entityHit.posZ + z;
 					
-					if(DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, posX, posY, posZ, Blocks.air, "all", "restricted", "ignore liquid"))
+					if(DevilFruitsHelper.placeBlockIfAllowed(this.world, posX, posY, posZ, Blocks.AIR, "all", "restricted", "ignore liquid"))
 					{
 						hit.entityHit.motionX = 0;
 						hit.entityHit.motionZ = 0;
 						hit.entityHit.motionY -= 5;
-						((EntityLivingBase) hit.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 10));
+						((EntityLivingBase) hit.entityHit).addPotionEffect(new PotionEffect(Potion.getPotionById(2), 100, 10));
 					}
 				}
 			}
 			else
 			{
-				DevilFruitsHelper.placeBlockIfAllowed(this.worldObj, hit.blockX, hit.blockY, hit.blockZ, Blocks.air, "all", "restricted", "ignore liquid");
+				DevilFruitsHelper.placeBlockIfAllowed(this.world, hit.blockX, hit.blockY, hit.blockZ, Blocks.AIR, "all", "restricted", "ignore liquid");
 			}
 		}
 	}

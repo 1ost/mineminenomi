@@ -15,19 +15,19 @@ public class ParticleEffectWaterExplosion extends ParticleEffect
 	{	
 		for (int i = 0; i < 512; i++)
 		{
-	        double motionX = WyMathHelper.randomWithRange(-5, 5) + player.worldObj.rand.nextDouble();
-	        double motionY = WyMathHelper.randomWithRange(-5, 5) + player.worldObj.rand.nextDouble();
-	        double motionZ = WyMathHelper.randomWithRange(-5, 5) + player.worldObj.rand.nextDouble();
+	        double motionX = WyMathHelper.randomWithRange(-5, 5) + player.world.rand.nextDouble();
+	        double motionY = WyMathHelper.randomWithRange(-5, 5) + player.world.rand.nextDouble();
+	        double motionZ = WyMathHelper.randomWithRange(-5, 5) + player.world.rand.nextDouble();
 	        
             double middlePoint = 0.25;
-            middlePoint *= (double)(player.worldObj.rand.nextFloat() * player.worldObj.rand.nextFloat() + 0.3F);
+            middlePoint *= (double)(player.world.rand.nextFloat() * player.world.rand.nextFloat() + 0.3F);
 	        
 	        motionX *= middlePoint / 2;
 	        motionY *= middlePoint / 2;
 	        motionZ *= middlePoint / 2;
 			
-            player.worldObj.spawnParticle(EnumParticleTypes.WATER_WAKE.getParticleName(), posX, posY, posZ, motionX, motionY, motionZ);
-            player.worldObj.spawnParticle(EnumParticleTypes.WATER_WAKE.getParticleName(), posX, posY, posZ, motionX, motionY, motionZ);
+            player.world.spawnParticle(EnumParticleTypes.WATER_WAKE.getParticleName(), posX, posY, posZ, motionX, motionY, motionZ);
+            player.world.spawnParticle(EnumParticleTypes.WATER_WAKE.getParticleName(), posX, posY, posZ, motionX, motionY, motionZ);
 		}
 	}
 }

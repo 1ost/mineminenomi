@@ -3,12 +3,12 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 import java.awt.Color;
 import java.util.List;
 
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -17,7 +17,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -47,7 +47,7 @@ public class EventsCombatMode extends Gui
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderUI(RenderGameOverlayEvent event)
 	{
-		EntityPlayer player = mc.thePlayer;
+		EntityPlayer player = mc.player;
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		AbilityProperties abilityProps = AbilityProperties.get(player);
 		
@@ -69,13 +69,13 @@ public class EventsCombatMode extends Gui
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glEnable(GL11.GL_TEXTURE_2D);*/
 		
-		if (event.type == ElementType.FOOD && props.getUsedFruit().equalsIgnoreCase("yomiyomi") && props.getZoanPoint().equalsIgnoreCase("yomi"))
+		if (event.getType() == ElementType.FOOD && props.getUsedFruit().equalsIgnoreCase("yomiyomi") && props.getZoanPoint().equalsIgnoreCase("yomi"))
 			event.setCanceled(true);
 		
-		if (event.type == ElementType.HEALTH)
+		if (event.getType() == ElementType.HEALTH)
 		{
 			event.setCanceled(true);
-			double maxHealth = player.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue();
+			double maxHealth = player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue();
 			double health = player.getHealth();
 
 			this.drawCenteredString(this.mc.fontRenderer, (int) health + "", posX / 2 - 20, posY - 39, Color.RED.getRGB());
@@ -85,7 +85,7 @@ public class EventsCombatMode extends Gui
 			this.mc.getTextureManager().bindTexture(icons);
 			double f2 = player.getAbsorptionAmount();
 
-			for (int i = MathHelper.ceiling_double_int((maxHealth) / 2.0F) - 1; i >= 0; i--)
+			for (int i = MathHelper.ceil((maxHealth) / 2.0F) - 1; i >= 0; i--)
 			{
 				int k = (posX / 2 - 91) + i % 10 * 6;
 
@@ -100,7 +100,7 @@ public class EventsCombatMode extends Gui
 			}
 		}
 
-		if (props.isInCombatMode() && event.type == ElementType.HOTBAR)
+		if (props.isInCombatMode() && event.getType() == ElementType.HOTBAR)
 		{
 			event.setCanceled(true);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -159,13 +159,13 @@ public class EventsCombatMode extends Gui
 						trackMob = elb;
 					} else
 					{
-						if (player.getDistanceToEntity(elb) <= player.getDistanceToEntity(trackMob))
+						if (player.getDistanceSq(elb) <= player.getDistanceSq(trackMob))
 							trackMob = elb;
 						else if (trackMob.getHealth() <= 0 || !trackMob.isEntityAlive())
 							trackMob = null;
-						if (trackMob != null && player.getDistanceToEntity(trackMob) < trackDistance)
+						if (trackMob != null && player.getDistanceSq(trackMob) < trackDistance)
 						{
-							trackDistance = (int) player.getDistanceToEntity(trackMob);
+							trackDistance = (int) player.getDistanceSq(trackMob);
 							float angle = (float) Math.toDegrees(Math.atan2(trackMob.posZ - player.posZ, trackMob.posX - player.posX));
 							String text = "";
 
@@ -224,14 +224,14 @@ public class EventsCombatMode extends Gui
 	{
 		if (!MainConfig.enableFOVModifier)
 		{
-			if (event.entity.isPotionActive(Potion.moveSlowdown))
-				event.newfov = 1.0F;
+			if (event.getEntity().isPotionActive(Potion.getPotionById(2)))
+				event.setNewfov(1.0F);
 
-			if (event.entity.isPotionActive(Potion.moveSpeed))
-				event.newfov = 1.0F;
+			if (event.getEntity().isPotionActive(Potion.getPotionById(1)))
+				event.setNewfov(1.0F);
 
-			if ((event.entity.isPotionActive(Potion.moveSpeed)) && (event.entity.isSprinting()))
-				event.newfov = 1.1F;
+			if ((event.getEntity().isPotionActive(Potion.getPotionById(1))) && (event.getEntity().isSprinting()))
+				event.setNewfov(1.1F);
 		}
 	}
 

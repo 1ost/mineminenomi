@@ -5,7 +5,7 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -22,7 +22,7 @@ public class ParticleEffectAmaterasu extends ParticleEffect
         double motionY = (double)(-MathHelper.sin((player.rotationPitch) / 180.0F * (float)Math.PI) * 1);
 
 		MainMod.proxy.spawnCustomParticles(player, 
-				new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_PIKA,
+				new EntityParticleFX(player.world, ID.PARTICLE_ICON_PIKA,
 						posX,
 						posY,
 						posZ,

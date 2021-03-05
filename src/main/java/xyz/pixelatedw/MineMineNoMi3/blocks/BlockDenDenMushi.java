@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityDenDenMushi;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
@@ -22,7 +22,7 @@ public class BlockDenDenMushi extends BlockContainer
 	@Override
 	public void onBlockPlacedBy(World world, int posX, int posY, int posZ, EntityLivingBase entity, ItemStack stack)
 	{
-		int rotation = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
+		int rotation = MathHelper.floor(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
 		world.setBlock(posX, posY, posZ, ListMisc.DenDenMushi, rotation, 2);
 	}
 

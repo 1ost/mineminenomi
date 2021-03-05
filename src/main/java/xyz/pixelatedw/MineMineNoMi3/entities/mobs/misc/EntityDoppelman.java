@@ -21,7 +21,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.network.WyNetworkHelper;
@@ -65,8 +65,8 @@ public class EntityDoppelman extends EntityMob
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(10);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
 	}
 	
     @Override
@@ -85,10 +85,10 @@ public class EntityDoppelman extends EntityMob
 	@Override
 	public void onEntityUpdate()
 	{
-		if(!this.worldObj.isRemote && this.owner == null)
+		if(!this.world.isRemote && this.owner == null)
 			this.setDead();
 
-		if(!this.worldObj.isRemote && this.owner != null)
+		if(!this.world.isRemote && this.owner != null)
 		{					
 			if(this.getDistanceToEntity(owner) > 10)
 				this.getNavigator().tryMoveToEntityLiving(owner, 1.5);
@@ -134,7 +134,7 @@ public class EntityDoppelman extends EntityMob
     @Override
 	public boolean attackEntityAsMob(Entity target)
     {
-        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue() + (ExtendedEntityData.get(this).getDoriki() * 4);
+        float f = (float)this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue() + (ExtendedEntityData.get(this).getDoriki() * 4);
         int i = 0;
 
         if (target instanceof EntityLivingBase)

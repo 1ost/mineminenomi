@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -21,14 +21,14 @@ public class EventsAbilityValidation
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event)
 	{
-		if (event.entity instanceof EntityPlayer)
+		if (event.getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entity;
+			EntityPlayer player = (EntityPlayer) event.getEntity();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			QuestProperties questProps = QuestProperties.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 			
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 			{			
 				//if (!props.hasRace() && !props.hasFaction() && !props.hasFightingStyle() && !player.inventory.hasItemStack(new ItemStack(ListMisc.CharacterCreator)))
 				//	player.inventory.addItemStackToInventory(new ItemStack(ListMisc.CharacterCreator, 1));

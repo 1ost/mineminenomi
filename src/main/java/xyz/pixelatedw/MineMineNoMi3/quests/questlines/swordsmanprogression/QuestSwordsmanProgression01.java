@@ -117,7 +117,7 @@ public class QuestSwordsmanProgression01 extends Quest implements IInteractQuest
 			{
 				Entry entry = (Entry)iterator.next();
 				
-				if(entry.getKey().equals(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName()))
+				if(entry.getKey().equals(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName()))
 				{
 					AttributeModifier attrmodif = (AttributeModifier)entry.getValue();
 					double damage = attrmodif.getAmount();

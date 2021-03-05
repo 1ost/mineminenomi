@@ -59,9 +59,9 @@ public class StructureSmallShip extends Structure
 		world.setBlock(posX + 10, posY + 7, posZ + 45, ListMisc.CustomSpawner);
 		world.setTileEntity(posX + 10, posY + 7, posZ + 45, spawnTrash03);
 
-		world.setBlock(posX + 12, posY + 2, posZ + 32, Blocks.torch);
-		world.setBlock(posX + 12, posY + 2, posZ + 38, Blocks.torch);
-		world.setBlock(posX + 12, posY + 2, posZ + 43, Blocks.torch);
+		world.setBlock(posX + 12, posY + 2, posZ + 32, Blocks.TORCH);
+		world.setBlock(posX + 12, posY + 2, posZ + 38, Blocks.TORCH);
+		world.setBlock(posX + 12, posY + 2, posZ + 43, Blocks.TORCH);
 
 		TileEntityChest combatChest = new TileEntityChest();
 		world.setTileEntity(posX + 11, posY + 2, posZ + 25, combatChest);
@@ -94,13 +94,13 @@ public class StructureSmallShip extends Structure
 			addChestLoot(world, foodChest, 10, Items.cooked_beef, 5, 6);
 		addChestLoot(world, foodChest, 10, ListMisc.Cola, 1, 5);
 
-		world.setBlock(posX + 11, posY + 2, posZ + 24, Blocks.air);
-		world.setBlock(posX + 8, posY + 2, posZ + 24, Blocks.air);
+		world.setBlock(posX + 11, posY + 2, posZ + 24, Blocks.AIR);
+		world.setBlock(posX + 8, posY + 2, posZ + 24, Blocks.AIR);
 
-		world.setBlock(posX + 11, posY + 2, posZ + 22, Blocks.air);
-		world.setBlock(posX + 8, posY + 2, posZ + 22, Blocks.air);
-		world.setBlock(posX + 11, posY + 2, posZ + 21, Blocks.air);
-		world.setBlock(posX + 8, posY + 2, posZ + 21, Blocks.air);
+		world.setBlock(posX + 11, posY + 2, posZ + 22, Blocks.AIR);
+		world.setBlock(posX + 8, posY + 2, posZ + 22, Blocks.AIR);
+		world.setBlock(posX + 11, posY + 2, posZ + 21, Blocks.AIR);
+		world.setBlock(posX + 8, posY + 2, posZ + 21, Blocks.AIR);
 
 	}
 

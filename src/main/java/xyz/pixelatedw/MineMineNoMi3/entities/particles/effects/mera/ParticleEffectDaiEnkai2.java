@@ -28,11 +28,11 @@ public class ParticleEffectDaiEnkai2 extends ParticleEffect
 				z = t * Math.sin(theta);
 										
 				double motionX = x / 10;
-				double motionY = 0.05 + (player.worldObj.rand.nextDouble() / 10);
+				double motionY = 0.05 + (player.world.rand.nextDouble() / 10);
 				double motionZ = z / 10;
 
 				MainMod.proxy.spawnCustomParticles(player, 
-						new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MERA, 
+						new EntityParticleFX(player.world, ID.PARTICLE_ICON_MERA,
 								posX + (x * 1.25), 
 								posY + y, 
 								posZ + (z * 1.25), 
@@ -42,7 +42,7 @@ public class ParticleEffectDaiEnkai2 extends ParticleEffect
 						.setParticleScale(1.3F).setParticleAge(-3));
 				
 				MainMod.proxy.spawnCustomParticles(player, 
-						new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MERA, 
+						new EntityParticleFX(player.world, ID.PARTICLE_ICON_MERA,
 								posX + (x * 2.0), 
 								posY + y, 
 								posZ + (z * 2.0), 
@@ -52,7 +52,7 @@ public class ParticleEffectDaiEnkai2 extends ParticleEffect
 						.setParticleScale(1.3F).setParticleAge(1));
 				
 				MainMod.proxy.spawnCustomParticles(player, 
-						new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MERA, 
+						new EntityParticleFX(player.world, ID.PARTICLE_ICON_MERA,
 								posX + (x * 3.25), 
 								posY + y, 
 								posZ + (z * 3.25), 

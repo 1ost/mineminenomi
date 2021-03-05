@@ -63,7 +63,7 @@ public class NikyuAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new NikyuProjectiles.PadHo(player.worldObj, player, attr);
+			this.projectile = new NikyuProjectiles.PadHo(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -77,7 +77,7 @@ public class NikyuAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new NikyuProjectiles.PadHo(player.worldObj, player, attr);
+			this.projectile = new NikyuProjectiles.PadHo(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -91,7 +91,7 @@ public class NikyuAbilities
 		
 		public void endCharging(EntityPlayer player)
 		{		
-			this.projectile = new NikyuProjectiles.UrsusShock(player.worldObj, player, attr);
+			this.projectile = new NikyuProjectiles.UrsusShock(player.world, player, attr);
 			super.endCharging(player);
 		}
 	}

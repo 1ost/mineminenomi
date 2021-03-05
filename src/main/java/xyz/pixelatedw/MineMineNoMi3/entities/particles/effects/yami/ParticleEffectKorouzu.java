@@ -16,12 +16,12 @@ public class ParticleEffectKorouzu extends ParticleEffect
 	{
 		for (int i = 0; i < 30; i++)
 		{
-			double offsetX = WyMathHelper.randomWithRange(-2, 2) + player.worldObj.rand.nextDouble();
-			double offsetY = WyMathHelper.randomWithRange(-2, 2) + player.worldObj.rand.nextDouble();
-			double offsetZ = WyMathHelper.randomWithRange(-2, 2) + player.worldObj.rand.nextDouble();
+			double offsetX = WyMathHelper.randomWithRange(-2, 2) + player.world.rand.nextDouble();
+			double offsetY = WyMathHelper.randomWithRange(-2, 2) + player.world.rand.nextDouble();
+			double offsetZ = WyMathHelper.randomWithRange(-2, 2) + player.world.rand.nextDouble();
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_DARKNESS,
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_DARKNESS,
 							posX + offsetX,
 							posY + offsetY,
 							posZ + offsetZ,

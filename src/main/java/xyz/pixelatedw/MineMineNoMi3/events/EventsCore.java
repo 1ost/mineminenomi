@@ -1,25 +1,22 @@
 package xyz.pixelatedw.MineMineNoMi3.events;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.event.ClickEvent;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -39,17 +36,17 @@ public class EventsCore
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) 
 	{
-		if (event.entity instanceof EntityLivingBase && ExtendedEntityData.get((EntityLivingBase) event.entity) == null)
-			ExtendedEntityData.register((EntityLivingBase) event.entity);
+		if (event.getEntity() instanceof EntityLivingBase && ExtendedEntityData.get((EntityLivingBase) event.getEntity()) == null)
+			ExtendedEntityData.register((EntityLivingBase) event.getEntity());
 
-		if (event.entity instanceof EntityPlayer)
+		if (event.getEntity() instanceof EntityPlayer)
 		{
-			if(QuestProperties.get((EntityPlayer) event.entity) == null)
-				QuestProperties.register((EntityPlayer) event.entity);
-			if(AbilityProperties.get((EntityPlayer) event.entity) == null)
-				AbilityProperties.register((EntityPlayer) event.entity);
-			if(HistoryProperties.get((EntityPlayer) event.entity) == null)
-				HistoryProperties.register((EntityPlayer) event.entity);
+			if(QuestProperties.get((EntityPlayer) event.getEntity()) == null)
+				QuestProperties.register((EntityPlayer) event.getEntity());
+			if(AbilityProperties.get((EntityPlayer) event.getEntity()) == null)
+				AbilityProperties.register((EntityPlayer) event.getEntity());
+			if(HistoryProperties.get((EntityPlayer) event.getEntity()) == null)
+				HistoryProperties.register((EntityPlayer) event.getEntity());
 		}
 	}
 	
@@ -57,59 +54,59 @@ public class EventsCore
 	@SubscribeEvent
 	public void onClonePlayer(PlayerEvent.Clone e) 
 	{
-		if(e.wasDeath) 
+		if(e.getEntity().isDead) 
 		{		
-	    	ExtendedWorldData worldProps = ExtendedWorldData.get(e.original.worldObj);
+	    	ExtendedWorldData worldProps = ExtendedWorldData.get(e.getEntity().world);
 
-			ExtendedEntityData oldPlayerProps = ExtendedEntityData.get(e.original);	
-			ExtendedEntityData newPlayerProps = ExtendedEntityData.get(e.entityPlayer);
+			ExtendedEntityData oldPlayerProps = ExtendedEntityData.get(e.getOriginal());	
+			ExtendedEntityData newPlayerProps = ExtendedEntityData.get(e.getEntityPlayer());
 
-			//WyNetworkHelper.sendTo(new PacketNewAABB(0.6F, 1.8F), (EntityPlayerMP) e.entityPlayer);
+			//WyNetworkHelper.sendTo(new PacketNewAABB(0.6F, 1.8F), (EntityPlayerMP) e.getEntityPlayer());
 			
 			if(MainConfig.enableKeepIEEPAfterDeath.equals("full"))
 			{
 				NBTTagCompound compound = new NBTTagCompound();
 				
-				ExtendedEntityData oldProps = ExtendedEntityData.get(e.original);
+				ExtendedEntityData oldProps = ExtendedEntityData.get(e.getOriginal());
 				oldProps.saveNBTData(compound);
 				oldProps.triggerActiveHaki(false);
 				oldProps.triggerBusoHaki(false);
 				oldProps.triggerKenHaki(false);
 				oldProps.setGear(1);
 				oldProps.setZoanPoint("n/a");
-				ExtendedEntityData props = ExtendedEntityData.get(e.entityPlayer);
+				ExtendedEntityData props = ExtendedEntityData.get(e.getEntityPlayer());
 				props.loadNBTData(compound);				
 				
 				compound = new NBTTagCompound();
-				AbilityProperties.get(e.original).saveNBTData(compound);
-				AbilityProperties abilityProps = AbilityProperties.get(e.entityPlayer);
+				AbilityProperties.get(e.getOriginal()).saveNBTData(compound);
+				AbilityProperties abilityProps = AbilityProperties.get(e.getEntityPlayer());
 				abilityProps.loadNBTData(compound);
 				
-				if(e.entityPlayer != null && MainConfig.enableExtraHearts)		
+				if(e.getEntityPlayer() != null && MainConfig.enableExtraHearts)		
 				{
-					IAttributeInstance maxHp = e.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth);
+					IAttributeInstance maxHp = e.getEntityPlayer().getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
 								
 					if(props.getDoriki() / 100 <= 20)
-						e.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20);
+						e.getEntityPlayer().getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20);
 					else
-						e.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(props.getDoriki() / 100);
+						e.getEntityPlayer().getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(props.getDoriki() / 100);
 				}
 			}
 			else if(MainConfig.enableKeepIEEPAfterDeath.equals("auto"))
 			{
-				ExtendedEntityData oldProps = ExtendedEntityData.get(e.original);
+				ExtendedEntityData oldProps = ExtendedEntityData.get(e.getOriginal());
 				
 				String faction = oldProps.getFaction();
 				String race = oldProps.getRace();
 				String fightStyle = oldProps.getFightStyle();
 				String crew = oldProps.getCrew();
-				int doriki = MathHelper.ceiling_double_int(WyMathHelper.percentage(MainConfig.dorikiKeepPercentage, oldProps.getDoriki()));
-				int bounty = MathHelper.ceiling_double_int(WyMathHelper.percentage(MainConfig.bountyKeepPercentage, oldProps.getBounty()));
-				int belly = MathHelper.ceiling_double_int(WyMathHelper.percentage(MainConfig.bellyKeepPercentage, oldProps.getBelly()));
+				int doriki = MathHelper.ceil(WyMathHelper.percentage(MainConfig.dorikiKeepPercentage, oldProps.getDoriki()));
+				int bounty = MathHelper.ceil(WyMathHelper.percentage(MainConfig.bountyKeepPercentage, oldProps.getBounty()));
+				int belly = MathHelper.ceil(WyMathHelper.percentage(MainConfig.bellyKeepPercentage, oldProps.getBelly()));
 
 				worldProps.removeDevilFruitFromWorld(oldProps.getUsedFruit());
 				
-				ExtendedEntityData props = ExtendedEntityData.get(e.entityPlayer);
+				ExtendedEntityData props = ExtendedEntityData.get(e.getEntityPlayer());
 				props.setFaction(faction);
 				props.setRace(race);
 				props.setFightStyle(fightStyle);
@@ -123,23 +120,23 @@ public class EventsCore
 			}
 			else if(MainConfig.enableKeepIEEPAfterDeath.equals("custom"))
 			{
-				ExtendedEntityData oldProps = ExtendedEntityData.get(e.original);
-				ExtendedEntityData props = ExtendedEntityData.get(e.entityPlayer);
+				ExtendedEntityData oldProps = ExtendedEntityData.get(e.getOriginal());
+				ExtendedEntityData props = ExtendedEntityData.get(e.getEntityPlayer());
 
 				for(String stat : MainConfig.statsToKeep)
 				{
 					switch(WyHelper.getFancyName(stat))
 					{
 						case "doriki":
-							int doriki = MathHelper.ceiling_double_int(WyMathHelper.percentage(MainConfig.dorikiKeepPercentage, oldProps.getDoriki()));
+							int doriki = MathHelper.ceil(WyMathHelper.percentage(MainConfig.dorikiKeepPercentage, oldProps.getDoriki()));
 							props.setDoriki(doriki); 
 							break;
 						case "bounty":
-							int bounty = MathHelper.ceiling_double_int(WyMathHelper.percentage(MainConfig.bountyKeepPercentage, oldProps.getBounty()));
+							int bounty = MathHelper.ceil(WyMathHelper.percentage(MainConfig.bountyKeepPercentage, oldProps.getBounty()));
 							props.setBounty(bounty); 
 							break;
 						case "belly":
-							int belly = MathHelper.ceiling_double_int(WyMathHelper.percentage(MainConfig.bellyKeepPercentage, oldProps.getBelly()));
+							int belly = MathHelper.ceil(WyMathHelper.percentage(MainConfig.bellyKeepPercentage, oldProps.getBelly()));
 							props.setBelly(belly); 
 							break;
 						case "race":
@@ -158,8 +155,8 @@ public class EventsCore
 			}
 			
 			NBTTagCompound compound = new NBTTagCompound();
-			QuestProperties.get(e.original).saveNBTData(compound);
-			QuestProperties questProps = QuestProperties.get(e.entityPlayer);
+			QuestProperties.get(e.getOriginal()).saveNBTData(compound);
+			QuestProperties questProps = QuestProperties.get(e.getEntityPlayer());
 			questProps.loadNBTData(compound);
 		}
 	}
@@ -168,17 +165,17 @@ public class EventsCore
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event)
 	{
-		if (event.entity instanceof EntityPlayer)
+		if (event.getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entity;
+			EntityPlayer player = (EntityPlayer) event.getEntity();
 
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 			{
 				if(!WyHelper.isReleaseBuild())
 				{
 					if(!WyHelper.hasPatreonAccess(player))
 					{
-						((EntityPlayerMP)player).playerNetServerHandler.kickPlayerFromServer(EnumChatFormatting.BOLD + "" + EnumChatFormatting.RED + "WARNING! \n\n " + EnumChatFormatting.RESET + "You don't have access to this version yet!");
+						((EntityPlayerMP)player).playerNetServerHandler.kickPlayerFromServer(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! \n\n " + TextFormatting.RESET + "You don't have access to this version yet!");
 						if(!WyDebug.isDebug())
 						{
 							WyTelemetry.addMiscStat("onlinePlayers", "Online Players", -1);
@@ -217,10 +214,10 @@ public class EventsCore
 							
 							if(latestVersion > currentVersion)
 							{
-								ChatStyle updateStyle = new ChatStyle().setColor(EnumChatFormatting.GOLD).setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://pixelatedw.xyz/versions"));
+								ChatStyle updateStyle = new ChatStyle().setColor(TextFormatting.GOLD).setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://pixelatedw.xyz/versions"));
 								
-								player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "[UPDATE]" + EnumChatFormatting.RED + " Mine Mine no Mi " + result + " is now available !").setChatStyle(updateStyle) );
-								player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Download it from the official website : [http://pixelatedw.xyz/versions]").setChatStyle(updateStyle) );
+								player.sendMessage(new TextComponentString(TextFormatting.RED + "" + TextFormatting.BOLD + "[UPDATE]" + TextFormatting.RED + " Mine Mine no Mi " + result + " is now available !").setStyle(updateStyle) );
+								player.sendMessage(new TextComponentString(TextFormatting.RED + "Download it from the official website : [http://pixelatedw.xyz/versions]").setStyle(updateStyle) );
 							}
 						}
 					}
@@ -234,7 +231,7 @@ public class EventsCore
 	}
 	
 	@SubscribeEvent
-	public void onPlayerLoggedIn(ClientConnectedToServerEvent event)
+	public void onPlayerLoggedIn(FMLNetworkEvent.ClientConnectedToServerEvent event)
 	{
 		if(!WyDebug.isDebug())
 		{
@@ -244,7 +241,7 @@ public class EventsCore
 	}
 	
 	@SubscribeEvent
-	public void onPlayerLoggedOut(ClientDisconnectionFromServerEvent event)
+	public void onPlayerLoggedOut(FMLNetworkEvent.ClientDisconnectionFromServerEvent event)
 	{
 		if(!WyDebug.isDebug())
 		{
@@ -256,9 +253,9 @@ public class EventsCore
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent event)
 	{
-		if(event.phase == Phase.END && event.side == Side.SERVER)
+		if(event.phase == TickEvent.Phase.END && event.side == Side.SERVER)
 		{
-			if(event.player.worldObj.getWorldTime() % 1200 == 0)
+			if(event.player.world.getWorldTime() % 1200 == 0)
 			{
 				WyTelemetry.sendAllData();
 			}

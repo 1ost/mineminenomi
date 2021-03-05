@@ -25,7 +25,7 @@ public class TileEntityOpe extends TileEntity
 
     public void updateEntity()
     {
-    	if(!this.worldObj.isRemote)
+    	if(!this.world.isRemote)
     	{
 	    	List<EntityLivingBase> nearbyPlayers = WyHelper.getEntitiesNear(this, 28).stream().filter(x -> 
 	    		{ 
@@ -43,14 +43,14 @@ public class TileEntityOpe extends TileEntity
     
     public void clearRoom()
     {
-    	World world = this.worldObj;
+    	World world = this.world;
     	
 		for(int i = -22; i < 22; i++)
 		for(int k = -21; k < 21; k++)
 		for(int j = -22; j < 22; j++)
 			if(world.getBlock((int) this.xCoord + i, (int) this.yCoord + k, (int) this.zCoord + j) == ListMisc.Ope)
-				world.setBlock((int) this.xCoord + i, (int) this.yCoord + k, (int) this.zCoord + j, Blocks.air);
-		world.setBlock((int) this.xCoord, (int) this.yCoord, (int) this.zCoord, Blocks.air);
+				world.setBlock((int) this.xCoord + i, (int) this.yCoord + k, (int) this.zCoord + j, Blocks.AIR);
+		world.setBlock((int) this.xCoord, (int) this.yCoord, (int) this.zCoord, Blocks.AIR);
     }
 	
 }

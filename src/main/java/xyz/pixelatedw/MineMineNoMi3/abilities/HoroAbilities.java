@@ -30,7 +30,7 @@ public class HoroAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new HoroProjectiles.TokuHollow(player.worldObj, player, attr);
+			this.projectile = new HoroProjectiles.TokuHollow(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -44,7 +44,7 @@ public class HoroAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new HoroProjectiles.MiniHollow(player.worldObj, player, attr);
+			this.projectile = new HoroProjectiles.MiniHollow(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -58,7 +58,7 @@ public class HoroAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new HoroProjectiles.NegativeHollow(player.worldObj, player, attr);
+			this.projectile = new HoroProjectiles.NegativeHollow(player.world, player, attr);
 			super.use(player);
 		} 
 	}

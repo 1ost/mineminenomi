@@ -23,7 +23,7 @@ public class EntityAIHakaiHo extends EntityAICooldown
 	{
 		super(entity, 90, entity.getRNG().nextInt(20));
 		this.entity = entity;
-		this.damage = this.entity.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+		this.damage = this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
 	}
 
 	public boolean shouldExecute()

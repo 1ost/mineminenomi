@@ -6,7 +6,6 @@ import java.util.Random;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.EnumParticleTypes;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -102,7 +101,7 @@ public class GomuProjectiles
 		}
 
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			EntityPlayer player = (EntityPlayer) this.getThrower();
 			if (hit.entityHit != null)
@@ -224,8 +223,8 @@ public class GomuProjectiles
 				double offsetY = (new Random().nextInt(5) + 1.0D - 2.5D) / 5.0D;
 				double offsetZ = (new Random().nextInt(5) + 1.0D - 2.5D) / 5.0D;
 
-				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
 			}
 			super.onUpdate();
 		}
@@ -267,7 +266,7 @@ public class GomuProjectiles
 		}
 
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if (hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -310,7 +309,7 @@ public class GomuProjectiles
 		}
 
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if (hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -361,14 +360,14 @@ public class GomuProjectiles
 				double offsetY = (new Random().nextInt(5) + 1.0D - 2.5D) / 5.0D;
 				double offsetZ = (new Random().nextInt(5) + 1.0D - 2.5D) / 5.0D;
 
-				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
 			}
 			super.onUpdate();
 		}
 
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if (hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -411,7 +410,7 @@ public class GomuProjectiles
 		}
 
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if (hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -480,8 +479,8 @@ public class GomuProjectiles
 				double offsetY = (new Random().nextInt(5) + 1.0D - 2.5D) / 5.0D;
 				double offsetZ = (new Random().nextInt(5) + 1.0D - 2.5D) / 5.0D;
 
-				this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), this.posX + offsetX, this.posY + offsetY, this.posZ + offsetZ, 0.0D, 0.0D, 0.0D);
 			}
 			super.onUpdate();
 		}

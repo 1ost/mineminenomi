@@ -1,29 +1,29 @@
 package xyz.pixelatedw.MineMineNoMi3;
 
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 
 public enum EnumFruitType 
 {
 
-	PARAMECIA		(EnumChatFormatting.RED			, "Paramecia"),
-	LOGIA			(EnumChatFormatting.YELLOW		, "Logia"),
-	ZOAN			(EnumChatFormatting.GREEN		, "Zoan"),
-	MYTHICALZOAN	(EnumChatFormatting.AQUA		, "Mythical Zoan"),
-	ANCIENTZOAN		(EnumChatFormatting.AQUA		, "Ancient Zoan"),
-	ARTIFICIALLOGIA	(EnumChatFormatting.GOLD		, "Artificial Logia"),
-	ARTIFICIALPARAM	(EnumChatFormatting.GOLD		, "Artificial Paramecia"),
-	ARTIFICIALZOAN	(EnumChatFormatting.GOLD		, "Artificial Zoan");
+	PARAMECIA		(TextFormatting.RED			, "Paramecia"),
+	LOGIA			(TextFormatting.YELLOW		, "Logia"),
+	ZOAN			(TextFormatting.GREEN		, "Zoan"),
+	MYTHICALZOAN	(TextFormatting.AQUA		, "Mythical Zoan"),
+	ANCIENTZOAN		(TextFormatting.AQUA		, "Ancient Zoan"),
+	ARTIFICIALLOGIA	(TextFormatting.GOLD		, "Artificial Logia"),
+	ARTIFICIALPARAM	(TextFormatting.GOLD		, "Artificial Paramecia"),
+	ARTIFICIALZOAN	(TextFormatting.GOLD		, "Artificial Zoan");
 	
-	private EnumChatFormatting color;
+	private TextFormatting color;
 	private String name;
 	
-	private EnumFruitType(EnumChatFormatting color, String name)
+	private EnumFruitType(TextFormatting color, String name)
 	{
 		this.color = color;
 		this.name = name;
 	}
 	
-	public EnumChatFormatting getColor()
+	public TextFormatting getColor()
 	{
 		return color;		
 	}

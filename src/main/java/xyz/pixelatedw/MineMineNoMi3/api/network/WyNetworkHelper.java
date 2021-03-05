@@ -1,16 +1,15 @@
 package xyz.pixelatedw.MineMineNoMi3.api.network;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayerMP;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
 
 public class WyNetworkHelper
 {
 
-	public static final void registerMessage(Class handlerClass, Class messageClass, int id, Side side) 
+	public static final void registerMessage(Class handlerClass, Class messageClass, int id, Side side)
 	{
 		MainMod.dispatcher.registerMessage(handlerClass, messageClass, id, side);
 	}

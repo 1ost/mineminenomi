@@ -1,10 +1,10 @@
 package xyz.pixelatedw.MineMineNoMi3.packets;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,12 +52,12 @@ public class PacketViewProtection implements IMessage
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(PacketViewProtection message, MessageContext ctx)
 		{
-			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayer player = Minecraft.getMinecraft().player;
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 
-			WyHelper.createEmptyCube(player.worldObj, message.midPoint[0], message.midPoint[1], message.midPoint[2], new int[] {message.radius, message.radius, message.radius}, ListMisc.AbilityProtectionAreaBlock, "air", "liquids");
-			WyHelper.createEmptySphere(player.worldObj, message.midPoint[0], message.midPoint[1], message.midPoint[2], 1, ListMisc.AbilityProtectionCenterBlock, "air", "liquids");
+			WyHelper.createEmptyCube(player.world, message.midPoint[0], message.midPoint[1], message.midPoint[2], new int[] {message.radius, message.radius, message.radius}, ListMisc.AbilityProtectionAreaBlock, "air", "liquids");
+			WyHelper.createEmptySphere(player.world, message.midPoint[0], message.midPoint[1], message.midPoint[2], 1, ListMisc.AbilityProtectionCenterBlock, "air", "liquids");
 
 			return null;
 		}

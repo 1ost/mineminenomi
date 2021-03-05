@@ -4,8 +4,9 @@ import java.awt.Color;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
+
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.EffectType;
@@ -99,7 +100,7 @@ public class AbilityAttribute
 	
 	public AbilityAttribute setAttributeName(String name) { this.attributeName = name; return this; }
 		//Ability
-	public AbilityAttribute setAbilityCooldown(double seconds) { this.abilityCooldown = MathHelper.ceiling_double_int(seconds * 20); return this; }	
+	public AbilityAttribute setAbilityCooldown(double seconds) { this.abilityCooldown = MathHelper.ceil(seconds * 20); return this; }
 	public AbilityAttribute setAbilityCharges(int ticks) { this.abilityIsChargeable = true; this.abilityMaxCharge = ticks; return this; }
 	public AbilityAttribute setAbilityCharges(int ticks, boolean earlyStop) { this.abilityIsChargeable = true; this.abilityMaxCharge = ticks; this.abilityStopCharging = earlyStop; return this; }
 	public AbilityAttribute setAbilityExplosion(int i, boolean fire, boolean explosion) { this.abilityExplosionPower = i; this.abilityExplosionHasFire = fire; this.abilityExplosionCanBreakBlocks = explosion; return this; }

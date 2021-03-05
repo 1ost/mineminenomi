@@ -16,7 +16,7 @@ public class ParticleEffectGreatStomp extends ParticleEffect
 		for(int i = 0; i < 5; i++)
 		{
 			Timer timer = new Timer(true); 
-			String particleString = EnumParticleTypes.BLOCK_CRACK.getParticleName() + "_" + Block.getIdFromBlock(player.worldObj.getBlock((int)posX, (int)posY - 1, (int)posZ))  + "_" + player.worldObj.getBlockMetadata((int)posX, (int)posY - 1, (int)posZ);
+			String particleString = EnumParticleTypes.BLOCK_CRACK.getParticleName() + "_" + Block.getIdFromBlock(player.world.getBlock((int)posX, (int)posY - 1, (int)posZ))  + "_" + player.world.getBlockMetadata((int)posX, (int)posY - 1, (int)posZ);
 			timer.schedule(ParticleTaskWave.Create(player, player.posX, player.posY - 1.5, player.posZ, particleString, 12), 0);
 		}
 	}

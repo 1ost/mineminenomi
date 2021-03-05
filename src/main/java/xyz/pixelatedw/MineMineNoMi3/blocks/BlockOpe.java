@@ -1,7 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.AxisAlignedBB;
@@ -16,7 +16,7 @@ public class BlockOpe extends Block
 
 	public BlockOpe()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 	} 
 
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) { return BOUNDING_BOX; }

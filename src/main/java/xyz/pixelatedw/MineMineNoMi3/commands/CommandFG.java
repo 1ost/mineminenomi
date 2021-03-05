@@ -55,33 +55,33 @@ public class CommandFG extends CommandBase
 			Entity toSpawn = null;
 
 			if(str[0].equalsIgnoreCase("dummy"))
-				toSpawn = new TempEntityDummy(player.worldObj);
+				toSpawn = new TempEntityDummy(player.world);
 			else if(str[0].equalsIgnoreCase("mr0"))
-				toSpawn = new EntityMr0(player.worldObj);
+				toSpawn = new EntityMr0(player.world);
 			else if(str[0].equalsIgnoreCase("morgan"))
-				toSpawn = new EntityMorgan(player.worldObj);
+				toSpawn = new EntityMorgan(player.world);
 			else if(str[0].equalsIgnoreCase("dugong"))
-				toSpawn = new TempEntityDugong(player.worldObj);
+				toSpawn = new TempEntityDugong(player.world);
 			else if(str[0].equalsIgnoreCase("lapahn"))
-				toSpawn = new TempEntityLapahn(player.worldObj);
+				toSpawn = new TempEntityLapahn(player.world);
 			else if(str[0].equalsIgnoreCase("yagarabull"))
-				toSpawn = new TempEntityYagaraBull(player.worldObj);
+				toSpawn = new TempEntityYagaraBull(player.world);
 			
 			if(str[0].equalsIgnoreCase("package"))
 			{			
-				toSpawn = new EntityWantedPostersPackage(player.worldObj);
+				toSpawn = new EntityWantedPostersPackage(player.world);
 				toSpawn.setLocationAndAngles(player.posX + WyMathHelper.randomWithRange(-10, 10), player.posY + 30, player.posZ + WyMathHelper.randomWithRange(-10, 10), 0, 0);
-				player.worldObj.spawnEntityInWorld(toSpawn);
+				player.world.spawnEntity(toSpawn);
 				return;
 			}
 			
 			else if(str[0].equalsIgnoreCase("randBounties"))
 			{
-				ExtendedWorldData worldData = ExtendedWorldData.get(player.worldObj);
+				ExtendedWorldData worldData = ExtendedWorldData.get(player.world);
 				
 				for(int i = 1; i < 10; i++)
 				{
-					worldData.issueBounty("Test Name #"+i, i*100 + player.worldObj.rand.nextInt(1000));
+					worldData.issueBounty("Test Name #"+i, i*100 + player.world.rand.nextInt(1000));
 				}
 			}
 			else if(str[0].equalsIgnoreCase("monsterspawner"))
@@ -89,21 +89,21 @@ public class CommandFG extends CommandBase
 				String toSpawn1 = ID.PROJECT_ID + ".Marine with Sword";
 				
 				TileEntityCustomSpawner spw1 = new TileEntityCustomSpawner().setSpawnerMob(toSpawn1).setSpawnerLimit(5);
-				player.worldObj.setBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ, ListMisc.CustomSpawner );
-				player.worldObj.setTileEntity((int)player.posX, (int)player.posY + 1, (int)player.posZ, spw1);
+				player.world.setBlock((int)player.posX, (int)player.posY + 1, (int)player.posZ, ListMisc.CustomSpawner );
+				player.world.setTileEntity((int)player.posX, (int)player.posY + 1, (int)player.posZ, spw1);
 			}
 			
 			else if(str[0].equalsIgnoreCase("scenario"))
 			{
 				if(str[1].equalsIgnoreCase("start"))
 				{
-					if(!player.worldObj.isRemote)
-						new TeleporterScenarioArena((WorldServer) player.worldObj).teleport(player, ID.SCENARIO_ROMANCEDAWN_CAPTAINMORGAN);
+					if(!player.world.isRemote)
+						new TeleporterScenarioArena((WorldServer) player.world).teleport(player, ID.SCENARIO_ROMANCEDAWN_CAPTAINMORGAN);
 				}
 				else if(str[1].equalsIgnoreCase("end"))
 				{
-					if(!player.worldObj.isRemote)
-						new TeleporterScenarioArena((WorldServer) player.worldObj).endScenario(player, ID.SCENARIO_ROMANCEDAWN_CAPTAINMORGAN);
+					if(!player.world.isRemote)
+						new TeleporterScenarioArena((WorldServer) player.world).endScenario(player, ID.SCENARIO_ROMANCEDAWN_CAPTAINMORGAN);
 				}
 			}
 			else if(str[0].equalsIgnoreCase("maxcola"))
@@ -162,20 +162,20 @@ public class CommandFG extends CommandBase
 			}
 
 			else if(str[0].equalsIgnoreCase("marinebase"))
-				StructureMarineLargeBase.build(WySchematicHelper.load("marineLargeBase"), player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, player.worldObj.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ));
+				StructureMarineLargeBase.build(WySchematicHelper.load("marineLargeBase"), player.world, (int)player.posX, (int)player.posY, (int)player.posZ, player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ));
 			else if(str[0].equalsIgnoreCase("banditbase"))
-				StructureBanditSmallBase.build(WySchematicHelper.load("banditBase"), player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, player.worldObj.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ));
+				StructureBanditSmallBase.build(WySchematicHelper.load("banditBase"), player.world, (int)player.posX, (int)player.posY, (int)player.posZ, player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ));
 			else if(str[0].equalsIgnoreCase("marineShip"))
 			{
 				Schematic sch = WySchematicHelper.load("marineLargeShip");
-				WySchematicHelper.build(sch, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
-				StructureLargeShip.populate((int)player.posX, (int)player.posY, (int)player.posZ, player.worldObj, sch.getName());
+				WySchematicHelper.build(sch, player.world, (int)player.posX, (int)player.posY, (int)player.posZ);
+				StructureLargeShip.populate((int)player.posX, (int)player.posY, (int)player.posZ, player.world, sch.getName());
 			}
 			else if(str[0].equalsIgnoreCase("pirateShip"))
 			{
 				Schematic sch = WySchematicHelper.load("pyrateLargeShip");
-				WySchematicHelper.build(sch, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
-				StructureLargeShip.populate((int)player.posX, (int)player.posY, (int)player.posZ, player.worldObj, sch.getName());
+				WySchematicHelper.build(sch, player.world, (int)player.posX, (int)player.posY, (int)player.posZ);
+				StructureLargeShip.populate((int)player.posX, (int)player.posY, (int)player.posZ, player.world, sch.getName());
 			}
 			else if(str[0].equalsIgnoreCase("reset_history"))
 			{
@@ -229,7 +229,7 @@ public class CommandFG extends CommandBase
 			if(toSpawn != null)
 			{
 				toSpawn.setLocationAndAngles(player.posX, player.posY, player.posZ, 0, 0);
-				player.worldObj.spawnEntityInWorld(toSpawn);
+				player.world.spawnEntity(toSpawn);
 			}
 		}
 	}

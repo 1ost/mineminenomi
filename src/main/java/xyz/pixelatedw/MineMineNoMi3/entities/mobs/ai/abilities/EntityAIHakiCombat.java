@@ -36,7 +36,7 @@ public class EntityAIHakiCombat extends EntityAIBase
 		if(!props.hasBusoHakiActive() && this.entity.getAttackTarget() != null)
 		{
 			props.triggerBusoHaki(true);
-			this.entity.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(hakiDamageModifier);
+			this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(hakiDamageModifier);
 			
 			WyNetworkHelper.sendToAllAround(new PacketSyncInfo(this.entity.getEntityId(), props), this.entity.dimension, this.entity.posX, this.entity.posY, this.entity.posZ, 256);
 
@@ -55,7 +55,7 @@ public class EntityAIHakiCombat extends EntityAIBase
 		else if(props.hasBusoHakiActive() && this.entity.getAttackTarget() == null)
 		{
 			props.triggerBusoHaki(false);
-			this.entity.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(hakiDamageModifier);
+			this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).removeModifier(hakiDamageModifier);
 
 			WyNetworkHelper.sendToAllAround(new PacketSyncInfo(this.entity.getEntityId(), props), this.entity.dimension, this.entity.posX, this.entity.posY, this.entity.posZ, 256);
 

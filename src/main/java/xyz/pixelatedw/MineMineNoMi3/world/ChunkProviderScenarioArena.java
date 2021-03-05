@@ -23,7 +23,7 @@ public class ChunkProviderScenarioArena implements IChunkProvider
 {
 	
     private final Random random;
-    private final World worldObj;
+    private final World world;
     private int chunkX = 0;
     private int chunkZ = 0;
     private BiomeGenBase[] biomesForGeneration;
@@ -33,7 +33,7 @@ public class ChunkProviderScenarioArena implements IChunkProvider
 	public ChunkProviderScenarioArena(World world, long seed)
 	{
 		this.random = new Random(seed);
-        this.worldObj = world;
+        this.world = world;
 	}
 	
 	@Override
@@ -49,9 +49,9 @@ public class ChunkProviderScenarioArena implements IChunkProvider
         this.random.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
 		Block[] ablock = new Block[65536];
 		byte[] abyte = new byte[65536];
-		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+		this.biomesForGeneration = this.world.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 
-        Chunk chunk = new Chunk(this.worldObj, ablock, abyte, x, z);
+        Chunk chunk = new Chunk(this.world, ablock, abyte, x, z);
         byte[] abyte1 = chunk.getBiomeArray();
 
         for (int i = 0; i < abyte1.length; ++i)
@@ -87,12 +87,12 @@ public class ChunkProviderScenarioArena implements IChunkProvider
         int posY = ID.COORDS_SWORDSMANPROGRESSION05_DOJOAMBUSH[1];
         int posZ = ID.COORDS_SWORDSMANPROGRESSION05_DOJOAMBUSH[2];
 
-        /*WyHelper.createCube(worldObj, 
+        /*WyHelper.createCube(world,
         		new int[] {posX, posY, posZ}, 
         		new int[] {wallSizeX, wallSizeY, wallSizeZ}, ListMisc.Darkness);*/
         if(!generatedDojoAmbushInstances)
         {
-	        WySchematicHelper.build(sch, this.worldObj, posX, posY, posZ);     
+	        WySchematicHelper.build(sch, this.world, posX, posY, posZ);
 	        WyDebug.info("Dojo Ambush Instance Created - " + (System.currentTimeMillis() - initTime) + "ms - X:" + posX + " Y:" + posY + " Z:" + posZ);
 	        generatedDojoAmbushInstances = true;
         }

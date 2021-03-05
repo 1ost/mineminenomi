@@ -3,7 +3,7 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.monster.EntityMob;
@@ -20,10 +20,10 @@ public class EventsCrew
 	@SubscribeEvent
 	public void onEntityAttack(LivingHurtEvent event)
 	{
-		if (event.source.getSourceOfDamage() instanceof EntityPlayer)
+		if (event.getSource().getTrueSource() instanceof EntityPlayer)
 		{
-			EntityPlayer attacker = (EntityPlayer) event.source.getSourceOfDamage();
-			EntityLivingBase attacked = event.entityLiving;
+			EntityPlayer attacker = (EntityPlayer) event.getSource().getTrueSource();
+			EntityLivingBase attacked = event.getEntityLiving();
 			
 			// TODO Should be replaced by actual crew data from some NBT when the time comes !
 			List<EntityLivingBase> crewMembers = WyHelper.getEntitiesNear(attacker, 20, EntityMob.class).stream().collect(Collectors.toList());

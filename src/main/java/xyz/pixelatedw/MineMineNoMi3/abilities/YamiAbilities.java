@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MovingObjectPosition;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.Values;
@@ -61,29 +60,29 @@ public class YamiAbilities
 						int a1 = player.getRNG().nextInt(20) - 10;
 						int a2 = player.getRNG().nextInt(20) - 10;
 						
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY , (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 1, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 2, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 3, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 4, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY , (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 1, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 2, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 3, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 4, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
 						
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 1, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 2, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 3, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 4, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 1, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 2, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 3, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 4, (int)player.posZ + a2, ListMisc.Darkness, "core", "foliage", "liquid", "air");
 						
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 1, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 2, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 3, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1, (int)player.posY + 4, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 1, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 2, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 3, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1, (int)player.posY + 4, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
 	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 1, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");		
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 2, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 3, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + a1 + 1, (int)player.posY + 4, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");	
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 1, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 2, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 3, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + a1 + 1, (int)player.posY + 4, (int)player.posZ + a2 + 1, ListMisc.Darkness, "core", "foliage", "liquid", "air");
 	
 					}
 				}
@@ -107,7 +106,7 @@ public class YamiAbilities
 			{
 				if(MainConfig.enableGriefing)
 				{
-					WyHelper.createFilledSphere(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 10, ListMisc.Darkness, "core", "foliage", "liquids", "ores");
+					WyHelper.createFilledSphere(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 10, ListMisc.Darkness, "core", "foliage", "liquids", "ores");
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_BLACKHOLE, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 				}
 				
@@ -135,7 +134,7 @@ public class YamiAbilities
 			{
 				if(liberationCount > 0)
 				{
-					MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);	
+					RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 					
 					if(mop != null)
 					{
@@ -145,12 +144,12 @@ public class YamiAbilities
 
 						while(liberationCount > 0)
 						{
-							AbilityProjectile proj = new YamiProjectiles.Liberation(player.worldObj, player, ListExtraAttributes.LIBERATION_BLOCK);	
+							AbilityProjectile proj = new YamiProjectiles.Liberation(player.world, player, ListExtraAttributes.LIBERATION_BLOCK);
 							proj.setLocationAndAngles(x + WyMathHelper.randomWithRange(-3, 3), (y + 14) + WyMathHelper.randomWithRange(0, 4), z + WyMathHelper.randomWithRange(-3, 3), 0, 0);
 							proj.motionX = 0;
 							proj.motionZ = 0;
-							proj.motionY = -0.7 - player.worldObj.rand.nextDouble();
-							player.worldObj.spawnEntityInWorld(proj);
+							proj.motionY = -0.7 - player.world.rand.nextDouble();
+							player.world.spawnEntity(proj);
 							liberationCount--;	
 						}					
 					}
@@ -161,9 +160,9 @@ public class YamiAbilities
 					for(int y = -40; y < 40; y++)
 					for(int z = -40; z < 40; z++)
 					{
-						if( player.worldObj.getBlock((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z) == ListMisc.Darkness)
+						if( player.world.getBlock((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z) == ListMisc.Darkness)
 						{
-							player.worldObj.setBlockToAir((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z);
+							player.world.setBlockToAir((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z);
 							libCount++;
 							if(libCount % 10 == 0)
 								liberationCount++;
@@ -194,7 +193,7 @@ public class YamiAbilities
 		@Override
 		public void duringCharging(EntityPlayer player, int currentCharge)
 		{
-			MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);	
+			RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 			
 			this.entities.clear();
 			if(mop != null)
@@ -205,7 +204,7 @@ public class YamiAbilities
 
 				WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_KOROUZU, i, j, k), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 				
-				for(EntityLivingBase target : WyHelper.getEntitiesNear((int)i, (int)j, (int)k, player.worldObj, 5))
+				for(EntityLivingBase target : WyHelper.getEntitiesNear((int)i, (int)j, (int)k, player.world, 5))
 				{
 					this.entities.add(target);
 				}
@@ -220,9 +219,9 @@ public class YamiAbilities
 			for(EntityLivingBase target : this.entities)
 			{
 				target.setPositionAndUpdate(player.posX, player.posY, player.posZ);
-				target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 5));
-				target.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 100, 5));
-				target.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 5));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 100, 5));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(4), 100, 5));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 100, 5));
 				new DFEffectLogiaOff(target, 100);
 				if(target instanceof EntityPlayer)
 				{
@@ -244,7 +243,7 @@ public class YamiAbilities
 		@Override
 		public void use(final EntityPlayer player)
 		{				
-			this.projectile = new YamiProjectiles.DarkMatter(player.worldObj, player, attr);
+			this.projectile = new YamiProjectiles.DarkMatter(player.world, player, attr);
 			super.use(player);
 		}
 	}

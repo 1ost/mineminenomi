@@ -2,7 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.entities.mobs.ai.abilities.swordsman;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.abilities.SwordsmanAbilities;
 import xyz.pixelatedw.MineMineNoMi3.api.debug.WyDebug;
@@ -59,16 +59,16 @@ public class EntityAIYakkodori extends EntityAICooldown
     	//	WyNetworkHelper.sendToAllAround(new PacketShounenScream(this.entity.getCommandSenderName(), ListAttributes.YAKKODORI.getAbilityDisplayName(), 0), this.entity.dimension, this.entity.posX, this.entity.posY, this.entity.posZ, 15);
 		
     	double d0 = entity.getDistanceSqToEntity(entity.getAttackTarget());
-		float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0));
+		float f = MathHelper.sqrt_float(MathHelper.sqrt(d0));
 		double d1 = entity.getAttackTarget().posX - entity.posX;
 		double d2 = entity.getAttackTarget().boundingBox.minY + (double)(entity.getAttackTarget().height / 2.0F) - (entity.posY + (double)(entity.height / 2.0F));
 		double d3 = entity.getAttackTarget().posZ - entity.posZ;
     	
-    	Yakkodori projectile = new Yakkodori(this.entity.worldObj, this.entity, ListAttributes.YAKKODORI);
+    	Yakkodori projectile = new Yakkodori(this.entity.world, this.entity, ListAttributes.YAKKODORI);
     	
     	projectile.posY = entity.posY + (double)(entity.height / 2.0F) + 0.5D;
 		projectile.setThrowableHeading(d1 + entity.getRNG().nextGaussian(), d2, d3 + entity.getRNG().nextGaussian(), 1, 0);
-		entity.worldObj.spawnEntityInWorld(projectile);
+		entity.world.spawnEntity(projectile);
     	
     	this.entity.setCurrentAI(this);
 	    this.setOnCooldown(true); 	

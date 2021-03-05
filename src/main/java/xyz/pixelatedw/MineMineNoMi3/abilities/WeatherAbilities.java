@@ -47,7 +47,7 @@ public class WeatherAbilities
 				WyHelper.sendMsgToPlayer(player, "Cannot use " + this.getAttribute().getAttributeName() + " without a Sorcery or better Clima Tact in hand!");
 				return;
 			}
-			this.projectile = new WeatherProjectiles.WeatherEgg(player.worldObj, player, attr);
+			this.projectile = new WeatherProjectiles.WeatherEgg(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -69,7 +69,7 @@ public class WeatherAbilities
 				return;
 			}
 
-			this.projectile = new WeatherProjectiles.GustSword(player.worldObj, player, attr);
+			this.projectile = new WeatherProjectiles.GustSword(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -101,9 +101,9 @@ public class WeatherAbilities
 				}
 				else
 				{
-					WeatherProjectiles.ThunderBall proj = new WeatherProjectiles.ThunderBall(player.worldObj, player, ListAttributes.THUNDER_BALL);	
+					WeatherProjectiles.ThunderBall proj = new WeatherProjectiles.ThunderBall(player.world, player, ListAttributes.THUNDER_BALL);	
 					proj.setLocationAndAngles(player.posX, player.posY + player.getEyeHeight(), player.posZ, player.rotationYaw, player.rotationPitch);
-					player.worldObj.spawnEntityInWorld(proj);
+					player.world.spawnEntity(proj);
 				}
 				
 				if(climaTact.checkCharge(stack).length() == 3)
@@ -171,9 +171,9 @@ public class WeatherAbilities
 				}
 				else
 				{
-					WeatherProjectiles.CoolBall proj = new WeatherProjectiles.CoolBall(player.worldObj, player, ListAttributes.COOL_BALL);	
+					WeatherProjectiles.CoolBall proj = new WeatherProjectiles.CoolBall(player.world, player, ListAttributes.COOL_BALL);	
 					proj.setLocationAndAngles(player.posX, player.posY + player.getEyeHeight(), player.posZ, player.rotationYaw, player.rotationPitch);
-					player.worldObj.spawnEntityInWorld(proj);
+					player.world.spawnEntity(proj);
 				}
 				
 				if(climaTact.checkCharge(stack).length() == 3)
@@ -182,18 +182,18 @@ public class WeatherAbilities
 					
 					if(tempo.equalsIgnoreCase("HHC"))
 					{
-						EntityMirageTempoCloud smokeCloud = new EntityMirageTempoCloud(player.worldObj);
+						EntityMirageTempoCloud smokeCloud = new EntityMirageTempoCloud(player.world);
 						smokeCloud.setLife(70);
 						smokeCloud.setLocationAndAngles(player.posX, (player.posY + 1), player.posZ, 0, 0);
 						smokeCloud.motionX = 0;
 						smokeCloud.motionZ = 0;
 						smokeCloud.motionY = 0;	
 						smokeCloud.setThrower(player);
-						player.worldObj.spawnEntityInWorld(smokeCloud);	
+						player.world.spawnEntity(smokeCloud);
 						
 						for(EntityLivingBase entity : WyHelper.getEntitiesNear(player, 10))
 						{
-							entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 1));
+							entity.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 200, 1));
 						}
 						
 						climaTact.emptyCharge(stack);
@@ -244,9 +244,9 @@ public class WeatherAbilities
 				}
 				else
 				{
-					WeatherProjectiles.HeatBall proj = new WeatherProjectiles.HeatBall(player.worldObj, player, ListAttributes.HEAT_BALL);	
+					WeatherProjectiles.HeatBall proj = new WeatherProjectiles.HeatBall(player.world, player, ListAttributes.HEAT_BALL);	
 					proj.setLocationAndAngles(player.posX, player.posY + player.getEyeHeight(), player.posZ, player.rotationYaw, player.rotationPitch);
-					player.worldObj.spawnEntityInWorld(proj);
+					player.world.spawnEntity(proj);
 				}
 				
 				if(climaTact.checkCharge(stack).length() == 3)
@@ -255,20 +255,20 @@ public class WeatherAbilities
 					
 					if(tempo.equalsIgnoreCase("CCH"))
 					{
-						EntityMirageTempoCloud smokeCloud = new EntityMirageTempoCloud(player.worldObj);
+						EntityMirageTempoCloud smokeCloud = new EntityMirageTempoCloud(player.world);
 						smokeCloud.setLife(50);
 						smokeCloud.setLocationAndAngles(player.posX, (player.posY + 1), player.posZ, 0, 0);
 						smokeCloud.motionX = 0;
 						smokeCloud.motionZ = 0;
 						smokeCloud.motionY = 0;	
 						smokeCloud.setThrower(player);
-						player.worldObj.spawnEntityInWorld(smokeCloud);	
+						player.world.spawnEntity(smokeCloud);
 						
 						for(int i = 0; i < 5; i++)
 						{
-							EntityMirageClone mirageClone = new EntityMirageClone(player.worldObj, player);
+							EntityMirageClone mirageClone = new EntityMirageClone(player.world, player);
 							mirageClone.setPositionAndRotation(player.posX, player.posY, player.posZ, 180, 0);
-							player.worldObj.spawnEntityInWorld(mirageClone);							
+							player.world.spawnEntity(mirageClone);
 						}
 						
 						climaTact.emptyCharge(stack);

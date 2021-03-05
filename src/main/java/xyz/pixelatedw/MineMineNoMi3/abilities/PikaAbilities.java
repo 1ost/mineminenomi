@@ -5,7 +5,6 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -90,7 +89,7 @@ public class PikaAbilities
 
 		public void endCharging(EntityPlayer player)
 		{						
-			this.projectile = new PikaProjectiles.Amaterasu(player.worldObj, player, attr);
+			this.projectile = new PikaProjectiles.Amaterasu(player.world, player, attr);
 			super.endCharging(player);
 		}
 
@@ -105,7 +104,7 @@ public class PikaAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new PikaProjectiles.YasakaniNoMagatama(player.worldObj, player, attr);
+			this.projectile = new PikaProjectiles.YasakaniNoMagatama(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -123,7 +122,7 @@ public class PikaAbilities
 			{
 				if(WyHelper.rayTraceBlocks(player) != null)
 				{
-					MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);
+					RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 					
 					int x = mop.blockX;
 					int y = mop.blockY;

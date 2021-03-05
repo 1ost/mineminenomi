@@ -135,7 +135,7 @@ public class RokushikiAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new RokushikiProjectiles.Rankyaku(player.worldObj, player, ListAttributes.RANKYAKU);
+			this.projectile = new RokushikiProjectiles.Rankyaku(player.world, player, ListAttributes.RANKYAKU);
 			super.use(player);
 		}
 	}

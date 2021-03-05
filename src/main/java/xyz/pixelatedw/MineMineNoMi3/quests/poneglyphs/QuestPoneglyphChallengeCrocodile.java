@@ -110,7 +110,7 @@ public class QuestPoneglyphChallengeCrocodile extends Quest implements IInteract
 	@Override
 	public boolean isFinished(EntityPlayer player)
 	{
-		if (!player.worldObj.isRemote)
+		if (!player.world.isRemote)
 		{
 			ItemStack itemStack = QuestLogicHelper.getQuestItemStack(player.inventory, this.getQuestID());
 			HistoryProperties historyProps = HistoryProperties.get(player);

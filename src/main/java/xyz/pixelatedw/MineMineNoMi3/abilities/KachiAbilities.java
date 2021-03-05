@@ -60,10 +60,10 @@ public class KachiAbilities {
         public void use(EntityPlayer player) {
             if (!this.isOnCooldown) {
            	
-            List<int[]> coords = WyHelper.createFilledSphere(player.getEntityWorld(), (int) player.posX, (int) player.posY, (int) player.posZ, 6,Blocks.air, "liquids");
+            List<int[]> coords = WyHelper.createFilledSphere(player.getEntityWorld(), (int) player.posX, (int) player.posY, (int) player.posZ, 6,Blocks.AIR, "liquids");
             for (int count = 0; count < coords.size(); count++) {
                 int[] ints = coords.get(count);
-                if (player.getEntityWorld().getBlock(ints[0], ints[1], ints[2]).equals(Blocks.air)) {
+                if (player.getEntityWorld().getBlock(ints[0], ints[1], ints[2]).equals(Blocks.AIR)) {
                     WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_EVAPORATE, ints[0], ints[1], ints[2]), player.dimension, ints[0], ints[1], ints[2], ID.GENERIC_PARTICLES_RENDER_DISTANCE);
                 }
             }

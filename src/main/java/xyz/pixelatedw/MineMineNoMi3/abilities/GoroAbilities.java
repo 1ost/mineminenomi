@@ -3,7 +3,6 @@ package xyz.pixelatedw.MineMineNoMi3.abilities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -64,7 +63,7 @@ public class GoroAbilities
 		@Override
 		public void duringCharging(EntityPlayer player, int currentCharge)
 		{
-			MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);	
+			RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 			
 			if(mop != null)
 			{
@@ -79,7 +78,7 @@ public class GoroAbilities
 		@Override
 		public void endCharging(EntityPlayer player)
 		{						
-			MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);	
+			RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 
 			if(mop != null)
 			{
@@ -189,7 +188,7 @@ public class GoroAbilities
 					else
 						this.attr.setAbilityDisplayName("5 Million Volt Vari");
 				}
-				this.projectile = new VoltVari5Million(player.worldObj, player, ListExtraAttributes.VOLT_VARI_5_MILLION);
+				this.projectile = new VoltVari5Million(player.world, player, ListExtraAttributes.VOLT_VARI_5_MILLION);
 			}
 			else if(truePower > 50 && truePower <= 100)
 			{
@@ -200,7 +199,7 @@ public class GoroAbilities
 					else
 						this.attr.setAbilityDisplayName("20 Million Volt Vari");
 				}
-				this.projectile = new VoltVari20Million(player.worldObj, player, ListExtraAttributes.VOLT_VARI_20_MILLION);
+				this.projectile = new VoltVari20Million(player.world, player, ListExtraAttributes.VOLT_VARI_20_MILLION);
 			}
 			else if(truePower > 100 && truePower <= 150)
 			{
@@ -211,7 +210,7 @@ public class GoroAbilities
 					else
 						this.attr.setAbilityDisplayName("60 Million Volt Vari");
 				}
-				this.projectile = new VoltVari60Million(player.worldObj, player, ListExtraAttributes.VOLT_VARI_60_MILLION);
+				this.projectile = new VoltVari60Million(player.world, player, ListExtraAttributes.VOLT_VARI_60_MILLION);
 			}
 			else if(truePower > 150 && truePower <= 200)
 			{
@@ -222,7 +221,7 @@ public class GoroAbilities
 					else
 						this.attr.setAbilityDisplayName("Max 200 Million Volt Vari");
 				}
-				this.projectile = new VoltVari200Million(player.worldObj, player, ListExtraAttributes.VOLT_VARI_200_MILLION);
+				this.projectile = new VoltVari200Million(player.world, player, ListExtraAttributes.VOLT_VARI_200_MILLION);
 			}
 			
 			this.sendShounenScream(player);
@@ -237,7 +236,7 @@ public class GoroAbilities
 	    		WyTelemetry.addAbilityStat(this.getAttribute().getAbilityTexture(), this.getAttribute().getAttributeName(), 1);
 
 			if(projectile != null)
-				player.worldObj.spawnEntityInWorld(projectile);
+				player.world.spawnEntity(projectile);
 			
 			this.startExtUpdate(player);
 		}
@@ -255,7 +254,7 @@ public class GoroAbilities
 		{			
 			if(!this.isOnCooldown)		
 			{
-				MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);	
+				RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 				
 				if(mop != null)
 				{
@@ -265,12 +264,12 @@ public class GoroAbilities
 					
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_RAIGO, x, player.posY, z), player.dimension, x, y, z, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 					
-					AbilityProjectile proj = new GoroProjectiles.Raigo(player.worldObj, player, ListAttributes.RAIGO);	
+					AbilityProjectile proj = new GoroProjectiles.Raigo(player.world, player, ListAttributes.RAIGO);
 					proj.setLocationAndAngles(x, (y + 90), z, 0, 0);
 					proj.motionX = 0;
 					proj.motionZ = 0;
 					proj.motionY = -1.4;
-					player.worldObj.spawnEntityInWorld(proj);
+					player.world.spawnEntity(proj);
 				}
 			}
 			super.use(player);
@@ -309,7 +308,7 @@ public class GoroAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new GoroProjectiles.Sango(player.worldObj, player, attr);
+			this.projectile = new GoroProjectiles.Sango(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -324,9 +323,9 @@ public class GoroAbilities
 			if (!this.isOnCooldown) {
 				if(WyHelper.rayTraceBlocks(player) != null)
 				{
-					MovingObjectPosition blockTracer = WyHelper.rayTraceBlocks(player);
+					RayTraceResult blockTracer = WyHelper.rayTraceBlocks(player);
 					int[] blockLocation = new int[]{blockTracer.blockX,blockTracer.blockY,blockTracer.blockZ};
-					while (!(player.getEntityWorld().getBlock(blockLocation[0],(blockLocation[1]),blockLocation[2]) == Blocks.air)) {
+					while (!(player.getEntityWorld().getBlock(blockLocation[0],(blockLocation[1]),blockLocation[2]) == Blocks.AIR)) {
 						blockLocation[1] += 1;
 					}
 					EnderTeleportEvent event = new EnderTeleportEvent(player, blockLocation[0], blockLocation[1], blockLocation[2], 0);

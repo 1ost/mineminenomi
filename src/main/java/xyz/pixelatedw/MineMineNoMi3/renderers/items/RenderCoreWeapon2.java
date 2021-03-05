@@ -57,7 +57,7 @@ public class RenderCoreWeapon2 implements IItemRenderer
 				GL11.glPushMatrix();
 				TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
 
-				IIcon iicon = Minecraft.getMinecraft().thePlayer.getItemIcon(itemStack, 0);
+				IIcon iicon = Minecraft.getMinecraft().player.getItemIcon(itemStack, 0);
 
 				if (iicon == null)
 				{
@@ -94,7 +94,7 @@ public class RenderCoreWeapon2 implements IItemRenderer
 
 				TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
 
-				IIcon iicon = Minecraft.getMinecraft().thePlayer.getItemIcon(itemStack, 0);
+				IIcon iicon = Minecraft.getMinecraft().player.getItemIcon(itemStack, 0);
 
 				if (iicon == null)
 				{

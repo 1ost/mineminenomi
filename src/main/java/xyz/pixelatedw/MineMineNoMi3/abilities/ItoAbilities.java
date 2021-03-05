@@ -60,9 +60,9 @@ public class ItoAbilities
 		
 		public void startPassive(EntityPlayer player)
 		{
-			blackKnight = new EntityBlackKnight(player.worldObj, player);
+			blackKnight = new EntityBlackKnight(player.world, player);
 			blackKnight.setPositionAndRotation(player.posX, player.posY, player.posZ, 180, 0);
-			player.worldObj.spawnEntityInWorld(blackKnight);
+			player.world.spawnEntity(blackKnight);
 		}
 
 		public void endPassive(EntityPlayer player)
@@ -91,8 +91,8 @@ public class ItoAbilities
 			{
 				if(this.blockList.isEmpty())
 				{
-					this.blockList.addAll(WyHelper.createEmptySphere(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 20, ListMisc.StringWall, "air", "foliage", "liquids", "nogrief"));
-					player.worldObj.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.StringMid);
+					this.blockList.addAll(WyHelper.createEmptySphere(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 20, ListMisc.StringWall, "air", "foliage", "liquids", "nogrief"));
+					player.world.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.StringMid);
 					this.blockList.add(new int[] {(int) player.posX, (int) player.posY, (int) player.posZ});
 				}
 				
@@ -104,8 +104,8 @@ public class ItoAbilities
 		{
 			for(int[] blockPos : this.blockList)
 			{
-				if(player.worldObj.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.StringWall || player.worldObj.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.StringMid)
-					player.worldObj.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.air);
+				if(player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.StringWall || player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.StringMid)
+					player.world.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.AIR);
 			}
             this.blockList = new ArrayList<int[]>();
             this.startCooldown();
@@ -149,7 +149,7 @@ public class ItoAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new ItoProjectiles.Tamaito(player.worldObj, player, attr);
+			this.projectile = new ItoProjectiles.Tamaito(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -163,7 +163,7 @@ public class ItoAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new ItoProjectiles.Overheat(player.worldObj, player, attr);
+			this.projectile = new ItoProjectiles.Overheat(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -226,11 +226,11 @@ public class ItoAbilities
 				{
 					System.out.println(l);
 
-					l.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 10));
-					l.addPotionEffect(new PotionEffect(Potion.confusion.id, 200, 10));
+					l.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 200, 10));
+					l.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 200, 10));
 					
-					l.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 200, 10));
-					l.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 10));
+					l.addPotionEffect(new PotionEffect(Potion.getPotionById(4), 200, 10));
+					l.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 200, 10));
 				}
 					
 				super.use(player);

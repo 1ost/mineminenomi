@@ -2,8 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.items.weapons;
 
 import com.google.common.collect.Multimap;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -145,7 +145,7 @@ public class ItemCoreWeapon extends Item
 			itemStack.damageItem(1, attacker);
 		
 		if(isPoisonous)
-			target.addPotionEffect(new PotionEffect(Potion.poison.id, this.poisonTimer, 0));
+			target.addPotionEffect(new PotionEffect(Potion.getPotionById(19), this.poisonTimer, 0));
 		
 		if(isFireAspect)
 			target.setFire(this.fireAspectTimer);
@@ -154,16 +154,16 @@ public class ItemCoreWeapon extends Item
 		{
 			if(isStackable)
 			{
-				if(target.isPotionActive(Potion.moveSlowdown))
+				if(target.isPotionActive(Potion.getPotionById(2)))
 				{
-					int timer = target.getActivePotionEffect(Potion.moveSlowdown).getDuration();				
-					target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, timer + this.slownessTimer, 0));
+					int timer = target.getActivePotionEffect(event.getType(2).getDuration();
+					target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), timer + this.slownessTimer, 0));
 				}
 				else
-					target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, this.slownessTimer, 0));
+					target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), this.slownessTimer, 0));
 			}
 			else
-				target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, this.slownessTimer, 0));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), this.slownessTimer, 0));
 		}
 		
 		return true;
@@ -232,7 +232,7 @@ public class ItemCoreWeapon extends Item
 		{
 			multiplier = 1;
 		}
-		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.damage * multiplier, 0));
+		multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.damage * multiplier, 0));
 		return multimap;
 	}
 

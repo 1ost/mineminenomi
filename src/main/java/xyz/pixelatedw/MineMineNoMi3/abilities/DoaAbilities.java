@@ -4,7 +4,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MovingObjectPosition;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
 import xyz.pixelatedw.MineMineNoMi3.api.math.WyMathHelper;
@@ -62,7 +61,7 @@ public class DoaAbilities {
         }
 
         public static boolean isBlock(int[] coords, EntityPlayer player) {
-            if (player.getEntityWorld().getBlock(coords[0], coords[1], coords[2]) == Blocks.air && player.getEntityWorld().getBlock(coords[0], (coords[1] + 1), coords[2]) == Blocks.air) {
+            if (player.getEntityWorld().getBlock(coords[0], coords[1], coords[2]) == Blocks.AIR && player.getEntityWorld().getBlock(coords[0], (coords[1] + 1), coords[2]) == Blocks.AIR) {
                 return true;
             }
             return false;
@@ -71,7 +70,7 @@ public class DoaAbilities {
         public void use(EntityPlayer player) {
             if (!this.isOnCooldown()) {
 
-            MovingObjectPosition MOP = WyHelper.rayTraceBlocks(player);
+            RayTraceResult MOP = WyHelper.rayTraceBlocks(player);
 
             if (MOP != null && (MOP.blockY >= (player.posY + 1))) {
                 int checkX = MOP.blockX - (int) player.posX;

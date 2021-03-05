@@ -11,8 +11,7 @@ import net.minecraft.network.play.server.S0BPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -74,11 +73,11 @@ public class MoguAbilities
 										int posY = (int) player.posY - y;
 										int posZ = (int) player.posZ + z;
 										
-										player.addPotionEffect(new PotionEffect(Potion.resistance.id, 50, 100, true));
+										player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 50, 100, true));
 										player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 400, 2, true));
 		
-										Block tempBlock = player.worldObj.getBlock(posX, posY, posZ);
-										if (DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, posX, posY, posZ, Blocks.air, "all", "restricted", "ignore liquid"))
+										Block tempBlock = player.world.getBlock(posX, posY, posZ);
+										if (DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, Blocks.AIR, "all", "restricted", "ignore liquid"))
 										{
 											player.inventory.addItemStackToInventory(new ItemStack(tempBlock));
 											WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_BAKUMUNCH, posX, posY, posZ), player.dimension, posX, posY, posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
@@ -94,11 +93,11 @@ public class MoguAbilities
 							this.initialY = (int) player.posY;
 							this.breakBlocks = true;
 							
-							double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+							double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 							mX /= (double)f2;
 							mZ /= (double)f2;
-							mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-							mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+							mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+							mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 							mX *= 4;
 							mZ *= 4;
 						
@@ -125,13 +124,13 @@ public class MoguAbilities
 				{
 					if(location[1] >= player.posY)
 					{
-						Block tempBlock = player.worldObj.getBlock(location[0], location[1], location[2]);
-						if(DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, location[0], location[1], location[2], Blocks.air, "core", "foliage"))
+						Block tempBlock = player.world.getBlock(location[0], location[1], location[2]);
+						if(DevilFruitsHelper.placeBlockIfAllowed(player.world, location[0], location[1], location[2], Blocks.AIR, "core", "foliage"))
 						{
 							player.inventory.addItemStackToInventory(new ItemStack(tempBlock));
 							WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_BAKUMUNCH, location[0], location[1], location[2]), player.dimension, location[0], location[1], location[2], ID.GENERIC_PARTICLES_RENDER_DISTANCE);
-							if (player.worldObj instanceof WorldServer)
-								((WorldServer)player.worldObj).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+							if (player.world instanceof WorldServer)
+								((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
 						}
 					}
 				}
@@ -168,11 +167,11 @@ public class MoguAbilities
 			double mX = (double)(-MathHelper.sin(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4);
 			double mZ = (double)(MathHelper.cos(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4);
 				
-			double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+			double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 			mX /= (double)f2;
 			mZ /= (double)f2;
-			mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-			mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+			mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+			mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 			mX *= 2.5;
 			mZ *= 2.5;
 			

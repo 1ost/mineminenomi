@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.abilities.effects.DFEffectSpiderOverlay;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -48,11 +48,11 @@ public class SupaAbilities
 					
 				this.initialY = (int) player.posY;
 					
-				double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+				double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 				mX /= f2;
 				mZ /= f2;
-				mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-				mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 				mX *= 3;
 				mZ *= 3;
 				
@@ -74,7 +74,7 @@ public class SupaAbilities
 				{
 					if(location[1] >= player.posY)
 					{
-						if(DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, location[0], location[1], location[2], Blocks.air, "core", "foliage", "ores"))
+						if(DevilFruitsHelper.placeBlockIfAllowed(player.world, location[0], location[1], location[2], Blocks.AIR, "core", "foliage", "ores"))
 						{
 							WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_BAKUMUNCH, location[0], location[1], location[2]), player.dimension, location[0], location[1], location[2], ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 						}
@@ -94,7 +94,7 @@ public class SupaAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new SupaProjectiles.SpiralHollow(player.worldObj, player, attr);
+			this.projectile = new SupaProjectiles.SpiralHollow(player.world, player, attr);
 			super.use(player);
 		}
 	}

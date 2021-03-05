@@ -61,16 +61,16 @@ public class GoroProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{				    
 					ResourceLocation particleToUse = i % 2 == 0 ? ID.PARTICLE_ICON_GORO2 : ID.PARTICLE_ICON_GORO;
 					
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, particleToUse, 
-							posX + (this.worldObj.rand.nextDouble()),
-							posY + (this.worldObj.rand.nextDouble() - 0.5),
-							posZ + (this.worldObj.rand.nextDouble()),
+					EntityParticleFX particle = new EntityParticleFX(this.world, particleToUse,
+							posX + (this.world.rand.nextDouble()),
+							posY + (this.world.rand.nextDouble() - 0.5),
+							posZ + (this.world.rand.nextDouble()),
 							0, 0, 0)
 							.setParticleAge(5).setParticleScale(4);
 					
@@ -98,7 +98,7 @@ public class GoroProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(35); i++)
 				{
@@ -106,10 +106,10 @@ public class GoroProjectiles
 					double offsetY = WyMathHelper.randomWithRange(-10, 20);
 					double offsetZ = WyMathHelper.randomWithRange(-8, 8);
 				      
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GORO2, 
-							posX + offsetX + this.worldObj.rand.nextDouble(), 
-							posY + offsetY + this.worldObj.rand.nextDouble(), 
-							posZ + offsetZ + this.worldObj.rand.nextDouble(), 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GORO2,
+							posX + offsetX + this.world.rand.nextDouble(),
+							posY + offsetY + this.world.rand.nextDouble(),
+							posZ + offsetZ + this.world.rand.nextDouble(),
 							0, 0, 0)
 							.setParticleAge(10).setParticleScale(10);
 					
@@ -137,14 +137,14 @@ public class GoroProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GORO2, 
-							posX + this.worldObj.rand.nextDouble() - 0.5, 
-							posY + this.worldObj.rand.nextDouble() - 0.5, 
-							posZ + this.worldObj.rand.nextDouble() - 0.5, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GORO2,
+							posX + this.world.rand.nextDouble() - 0.5,
+							posY + this.world.rand.nextDouble() - 0.5,
+							posZ + this.world.rand.nextDouble() - 0.5,
 							0, 0, 0)
 							.setParticleAge(10).setParticleScale(2);
 					
@@ -172,14 +172,14 @@ public class GoroProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GORO2, 
-							posX + this.worldObj.rand.nextDouble() - 0.5, 
-							posY + this.worldObj.rand.nextDouble() - 0.5, 
-							posZ + this.worldObj.rand.nextDouble() - 0.5, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GORO2,
+							posX + this.world.rand.nextDouble() - 0.5,
+							posY + this.world.rand.nextDouble() - 0.5,
+							posZ + this.world.rand.nextDouble() - 0.5,
 							0, 0, 0)
 							.setParticleAge(10).setParticleScale(2);
 					
@@ -207,14 +207,14 @@ public class GoroProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GORO2, 
-							posX + this.worldObj.rand.nextDouble() - 0.5, 
-							posY + this.worldObj.rand.nextDouble() - 0.5, 
-							posZ + this.worldObj.rand.nextDouble() - 0.5, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GORO2,
+							posX + this.world.rand.nextDouble() - 0.5,
+							posY + this.world.rand.nextDouble() - 0.5,
+							posZ + this.world.rand.nextDouble() - 0.5,
 							0, 0, 0)
 							.setParticleAge(10).setParticleScale(2);
 					
@@ -242,14 +242,14 @@ public class GoroProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for (int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_GORO2, 
-							posX + this.worldObj.rand.nextDouble() - 0.5, 
-							posY + this.worldObj.rand.nextDouble() - 0.5, 
-							posZ + this.worldObj.rand.nextDouble() - 0.5, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_GORO2,
+							posX + this.world.rand.nextDouble() - 0.5,
+							posY + this.world.rand.nextDouble() - 0.5,
+							posZ + this.world.rand.nextDouble() - 0.5,
 							0, 0, 0)
 							.setParticleAge(10).setParticleScale(2);
 					

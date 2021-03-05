@@ -50,7 +50,7 @@ public class ParticleEffectDesertSpada extends ParticleEffect
 			}
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_SUNA, 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_SUNA, 
 							posX + x,
 							posY + 0.1,
 							posZ + z,

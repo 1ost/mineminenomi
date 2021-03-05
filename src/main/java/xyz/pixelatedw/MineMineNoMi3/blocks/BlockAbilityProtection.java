@@ -1,7 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +16,7 @@ public class BlockAbilityProtection extends BlockContainer
 
 	public BlockAbilityProtection()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setTickRandomly(true);
 	}
 

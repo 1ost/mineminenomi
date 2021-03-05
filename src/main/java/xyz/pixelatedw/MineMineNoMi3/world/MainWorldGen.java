@@ -127,7 +127,7 @@ public class MainWorldGen implements IWorldGenerator
 			int posZ = blockZPos;
 			BiomeGenBase biome = world.getBiomeGenForCoordsBody(posX, posZ);	
 			
-			if( (biome == BiomeGenBase.beach || biome == BiomeGenBase.plains) && (world.getBlock(posX, posY - 1, posZ) == Blocks.sand || world.getBlock(posX, posY - 1, posZ) == Blocks.grass) && world.getBlock(posX, posY + 1, posZ) == Blocks.air)
+			if( (biome == BiomeGenBase.beach || biome == BiomeGenBase.plains) && (world.getBlock(posX, posY - 1, posZ) == Blocks.SAND || world.getBlock(posX, posY - 1, posZ) == Blocks.GRASS) && world.getBlock(posX, posY + 1, posZ) == Blocks.AIR)
 			{
 				world.setBlock(posX, posY, posZ, blockToSpawn);
 				
@@ -213,7 +213,7 @@ public class MainWorldGen implements IWorldGenerator
 			if(!corner3)
 				corner3 = world.getBlock(posX, posY - i, posZ + sch.getLength()).isSideSolid(world, posX, posY - i, posZ + sch.getLength(), ForgeDirection.DOWN);
 			if(!corner4)
-				corner4 = world.getBlock(posX + sch.getWidth(), posY - i, posZ + sch.getLength()).isSideSolid(world, posX + sch.getWidth(), posY - i, posZ + sch.getLength(), ForgeDirection.DOWN);		
+				corner4 = world.getBlock(posX + sch.getWidth(), posY - i, posZ + sch.getLength()).isSideSolid(world, posX + sch.getWidth(), posY - i, posZ + sch.getLength(), ForgeDirection.DOWN);
 	
 			if((corner1?1:0) + (corner2?1:0) + (corner3?1:0) + (corner4?1:0) >= 3)
 			{
@@ -230,13 +230,13 @@ public class MainWorldGen implements IWorldGenerator
 		for(int i = 0; i < 3; i++)
 		{
 			if(!corner1)
-				corner1 = world.getBlock(posX, posY + i, posZ) == Blocks.air && world.canBlockSeeTheSky(posX, posY + i, posZ);
+				corner1 = world.getBlock(posX, posY + i, posZ) == Blocks.AIR && world.canBlockSeeTheSky(posX, posY + i, posZ);
 			if(!corner2)
-				corner2 = world.getBlock(posX + sch.getWidth(), posY + i, posZ) == Blocks.air && world.canBlockSeeTheSky(posX + sch.getWidth(), posY + i, posZ);
+				corner2 = world.getBlock(posX + sch.getWidth(), posY + i, posZ) == Blocks.AIR && world.canBlockSeeTheSky(posX + sch.getWidth(), posY + i, posZ);
 			if(!corner3)
-				corner3 = world.getBlock(posX, posY + i, posZ + sch.getLength()) == Blocks.air && world.canBlockSeeTheSky(posX, posY + i, posZ + sch.getLength());
+				corner3 = world.getBlock(posX, posY + i, posZ + sch.getLength()) == Blocks.AIR && world.canBlockSeeTheSky(posX, posY + i, posZ + sch.getLength());
 			if(!corner4)
-				corner4 = world.getBlock(posX + sch.getWidth(), posY + i, posZ + sch.getLength()) == Blocks.air && world.canBlockSeeTheSky(posX + sch.getWidth(), posY + i, posZ + sch.getLength());		
+				corner4 = world.getBlock(posX + sch.getWidth(), posY + i, posZ + sch.getLength()) == Blocks.AIR && world.canBlockSeeTheSky(posX + sch.getWidth(), posY + i, posZ + sch.getLength());
 
 			if((corner1?1:0) + (corner2?1:0) + (corner3?1:0) + (corner4?1:0) >= 3)
 			{
@@ -253,11 +253,11 @@ public class MainWorldGen implements IWorldGenerator
 		for(int j = 0; j < s.getHeight(); j++)
 		for(int k = 0; k < s.getLength(); k++)
 		{
-			if(world.getBlock(posX + i, posY + j, posZ + k) == Blocks.air) //|| world.getBlock(posX, posY, posZ) == Blocks.water || world.getBlock(posX + i, posY + j, posZ + k) == Blocks.flowing_water)
+			if(world.getBlock(posX + i, posY + j, posZ + k) == Blocks.AIR) //|| world.getBlock(posX, posY, posZ) == Blocks.WATER || world.getBlock(posX + i, posY + j, posZ + k) == Blocks.FLOWING_WATER)
 			{
-				if( world.getBlock(posX, posY - 1, posZ) == Blocks.water || world.getBlock(posX, posY - 1, posZ) == Blocks.flowing_water )
+				if( world.getBlock(posX, posY - 1, posZ) == Blocks.WATER || world.getBlock(posX, posY - 1, posZ) == Blocks.FLOWING_WATER )
 				{
-					if( world.getBlock(posX, posY + 2, posZ) == Blocks.air)
+					if( world.getBlock(posX, posY + 2, posZ) == Blocks.AIR)
 						return true;
 					else return false;
 				}

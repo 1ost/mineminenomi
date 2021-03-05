@@ -2,7 +2,6 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -40,7 +39,7 @@ public class OriProjectiles
 			super(world, player, attr);
 		}
 
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if (MainConfig.enableGriefing)
 			{

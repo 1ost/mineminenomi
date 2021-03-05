@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
@@ -45,7 +45,7 @@ public class ZouAbilities
 				return;
 			}
 			
-			this.projectile = new ZouProjectiles.TrunkShot(player.worldObj, player, ListAttributes.TRUNK_SHOT);			
+			this.projectile = new ZouProjectiles.TrunkShot(player.world, player, ListAttributes.TRUNK_SHOT);			
 			super.use(player);	
 		}
 	}
@@ -119,11 +119,11 @@ public class ZouAbilities
 				double mX = -MathHelper.sin(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4;
 				double mZ = MathHelper.cos(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4;
 					
-				double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+				double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 				mX /= f2;
 				mZ /= f2;
-				mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-				mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 				mX *= -2.7;
 				mZ *= -2.7;
 			
@@ -158,11 +158,11 @@ public class ZouAbilities
 				
 				this.initialY = (int) player.posY;
 				
-				double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+				double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 				mX /= f2;
 				mZ /= f2;
-				mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-				mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 				mX *= 4;
 				mZ *= 4;
 			
@@ -190,7 +190,7 @@ public class ZouAbilities
 				{
 					if(location[1] >= player.posY)
 					{
-						if(DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, location[0], location[1], location[2], Blocks.air, "core", "foliage"))
+						if(DevilFruitsHelper.placeBlockIfAllowed(player.world, location[0], location[1], location[2], Blocks.AIR, "core", "foliage"))
 						{
 							WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_BAKUMUNCH, location[0], location[1], location[2]), player.dimension, location[0], location[1], location[2], ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 						}

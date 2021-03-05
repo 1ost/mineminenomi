@@ -20,8 +20,8 @@ public class EntityCoby extends MarineData
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.63D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
 	}
 
 	public void onUpdate() 
@@ -32,7 +32,7 @@ public class EntityCoby extends MarineData
 		{
 			
 			if(this.getHealth() < this.getMaxHealth()/2)
-				this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10);
+				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10);
 			
 			if(ticksBeforeSoru <= 0 && this.getDistanceSqToEntity(this.getAttackTarget()) < 180 && this.onGround)
 			{

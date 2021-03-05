@@ -22,7 +22,7 @@ public class BlockCannon extends BlockContainer
 
 	public BlockCannon()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setHardness(1);
 	}
 	
@@ -93,7 +93,7 @@ public class BlockCannon extends BlockContainer
 			}
 			cannonBall.motionY = 0;
 			if(!world.isRemote)
-				world.spawnEntityInWorld(cannonBall);
+				world.spawnEntity(cannonBall);
 
 			for (int i = 0; i < 10; i++)
 				world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL.getParticleName(), posX + (WyMathHelper.randomDouble() / 5), posY + 0.6, posZ + (WyMathHelper.randomDouble() / 5), 0, 0.01, 0);

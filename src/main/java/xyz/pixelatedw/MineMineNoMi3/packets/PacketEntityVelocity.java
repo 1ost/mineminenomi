@@ -1,10 +1,10 @@
 package xyz.pixelatedw.MineMineNoMi3.packets;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -48,13 +48,13 @@ public class PacketEntityVelocity implements IMessage
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(PacketEntityVelocity message, MessageContext ctx)
 		{
-			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayer player = Minecraft.getMinecraft().player;
 			
 			if(message.entityId != 0)
 			{
 				Entity target = null;
 
-				for (Object e : player.worldObj.loadedEntityList)
+				for (Object e : player.world.loadedEntityList)
 				{
 					if(e instanceof EntityLivingBase)
 					{
@@ -86,7 +86,7 @@ public class PacketEntityVelocity implements IMessage
 			{
 				Entity target = null;
 
-				for (Object e : player.worldObj.loadedEntityList)
+				for (Object e : player.world.loadedEntityList)
 				{
 					if(e instanceof EntityLivingBase)
 					{

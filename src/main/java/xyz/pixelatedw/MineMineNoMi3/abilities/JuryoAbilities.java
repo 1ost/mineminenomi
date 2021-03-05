@@ -7,7 +7,6 @@ import net.minecraft.network.play.server.S0BPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.abilities.effects.DFEffect;
@@ -95,17 +94,17 @@ public class JuryoAbilities
 				
 				for(int j = 0; j < 50; j++)
 				{
-					AbilityProjectile proj = new JuryoProjectiles.Moko(player.worldObj, player, ListAttributes.MOKO);
+					AbilityProjectile proj = new JuryoProjectiles.Moko(player.world, player, ListAttributes.MOKO);
 	
 					proj.setLocationAndAngles(
-							player.posX + WyMathHelper.randomWithRange(-5, 5) + player.worldObj.rand.nextDouble(), 
-							(player.posY + 0.3) + WyMathHelper.randomWithRange(0, 5) + player.worldObj.rand.nextDouble(), 
-							player.posZ + WyMathHelper.randomWithRange(-5, 5) + player.worldObj.rand.nextDouble(), 
+							player.posX + WyMathHelper.randomWithRange(-5, 5) + player.world.rand.nextDouble(), 
+							(player.posY + 0.3) + WyMathHelper.randomWithRange(0, 5) + player.world.rand.nextDouble(), 
+							player.posZ + WyMathHelper.randomWithRange(-5, 5) + player.world.rand.nextDouble(), 
 							0, 0);
-					player.worldObj.spawnEntityInWorld(proj);
+					player.world.spawnEntity(proj);
 				}
-				if (player.worldObj instanceof WorldServer)
-					((WorldServer)player.worldObj).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+				if (player.world instanceof WorldServer)
+					((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
 				super.use(player);
 			}
 		}
@@ -134,7 +133,7 @@ public class JuryoAbilities
 				entity.motionX = 0;
 				entity.motionZ = 0;
 				entity.motionY -= 5;
-				entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 10));
+				entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 100, 10));
 				
 				if(++passiveTimer % 100 == 0)
 				{
@@ -148,7 +147,7 @@ public class JuryoAbilities
 							int posY = (int)entity.posY - 1;
 							int posZ = (int)entity.posZ + z;
 							
-							DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, posX, posY, posZ, Blocks.air, "all", "restricted", "ignore liquid");
+							DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, Blocks.AIR, "all", "restricted", "ignore liquid");
 						}
 					}
 				}
@@ -176,7 +175,7 @@ public class JuryoAbilities
 		{	
 			if(!this.isOnCooldown)		
 			{
-				MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);	
+				RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 				
 				if(mop != null)
 				{
@@ -184,12 +183,12 @@ public class JuryoAbilities
 					double y = mop.blockY;
 					double z = mop.blockZ;
 
-					AbilityProjectile proj = new JuryoProjectiles.SagariNoRyusei(player.worldObj, player, ListAttributes.SAGARI_NO_RYUSEI);	
+					AbilityProjectile proj = new JuryoProjectiles.SagariNoRyusei(player.world, player, ListAttributes.SAGARI_NO_RYUSEI);	
 					proj.setLocationAndAngles(x, (y + 90), z, 0, 0);
 					proj.motionX = 0;
 					proj.motionZ = 0;
 					proj.motionY = -2.4;
-					player.worldObj.spawnEntityInWorld(proj);
+					player.world.spawnEntity(proj);
 				}
 			}
 			super.use(player);

@@ -11,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -54,9 +53,9 @@ public class DokuProjectiles
 			super(world, player, attr);		
 		}	
 		
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{		
-			if(hit != null && !worldObj.isRemote)
+			if(hit != null && !world.isRemote)
 			{
 				int x;
 				int y;
@@ -97,7 +96,7 @@ public class DokuProjectiles
 			super(world, player, attr);		
 		}	
 		
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{	
 			if(MainConfig.enableGriefing)
 			{
@@ -106,7 +105,7 @@ public class DokuProjectiles
 					double offsetX = new Random().nextInt(5) - 3;
 					double offsetZ = new Random().nextInt(5) - 3;
 					
-					DevilFruitsHelper.placeBlockIfAllowed(worldObj, (int)(this.posX + offsetX), (int)this.posY, (int)(this.posZ + offsetZ), ListMisc.Poison, "air", "foliage");
+					DevilFruitsHelper.placeBlockIfAllowed(world, (int)(this.posX + offsetX), (int)this.posY, (int)(this.posZ + offsetZ), ListMisc.Poison, "air", "foliage");
 				}
 				
 				AbilityExplosion explosion = WyHelper.newExplosion(this.getThrower(), this.posX, this.posY, this.posZ, 2.2);
@@ -116,26 +115,26 @@ public class DokuProjectiles
 				explosion.setDamageOwner(false);
 				explosion.doExplosion();
 				
-				EntityChloroBallCloud smokeCloud = new EntityChloroBallCloud(worldObj);
+				EntityChloroBallCloud smokeCloud = new EntityChloroBallCloud(world);
 				smokeCloud.setLife(30);
 				smokeCloud.setLocationAndAngles(this.posX, (this.posY + 1), this.posZ, 0, 0);
 				smokeCloud.motionX = 0;
 				smokeCloud.motionZ = 0;
 				smokeCloud.motionY = 0;	
 				smokeCloud.setThrower((EntityPlayer) this.getThrower());
-				this.worldObj.spawnEntityInWorld(smokeCloud);
+				this.world.spawnEntity(smokeCloud);
 			}
 		}
 		
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
-				double posXOffset = this.worldObj.rand.nextGaussian() * 0.42D;
-				double posYOffset = this.worldObj.rand.nextGaussian() * 0.22D;
-				double posZOffset = this.worldObj.rand.nextGaussian() * 0.42D;		
+				double posXOffset = this.world.rand.nextGaussian() * 0.42D;
+				double posYOffset = this.world.rand.nextGaussian() * 0.22D;
+				double posZOffset = this.world.rand.nextGaussian() * 0.42D;
 	
-				EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_DOKU, 
+				EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_DOKU,
 						posX + posXOffset, 
 						posY + posYOffset, 
 						posZ + posZOffset, 
@@ -158,10 +157,10 @@ public class DokuProjectiles
 		public void onUpdate()
 		{
 			super.onUpdate();
-			if(!this.worldObj.isRemote)
+			if(!this.world.isRemote)
 			{				
 				for(EntityLivingBase target : WyHelper.getEntitiesNear(this, 4))
-					target.addPotionEffect(new PotionEffect(Potion.poison.id, 200, 2));
+					target.addPotionEffect(new PotionEffect(Potion.getPotionById(19), 200, 2));
 			}
 			WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_CHLOROBALLCLOUD, this.posX, this.posY, this.posZ), this.dimension, this.posX, this.posY, this.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 		}

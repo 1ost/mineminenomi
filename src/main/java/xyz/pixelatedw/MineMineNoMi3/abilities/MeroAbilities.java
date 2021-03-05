@@ -59,7 +59,7 @@ public class MeroAbilities
 
 		public void endCharging(EntityPlayer player)
 		{						
-			this.projectile = new MeroProjectiles.SlaveArrow(player.worldObj, player, attr);
+			this.projectile = new MeroProjectiles.SlaveArrow(player.world, player, attr);
 			super.endCharging(player);
 		}
 
@@ -74,7 +74,7 @@ public class MeroAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new MeroProjectiles.PistolKiss(player.worldObj, player, attr);
+			this.projectile = new MeroProjectiles.PistolKiss(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -88,7 +88,7 @@ public class MeroAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new MeroProjectiles.MeroMeroMellow(player.worldObj, player, attr);
+			this.projectile = new MeroProjectiles.MeroMeroMellow(player.world, player, attr);
 			super.use(player);
 		}
 	}

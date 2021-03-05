@@ -2,8 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.blocks;
 
 import javax.annotation.Nullable;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,7 +26,7 @@ public class BlockEnchantmentTable2 extends Block
     
     public BlockEnchantmentTable2()
     {
-    	super(Material.iron);
+    	super(Material.IRON);
         this.setLightOpacity(0);
         //this.setCreativeTab(ListCreativeTabs.tabMisc); 
     }

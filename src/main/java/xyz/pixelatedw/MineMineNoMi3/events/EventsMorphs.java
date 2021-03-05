@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -117,12 +117,12 @@ public class EventsMorphs
 	@SubscribeEvent
 	public void onRenderTick(TickEvent.RenderTickEvent event)
 	{
-		EntityPlayer player = this.mc.thePlayer;
+		EntityPlayer player = this.mc.player;
 
 		if (player == null)
 			return;
 
-		ExtendedEntityData props = ExtendedEntityData.get(this.mc.thePlayer);
+		ExtendedEntityData props = ExtendedEntityData.get(this.mc.player);
 		
 		if (prevRenderer != null && props.getZoanPoint().equalsIgnoreCase("n/a"))
 		{
@@ -200,9 +200,9 @@ public class EventsMorphs
 			{
 				if (event.entity.onGround)
 				{
-					Block block = event.entity.worldObj.getBlock((int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ);
-					String texture = Blocks.dirt.getIcon(1, 0).getIconName();
-					int blockTint = event.entity.worldObj.getBlock((int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ).colorMultiplier(event.entity.worldObj, (int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ);
+					Block block = event.entity.world.getBlock((int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ);
+					String texture = Blocks.DIRT.getIcon(1, 0).getIconName();
+					int blockTint = event.entity.world.getBlock((int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ).colorMultiplier(event.entity.world, (int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ);
 
 					if (block.getIcon(1, 0) != null)
 						texture = block.getIcon(1, 0).getIconName();
@@ -248,7 +248,7 @@ public class EventsMorphs
 
 	private void doRenderZoanMorph(RenderZoanMorph render, double x, double y, double z, EntityLivingBase entity)
 	{
-		if (Minecraft.getMinecraft().thePlayer.equals(entity))
+		if (Minecraft.getMinecraft().player.equals(entity))
 			render.doRender(entity, 0D, -1.625D, 0D, 0F, 0.0625F);
 		else
 			render.doRender(entity, x, y, z, 0F, 0.0625F);
@@ -275,7 +275,7 @@ public class EventsMorphs
 	@SubscribeEvent
 	public void morphHandRendering(RenderHandEvent event)
 	{
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = Minecraft.getMinecraft().player;
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		AbilityProperties abilityProps = AbilityProperties.get(player);
 
@@ -319,8 +319,8 @@ public class EventsMorphs
 			 * RenderHelper.enableStandardItemLighting();
 			 * Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
 			 * int i2 = mc.theWorld.getLightBrightnessForSkyBlocks(MathHelper.
-			 * floor_double(player.posX), MathHelper.floor_double(player.posY),
-			 * MathHelper.floor_double(player.posZ), 0); int j = i2 % 65536; int
+			 * floor_double(player.posX), MathHelper.floor(player.posY),
+			 * MathHelper.floor(player.posZ), 0); int j = i2 % 65536; int
 			 * k = i2 / 65536;
 			 * OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.
 			 * lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);

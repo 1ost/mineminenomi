@@ -24,12 +24,12 @@ public class EntityMorgan extends MarineData
 		super.applyEntityAttributes(); 
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
 	}
 		
-	public int getDorikiPower() { return this.worldObj.rand.nextInt(5) + 30; }
-	public int getBellyInPockets() { return this.worldObj.rand.nextInt(20) + 100; }
+	public int getDorikiPower() { return this.world.rand.nextInt(5) + 30; }
+	public int getBellyInPockets() { return this.world.rand.nextInt(20) + 100; }
 	
 	public void setCurrentAttackState(SpecialAttack state)
 	{

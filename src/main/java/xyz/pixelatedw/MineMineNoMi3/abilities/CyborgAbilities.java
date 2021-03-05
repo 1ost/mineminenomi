@@ -56,8 +56,8 @@ public class CyborgAbilities
 		@Override
 		public void duringCharging(EntityPlayer player, int currentCharge)
 		{		
-			player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 10, 1000));
-			player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 10, 1000));	
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 10, 1000));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(4), 10, 1000));
 		}
 		
 		@Override
@@ -75,9 +75,9 @@ public class CyborgAbilities
 				double offsetY = (new Random().nextInt(50) + 1.0D - 25.0D) / 20.0D;
 				double offsetZ = (new Random().nextInt(50) + 1.0D - 25.0D) / 20.0D;
 						
-				this.projectile = new CyborgProjectiles.CoupDeVent(player.worldObj, player, attr);
+				this.projectile = new CyborgProjectiles.CoupDeVent(player.world, player, attr);
 				this.projectile.setLocationAndAngles(player.posX + offsetX, player.posY + 2 + offsetY, player.posZ + offsetZ, player.cameraPitch, player.cameraYaw);
-				player.worldObj.spawnEntityInWorld(projectile);
+				player.world.spawnEntity(projectile);
 			}
 				
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
@@ -98,12 +98,12 @@ public class CyborgAbilities
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			
-			if(!player.worldObj.isRemote)
+			if(!player.world.isRemote)
 			{				
 				if(!this.isOnCooldown && props.getCola() >= 10)
 				{					
-					this.projectile = new CyborgProjectiles.StrongRight(player.worldObj, player, attr);
-					player.worldObj.spawnEntityInWorld(projectile);
+					this.projectile = new CyborgProjectiles.StrongRight(player.world, player, attr);
+					player.world.spawnEntity(projectile);
 
 					props.alterCola(-10);					
 					WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
@@ -127,12 +127,12 @@ public class CyborgAbilities
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			
-			if(!player.worldObj.isRemote)
+			if(!player.world.isRemote)
 			{
 				if(!this.isOnCooldown && props.getCola() >= 15)
 				{
-					this.projectile = new CyborgProjectiles.RadicalBeam(player.worldObj, player, attr);
-					player.worldObj.spawnEntityInWorld(projectile);
+					this.projectile = new CyborgProjectiles.RadicalBeam(player.world, player, attr);
+					player.world.spawnEntity(projectile);
 
 					props.alterCola(-15);
 					WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
@@ -164,9 +164,9 @@ public class CyborgAbilities
 					double offsetY = (new Random().nextInt(50) + 1.0D - 25.0D) / 20.0D;
 					double offsetZ = (new Random().nextInt(50) + 1.0D - 25.0D) / 20.0D;
 						
-					this.projectile = new CyborgProjectiles.FreshFire(player.worldObj, player, attr);
+					this.projectile = new CyborgProjectiles.FreshFire(player.world, player, attr);
 					this.projectile.setLocationAndAngles(player.posX + offsetX, player.posY + 2 + offsetY, player.posZ + offsetZ, player.cameraPitch, player.cameraYaw);
-					player.worldObj.spawnEntityInWorld(projectile);
+					player.world.spawnEntity(projectile);
 				}
 					
 				props.alterCola(-5);
@@ -196,7 +196,7 @@ public class CyborgAbilities
 				
 				props.setCola(0);
 				
-				player.setHealth((float) (player.getHealth() + ((r / 100) * player.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue()) ));	
+				player.setHealth((float) (player.getHealth() + ((r / 100) * player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()) ));
 				
 				WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
 				super.use(player);

@@ -28,7 +28,7 @@ public class EntityAIOTasumaki extends EntityAICooldown
 	{
 		super(entity, 80, entity.getRNG().nextInt(20));
 		this.entity = entity;
-		this.damage = this.entity.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+		this.damage = this.entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
 	}
 
 	public boolean shouldExecute()
@@ -66,7 +66,7 @@ public class EntityAIOTasumaki extends EntityAICooldown
 		for(EntityLivingBase e : WyHelper.getEntitiesNear(this.entity, 4))
 		{
 			e.attackEntityFrom(DamageSource.causeMobDamage(this.entity), (float) this.damage);				
-			e.addPotionEffect(new PotionEffect(Potion.weakness.id, 10 * 20, 1, true));
+			e.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 10 * 20, 1, true));
 		}	
 		WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_KOKUTEICROSS, this.entity), this.entity.dimension, this.entity.posX, this.entity.posY, this.entity.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 		

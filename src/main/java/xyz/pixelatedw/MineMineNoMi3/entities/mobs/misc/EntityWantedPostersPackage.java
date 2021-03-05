@@ -18,7 +18,7 @@ public class EntityWantedPostersPackage extends EntityMob
 	public void applyEntityAttributes()
 	{ 
 		super.applyEntityAttributes(); 
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4);
 	}
 	
 	protected void entityInit() 
@@ -34,30 +34,30 @@ public class EntityWantedPostersPackage extends EntityMob
     public void setDead()
     {
     	if(!this.onGround)
-    		ItemsHelper.dropWantedPosters(this.worldObj, (int)posX, (int)posY, (int)posZ);
+    		ItemsHelper.dropWantedPosters(this.world, (int)posX, (int)posY, (int)posZ);
     	super.setDead();
     }
     
 	public void onEntityUpdate()
 	{
-		this.motionY /= 1.5 + this.worldObj.rand.nextDouble();
+		this.motionY /= 1.5 + this.world.rand.nextDouble();
 		this.fallDistance = 0;
 		
-		if(this.onGround && !this.worldObj.isRemote)
+		if(this.onGround && !this.world.isRemote)
 		{
-			if(this.worldObj.isAirBlock((int)this.posX, (int)this.posY, (int)this.posZ))
+			if(this.world.isAirBlock((int)this.posX, (int)this.posY, (int)this.posZ))
 			{
-				this.worldObj.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, ListMisc.WantedPostersPackage);
+				this.world.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, ListMisc.WantedPostersPackage);
 				this.setDead();
 			}
-			else if(this.worldObj.isAirBlock((int)this.posX, (int)this.posY + 1, (int)this.posZ))
+			else if(this.world.isAirBlock((int)this.posX, (int)this.posY + 1, (int)this.posZ))
 			{
-				this.worldObj.setBlock((int)this.posX, (int)this.posY + 1, (int)this.posZ, ListMisc.WantedPostersPackage);
+				this.world.setBlock((int)this.posX, (int)this.posY + 1, (int)this.posZ, ListMisc.WantedPostersPackage);
 				this.setDead();
 			}
 		}
 		
-		if(this.isInWater() || this.isInsideOfMaterial(Material.lava))
+		if(this.isInWater() || this.isInsideOfMaterial(Material.LAVA))
 			this.setDead();
 		
 		super.onEntityUpdate();

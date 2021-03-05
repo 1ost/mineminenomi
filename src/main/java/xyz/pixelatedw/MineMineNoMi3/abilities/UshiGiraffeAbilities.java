@@ -32,7 +32,7 @@ public class UshiGiraffeAbilities
 
 			if((props.getZoanPoint().equals("power") || props.getZoanPoint().equals("speed") ) && !this.isOnCooldown)
 			{
-				this.projectile = new UshiGiraffeProjectiles.Bigan(player.worldObj, player, attr);
+				this.projectile = new UshiGiraffeProjectiles.Bigan(player.world, player, attr);
 				super.use(player);
 			}
 			else if(!props.getZoanPoint().equals("power") && !props.getZoanPoint().equals("speed"))
@@ -126,8 +126,8 @@ public class UshiGiraffeAbilities
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 
-			player.removePotionEffect(Potion.moveSpeed.id);
-			player.removePotionEffect(Potion.jump.id);
+			player.removePotionEffect(Potion.getPotionById(1).id);
+			player.removePotionEffect(Potion.getPotionById(8));
 
 			WyNetworkHelper.sendTo(new PacketNewAABB(0.6F, 1.8F), (EntityPlayerMP) player);
 			

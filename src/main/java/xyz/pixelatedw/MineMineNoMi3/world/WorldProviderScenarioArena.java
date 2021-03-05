@@ -19,7 +19,7 @@ public class WorldProviderScenarioArena extends WorldProvider
 	
 	public IChunkProvider createChunkGenerator()
 	{
-		return new ChunkProviderScenarioArena(this.worldObj, this.worldObj.getSeed());
+		return new ChunkProviderScenarioArena(this.world, this.world.getSeed());
 	}
 	
     public boolean canRespawnHere()

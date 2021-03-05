@@ -64,17 +64,17 @@ public class NoroAbilities
 		{
 			float damageFromSlowness = 0;
 			
-			if(target.isPotionActive(Potion.moveSlowdown.id))
+			if(target.isPotionActive(Potion.getPotionById(2)))
 			{
-				damageFromSlowness = (float) (Math.sqrt(target.getActivePotionEffect(Potion.moveSlowdown).getDuration()) / 2);
+				damageFromSlowness = (float) (Math.sqrt(target.getActivePotionEffect(event.getType(2).getDuration()) / 2);
 				
-				int newTime = target.getActivePotionEffect(Potion.moveSlowdown).getDuration() / 2;
-				int newAmplifier = target.getActivePotionEffect(Potion.moveSlowdown).getAmplifier() - 5;
+				int newTime = target.getActivePotionEffect(event.getType(2).getDuration() / 2;
+				int newAmplifier = target.getActivePotionEffect(event.getType(2).getAmplifier() - 5;
 				
-				target.removePotionEffect(Potion.moveSlowdown.id);
-				target.removePotionEffect(Potion.digSlowdown.id);			
-				target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, newTime, newAmplifier));
-				target.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, newTime, newAmplifier));
+				target.removePotionEffect(Potion.getPotionById(2));
+				target.removePotionEffect(Potion.getPotionById(4));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), newTime, newAmplifier));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(4), newTime, newAmplifier));
 			}
 			else
 				damageFromSlowness = 2;
@@ -93,7 +93,7 @@ public class NoroAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new NoroProjectiles.NoroNoroBeam(player.worldObj, player, attr);
+			this.projectile = new NoroProjectiles.NoroNoroBeam(player.world, player, attr);
 			super.use(player);
 		} 
 	}

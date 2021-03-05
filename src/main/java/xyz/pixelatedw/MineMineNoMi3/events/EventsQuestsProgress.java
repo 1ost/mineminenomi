@@ -2,7 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.List;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -37,9 +37,9 @@ public class EventsQuestsProgress
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer)
+		if (event.getEntityLiving() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 			ItemStack heldItem = player.getHeldItem();
@@ -92,7 +92,7 @@ public class EventsQuestsProgress
 			}
 
 			// General logic for progressing through 'interact' activities
-			if (questProps.questsInProgress() > 0 && !player.worldObj.isRemote)
+			if (questProps.questsInProgress() > 0 && !player.world.isRemote)
 			{
 				for (int i = 0; i < Values.MAX_ACTIVITIES; i++)
 				{
@@ -108,7 +108,7 @@ public class EventsQuestsProgress
 				}
 			}
 
-			//if (!player.worldObj.isRemote)
+			//if (!player.world.isRemote)
 			//	WyNetworkHelper.sendTo(new PacketQuestSync(questProps), (EntityPlayerMP) player);
 		}
 
@@ -117,12 +117,12 @@ public class EventsQuestsProgress
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.source.getEntity() instanceof EntityPlayer)
+		if (event.getSource().getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			QuestProperties questProps = QuestProperties.get(player);
-			EntityLivingBase target = event.entityLiving;
+			EntityLivingBase target = event.getEntityLiving();
 
 			// General logic for progressing through 'kill' activities
 			if (questProps.questsInProgress() > 0)
@@ -148,12 +148,12 @@ public class EventsQuestsProgress
 	@SubscribeEvent
 	public void onEntityAttackEvent(LivingHurtEvent event)
 	{
-		if (event.source.getEntity() instanceof EntityPlayer)
+		if (event.getSource().getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			QuestProperties questProps = QuestProperties.get(player);
-			EntityLivingBase target = event.entityLiving;
+			EntityLivingBase target = event.getEntityLiving();
 
 			// General logic for progressing through 'hit counter' activities
 			if (questProps.questsInProgress() > 0)
@@ -162,7 +162,7 @@ public class EventsQuestsProgress
 				{
 					if (questProps.getQuestIndexFromTracker(i) != null && questProps.getQuestIndexFromTracker(i) instanceof IHitCounterQuest)
 					{
-						if (((IHitCounterQuest) questProps.getQuestIndexFromTracker(i)).checkHit(player, target, event.source))
+						if (((IHitCounterQuest) questProps.getQuestIndexFromTracker(i)).checkHit(player, target, event.getSource()))
 						{
 							questProps.alterQuestProgress(questProps.getQuestIndexFromTracker(i), 1);
 						}

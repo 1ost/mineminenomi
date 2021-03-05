@@ -31,7 +31,7 @@ public class ParticleEffectKumoNoSugaki extends ParticleEffect
 		}
 		
 		MainMod.proxy.spawnCustomParticles(player, 
-				new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_ITO,
+				new EntityParticleFX(player.world, ID.PARTICLE_ICON_ITO,
 						posX + offsetX, 
 						posY + 1.0, 
 						posZ + offsetZ, 

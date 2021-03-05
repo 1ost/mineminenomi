@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -133,11 +133,11 @@ public class UshiBisonAbilities
 				double mX = (double)(-MathHelper.sin(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4);
 				double mZ = (double)(MathHelper.cos(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4);
 					
-				double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+				double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 				mX /= (double)f2;
 				mZ /= (double)f2;
-				mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-				mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 				mX *= 5;
 				mZ *= 5;
 			
@@ -192,11 +192,11 @@ public class UshiBisonAbilities
 				double mX = (double)(-MathHelper.sin(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4);
 				double mZ = (double)(MathHelper.cos(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4);
 					
-				double f2 = MathHelper.sqrt_double(mX * mX + player.motionY * player.motionY + mZ * mZ);
+				double f2 = MathHelper.sqrt(mX * mX + player.motionY * player.motionY + mZ * mZ);
 				mX /= (double)f2;
 				mZ /= (double)f2;
-				mX += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
-				mZ += player.worldObj.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mX += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
+				mZ += player.world.rand.nextGaussian() * 0.007499999832361937D * 1.0;
 				mX *= -0.7;
 				mZ *= -0.7;
 			

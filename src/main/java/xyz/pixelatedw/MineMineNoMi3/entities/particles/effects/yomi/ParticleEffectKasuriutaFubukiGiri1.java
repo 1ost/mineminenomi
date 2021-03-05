@@ -16,12 +16,12 @@ public class ParticleEffectKasuriutaFubukiGiri1 extends ParticleEffect
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			double offsetX = WyMathHelper.randomWithRange(-1, 1) + player.worldObj.rand.nextDouble();
-			double offsetY = WyMathHelper.randomWithRange(-1, 1) + player.worldObj.rand.nextDouble();
-			double offsetZ = WyMathHelper.randomWithRange(-1, 1) + player.worldObj.rand.nextDouble();
+			double offsetX = WyMathHelper.randomWithRange(-1, 1) + player.world.rand.nextDouble();
+			double offsetY = WyMathHelper.randomWithRange(-1, 1) + player.world.rand.nextDouble();
+			double offsetZ = WyMathHelper.randomWithRange(-1, 1) + player.world.rand.nextDouble();
 	      
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_HIE, 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_HIE, 
 							posX + offsetX, 
 							posY + 1 + offsetY, 
 							posZ + offsetZ, 

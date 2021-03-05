@@ -38,13 +38,13 @@ public class StructurePoneglyph extends Structure
 		for(int i = 0; i < 3; i++)
 		{
 			if(!corner1)
-				corner1 = world.getBlock(posX, posY + i, posZ) == Blocks.air && world.canBlockSeeTheSky(posX, posY + i, posZ);
+				corner1 = world.getBlock(posX, posY + i, posZ) == Blocks.AIR && world.canBlockSeeTheSky(posX, posY + i, posZ);
 			if(!corner2)
-				corner2 = world.getBlock(posX + width, posY + i, posZ) == Blocks.air && world.canBlockSeeTheSky(posX + width, posY + i, posZ);
+				corner2 = world.getBlock(posX + width, posY + i, posZ) == Blocks.AIR && world.canBlockSeeTheSky(posX + width, posY + i, posZ);
 			if(!corner3)
-				corner3 = world.getBlock(posX, posY + i, posZ + length) == Blocks.air && world.canBlockSeeTheSky(posX, posY + i, posZ + length);
+				corner3 = world.getBlock(posX, posY + i, posZ + length) == Blocks.AIR && world.canBlockSeeTheSky(posX, posY + i, posZ + length);
 			if(!corner4)
-				corner4 = world.getBlock(posX + width, posY + i, posZ + length) == Blocks.air && world.canBlockSeeTheSky(posX + width, posY + i, posZ + length);		
+				corner4 = world.getBlock(posX + width, posY + i, posZ + length) == Blocks.AIR && world.canBlockSeeTheSky(posX + width, posY + i, posZ + length);
 
 			if((corner1?1:0) + (corner2?1:0) + (corner3?1:0) + (corner4?1:0) >= 3)
 			{

@@ -7,11 +7,13 @@ import java.util.List;
 import com.google.common.primitives.UnsignedBytes;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 
@@ -64,18 +66,18 @@ public class WySchematicHelper
 					{
 						Block b = Block.getBlockById(UnsignedBytes.toInt(sch.getBlocks()[i]));
 						
-						//b = Blocks.air;
+						//b = Blocks.AIR;
 						
-						if (b != Blocks.air)
+						if (b != Blocks.AIR)
 						{
-							if (world.getBlock(posX + sx, posY + sy, posZ + sz) != b)
+							if (world.getBlockState(new BlockPos(posX + sx, posY + sy, posZ + sz)) != b)
 							{
 								if(b != airReplacement)
-									world.setBlock(posX + sx, posY + sy, posZ + sz, b, sch.getData()[i], 2);
+									world.setBlockState(new BlockPos (posX + sx, posY + sy, posZ + sz), b,  sch.getData()[i], 2);
 								else
-									world.setBlock(posX + sx, posY + sy, posZ + sz, Blocks.air);
+									world.setBlockState(new BlockPos (posX + sx, posY + sy, posZ + sz), (IBlockState) Blocks.AIR);
 								
-								if (world.getBlock(posX + sx, posY + sy, posZ + sz) == Blocks.water || world.getBlock(posX + sx, posY + sy, posZ + sz) == Blocks.flowing_water)
+								if (world.getBlockState(new BlockPos(posX + sx, posY + sy, posZ + sz)) == Blocks.WATER || world.getBlockState(new BlockPos(posX + sx, posY + sy, posZ + sz)) == Blocks.FLOWING_WATER)
 									world.markBlockForUpdate(posX + sx, posY + sy, posZ + sz);
 							}
 						}

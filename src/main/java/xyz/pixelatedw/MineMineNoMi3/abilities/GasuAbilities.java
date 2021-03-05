@@ -64,14 +64,14 @@ public class GasuAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{	
-			if(!player.worldObj.isRemote)
+			if(!player.world.isRemote)
 			{
 				if(!isOnCooldown)
 				{
 					for(EntityLivingBase e : WyHelper.getEntitiesNear(player, 25))
 					{
 						e.attackEntityFrom(DamageSource.causePlayerDamage(player), 20 * ExtendedEntityData.get(player).getDamageMultiplier());
-						e.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 1000, 2));
+						e.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 1000, 2));
 					}
 					
 					super.use(player);
@@ -104,7 +104,7 @@ public class GasuAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{	
-			this.projectile = new GasuProjectiles.Gastille(player.worldObj, player, attr);
+			this.projectile = new GasuProjectiles.Gastille(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -119,7 +119,7 @@ public class GasuAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{	
-			this.projectile = new GasuProjectiles.GasRobe(player.worldObj, player, attr);
+			this.projectile = new GasuProjectiles.GasRobe(player.world, player, attr);
 			super.use(player);
 		} 
 	}

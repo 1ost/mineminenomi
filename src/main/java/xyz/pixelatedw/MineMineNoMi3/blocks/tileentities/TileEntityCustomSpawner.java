@@ -24,7 +24,7 @@ public class TileEntityCustomSpawner extends TileEntity
     @Override
 	public void updateEntity()
     {
-    	if(!this.worldObj.isRemote)
+    	if(!this.world.isRemote)
     	{
     		boolean flag = false;
 
@@ -38,12 +38,12 @@ public class TileEntityCustomSpawner extends TileEntity
 					
 					if((this.spawnedEntities.size() < this.spawnLimit))
 					{
-						EntityLivingBase newSpawn = (EntityLivingBase) EntityList.createEntityByName(this.entityToSpawn, this.worldObj);
+						EntityLivingBase newSpawn = (EntityLivingBase) EntityList.createEntityByName(this.entityToSpawn, this.world);
 						if(newSpawn != null)
 						{
 							newSpawn.setLocationAndAngles(this.xCoord, this.yCoord, this.zCoord, 0, 0);	
 							((EntityLiving) newSpawn).onSpawnWithEgg((IEntityLivingData)null);
-							this.worldObj.spawnEntityInWorld(newSpawn);
+							this.world.spawnEntity(newSpawn);
 							this.spawnedEntities.add(newSpawn);							
 						}
 					}

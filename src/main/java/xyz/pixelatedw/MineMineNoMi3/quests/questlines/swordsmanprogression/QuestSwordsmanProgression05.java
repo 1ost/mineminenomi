@@ -71,7 +71,7 @@ public class QuestSwordsmanProgression05 extends Quest implements IInteractQuest
 
 		for (int i = 0; i < 6; i++)
 		{
-			EntityBandit target = new EntityBandit(player.worldObj);
+			EntityBandit target = new EntityBandit(player.world);
 			double posX = player.posX + WyMathHelper.randomWithRange(-20, 20);
 			double posZ = player.posZ + WyMathHelper.randomWithRange(-20, 20);
 
@@ -79,8 +79,8 @@ public class QuestSwordsmanProgression05 extends Quest implements IInteractQuest
 			target.setOwner(player);
 			target.setActive(true);
 			
-			if (!player.worldObj.isRemote)
-				player.worldObj.spawnEntityInWorld(target);
+			if (!player.world.isRemote)
+				player.world.spawnEntity(target);
 		}
 		
 		WyNetworkHelper.sendToAll(new PacketQuestObjectiveSpawn(player.getEntityId()));
@@ -130,7 +130,7 @@ public class QuestSwordsmanProgression05 extends Quest implements IInteractQuest
 		
 		if(flagNearbyMobs)
 		{
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 				WyHelper.sendMsgToPlayer(player, I18n.format("quest." + this.getQuestID() + ".dialogue.01"));		
 			
 			return false;
@@ -138,7 +138,7 @@ public class QuestSwordsmanProgression05 extends Quest implements IInteractQuest
 		
 		if (flagQuestStateKill && !flagQuestComplete)
 		{
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 				WyHelper.sendMsgToPlayer(player, I18n.format("quest." + this.getQuestID() + ".dialogue.02"));
 				
 			ItemStack mysteriousNote = new ItemStack(ListMisc.Note);
@@ -164,7 +164,7 @@ public class QuestSwordsmanProgression05 extends Quest implements IInteractQuest
 		}
 		else if(flagQuestStateInteract && flagQuestComplete)
 		{
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 			{
 				ItemStack itemStack = QuestLogicHelper.getQuestItemStack(player.inventory, this.getQuestID());
 				

@@ -31,9 +31,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.Values;
@@ -114,7 +117,7 @@ public class WyHelper
 				for (int y = -radius; y < radius; y++)
 					for (int z = -radius; z < radius; z++)
 					{
-						if (player.worldObj.getBlock((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z) == b)
+						if (player.world.getBlockState(new BlockPos (int) player.posX + x, (int) player.posY + y, (int) player.posZ + z) == b)
 						{
 							return true;
 						}
@@ -130,9 +133,9 @@ public class WyHelper
 			for (int y = -radius; y < radius; y++)
 				for (int z = -radius; z < radius; z++)
 				{
-					if (entity.worldObj.getBlock((int) entity.posX + x, (int) entity.posY + y, (int) entity.posZ + z) == block)
+					if (entity.world.getBlockState(new BlockPos((int) entity.posX + x, (int) entity.posY + y, (int) entity.posZ + z)) == block)
 					{
-						return entity.worldObj.getBlock((int) entity.posX + x, (int) entity.posY + y, (int) entity.posZ + z);
+						return (Block) entity.world.getBlockState(new BlockPos((int) entity.posX + x, (int) entity.posY + y, (int) entity.posZ + z));
 					}
 				}
 
@@ -349,7 +352,7 @@ public class WyHelper
 	
 	public static void sendMsgToPlayer(EntityPlayer player, String text)
 	{
-		player.addChatComponentMessage(new ChatComponentText(text));
+		player.sendMessage(new TextComponentString(text));
 	}
 	
 	public static String upperCaseFirst(String text)
@@ -391,7 +394,7 @@ public class WyHelper
 			AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius, radius, radius);
 			List list = new ArrayList();
 			for(Class<? extends Entity> clz : classEntities)
-				list.addAll(e.worldObj.getEntitiesWithinAABB(clz, aabb));
+				list.addAll(e.world.getEntitiesWithinAABB(clz, aabb));
 			list.remove(e);
 			return list;
 		}
@@ -410,7 +413,7 @@ public class WyHelper
 			AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius[0], radius[1], radius[2]);
 			List<T> list = new ArrayList<T>();
 			for(Class<? extends T> clz : classEntities)
-				list.addAll(e.worldObj.getEntitiesWithinAABB(clz, aabb));
+				list.addAll(e.world.getEntitiesWithinAABB(clz, aabb));
 			list.remove(e);
 			return list;
 		}
@@ -436,7 +439,7 @@ public class WyHelper
 
 	public static Direction get4Directions(Entity e)
 	{
-		switch (MathHelper.floor_double(e.rotationYaw * 4.0F / 360.0F + 0.5D) & 3)
+		switch (MathHelper.floor(e.rotationYaw * 4.0F / 360.0F + 0.5D) & 3)
 		{
 			case 0:
 				return Direction.SOUTH;
@@ -452,7 +455,7 @@ public class WyHelper
 
 	public static Direction get8Directions(Entity e)
 	{
-		switch (MathHelper.floor_double(e.rotationYaw * 8.0F / 360.0F + 0.5D) & 7)
+		switch (MathHelper.floor(e.rotationYaw * 8.0F / 360.0F + 0.5D) & 7)
 		{
 			case 0:
 				return Direction.SOUTH;
@@ -474,7 +477,7 @@ public class WyHelper
 		return null;
 	}
 
-	public static MovingObjectPosition rayTraceBlocks(Entity e)
+	public static RayTraceResult rayTraceBlocks(Entity e)
 	{
 		float f = 1.0F;
 		float f1 = e.prevRotationPitch + (e.rotationPitch - e.prevRotationPitch) * f;
@@ -492,14 +495,14 @@ public class WyHelper
 		double d3 = 5000D;
 
 		Vec3 vec3 = vec3d.addVector(f7 * d3, f6 * d3, f9 * d3);
-		MovingObjectPosition ray = e.worldObj.rayTraceBlocks(vec3d, vec3, false);
+		RayTraceResult ray = e.world.rayTraceBlocks(vec3d, vec3, false);
 
 		return ray;
 	}
 
 	public static List<int[]> createEmptyCube(Entity entity, int[] sizes, Block blockToPlace, String... blockRules)
 	{
-		return createEmptyCube(entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ, sizes, blockToPlace, blockRules);
+		return createEmptyCube(entity.world, (int)entity.posX, (int)entity.posY, (int)entity.posZ, sizes, blockToPlace, blockRules);
 	}
 	
 	public static List<int[]> createEmptyCube(World world, double posX, double posY, double posZ, int[] sizes, Block blockToPlace, String... blockRules)
@@ -521,7 +524,7 @@ public class WyHelper
 		
 	public static List<int[]> createFilledCube(Entity entity, int[] sizes, Block blockToPlace, String... blockRules)
 	{
-		return createFilledCube(entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ, sizes, blockToPlace, blockRules);
+		return createFilledCube(entity.world, (int)entity.posX, (int)entity.posY, (int)entity.posZ, sizes, blockToPlace, blockRules);
 	}
 	
 	public static List<int[]> createFilledCube(World world, double posX, double posY, double posZ, int[] sizes, Block blockToPlace, String... blockRules)

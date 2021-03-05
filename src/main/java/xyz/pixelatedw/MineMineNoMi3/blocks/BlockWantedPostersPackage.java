@@ -14,7 +14,7 @@ public class BlockWantedPostersPackage extends BlockContainer
 
 	public BlockWantedPostersPackage()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setHardness(1);
 	}
 

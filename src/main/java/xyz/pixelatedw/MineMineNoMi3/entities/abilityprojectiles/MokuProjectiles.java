@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -42,7 +41,7 @@ public class MokuProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for(int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(5); i++)
 				{
@@ -50,7 +49,7 @@ public class MokuProjectiles
 					double offsetY = (new Random().nextInt(20) + 1.0D - 10.0D) / 18.0D;
 					double offsetZ = (new Random().nextInt(20) + 1.0D - 10.0D) / 18.0D;
 				    
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_MOKU2, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MOKU2, 
 							posX + offsetX, 
 							posY + offsetY, 
 							posZ + offsetZ, 
@@ -81,7 +80,7 @@ public class MokuProjectiles
 		@Override
 		public void onUpdate()
 		{	
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
 				for(int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(5); i++)
 				{
@@ -89,7 +88,7 @@ public class MokuProjectiles
 					double offsetY = WyMathHelper.randomDouble();
 					double offsetZ = WyMathHelper.randomDouble();
 					      
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_MOKU, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MOKU, 
 							posX + offsetX, 
 							posY + offsetY, 
 							posZ + offsetZ, 
@@ -104,7 +103,7 @@ public class MokuProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && !hit.entityHit.isDead)
 				((EntityLivingBase) hit.entityHit).setPosition(this.getThrower().posX, this.getThrower().posY, this.getThrower().posZ);

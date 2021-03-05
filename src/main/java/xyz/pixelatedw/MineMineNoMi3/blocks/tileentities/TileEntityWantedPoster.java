@@ -83,6 +83,6 @@ public class TileEntityWantedPoster extends TileEntity
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
 	{
 		readFromNBT(pkt.func_148857_g());
-		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		world.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 }

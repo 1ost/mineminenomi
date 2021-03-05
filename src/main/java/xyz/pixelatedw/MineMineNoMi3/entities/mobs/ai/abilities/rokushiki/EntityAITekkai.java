@@ -75,10 +75,10 @@ public class EntityAITekkai extends EntityAICooldown
 		if(this.entity.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getModifier(this.knockbackResistanceUUID) == null)
 			this.entity.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(this.knockbackModifier);
 		
-		this.entity.addPotionEffect(new PotionEffect(Potion.resistance.id, 70, 100));
-		this.entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 70, 100));
-		this.entity.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 70, 5));
-		this.entity.addPotionEffect(new PotionEffect(Potion.jump.id, 70, -100));
+		this.entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 70, 100));
+		this.entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 70, 100));
+		this.entity.addPotionEffect(new PotionEffect(Potion.getPotionById(4), 70, 5));
+		this.entity.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 70, -100));
 		
 		this.hitCount = 0;	
 		this.maxCount = (int) (2 + WyMathHelper.randomWithRange(1, 3));

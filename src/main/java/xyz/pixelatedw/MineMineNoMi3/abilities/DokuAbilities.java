@@ -60,12 +60,12 @@ public class DokuAbilities
 
 			for(EntityLivingBase enemy : WyHelper.getEntitiesNear(player, 10))
 			{
-				if(!enemy.isPotionActive(Potion.blindness.id))
-					enemy.addPotionEffect(new PotionEffect(Potion.blindness.id, 10 * 20, 0));
-				if(!enemy.isPotionActive(Potion.poison.id))
-					enemy.addPotionEffect(new PotionEffect(Potion.poison.id, 10 * 20, 1));
-				if(!enemy.isPotionActive(Potion.weakness.id))
-					enemy.addPotionEffect(new PotionEffect(Potion.weakness.id, 10 * 20, 1));
+				if(!enemy.isPotionActive(Potion.getPotionById(15)))
+					enemy.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 10 * 20, 0));
+				if(!enemy.isPotionActive(Potion.getPotionById(19)))
+					enemy.addPotionEffect(new PotionEffect(Potion.getPotionById(19), 10 * 20, 1));
+				if(!enemy.isPotionActive(Potion.getPotionById(18)))
+					enemy.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 10 * 20, 1));
 			}	
 		}	
 		
@@ -107,17 +107,17 @@ public class DokuAbilities
 				this.endPassive(player);
 			}
 			
-			if(!WyHelper.isBlockNearby(player, 2, Blocks.water, Blocks.flowing_water, ListMisc.KairosekiOre, ListMisc.KairosekiBlock, ListMisc.KairosekiBars))
+			if(!WyHelper.isBlockNearby(player, 2, Blocks.WATER, Blocks.FLOWING_WATER, ListMisc.KairosekiOre, ListMisc.KairosekiBlock, ListMisc.KairosekiBars))
 			{
 				for(int x = -1; x < 1; x++)
 				for(int z = -1; z < 1; z++)
 				{
-					DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX + x, (int)player.posY, (int)player.posZ + z, ListMisc.DemonPoison, "core", "foliage", "air");
+					DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX + x, (int)player.posY, (int)player.posZ + z, ListMisc.DemonPoison, "core", "foliage", "air");
 				}
-				/*if (player.worldObj.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) != Blocks.air
-				&& player.worldObj.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) != ListMisc.Poison
-				&& player.worldObj.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) != ListMisc.DemonPoison)
-					DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, ListMisc.DemonPoison, "core", "foliage", "air");*/
+				/*if (player.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) != Blocks.AIR
+				&& player.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) != ListMisc.Poison
+				&& player.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) != ListMisc.DemonPoison)
+					DevilFruitsHelper.placeBlockIfAllowed(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, ListMisc.DemonPoison, "core", "foliage", "air");*/
 			}
 			
 			WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_VENOMDEMON, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
@@ -147,7 +147,7 @@ public class DokuAbilities
 		
 		public void use(EntityPlayer player)
 		{	
-			this.projectile = new DokuProjectiles.ChloroBall(player.worldObj, player, attr);
+			this.projectile = new DokuProjectiles.ChloroBall(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -161,7 +161,7 @@ public class DokuAbilities
 		
 		public void use(EntityPlayer player)
 		{	
-			this.projectile = new DokuProjectiles.VenomRoad(player.worldObj, player, attr);
+			this.projectile = new DokuProjectiles.VenomRoad(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -175,7 +175,7 @@ public class DokuAbilities
 		
 		public void use(EntityPlayer player)
 		{	
-			this.projectile = new DokuProjectiles.ChloroBall(player.worldObj, player, attr);
+			this.projectile = new DokuProjectiles.ChloroBall(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -189,7 +189,7 @@ public class DokuAbilities
 		
 		public void use(EntityPlayer player)
 		{	
-			this.projectile = new DokuProjectiles.Hydra(player.worldObj, player, attr);
+			this.projectile = new DokuProjectiles.Hydra(player.world, player, attr);
 			super.use(player);
 		} 
 	}

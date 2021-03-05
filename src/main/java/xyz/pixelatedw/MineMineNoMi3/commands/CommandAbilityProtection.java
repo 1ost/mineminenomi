@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.commands;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +21,7 @@ public class CommandAbilityProtection extends CommandBase
 		if (str.length > 0)
 		{
 			EntityPlayer player = CommandBase.getCommandSenderAsPlayer(sender);
-			ExtendedWorldData worldData = ExtendedWorldData.get(player.worldObj);
+			ExtendedWorldData worldData = ExtendedWorldData.get(player.world);
 
 			if (str[0].equalsIgnoreCase("new"))
 			{
@@ -33,9 +33,9 @@ public class CommandAbilityProtection extends CommandBase
 
 				System.out.println("1 : " + areaSize);
 
-				TileEntityAbilityProtection center = new TileEntityAbilityProtection(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, areaSize);
-				player.worldObj.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.AbilityProtectionBlock);
-				player.worldObj.setTileEntity((int) player.posX, (int) player.posY, (int) player.posZ, center);
+				TileEntityAbilityProtection center = new TileEntityAbilityProtection(player.world, (int) player.posX, (int) player.posY, (int) player.posZ, areaSize);
+				player.world.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.AbilityProtectionBlock);
+				player.world.setTileEntity((int) player.posX, (int) player.posY, (int) player.posZ, center);
 			}
 			else if (str[0].equalsIgnoreCase("view"))
 			{
@@ -60,7 +60,7 @@ public class CommandAbilityProtection extends CommandBase
 					int midZ = (minPos[2] + maxPos[2]) / 2;
 					int[] midPoint = new int[] { midX, midY, midZ };
 					
-					TileEntity te = player.worldObj.getTileEntity(midPoint[0], midPoint[1], midPoint[2]);
+					TileEntity te = player.world.getTileEntity(midPoint[0], midPoint[1], midPoint[2]);
 
 					if(te == null || !(te instanceof TileEntityAbilityProtection))
 						continue;

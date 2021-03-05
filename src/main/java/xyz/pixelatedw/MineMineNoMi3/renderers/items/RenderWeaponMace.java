@@ -58,7 +58,7 @@ public class RenderWeaponMace implements IItemRenderer
 				
 				//this.model.render(null, 0, 0, 0, 0, 0, 0.625F);
 				
-				/*IIcon iicon = Minecraft.getMinecraft().thePlayer.getItemIcon(itemStack, 0);
+				/*IIcon iicon = Minecraft.getMinecraft().player.getItemIcon(itemStack, 0);
 
 				if (iicon == null)
 				{

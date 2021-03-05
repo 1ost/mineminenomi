@@ -25,9 +25,9 @@ public class DFEffectNoroSlowness extends DFEffect
 	{
 		ExtendedEntityData props = ExtendedEntityData.get(entity);
 		
-		if(entity.isPotionActive(Potion.moveSlowdown))
+		if(entity.isPotionActive(Potion.getPotionById(2)))
 		{
-			int timer = entity.getActivePotionEffect(Potion.moveSlowdown).getDuration();
+			int timer = entity.getActivePotionEffect(event.getType(2).getDuration();
 			new DFEffectNoroSlowness(entity, timer);
 		}
 	}

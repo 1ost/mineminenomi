@@ -1,6 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.events;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.util.EnumHand;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,12 +31,12 @@ public class EventsHakiGain
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer)
+		if (event.getEntityLiving() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
-			ItemStack heldItem = player.getHeldItem();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 			
 			if(abilityProps.hasHakiAbility(HakiAbilities.KENBUNSHOKU_HAKI_AURA))
 			{
@@ -49,7 +50,7 @@ public class EventsHakiGain
 				}
 			}
 			
-			if(MainConfig.haoshokuHakiUnlockLogic.equalsIgnoreCase("exp") && !player.worldObj.isRemote)
+			if(MainConfig.haoshokuHakiUnlockLogic.equalsIgnoreCase("exp") && !player.world.isRemote)
 			{
 				int haoExp = (props.getHardeningHakiExp() + props.getImbuingHakiExp() + props.getObservationHakiExp()) / 3;
 				
@@ -63,21 +64,21 @@ public class EventsHakiGain
 	@SubscribeEvent
 	public void onEntityAttack(LivingHurtEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer)
+		if (event.getEntityLiving() instanceof EntityPlayer)
 		{
-			Entity attacker = event.source.getSourceOfDamage();
-			EntityPlayer attacked = (EntityPlayer) event.entityLiving;
+			Entity attacker = event.getSource().getTrueSource();
+			EntityPlayer attacked = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(attacked);
 			AbilityProperties abilityProps = AbilityProperties.get(attacked);
 			
 			double hakiMultiplier = 1;
 			
-			if(attacked.isPotionActive(Potion.blindness.id) || attacked.isPotionActive(Potion.confusion.id))
+			if(attacked.isPotionActive(Potion.getPotionById(15)) || attacked.isPotionActive(Potion.getPotionById(9)))
 				hakiMultiplier = 1.25;
 			
 			if(props.getDoriki() > 1500 && props.getObservationHakiExp() <= 300)
 			{
-				int exp = (int) (event.ammount / 10);
+				int exp = (int) (event.getAmount() / 10);
 				if(exp <= 0)
 					exp = 1;
 				
@@ -94,7 +95,7 @@ public class EventsHakiGain
 				this.giveHakiAbility(abilityProps, HakiAbilities.KENBUNSHOKU_HAKI_FUTURE_SIGHT, attacked);
 			}
 								
-			if(MainConfig.haoshokuHakiUnlockLogic.equalsIgnoreCase("exp") && !attacked.worldObj.isRemote)
+			if(MainConfig.haoshokuHakiUnlockLogic.equalsIgnoreCase("exp") && !attacked.world.isRemote)
 			{
 				int haoExp = (props.getHardeningHakiExp() + props.getImbuingHakiExp() + props.getObservationHakiExp()) / 3;
 				
@@ -124,17 +125,17 @@ public class EventsHakiGain
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.source.getEntity() instanceof EntityPlayer)
+		if (event.getSource().getTrueSource() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
-			EntityLivingBase target = event.entityLiving;	
-			ItemStack heldItem = player.getHeldItem();
+			EntityLivingBase target = event.getEntityLiving();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 			
 			double hakiMultiplier = 1;
 
-			if(target.isPotionActive(Potion.resistance.id))
+			if(target.isPotionActive(Potion.getPotionById(11)))
 				hakiMultiplier = 1.25;
 			
 			if(heldItem != null)
@@ -196,9 +197,9 @@ public class EventsHakiGain
 	@SubscribeEvent
 	public void onPlayerLoggedIn(EntityJoinWorldEvent event)
 	{
-		if(event.entity instanceof EntityPlayer && MainConfig.haoshokuHakiUnlockLogic.equalsIgnoreCase("random"))
+		if(event.getEntity() instanceof EntityPlayer && MainConfig.haoshokuHakiUnlockLogic.equalsIgnoreCase("random"))
 		{
-			EntityPlayer player = (EntityPlayer) event.entity;
+			EntityPlayer player = (EntityPlayer) event.getEntity();
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 			int isKing = (int) (player.getUniqueID().getMostSignificantBits() % 4);
 			

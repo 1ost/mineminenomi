@@ -2,7 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.entities.mobs.ai;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityAttribute;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityProjectile;
 import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.ExtraProjectiles;
@@ -69,19 +69,19 @@ public class EntityAISharpshooter extends EntityAIBase
 			if(ticksBeforeShoot <= 0)
 			{ 
 	    		double d0 = theEntity.getDistanceSqToEntity(theEntity.getAttackTarget());
-	    		float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0));
+	    		float f = MathHelper.sqrt_float(MathHelper.sqrt(d0));
 	    		double d1 = theEntity.getAttackTarget().posX - theEntity.posX;
 	    		double d2 = theEntity.getAttackTarget().boundingBox.minY + (double)(theEntity.getAttackTarget().height / 2.0F) - (theEntity.posY + (double)(theEntity.height / 2.0F));
 	    		double d3 = theEntity.getAttackTarget().posZ - theEntity.posZ;
 	
 				AbilityProjectile proj;
-				if(bullet == ListExtraAttributes.NORMAL_BULLET) proj = new ExtraProjectiles.NormalBullet(theEntity.worldObj, theEntity, bullet);
-				else if(bullet == ListExtraAttributes.KAIROSEKI_BULLET) proj = new ExtraProjectiles.KairosekiBullet(theEntity.worldObj, theEntity, bullet);
-				else proj = new ExtraProjectiles.NormalBullet(theEntity.worldObj, theEntity, bullet);
+				if(bullet == ListExtraAttributes.NORMAL_BULLET) proj = new ExtraProjectiles.NormalBullet(theEntity.world, theEntity, bullet);
+				else if(bullet == ListExtraAttributes.KAIROSEKI_BULLET) proj = new ExtraProjectiles.KairosekiBullet(theEntity.world, theEntity, bullet);
+				else proj = new ExtraProjectiles.NormalBullet(theEntity.world, theEntity, bullet);
 				
 				proj.posY = theEntity.posY + (double)(theEntity.height / 2.0F) + 0.5D;
 				proj.setThrowableHeading(d1 + theEntity.getRNG().nextGaussian(), d2, d3 + theEntity.getRNG().nextGaussian(), inaccuracy, 0);
-				theEntity.worldObj.spawnEntityInWorld(proj);
+				theEntity.world.spawnEntity(proj);
 	
 	    		ticksBeforeShoot = maxTicksBeforeShoot; 
 			}

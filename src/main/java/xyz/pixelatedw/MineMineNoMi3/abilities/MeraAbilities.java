@@ -37,7 +37,7 @@ public class MeraAbilities
 		
 		public void use(EntityPlayer player)
 		{			
-			this.projectile = new MeraProjectiles.Hiken(player.worldObj, player, ListAttributes.HIKEN);			
+			this.projectile = new MeraProjectiles.Hiken(player.world, player, ListAttributes.HIKEN);
 			super.use(player);		
 		}
 	}
@@ -51,7 +51,7 @@ public class MeraAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new MeraProjectiles.Higan(player.worldObj, player, ListAttributes.HIGAN);
+			this.projectile = new MeraProjectiles.Higan(player.world, player, ListAttributes.HIGAN);
 			super.use(player);
 		};			
 	}
@@ -75,7 +75,7 @@ public class MeraAbilities
 		
 		public void endCharging(EntityPlayer player)
 		{						
-			this.projectile = new MeraProjectiles.DaiEnkaiEntei(player.worldObj, player, ListAttributes.DAI_ENKAI_ENTEI);
+			this.projectile = new MeraProjectiles.DaiEnkaiEntei(player.world, player, ListAttributes.DAI_ENKAI_ENTEI);
 			super.endCharging(player);
 		}
 	
@@ -90,7 +90,7 @@ public class MeraAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new MeraProjectiles.Hidaruma(player.worldObj, player, ListAttributes.HIDARUMA);
+			this.projectile = new MeraProjectiles.Hidaruma(player.world, player, ListAttributes.HIDARUMA);
 			super.use(player);
 		};			
 	}
@@ -104,7 +104,7 @@ public class MeraAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new MeraProjectiles.Jujika(player.worldObj, player, ListAttributes.JUJIKA);
+			this.projectile = new MeraProjectiles.Jujika(player.world, player, ListAttributes.JUJIKA);
 			super.use(player);
 		};			
 	}
@@ -120,7 +120,7 @@ public class MeraAbilities
 		{
 			if(!isOnCooldown)
 			{
-				WyHelper.createEmptySphere(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 13, Blocks.fire, "air", "foliage");
+				WyHelper.createEmptySphere(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 13, Blocks.fire, "air", "foliage");
 					
 				for(EntityLivingBase l : WyHelper.getEntitiesNear(player, 12))
 				{l.setFire(20);}

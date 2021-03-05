@@ -46,6 +46,6 @@ public class TileEntitySakeFeast extends TileEntity
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
 	{
 		this.readFromNBT(pkt.func_148857_g());
-		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+		this.world.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 	}
 }

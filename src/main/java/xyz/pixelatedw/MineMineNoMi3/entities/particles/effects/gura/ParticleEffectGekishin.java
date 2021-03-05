@@ -32,7 +32,7 @@ public class ParticleEffectGekishin extends ParticleEffect
 		}
 		
 		MainMod.proxy.spawnCustomParticles(player, 
-				new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_GURA, 
+				new EntityParticleFX(player.world, ID.PARTICLE_ICON_GURA,
 						posX + offsetX, 
 						posY + 1.0, 
 						posZ + offsetZ, 
@@ -45,7 +45,7 @@ public class ParticleEffectGekishin extends ParticleEffect
 			double offsetY = (new Random().nextInt(40) + 1.0D - 20.0D) / 10.0D;
 			offsetZ = (new Random().nextInt(40) + 1.0D - 20.0D) / 2.0D;
 			
-			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleName(), posX + offsetX + new Random().nextInt(5), posY + offsetY, posZ + offsetZ + new Random().nextInt(5), 0.0, 0.0, 0.0);
+			player.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE.getParticleName(), posX + offsetX + new Random().nextInt(5), posY + offsetY, posZ + offsetZ + new Random().nextInt(5), 0.0, 0.0, 0.0);
 		}	
 	}
 

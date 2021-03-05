@@ -2,7 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.quests.bounties.lowlevel;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.Quest;
@@ -45,7 +45,7 @@ public class BountyLowLevel03 extends Quest implements IKillQuest
 	{		
 		ExtendedEntityData props = ExtendedEntityData.get(player);	
 		props.alterBelly(150);
-		WyHelper.sendMsgToPlayer(player, EnumChatFormatting.GOLD + "Reward : 150 Belly");		
+		WyHelper.sendMsgToPlayer(player, TextFormatting.GOLD + "Reward : 150 Belly");
 		super.finishQuest(player);
 	}
 

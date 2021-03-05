@@ -17,12 +17,11 @@ public class DFEffectChiyuHormone extends DFEffect
 
 	public void onEffectStart(EntityLivingBase entity)
 	{
-		entity.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 2));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 100, 2));
 	}
 
 	public void onEffectEnd(EntityLivingBase entity)
 	{
 		entity.addPotionEffect(new PotionEffect(Potion.hunger.id, 300, 1));
 	}
-		
 }

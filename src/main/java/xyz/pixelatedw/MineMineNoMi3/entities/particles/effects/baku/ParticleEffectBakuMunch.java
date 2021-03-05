@@ -12,11 +12,11 @@ public class ParticleEffectBakuMunch extends ParticleEffect
 	{
 		for (int i = 0; i < 15; i++)
 		{
-			double offsetX = player.worldObj.rand.nextDouble();
+			double offsetX = player.world.rand.nextDouble();
 			double offsetY = 1;
-			double offsetZ = player.worldObj.rand.nextDouble();
+			double offsetZ = player.world.rand.nextDouble();
 
-			player.worldObj.spawnParticle(EnumParticleTypes.BLOCK_CRACK.getParticleName() + "_" + Block.getIdFromBlock(player.worldObj.getBlock((int)posX, (int)posY, (int)posZ))  + "_" + player.worldObj.getBlockMetadata((int)posX, (int)posY, (int)posZ), posX + offsetX, posY + offsetY, posZ + offsetZ, 0, 0, 0);
+			player.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK.getParticleName() + "_" + Block.getIdFromBlock(player.world.getBlock((int)posX, (int)posY, (int)posZ))  + "_" + player.world.getBlockMetadata((int)posX, (int)posY, (int)posZ), posX + offsetX, posY + offsetY, posZ + offsetZ, 0, 0, 0);
 		}
 	}
 

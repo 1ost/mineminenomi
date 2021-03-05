@@ -20,7 +20,7 @@ public class ParticleEffectKemuriBoshi extends ParticleEffect
 			double offsetY = WyMathHelper.randomWithRange(-2, 3) + WyMathHelper.randomDouble();
 			double offsetZ = WyMathHelper.randomWithRange(-4, 4) + WyMathHelper.randomDouble();
 			
-			player.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), posX + offsetX + WyMathHelper.randomWithRange(-7, 7), (posY + 0.5) + offsetY + WyMathHelper.randomWithRange(-1, 3), posZ + offsetZ + WyMathHelper.randomWithRange(-7, 7), 0.0D, 0.1D, 0.0D);
+			player.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleName(), posX + offsetX + WyMathHelper.randomWithRange(-7, 7), (posY + 0.5) + offsetY + WyMathHelper.randomWithRange(-1, 3), posZ + offsetZ + WyMathHelper.randomWithRange(-7, 7), 0.0D, 0.1D, 0.0D);
 		}	
 	}
 

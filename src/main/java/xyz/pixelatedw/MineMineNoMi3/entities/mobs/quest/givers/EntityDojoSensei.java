@@ -48,13 +48,13 @@ public class EntityDojoSensei extends EntityNewMob implements IQuestGiver
 	{
 		super.applyEntityAttributes(); 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(12.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(150.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(150.0D);
 		
-		this.setDoriki(50 + this.worldObj.rand.nextInt(5));
-		this.setBelly(10 + this.worldObj.rand.nextInt(50));
+		this.setDoriki(50 + this.world.rand.nextInt(5));
+		this.setBelly(10 + this.world.rand.nextInt(50));
 
-		if(!this.worldObj.isRemote)
+		if(!this.world.isRemote)
 		{
 			Item[] randomSword = new Item[] {ListMisc.NidaiKitetsu, ListMisc.SandaiKitetsu, ListMisc.Shusui, ListMisc.Jitte, ListMisc.Kikoku, ListMisc.WadoIchimonji};
 

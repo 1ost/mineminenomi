@@ -65,7 +65,7 @@ public class ItemsHelper
     	{
     		ItemStack stack = new ItemStack(ListMisc.WantedPoster);
 	    	stack.setTagCompound(setWantedData(x.getKey(), x.getValue()));
-	    	world.spawnEntityInWorld(new EntityItem(world, posX, posY + 1, posZ, stack));
+	    	world.spawnEntity(new EntityItem(world, posX, posY + 1, posZ, stack));
     	});
 	}
 	
@@ -121,7 +121,7 @@ public class ItemsHelper
 			return true;
 
 		Multimap multimap = itemStack.getAttributeModifiers();
-		if (multimap.containsKey(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName()))
+		if (multimap.containsKey(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName()))
 			return true;
 		
 		return false;

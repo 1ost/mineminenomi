@@ -14,7 +14,7 @@ public class ParticleEffectFlash extends ParticleEffect
 	public void spawn(EntityPlayer player, double posX, double posY, double posZ)
 	{
 		MainMod.proxy.spawnCustomParticles(player, 
-				new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_PIKA,
+				new EntityParticleFX(player.world, ID.PARTICLE_ICON_PIKA,
 						posX,
 						posY + 3.5,
 						posZ,

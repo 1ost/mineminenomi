@@ -2,7 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -42,7 +42,7 @@ public class EventsDrops
 	@SubscribeEvent	
 	public void onBreak(BreakEvent event)
 	{
-		if(MainConfig.enableDFtoDrop && (event.block == Blocks.leaves || event.block == Blocks.leaves2))
+		if(MainConfig.enableDFtoDrop && (event.block == Blocks.LEAVES || event.block == Blocks.LEAVES2))
 		{
 			Random rand = new Random();
 			double chance = rand.nextInt(99) + rand.nextDouble();
@@ -81,9 +81,9 @@ public class EventsDrops
 	@SubscribeEvent
 	public void onLivingDeath(LivingDeathEvent event)
 	{
-		if(event.entityLiving instanceof EntityPlayer)
+		if(event.getEntityLiving() instanceof EntityPlayer)
 		{	
-			EntityPlayer player = ((EntityPlayer)event.entityLiving);
+			EntityPlayer player = ((EntityPlayer)event.getEntityLiving());
 
 			WyHelper.removeStackFromInventory(player, new ItemStack(ListMisc.CharacterCreator));
 		}

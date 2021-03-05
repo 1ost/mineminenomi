@@ -30,7 +30,7 @@ public class ChiyuAbilities
 			{
 				for(EntityLivingBase entity : WyHelper.getEntitiesNear(player, 20))
 				{
-					entity.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
+					entity.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 200, 0));
 				}
 				WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_CHIYUPOPO, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 				
@@ -49,7 +49,7 @@ public class ChiyuAbilities
 		public void hitEntity(EntityPlayer player, EntityLivingBase target) 
 		{
 			target.setHealth(target.getHealth() + 20);
-			target.addPotionEffect(new PotionEffect(Potion.regeneration.id, 400, 1));
+			target.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 400, 1));
 			
 			super.hitEntity(player, target);
 			

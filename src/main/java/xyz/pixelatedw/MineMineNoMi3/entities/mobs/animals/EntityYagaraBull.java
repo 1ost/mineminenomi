@@ -17,7 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.EnumParticleTypes;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -52,8 +52,8 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.01D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
 	}
 
 	@Override
@@ -72,10 +72,10 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 
 		AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(this.boundingBox.minX, this.boundingBox.minY + 0.9, this.boundingBox.minZ, this.boundingBox.maxX, this.boundingBox.maxY, this.boundingBox.maxZ);
 
-		if (this.worldObj.isAABBInMaterial(aabb, Material.water))
+		if (this.world.isAABBInMaterial(aabb, Material.WATER))
 			this.motionY += 0.03;
 		
-		if (!this.worldObj.isRemote)
+		if (!this.world.isRemote)
 		{
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 			{
@@ -87,22 +87,22 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 			
 			for (int l = 0; l < 4; ++l)
             {
-                int i1 = MathHelper.floor_double(this.posX + (l % 2 - 0.5D) * 1.4D);
-                int j = MathHelper.floor_double(this.posZ + (l / 2 - 0.5D) * 1.4D);
+                int i1 = MathHelper.floor(this.posX + (l % 2 - 0.5D) * 1.4D);
+                int j = MathHelper.floor(this.posZ + (l / 2 - 0.5D) * 1.4D);
 
                 for (int j1 = 0; j1 < 2; ++j1)
                 {
-                    int k = MathHelper.floor_double(this.posY) + j1;
-                    Block block = this.worldObj.getBlock(i1, k, j);
+                    int k = MathHelper.floor(this.posY) + j1;
+                    Block block = this.world.getBlock(i1, k, j);
 
-                    if (block == Blocks.snow_layer)
+                    if (block == Blocks.SNOW_LAYER)
                     {
-                        this.worldObj.setBlockToAir(i1, k, j);
+                        this.world.setBlockToAir(i1, k, j);
                         this.isCollidedHorizontally = false;
                     }
-                    else if (block == Blocks.waterlily)
+                    else if (block == Blocks.WATERLILY)
                     {
-                        this.worldObj.func_147480_a(i1, k, j, true);
+                        this.world.func_147480_a(i1, k, j, true);
                         this.isCollidedHorizontally = false;
                     }
                 }
@@ -140,7 +140,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 				double d0 = this.rand.nextGaussian() * 0.02D;
 				double d1 = this.rand.nextGaussian() * 0.02D;
 				double d2 = this.rand.nextGaussian() * 0.02D;
-				this.worldObj.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
+				this.world.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 			}
 			this.timesFed++;
 				
@@ -152,7 +152,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 					double d0 = this.rand.nextGaussian() * 0.03D;
 					double d1 = this.rand.nextGaussian() * 0.03D;
 					double d2 = this.rand.nextGaussian() * 0.03D;
-					this.worldObj.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
+					this.world.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 				}
 				this.updateNBT();
 			}
@@ -181,7 +181,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 					return true;
 				else
 				{
-					if (!this.worldObj.isRemote)
+					if (!this.world.isRemote)
 					{
 				        player.rotationYaw = this.rotationYaw;
 				        player.rotationPitch = this.rotationPitch;
@@ -210,7 +210,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 				y *= 0.25F;
 			}
 
-			if (!this.worldObj.isRemote)
+			if (!this.world.isRemote)
 				super.moveEntityWithHeading(x, y);
 		}
 		else
@@ -287,7 +287,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 		if (!WyHelper.isNullOrEmpty(uuid))
 		{
 			this.ownerUUID = UUID.fromString(uuid);
-			this.owner = this.worldObj.func_152378_a(this.ownerUUID);
+			this.owner = this.world.func_152378_a(this.ownerUUID);
 			this.isTamed = true;
 		}
 	}

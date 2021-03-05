@@ -12,8 +12,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -26,7 +28,7 @@ import xyz.pixelatedw.MineMineNoMi3.packets.PacketParticles;
 public class AbilityExplosion
 {
 
-	private World worldObj;
+	private World world;
 	private Entity exploder;
 	private double explosionX;
 	private double explosionY;
@@ -46,7 +48,7 @@ public class AbilityExplosion
 	
 	public AbilityExplosion(Entity entity, double posX, double posY, double posZ, double power)
 	{
-		this.worldObj = entity.worldObj;
+		this.world = entity.world;
 		this.exploder = entity;
 		this.explosionSize = power;
 		this.explosionX = posX;
@@ -118,21 +120,21 @@ public class AbilityExplosion
 						d0 /= d3;
 						d1 /= d3;
 						d2 /= d3;
-						double f1 = this.explosionSize * (0.7F + this.worldObj.rand.nextDouble() * 0.6F);
+						double f1 = this.explosionSize * (0.7F + this.world.rand.nextDouble() * 0.6F);
 						newExplosionPosX = this.explosionX;
 						newExplosionPosY = this.explosionY;
 						newExplosionPosZ = this.explosionZ;
 
 						for (float f2 = 0.3F; f1 > 0.0F; f1 -= f2 * 0.75F)
 						{
-							int j1 = MathHelper.floor_double(newExplosionPosX);
-							int k1 = MathHelper.floor_double(newExplosionPosY);
-							int l1 = MathHelper.floor_double(newExplosionPosZ);
-							Block block = this.worldObj.getBlock(j1, k1, l1);
+							int j1 = MathHelper.floor(newExplosionPosX);
+							int k1 = MathHelper.floor(newExplosionPosY);
+							int l1 = MathHelper.floor(newExplosionPosZ);
+							Block block = (Block) this.world.getBlockState(new BlockPos(j1, k1, l1));
 
-							if (block.getMaterial() != Material.air)
+							if (block.getMaterial() != Material.AIR)
 							{
-								float f3 = (float) (block.getExplosionResistance(this.exploder, worldObj, j1, k1, l1, explosionX, explosionY, explosionZ) / 1.25);
+								float f3 = (float) (block.getExplosionResistance(this.exploder, world, j1, k1, l1, explosionX, explosionY, explosionZ) / 1.25);
 								f1 -= (f3 + 0.1F) * f2;
 							}
 
@@ -157,11 +159,11 @@ public class AbilityExplosion
 		Block block;
 
 		if(this.canProduceExplosionSound)
-			this.worldObj.playSoundEffect(this.explosionX, this.explosionY, this.explosionZ, "random.explode", 4.0F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
+			this.world.playSoundEffect(this.explosionX, this.explosionY, this.explosionZ, "random.explode", 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
 		
 		if (this.canDamageEntities)
 		{
-			for (EntityLivingBase entity : WyHelper.getEntitiesNear((int) this.explosionX, (int) this.explosionY, (int) this.explosionZ, this.worldObj, this.explosionSize * 1.5, EntityLivingBase.class))
+			for (EntityLivingBase entity : WyHelper.getEntitiesNear((int) this.explosionX, (int) this.explosionY, (int) this.explosionZ, this.world, this.explosionSize * 1.5, EntityLivingBase.class))
 			{
 				if (!canDamageOwner && entity == this.exploder)
 					continue;
@@ -172,7 +174,7 @@ public class AbilityExplosion
 
 				Vec3 vec3 = Vec3.createVectorHelper(this.explosionX, this.explosionY, this.explosionZ);
 				double d4 = entity.getDistance(this.explosionX, this.explosionY, this.explosionZ) / this.explosionSize;
-				double d10 = this.worldObj.getBlockDensity(vec3, entity.boundingBox);
+				double d10 = this.world.getBlockDensity(vec3, entity.boundingBox);
                 double d11 = (1.0D - d4) * d10;
                 float damage = ((int)((d11 * d11 + d11) / 2.0D * 8.0D * this.explosionSize + 1.0D));
 
@@ -201,12 +203,12 @@ public class AbilityExplosion
 				posX = chunkposition.chunkPosX;
 				posY = chunkposition.chunkPosY;
 				posZ = chunkposition.chunkPosZ;
-				block = this.worldObj.getBlock(posX, posY, posZ);
+				block = this.world.getBlock(posX, posY, posZ);
 
-				if (block != null && block.getMaterial() != Material.air) //&& block != ListMisc.KairosekiOre && block != ListMisc.KairosekiBlock)
+				if (block != null && block.getMaterial() != Material.AIR) //&& block != ListMisc.KairosekiOre && block != ListMisc.KairosekiBlock)
 				{
-					block.dropBlockAsItemWithChance(this.worldObj, posX, posY, posZ, this.worldObj.getBlockMetadata(posX, posY, posZ), 0, 0);
-					this.worldObj.setBlockToAir(posX, posY, posZ);
+					block.dropBlockAsItemWithChance(this.world, posX, posY, posZ, this.world.getBlockMetadata(posX, posY, posZ), 0, 0);
+					this.world.setBlockToAir(posX, posY, posZ);
 				}
 			}			
 		}
@@ -224,12 +226,12 @@ public class AbilityExplosion
 				posX = chunkposition.chunkPosX;
 				posY = chunkposition.chunkPosY;
 				posZ = chunkposition.chunkPosZ;
-				block = this.worldObj.getBlock(posX, posY, posZ);
-				Block blockUnder = this.worldObj.getBlock(posX, posY - 1, posZ);
+				block = this.world.getBlock(posX, posY, posZ);
+				Block blockUnder = this.world.getBlock(posX, posY - 1, posZ);
 
-				if (block.getMaterial() == Material.air && blockUnder.func_149730_j() && this.worldObj.rand.nextInt(3) == 0)
+				if (block.getMaterial() == Material.AIR && blockUnder.func_149730_j() && this.world.rand.nextInt(3) == 0)
 				{
-					this.worldObj.setBlock(posX, posY, posZ, Blocks.fire);
+					this.world.setBlock(posX, posY, posZ, Blocks.fire);
 				}
 			}
 		}

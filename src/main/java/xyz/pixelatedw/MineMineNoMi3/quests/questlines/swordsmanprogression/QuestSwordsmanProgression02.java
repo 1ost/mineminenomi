@@ -48,7 +48,7 @@ public class QuestSwordsmanProgression02 extends Quest implements ITimedQuest, I
 		WyHelper.sendMsgToPlayer(player, I18n.format("quest." + this.getQuestID() + ".started"));	
 		
 		this.extraData = new NBTTagCompound();	
-		this.extraData.setLong("currentDays", (int) (player.worldObj.getWorldTime()));
+		this.extraData.setLong("currentDays", (int) (player.world.getWorldTime()));
 
 		super.startQuest(player);
 	}
@@ -56,7 +56,7 @@ public class QuestSwordsmanProgression02 extends Quest implements ITimedQuest, I
 	@Override
 	public void finishQuest(EntityPlayer player)
 	{
-		boolean extraDays = (int) (player.worldObj.getWorldTime()) >= (this.extraData.getLong("currentDays") + 72000) ;
+		boolean extraDays = (int) (player.world.getWorldTime()) >= (this.extraData.getLong("currentDays") + 72000) ;
 		
 		WyHelper.sendMsgToPlayer(player, I18n.format("quest." + this.getQuestID() + ".completed"));	
 
@@ -80,7 +80,7 @@ public class QuestSwordsmanProgression02 extends Quest implements ITimedQuest, I
 		if(flag1)
 			return false;
 		
-		if(!player.worldObj.isDaytime())
+		if(!player.world.isDaytime())
 		{
 			WyHelper.sendMsgToPlayer(player, "<Swordsman Master> There is no point in starting this trial now it's too late, come back in the morning and we'll talk then.");
 			return false;
@@ -100,7 +100,7 @@ public class QuestSwordsmanProgression02 extends Quest implements ITimedQuest, I
 	{	
 		try
 		{
-			if((int) (player.worldObj.getWorldTime()) >= (this.extraData.getLong("currentDays") + 24000)) 
+			if((int) (player.world.getWorldTime()) >= (this.extraData.getLong("currentDays") + 24000)) 
 				return true;
 		}
 		catch(Exception e)
@@ -109,7 +109,7 @@ public class QuestSwordsmanProgression02 extends Quest implements ITimedQuest, I
 			System.err.println("Checking different objects to check for nulls \n"
 					+ "Extra Data, Stored as NBT - " + this.extraData + "\n"
 					+ "Player - " + player.getDisplayName() + "\n"
-					+ "Logic done on - " + (player.worldObj.isRemote ? "Client" : "Server") + "\n");
+					+ "Logic done on - " + (player.world.isRemote ? "Client" : "Server") + "\n");
 			e.printStackTrace();
 			return true;
 		}
@@ -148,7 +148,7 @@ public class QuestSwordsmanProgression02 extends Quest implements ITimedQuest, I
 	public void onTimePassEvent(EntityPlayer player)
 	{
 		if(!this.isFinished(player))
-			this.setProgress(player, player.worldObj.getWorldTime() - this.extraData.getLong("currentDays") );
+			this.setProgress(player, player.world.getWorldTime() - this.extraData.getLong("currentDays") );
 	}
 
 }

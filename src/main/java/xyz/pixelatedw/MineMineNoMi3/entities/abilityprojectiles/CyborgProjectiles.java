@@ -3,7 +3,6 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -43,7 +42,7 @@ public class CyborgProjectiles
 			super(world, player, attr);		
 		}
 		
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null)
 			{
@@ -66,7 +65,7 @@ public class CyborgProjectiles
 		
 		public void onUpdate()
 		{				
-			this.worldObj.spawnParticle(EnumParticleTypes.CRIT_MAGIC.getParticleName(), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);			
+			this.world.spawnParticle(EnumParticleTypes.CRIT_MAGIC.getParticleName(), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);			
 			super.onUpdate();
 		}
 	}
@@ -99,7 +98,7 @@ public class CyborgProjectiles
 			super(world, player, attr);		
 		}
 		
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null)
 				hit.entityHit.setFire(this.ticks);
@@ -107,9 +106,9 @@ public class CyborgProjectiles
 		
 		public void onUpdate()
 		{			
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
-				EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_MERA, 
+				EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MERA, 
 						posX, 
 						posY + 0.5, 
 						posZ, 

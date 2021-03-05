@@ -58,7 +58,7 @@ public class GuraAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{			
-			this.projectile = new GuraProjectiles.Kaishin(player.worldObj, player, attr);
+			this.projectile = new GuraProjectiles.Kaishin(player.world, player, attr);
 			super.use(player);
 		} 
 	}
@@ -87,17 +87,17 @@ public class GuraAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{	
-			this.projectile = new GuraProjectiles.ShimaYurashi(player.worldObj, player, attr);
+			this.projectile = new GuraProjectiles.ShimaYurashi(player.world, player, attr);
 			
 			/*for(int[] loc : WyHelper.getBlockLocationsNearby(player, 5))
 			{
-				Block block = player.worldObj.getBlock(loc[0], loc[1], loc[2]);
-                EntityFallingBlock entityfallingblock = new EntityFallingBlock(player.worldObj, (double)((float)loc[0] + 0.5F), (double)((float)loc[1] + 0.5F), (double)((float)loc[2] + 1.5F), block, player.worldObj.getBlockMetadata(loc[0], loc[1], loc[2]));
+				Block block = player.world.getBlock(loc[0], loc[1], loc[2]);
+                EntityFallingBlock entityfallingblock = new EntityFallingBlock(player.world, (double)((float)loc[0] + 0.5F), (double)((float)loc[1] + 0.5F), (double)((float)loc[2] + 1.5F), block, player.world.getBlockMetadata(loc[0], loc[1], loc[2]));
                
                 entityfallingblock.motionY = 0.5;
                 entityfallingblock.motionZ = 1;
                 
-                player.worldObj.spawnEntityInWorld(entityfallingblock);
+                player.world.spawnEntity(entityfallingblock);
 			}*/
 			
 			super.use(player);

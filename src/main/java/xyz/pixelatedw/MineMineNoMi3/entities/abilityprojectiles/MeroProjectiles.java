@@ -3,7 +3,6 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -39,7 +38,7 @@ public class MeroProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -52,11 +51,11 @@ public class MeroProjectiles
 		@Override
 		public void onUpdate()
 		{		
-			if(this.worldObj.isRemote && this.ticksExisted > 5)
+			if(this.world.isRemote && this.ticksExisted > 5)
 			{		
 				for(int i = 0; i < DevilFruitsHelper.getParticleSettingModifier(2); i++)
 				{
-					EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_MERO, 
+					EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MERO,
 							posX, 
 							posY, 
 							posZ, 
@@ -83,7 +82,7 @@ public class MeroProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{
@@ -108,7 +107,7 @@ public class MeroProjectiles
 		}
 		
 		@Override
-		public void tasksImapct(MovingObjectPosition hit)
+		public void tasksImapct(RayTraceResult hit)
 		{
 			if(hit.entityHit != null && hit.entityHit instanceof EntityLivingBase)
 			{

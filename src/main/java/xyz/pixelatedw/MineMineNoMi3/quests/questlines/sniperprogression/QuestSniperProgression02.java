@@ -104,7 +104,7 @@ public class QuestSniperProgression02 extends Quest implements IProgressionQuest
 	@Override
 	public boolean isTarget(EntityPlayer player, EntityLivingBase target)
 	{
-		BiomeGenBase biome = player.worldObj.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
+		BiomeGenBase biome = player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
 		ItemStack heldItem = player.getHeldItem();
 		
 		boolean flagMob = target instanceof EntityMob;

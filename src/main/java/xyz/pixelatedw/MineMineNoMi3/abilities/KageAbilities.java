@@ -5,7 +5,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.MovingObjectPosition;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
@@ -42,7 +41,7 @@ public class KageAbilities
 
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new KageProjectiles.BrickBat(player.worldObj, player, attr);
+			this.projectile = new KageProjectiles.BrickBat(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -100,9 +99,9 @@ public class KageAbilities
 		
 		public void startPassive(EntityPlayer player)
 		{
-			doppelman = new EntityDoppelman(player.worldObj, player);
+			doppelman = new EntityDoppelman(player.world, player);
 			doppelman.setPositionAndRotation(player.posX, player.posY, player.posZ, 180, 0);
-			player.worldObj.spawnEntityInWorld(doppelman);
+			player.world.spawnEntity(doppelman);
 		}
 
 		public void endPassive(EntityPlayer player)
@@ -125,7 +124,7 @@ public class KageAbilities
 
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new KageProjectiles.BlackBox(player.worldObj, player, attr);
+			this.projectile = new KageProjectiles.BlackBox(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -141,7 +140,7 @@ public class KageAbilities
 		{
 			if (!this.isOnCooldown)
 			{
-				MovingObjectPosition mop = WyHelper.rayTraceBlocks(player);
+				RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 
 				if (mop != null)
 				{
@@ -149,12 +148,12 @@ public class KageAbilities
 					double j = mop.blockY;
 					double k = mop.blockZ;
 
-					TsunotokagePillar pillar = new TsunotokagePillar(player.worldObj, player, ListExtraAttributes.TSUNOTOKAGE_PILLAR);
+					TsunotokagePillar pillar = new TsunotokagePillar(player.world, player, ListExtraAttributes.TSUNOTOKAGE_PILLAR);
 					pillar.setLocationAndAngles(i, j + 1, k, 0, 0);
 					pillar.motionX = 0;
 					pillar.motionZ = 0;
 					pillar.motionY = 0.7;
-					player.worldObj.spawnEntityInWorld(pillar);
+					player.world.spawnEntity(pillar);
 				}
 
 				super.use(player);

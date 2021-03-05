@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -14,14 +14,14 @@ public class EventsOneDevilFruit
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.entity instanceof EntityPlayer)
+		if (event.getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entity;
+			EntityPlayer player = (EntityPlayer) event.getEntity();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 
 			if(props.hasDevilFruit())
 			{
-				ExtendedWorldData worldData = ExtendedWorldData.get(player.worldObj);				
+				ExtendedWorldData worldData = ExtendedWorldData.get(player.world);				
 				worldData.removeDevilFruitFromWorld(props.getUsedFruit());
 			}
 		}	
@@ -32,7 +32,7 @@ public class EventsOneDevilFruit
 	{
 		if(event.entityItem.getEntityItem().getItem() instanceof AkumaNoMi)
 		{
-			ExtendedWorldData worldData = ExtendedWorldData.get(event.entity.worldObj);				
+			ExtendedWorldData worldData = ExtendedWorldData.get(event.entity.world);
 			
 			worldData.removeDevilFruitFromWorld((AkumaNoMi) event.entityItem.getEntityItem().getItem());
 		}

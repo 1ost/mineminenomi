@@ -14,12 +14,12 @@ public class ParticleEffectDarkMatter extends ParticleEffect
 	public void spawn(EntityPlayer player, double posX, double posY, double posZ)
 	{
 		Timer timer = new Timer(true); 
-		EntityParticleFX particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_DARKNESS, 
+		EntityParticleFX particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_DARKNESS,
 				posX, 
 				posY + 1, 
 				posZ, 
 				0, 0, 0)
-				.setParticleGravity(-1.25f + player.worldObj.rand.nextFloat()).setParticleScale(player.worldObj.rand.nextInt(3) + 1);
+				.setParticleGravity(-1.25f + player.world.rand.nextFloat()).setParticleScale(player.world.rand.nextInt(3) + 1);
 		timer.schedule(ParticleTaskTornado.Create(player, posX, posY, posZ, particle, 8.0, 2, 0.15, 0.5), 0);
 	}
 

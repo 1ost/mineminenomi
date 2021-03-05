@@ -17,18 +17,18 @@ public class ParticleEffectChloroBall extends ParticleEffect
 	{	
 		for (int i = 0; i < 256; i++)
 		{
-	        double motionX = WyMathHelper.randomWithRange(-7, 7) + player.worldObj.rand.nextDouble();
-	        double motionY = WyMathHelper.randomWithRange(-7, 7) + player.worldObj.rand.nextDouble();
-	        double motionZ = WyMathHelper.randomWithRange(-7, 7) + player.worldObj.rand.nextDouble();
+	        double motionX = WyMathHelper.randomWithRange(-7, 7) + player.world.rand.nextDouble();
+	        double motionY = WyMathHelper.randomWithRange(-7, 7) + player.world.rand.nextDouble();
+	        double motionZ = WyMathHelper.randomWithRange(-7, 7) + player.world.rand.nextDouble();
 	        
             double middlePoint = 0.05;
-            middlePoint *= (double)(player.worldObj.rand.nextFloat() * player.worldObj.rand.nextFloat() + 2.2F);
+            middlePoint *= (double)(player.world.rand.nextFloat() * player.world.rand.nextFloat() + 2.2F);
 	        
 	        motionX *= middlePoint / 2;
 	        motionY *= middlePoint / 2;
 	        motionZ *= middlePoint / 2;
 			
-			MainMod.proxy.spawnCustomParticles(player, new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_DOKU,
+			MainMod.proxy.spawnCustomParticles(player, new EntityParticleFX(player.world, ID.PARTICLE_ICON_DOKU,
 					posX,
 					posY + 1,
 					posZ,

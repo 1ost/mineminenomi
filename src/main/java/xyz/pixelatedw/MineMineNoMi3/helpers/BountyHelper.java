@@ -10,12 +10,12 @@ public class BountyHelper
 
 	public static boolean issueBountyForPlayer(EntityPlayer player)
 	{
-		ExtendedWorldData worldData = ExtendedWorldData.get(player.worldObj);
+		ExtendedWorldData worldData = ExtendedWorldData.get(player.world);
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		
 		if((props.isPirate() || props.isRevolutionary()) && props.getBounty() > 1000)
 		{
-			worldData.issueBounty(player.getCommandSenderName(), props.getBounty());		
+			worldData.issueBounty(player.getCommandSenderEntity().getName(), props.getBounty());
 			return true;
 		}
 		

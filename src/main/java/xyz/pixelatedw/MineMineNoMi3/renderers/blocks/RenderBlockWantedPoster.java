@@ -4,15 +4,15 @@ import java.text.DecimalFormat;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.ResourceLocation;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -175,7 +175,7 @@ public class RenderBlockWantedPoster extends TileEntitySpecialRenderer
 				String name = te2.getEntityName();
 				if(name.length() > 13)
 					name = name.substring(0, 10) + "...";			
-				Minecraft.getMinecraft().fontRenderer.drawString(EnumChatFormatting.BOLD + name, 3 - Minecraft.getMinecraft().fontRenderer.getStringWidth(name) / 2, 0, WyHelper.hexToRGB("513413").getRGB());
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + name, 3 - Minecraft.getMinecraft().fontRenderer.getStringWidth(name) / 2, 0, WyHelper.hexToRGB("513413").getRGB());
 				
 				GL11.glScalef(1.2F, 1.2F, 1.2F);
 				DecimalFormat decimalFormat = new DecimalFormat("#,##0");
@@ -202,12 +202,12 @@ public class RenderBlockWantedPoster extends TileEntitySpecialRenderer
 					GL11.glScaled(.72, 0.89, 1.005);	
 					GL11.glTranslated(-128, -128, -512);
 				}
-				Minecraft.getMinecraft().fontRenderer.drawString(EnumChatFormatting.BOLD + bounty, -20, 13, WyHelper.hexToRGB("#513413").getRGB());
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + bounty, -20, 13, WyHelper.hexToRGB("#513413").getRGB());
 				if(flag)
 					GL11.glPopMatrix();
 				
 				GL11.glScalef(0.7F, 0.9F, 0.8F);
-				Minecraft.getMinecraft().fontRenderer.drawString(EnumChatFormatting.BOLD + te2.getIssuedDate(), -40, 30, WyHelper.hexToRGB("#513413").getRGB());
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + te2.getIssuedDate(), -40, 30, WyHelper.hexToRGB("#513413").getRGB());
 			}
 			GL11.glPopMatrix();
 			

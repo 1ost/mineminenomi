@@ -83,7 +83,7 @@ public enum EnumParticleTypes
         return BY_NAME.keySet();
     }
 
-    public String getParticleName()
+    public net.minecraft.util.EnumParticleTypes getParticleName()
     {
         return this.particleName;
     }

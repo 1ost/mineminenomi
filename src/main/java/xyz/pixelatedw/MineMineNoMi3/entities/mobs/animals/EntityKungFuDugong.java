@@ -61,15 +61,15 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
 	}
 
 	@Override
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		if (!this.worldObj.isRemote)
+		if (!this.world.isRemote)
 		{
 			boolean flagOwner = this.getOwner() != null && this.getDistanceToEntity(this.getOwner()) < 10;
 			boolean flagTamed = this.isTamed();
@@ -120,7 +120,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 		NBTTagCompound nbtClone = new NBTTagCompound();
 		this.writeEntityToNBT(nbtClone);
 
-		if (!this.worldObj.isRemote)
+		if (!this.world.isRemote)
 			WyNetworkHelper.sendToAll(new PacketEntityNBTSync(this.getEntityId(), nbtClone));
 	}
 
@@ -158,7 +158,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 		if (!WyHelper.isNullOrEmpty(uuid))
 		{
 			this.ownerUUID = UUID.fromString(uuid);
-			this.owner = this.worldObj.func_152378_a(this.ownerUUID);
+			this.owner = this.world.func_152378_a(this.ownerUUID);
 			this.isTamed = true;
 		}
 	}
@@ -176,7 +176,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 		if (entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
-			IAttributeInstance attackDamage = this.getEntityAttribute(SharedMonsterAttributes.attackDamage);
+			IAttributeInstance attackDamage = this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 			UUID rageModeUUID = UUID.fromString("d760dc58-8275-4ef6-ae34-d197a879c099");
 			AttributeModifier attributeModifier = new AttributeModifier(rageModeUUID, "Rage Mode", 8, 0);
 
@@ -224,7 +224,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 						double d0 = this.rand.nextGaussian() * 0.02D;
 						double d1 = this.rand.nextGaussian() * 0.02D;
 						double d2 = this.rand.nextGaussian() * 0.02D;
-						this.worldObj.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
+						this.world.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 					}
 					return true;
 				}

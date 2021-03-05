@@ -18,7 +18,7 @@ public class ParticleEffectAboveHead extends ParticleEffect
 	@Override
 	public void spawn(EntityPlayer player, double posX, double posY, double posZ)
 	{
-		Random rand = player.worldObj.rand;
+		Random rand = player.world.rand;
 		for (int i = 0; i < 5; ++i)
 		{
 			double locX = posX + WyMathHelper.randomDouble();
@@ -30,7 +30,7 @@ public class ParticleEffectAboveHead extends ParticleEffect
 			double motionZ = rand.nextGaussian() * 0.02D;
 			
 			
-			player.worldObj.spawnParticle(this.particle, locX, locY, locZ, motionX, motionY, motionZ);
+			player.world.spawnParticle(this.particle, locX, locY, locZ, motionX, motionY, motionZ);
 		}
 	}
 

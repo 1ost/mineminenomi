@@ -25,9 +25,9 @@ public class DialMilky extends Item
 		{
 	    	if(!player.isSneaking())
 	    	{
-	    		MilkyDialProjectile proj = new MilkyDialProjectile(player.worldObj, player, ListExtraAttributes.DIAL_MILKY);
+	    		MilkyDialProjectile proj = new MilkyDialProjectile(player.world, player, ListExtraAttributes.DIAL_MILKY);
 				
-	    		world.spawnEntityInWorld(proj);
+	    		world.spawnEntity(proj);
 				
 		    	if(!player.capabilities.isCreativeMode)
 		    		WyTelemetry.addMiscStat("milkyDialsUsed", "Milky Dials Used", 1);

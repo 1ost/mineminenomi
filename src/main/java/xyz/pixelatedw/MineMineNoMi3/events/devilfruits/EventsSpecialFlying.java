@@ -2,7 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
 import java.util.Arrays;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
@@ -24,9 +24,9 @@ public class EventsSpecialFlying
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer)
+		if (event.getEntityLiving() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 
@@ -42,7 +42,7 @@ public class EventsSpecialFlying
 			
 			if(!player.capabilities.isCreativeMode)
 			{
-				if(!event.entityLiving.worldObj.isRemote)
+				if(!event.getEntityLiving().world.isRemote)
 				{
 					if((MainConfig.enableSpecialFlying && hasFlyingFruit && !DevilFruitsHelper.isNearbyKairoseki(player)) || hasToriFruit || hasAbareHimatsuri)		
 					{
@@ -53,7 +53,7 @@ public class EventsSpecialFlying
 						WyNetworkHelper.sendTo(new PacketSpecialFlying(false), (EntityPlayerMP) player);
 				}
 			
-				if(player.capabilities.isFlying && player.worldObj.isRemote)
+				if(player.capabilities.isFlying && player.world.isRemote)
 				{
 					double extraOffset = 0;
 					
@@ -74,12 +74,12 @@ public class EventsSpecialFlying
 					{
 						for (int i = 0; i < 5; i++)
 						{							
-							double offsetX = 0.5 - player.worldObj.rand.nextDouble();
-							double offsetY = player.worldObj.rand.nextDouble();
-							double offsetZ = 0.5 - player.worldObj.rand.nextDouble();
+							double offsetX = 0.5 - player.world.rand.nextDouble();
+							double offsetY = player.world.rand.nextDouble();
+							double offsetZ = 0.5 - player.world.rand.nextDouble();
 							
 							MainMod.proxy.spawnCustomParticles(player, 
-									new EntityParticleFX(player.worldObj, particleToUse, 
+									new EntityParticleFX(player.world, particleToUse, 
 											player.posX + offsetX, 
 											player.posY - 2 + offsetY + extraOffset, 
 											player.posZ + offsetZ, 

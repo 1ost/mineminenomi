@@ -8,8 +8,8 @@ import static net.minecraftforge.common.util.ForgeDirection.WEST;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
@@ -38,7 +38,7 @@ public class BlockCustomBars extends BlockPane
 
 	public BlockCustomBars(String mainIcon, String topIcon)
 	{
-		super(topIcon, topIcon, Material.iron, true);
+		super(topIcon, topIcon, Material.IRON, true);
 		this.field_150099_b = true;
 		this.topIcon = topIcon;
 		this.mainIcon = mainIcon;

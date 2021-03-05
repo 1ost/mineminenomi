@@ -27,7 +27,7 @@ public class GoeAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new GoeProjectiles.Todoroki(player.worldObj, player, attr);
+			this.projectile = new GoeProjectiles.Todoroki(player.world, player, attr);
 			super.use(player);
 		} 
 	}

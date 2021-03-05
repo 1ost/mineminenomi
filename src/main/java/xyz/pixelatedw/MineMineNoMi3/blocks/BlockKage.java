@@ -26,7 +26,7 @@ public class BlockKage extends Block
 	
 	public BlockKage()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setTickRandomly(true);
 	} 
 
@@ -70,14 +70,14 @@ public class BlockKage extends Block
     
     public void updateTick(World world, int x, int y, int z, Random rand) 
     {
-    	if(world.getBlock(x, y - 1, z) == Blocks.air || world.getBlock(x, y - 1, z) instanceof BlockBush)
-    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.air)));
+    	if(world.getBlock(x, y - 1, z) == Blocks.AIR || world.getBlock(x, y - 1, z) instanceof BlockBush)
+    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.AIR)));
 
     	if(ticks > 0)
     		ticks--;
     	else
     	{
-    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.air)));
+    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.AIR)));
     		ticks = 500 + rand.nextInt(10);
     	}
     	

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper.Direction;
@@ -60,7 +60,7 @@ public class SukeAbilities
 		
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new SukeProjectiles.ShishaNoTe(player.worldObj, player, attr);
+			this.projectile = new SukeProjectiles.ShishaNoTe(player.world, player, attr);
 			super.use(player);
 		} 
 	}

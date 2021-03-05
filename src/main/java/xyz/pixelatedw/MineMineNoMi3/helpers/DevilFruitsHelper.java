@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -76,29 +76,29 @@ public class DevilFruitsHelper
 		
 		map.put("core", Arrays.asList(new Block[]
 				{
-						Blocks.ice, Blocks.packed_ice, Blocks.stone, Blocks.grass, Blocks.dirt, Blocks.snow, Blocks.snow_layer, Blocks.sand, Blocks.sandstone, Blocks.sandstone_stairs, Blocks.wooden_door, 
-						Blocks.wooden_slab, Blocks.log, Blocks.log2, Blocks.carpet, Blocks.cake, ListMisc.Poison, ListMisc.DemonPoison, Blocks.torch, Blocks.redstone_torch, Blocks.redstone_wire, 
-						Blocks.cobblestone, Blocks.fence, Blocks.farmland, Blocks.fence_gate, Blocks.flower_pot, Blocks.clay, Blocks.gravel, ListMisc.SunaSand, ListMisc.WaxBlock
+						Blocks.ICE, Blocks.PACKED_ICE, Blocks.STONE, Blocks.GRASS, Blocks.DIRT, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SAND, Blocks.SANDSTONE, Blocks.SANDSTONE_STAIRS, Blocks.wooden_door,
+						Blocks.WOODEN_SLAB, Blocks.LOG, Blocks.LOG2, Blocks.CARPET,Blocks.CAKE, ListMisc.Poison, ListMisc.DemonPoison, Blocks.TORCH, Blocks.REDSTONE_TORCH, Blocks.REDSTONE_WIRE,
+						Blocks.COBBLESTONE, Blocks.fence, Blocks.FARMLAND, Blocks.fence_gate, Blocks.FLOWER_POT, Blocks.CLAY, Blocks.GRAVEL, ListMisc.SunaSand, ListMisc.WaxBlock
 				}));
 		
 		map.put("air", Arrays.asList(new Block[]
 				{
-						Blocks.air
+						Blocks.AIR
 				}));
 
 		map.put("foliage", Arrays.asList(new Block[]
 				{
-						Blocks.leaves, Blocks.leaves2, Blocks.waterlily, Blocks.double_plant, Blocks.yellow_flower, Blocks.red_flower, Blocks.vine, Blocks.brown_mushroom, Blocks.brown_mushroom_block, Blocks.red_mushroom, Blocks.red_mushroom_block, Blocks.tallgrass, Blocks.potatoes, Blocks.carrots, Blocks.cactus, Blocks.deadbush
+						Blocks.LEAVES, Blocks.LEAVES2, Blocks.WATERLILY, Blocks.DOUBLE_PLANT, Blocks.YELLOW_FLOWER, Blocks.RED_FLOWER, Blocks.VINE, Blocks.BROWN_MUSHROOM, Blocks.BROWN_MUSHROOM_BLOCK, Blocks.RED_MUSHROOM, Blocks.RED_MUSHROOM_BLOCK, Blocks.TALLGRASS, Blocks.POTATOES, Blocks.CARROTS, Blocks.CACTUS, Blocks.DEADBUSH
 				}));
 		
 		map.put("ores", Arrays.asList(new Block[]
 				{
-						Blocks.coal_ore, Blocks.coal_block, Blocks.diamond_ore, Blocks.diamond_block, Blocks.iron_ore, Blocks.iron_block, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.redstone_block, Blocks.gold_ore, Blocks.gold_block, ListMisc.KairosekiOre, ListMisc.KairosekiBlock
+						Blocks.COAL_ORE, Blocks.COAL_BLOCK, Blocks.DIAMOND_ORE, Blocks.DIAMOND_BLOCK, Blocks.IRON_ORE, Blocks.IRON_BLOCK, Blocks.LAPIS_ORE, Blocks.LAPIS_BLOCK, Blocks.REDSTONE_ORE, Blocks.REDSTONE_BLOCK, Blocks.GOLD_ORE, Blocks.GOLD_BLOCK, ListMisc.KairosekiOre, ListMisc.KairosekiBlock
 				}));
 
 		map.put("liquids", Arrays.asList(new Block[]
 				{
-						Blocks.water, Blocks.flowing_water, Blocks.lava, Blocks.flowing_lava
+						Blocks.WATER, Blocks.FLOWING_WATER, Blocks.LAVA, Blocks.FLOWING_LAVA
 				}));
 		
 		return map;
@@ -121,8 +121,8 @@ public class DevilFruitsHelper
 			}
 			else if(target instanceof EntityNewMob)
 				targetHakiExp = ((EntityNewMob) target).getDoriki();
-			else if(target.getEntityAttribute(SharedMonsterAttributes.attackDamage) != null)
-				targetHakiExp = target.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+			else if(target.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) != null)
+				targetHakiExp = target.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
 			
 			if(targetHakiExp < (userHakiExp / 1.5))
 			{
@@ -130,17 +130,17 @@ public class DevilFruitsHelper
 				if(duration > 2000)
 					duration = 2000;
 				
-				target.addPotionEffect(new PotionEffect(Potion.weakness.id, duration, 1));
-				target.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, duration, 1));
-				target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, duration, 5));
-				target.addPotionEffect(new PotionEffect(Potion.confusion.id, duration, 1));
-				target.addPotionEffect(new PotionEffect(Potion.jump.id, duration, -5));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(18), duration, 1));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(4), duration, 1));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), duration, 5));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(9), duration, 1));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(8), duration, -5));
 
 				if(targetHakiExp < (userHakiExp / 2))
 				{
-					target.addPotionEffect(new PotionEffect(Potion.blindness.id, duration, 1));
+					target.addPotionEffect(new PotionEffect(Potion.getPotionById(15), duration, 1));
 					target.addPotionEffect(new PotionEffect(Potion.hunger.id, duration, 1));
-					target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, duration, 500));
+					target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), duration, 500));
 					hasBlindness = true;
 					new DFEffectHaoHaki(target, duration + 200);
 				}
@@ -175,7 +175,7 @@ public class DevilFruitsHelper
 	public static void sendShounenScream(EntityPlayer player, String ability, int part)
 	{
 		if(MainConfig.enableAnimeScreaming)
-    		WyNetworkHelper.sendToAllAround(new PacketShounenScream(player.getCommandSenderName(), ability, part), player.dimension, player.posX, player.posY, player.posZ, 15);
+    		WyNetworkHelper.sendToAllAround(new PacketShounenScream(player.getCommandSenderEntity().getName(), ability, part), player.dimension, player.posX, player.posY, player.posZ, 15);
 	}
 
 	public static boolean canUseSwordsmanAbilities(EntityPlayer player)
@@ -193,7 +193,7 @@ public class DevilFruitsHelper
 	
 	public static boolean checkForRestriction(EntityPlayer player)
 	{
-		ExtendedWorldData worldData = ExtendedWorldData.get(player.worldObj);
+		ExtendedWorldData worldData = ExtendedWorldData.get(player.world);
 
 		if(worldData.isInsideRestrictedArea((int)player.posX, (int)player.posY, (int)player.posZ))
 		{
@@ -230,11 +230,11 @@ public class DevilFruitsHelper
 	
 	public static boolean isAffectedByWater(EntityLivingBase entity)
 	{
-		Block level1Block = entity.worldObj.getBlock((int) entity.posX, (int) entity.posY - 1, (int) entity.posZ);
-		Block level2Block = entity.worldObj.getBlock((int) entity.posX, (int) entity.posY - 2, (int) entity.posZ);
-		if(entity.isInsideOfMaterial(Material.water) ||
+		Block level1Block = entity.world.getBlock((int) entity.posX, (int) entity.posY - 1, (int) entity.posZ);
+		Block level2Block = entity.world.getBlock((int) entity.posX, (int) entity.posY - 2, (int) entity.posZ);
+		if(entity.isInsideOfMaterial(Material.WATER) ||
 				(entity.isWet() && !entity.isRiding() && 
-				((level1Block == Blocks.water || level1Block == Blocks.flowing_water) && (level2Block == Blocks.water || level2Block == Blocks.flowing_water)) ))
+				((level1Block == Blocks.WATER || level1Block == Blocks.FLOWING_WATER) && (level2Block == Blocks.WATER || level2Block == Blocks.FLOWING_WATER)) ))
 		{
 			return true;
 		}
@@ -461,7 +461,7 @@ public class DevilFruitsHelper
 			}
 			else if (rule.equalsIgnoreCase("restricted"))
 			{
-				bannedBlocks.remove(Blocks.bedrock);
+				bannedBlocks.remove(Blocks.BEDROCK);
 				bannedBlocks.remove(ListMisc.Ope);
 				bannedBlocks.remove(ListMisc.OpeMid);
 				bannedBlocks.remove(ListMisc.StringMid);
@@ -513,7 +513,7 @@ public class DevilFruitsHelper
 			for (int j = -20; j < 20; j++)
 				for (int k = -20; k < 20; k++)
 				{
-					if (entity.worldObj.getBlock((int) entity.posX + i, (int) entity.posY + j, (int) entity.posZ + k) == ListMisc.OpeMid)
+					if (entity.world.getBlock((int) entity.posX + i, (int) entity.posY + j, (int) entity.posZ + k) == ListMisc.OpeMid)
 						return true;
 				}
 
@@ -522,7 +522,7 @@ public class DevilFruitsHelper
 
 	public static int getRegenFromPoision(EntityLivingBase entity)
 	{
-		return entity.getActivePotionEffect(Potion.poison).getAmplifier() / 5;
+		return entity.getActivePotionEffect(Potion.getPotionById(19)).getAmplifier() / 5;
 	}
 
 }

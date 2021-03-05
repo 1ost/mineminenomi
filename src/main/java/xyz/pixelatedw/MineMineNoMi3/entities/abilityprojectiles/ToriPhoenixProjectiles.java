@@ -3,7 +3,6 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -44,9 +43,9 @@ public class ToriPhoenixProjectiles
 		
 		public void onUpdate()
 		{		
-			if(this.worldObj.isRemote)
+			if(this.world.isRemote)
 			{
-				EntityParticleFX particle = new EntityParticleFX(this.worldObj, ID.PARTICLE_ICON_BLUEFLAME, 
+				EntityParticleFX particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_BLUEFLAME,
 						posX, 
 						posY, 
 						posZ, 

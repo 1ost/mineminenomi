@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.network.PacketQuestSync;
@@ -80,7 +80,7 @@ public class GUIQuestYesNo extends GuiScreen
 			GL11.glScaled(scale, scale, 0);
 			GL11.glTranslated(-256, -256, 0);
 			
-			mc.fontRenderer.drawString(EnumChatFormatting.BOLD + "" + I18n.format("quest." + currentQuestToDisplay.getQuestID() + ".name"), 0, 0, WyHelper.hexToRGB("#161616").getRGB());		
+			mc.fontRenderer.drawString(TextFormatting.BOLD + "" + I18n.format("quest." + currentQuestToDisplay.getQuestID() + ".name"), 0, 0, WyHelper.hexToRGB("#161616").getRGB());
 		}
 		GL11.glPopMatrix();
 

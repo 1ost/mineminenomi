@@ -61,7 +61,7 @@ public class SunaAbilities
 						int posY = (int) player.posY + j;
 						int posZ = (int) (player.posZ + k + (k < -WyMathHelper.randomWithRange(8, 12) || k > WyMathHelper.randomWithRange(8, 12) ? WyMathHelper.randomWithRange(-5, 5) : 0));
 						
-						DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, posX, posY, posZ, ListMisc.SunaSand, 2, "core");			
+						DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, ListMisc.SunaSand, 2, "core");
 					}
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_DESERTGIRASOLE2, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 				}
@@ -96,7 +96,7 @@ public class SunaAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new SunaProjectiles.Barjan(player.worldObj, player, attr);
+			this.projectile = new SunaProjectiles.Barjan(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -148,7 +148,7 @@ public class SunaAbilities
 				{
 					for(EntityLivingBase entityLivingBase : WyHelper.getEntitiesNear(player, 25))
 					{
-						WyHelper.createFilledCube(entityLivingBase, new int[] {2, 2, 2}, Blocks.sand, "air", "foliage");
+						WyHelper.createFilledCube(entityLivingBase, new int[] {2, 2, 2}, Blocks.SAND, "air", "foliage");
 					}	
 					
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_GROUNDDEATH, player.posX, player.posY, player.posZ), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);			
@@ -183,7 +183,7 @@ public class SunaAbilities
 							int posY = (int) player.posY - (j + 1);
 							int posZ = (int) player.posZ - (k + 2);
 							
-							DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, posX, posY, posZ, ListMisc.SunaSand, "core");
+							DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, ListMisc.SunaSand, "core");
 						}
 					}
 					else if(WyHelper.get4Directions(player) == WyHelper.Direction.SOUTH)
@@ -196,7 +196,7 @@ public class SunaAbilities
 							int posY = (int) player.posY - (j + 1);
 							int posZ = (int) player.posZ + (k + 2);
 							
-							DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, posX, posY, posZ, ListMisc.SunaSand, "core");
+							DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, ListMisc.SunaSand, "core");
 						}
 					}
 					else if(WyHelper.get4Directions(player) == WyHelper.Direction.EAST)
@@ -209,7 +209,7 @@ public class SunaAbilities
 							int posY = (int) player.posY - (j + 1);
 							int posZ = (int) player.posZ + k;
 							
-							DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, posX, posY, posZ, ListMisc.SunaSand, "core");
+							DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, ListMisc.SunaSand, "core");
 						}
 					}
 					else if(WyHelper.get4Directions(player) == WyHelper.Direction.WEST)
@@ -222,7 +222,7 @@ public class SunaAbilities
 							int posY = (int) player.posY - (j + 1);
 							int posZ = (int) player.posZ + k;
 							
-							DevilFruitsHelper.placeBlockIfAllowed(player.worldObj, posX, posY, posZ, ListMisc.SunaSand, "core");
+							DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, ListMisc.SunaSand, "core");
 						}	
 					}
 					

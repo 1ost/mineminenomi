@@ -88,7 +88,7 @@ public class EntityNewMob extends EntityMob implements IDynamicRenderer, INBTEnt
 		NBTTagCompound nbtClone = new NBTTagCompound();
 		this.writeEntityToNBT(nbtClone);
 		
-		if(!this.worldObj.isRemote)
+		if(!this.world.isRemote)
 			WyNetworkHelper.sendToAll(new PacketEntityNBTSync(this.getEntityId(), nbtClone));
 	}
 
@@ -164,7 +164,7 @@ public class EntityNewMob extends EntityMob implements IDynamicRenderer, INBTEnt
 
 	public void addRokushikiAbilities(int max)
 	{
-		if(this.worldObj.isRemote)
+		if(this.world.isRemote)
 			return;
 		
 		int rokushikiCount = 0;

@@ -14,23 +14,23 @@ public class ParticleEffectEvaporate extends ParticleEffect
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			double offsetX = player.worldObj.rand.nextDouble();
-			double offsetY = player.worldObj.rand.nextDouble();
-			double offsetZ = player.worldObj.rand.nextDouble();
+			double offsetX = player.world.rand.nextDouble();
+			double offsetY = player.world.rand.nextDouble();
+			double offsetZ = player.world.rand.nextDouble();
 			
-	        double motionX = WyMathHelper.randomWithRange(0, 1) + player.worldObj.rand.nextDouble();
-	        double motionY = WyMathHelper.randomWithRange(0, 1) + player.worldObj.rand.nextDouble();
-	        double motionZ = WyMathHelper.randomWithRange(0, 1) + player.worldObj.rand.nextDouble();
+	        double motionX = WyMathHelper.randomWithRange(0, 1) + player.world.rand.nextDouble();
+	        double motionY = WyMathHelper.randomWithRange(0, 1) + player.world.rand.nextDouble();
+	        double motionZ = WyMathHelper.randomWithRange(0, 1) + player.world.rand.nextDouble();
 	        
             double middlePoint = 0.5D / (5 / 0.5);
-            middlePoint *= (double)(player.worldObj.rand.nextFloat() * player.worldObj.rand.nextFloat() + 0.3F);
+            middlePoint *= (double)(player.world.rand.nextFloat() * player.world.rand.nextFloat() + 0.3F);
 	        
 	        motionX *= middlePoint / 2;
 	        motionY *= middlePoint / 2;
 	        motionZ *= middlePoint / 2;
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MOKU, 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_MOKU, 
 							posX + offsetX, 
 							posY + 1.5 + offsetY, 
 							posZ + offsetZ, 
@@ -41,10 +41,10 @@ public class ParticleEffectEvaporate extends ParticleEffect
 					.setParticleAge(10));
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MERA, 
-							posX + offsetX + player.worldObj.rand.nextDouble(), 
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_MERA, 
+							posX + offsetX + player.world.rand.nextDouble(), 
 							posY + 1.5 + offsetY, 
-							posZ + offsetZ + player.worldObj.rand.nextDouble(), 
+							posZ + offsetZ + player.world.rand.nextDouble(), 
 							motionX,
 							motionY + 0.05,
 							motionZ)

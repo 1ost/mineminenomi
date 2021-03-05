@@ -1,6 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.util.EnumHand;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -22,9 +23,9 @@ public class EventsDFWeaknesses
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.entityLiving instanceof EntityLivingBase)
+		if (event.getEntityLiving() instanceof EntityLivingBase)
 		{
-			EntityLivingBase entity = event.entityLiving;
+			EntityLivingBase entity = event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(entity);
 
 			if(props.hasDevilFruit() && DevilFruitsHelper.isAffectedByWater(entity))
@@ -36,18 +37,18 @@ public class EventsDFWeaknesses
 			}
 		}
 		
-		if (event.entityLiving instanceof EntityPlayer)
+		if (event.getEntityLiving() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
-			ItemStack heldItem = player.getHeldItem();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 			boolean updateDisabledAbilities = false;
 			
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 			{
 				if (props.hasDevilFruit() && ItemsHelper.hasKairosekiItem(player))
-					player.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 200, 0));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 200, 0));
 				
 				if (props.hasDevilFruit() && DevilFruitsHelper.isNearbyKairoseki(player))
 				{
@@ -64,7 +65,7 @@ public class EventsDFWeaknesses
 					
 					if(updateDisabledAbilities)
 						WyNetworkHelper.sendTo(new PacketAbilitySync(abilityProps), (EntityPlayerMP) player);					
-					player.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 100, 0));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 100, 0));
 				}
 				else
 				{

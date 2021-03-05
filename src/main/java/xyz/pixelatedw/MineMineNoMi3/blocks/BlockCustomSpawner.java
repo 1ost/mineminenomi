@@ -2,8 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,7 +21,7 @@ public class BlockCustomSpawner extends BlockContainer
 {
 	public BlockCustomSpawner()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 		this.setTickRandomly(true);
 	} 
 
@@ -40,7 +40,7 @@ public class BlockCustomSpawner extends BlockContainer
     
     public void randomDisplayTick(World world, int x, int y, int z, Random rand)
     {
-    	if(world.getBlock(x, y - 1, z) == Blocks.air)
-    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.air)));
+    	if(world.getBlock(x, y - 1, z) == Blocks.AIR)
+    		WyNetworkHelper.sendToServer(new PacketWorld(x, y, z, Block.getIdFromBlock(Blocks.AIR)));
 	}
 }

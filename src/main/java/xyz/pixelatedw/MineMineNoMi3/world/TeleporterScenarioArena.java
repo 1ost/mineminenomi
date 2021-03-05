@@ -40,7 +40,7 @@ public class TeleporterScenarioArena extends Teleporter
 	{
 		EntityPlayerMP playerMP = (EntityPlayerMP) entity;
 		
-		//ScenarioManager.scenarios.get(scenarioName).unload(playerMP, playerMP.worldObj);
+		//ScenarioManager.scenarios.get(scenarioName).unload(playerMP, playerMP.world);
 		
         playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, this);	
 	}
@@ -58,7 +58,7 @@ public class TeleporterScenarioArena extends Teleporter
             if(entity instanceof EntityPlayer) 
             {
             	EntityPlayer player = (EntityPlayer) entity;
-            	if (player.worldObj.isRemote) 
+            	if (player.world.isRemote) 
             	{
                     if (player.dimension == ID.DIMENSION_ID_SCENARIOARENA) 
                     {

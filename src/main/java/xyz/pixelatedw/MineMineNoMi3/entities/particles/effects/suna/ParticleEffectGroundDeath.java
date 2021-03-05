@@ -33,7 +33,7 @@ public class ParticleEffectGroundDeath extends ParticleEffect
 				double motionZ = z / 2 + WyMathHelper.randomDouble();
 
 				MainMod.proxy.spawnCustomParticles(player, 
-						new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_SUNA2, 
+						new EntityParticleFX(player.world, ID.PARTICLE_ICON_SUNA2, 
 								posX + (x * 1.25), 
 								posY + 0.5 + y, 
 								posZ + (z * 1.25), 

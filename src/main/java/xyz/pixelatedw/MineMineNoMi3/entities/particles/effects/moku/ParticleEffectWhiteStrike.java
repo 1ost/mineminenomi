@@ -14,7 +14,7 @@ public class ParticleEffectWhiteStrike extends ParticleEffect
 	public void spawn(EntityPlayer player, double posX, double posY, double posZ)
 	{
 		Timer timer = new Timer(true); 
-		EntityParticleFX particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MOKU, 
+		EntityParticleFX particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_MOKU,
 				posX, 
 				posY - 0.8, 
 				posZ, 

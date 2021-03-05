@@ -20,7 +20,7 @@ public class ParticleEffectYataNoKagami extends ParticleEffect
 			double offsetZ = (new Random().nextInt(40) + 1.0D - 20.0D) / 20.0D;
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_PIKA,
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_PIKA,
 							posX + offsetX,
 							posY + 0.5 + offsetY,
 							posZ + offsetZ,

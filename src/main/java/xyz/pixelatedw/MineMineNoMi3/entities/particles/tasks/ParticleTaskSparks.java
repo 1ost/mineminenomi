@@ -56,10 +56,10 @@ public class ParticleTaskSparks extends TimerTask
 						particleToUse = ID.PARTICLE_ICON_GORO;
 					
 					MainMod.proxy.spawnCustomParticles(player,
-							new EntityParticleFX(player.worldObj, particleToUse,
-									posX + offsetX + (player.worldObj.rand.nextDouble() * 3),
-									posY + offsetY + (player.worldObj.rand.nextDouble() * 3),
-									posZ + offsetZ + (player.worldObj.rand.nextDouble() * 3),
+							new EntityParticleFX(player.world, particleToUse,
+									posX + offsetX + (player.world.rand.nextDouble() * 3),
+									posY + offsetY + (player.world.rand.nextDouble() * 3),
+									posZ + offsetZ + (player.world.rand.nextDouble() * 3),
 									0, 0, 0)
 							.setParticleScale(10).setParticleAge((int) (3 + (0.2 * j))));
 				}

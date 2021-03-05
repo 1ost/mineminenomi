@@ -21,11 +21,11 @@ public class EntityMarine extends MarineData
 		super.applyEntityAttributes(); 
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
 		
-		this.setDoriki(10 + this.worldObj.rand.nextInt(3));
-		this.setBelly(5 + this.worldObj.rand.nextInt(10));
+		this.setDoriki(10 + this.world.rand.nextInt(3));
+		this.setBelly(5 + this.world.rand.nextInt(10));
 	}
 	
     @Override

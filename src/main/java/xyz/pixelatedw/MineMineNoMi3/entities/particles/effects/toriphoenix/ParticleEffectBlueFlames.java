@@ -20,7 +20,7 @@ public class ParticleEffectBlueFlames extends ParticleEffect
 			double offsetZ = (new Random().nextInt(50) + 1.0D - 25.0D) / 30.0D;
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_BLUEFLAME,
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_BLUEFLAME,
 							posX + offsetX, 
 							posY + 1 + offsetY, 
 							posZ + offsetZ, 

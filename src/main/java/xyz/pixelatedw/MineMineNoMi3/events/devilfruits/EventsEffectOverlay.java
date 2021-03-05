@@ -2,10 +2,11 @@ package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
 import java.awt.Color;
 
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +30,7 @@ public class EventsEffectOverlay
 	@SubscribeEvent
 	public void onEntityRendered(RenderLivingEvent.Pre event)
 	{
-		ExtendedEntityData props = ExtendedEntityData.get(event.entity);
+		ExtendedEntityData props = ExtendedEntityData.get(event.getEntity());
 		
 		if (props.hasExtraEffects(ID.EXTRAEFFECT_MERO))
 		{
@@ -69,7 +70,7 @@ public class EventsEffectOverlay
 		}
 		else if (props.hasExtraEffects(ID.EXTRAEFFECT_DORULOCK))
 		{
-			candleLock.doRender(event.entity, event.x, event.y, event.z, 0F, 0.0625F);
+			candleLock.doRender(event.getEntity(), event.getX(), event.getY(), event.getZ(), 0F, 0.0625F);
 		}
 		else if (props.hasExtraEffects(ID.EXTRAEFFECT_RUSTOVERLAY))
 		{
@@ -91,7 +92,7 @@ public class EventsEffectOverlay
 		}
 		else if (props.hasExtraEffects(ID.EXTRAEFFECT_ORIBIND))
 		{
-			oriBind.doRender(event.entity, event.x, event.y, event.z, 0F, 0.0625F);
+			oriBind.doRender(event.getEntity(), event.getX(), event.getY(), event.getZ(), 0F, 0.0625F);
 		}
 	}
 	
@@ -99,13 +100,13 @@ public class EventsEffectOverlay
 	public void onRenderTick(TickEvent.RenderTickEvent event)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayer player = mc.thePlayer;
+		EntityPlayer player = mc.player;
 
 		if (player == null)
 			return;
 
 		ExtendedEntityData props = ExtendedEntityData.get(player);
-		ScaledResolution sr = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		ScaledResolution sr = new ScaledResolution(mc);
 
 		if (props.hasExtraEffects(ID.EXTRAEFFECT_MERO))
 			WyRenderHelper.drawColourOnScreen(WyHelper.hexToRGB("#5d6060").getRGB(), 100, 0, 0, sr.getScaledWidth_double(), sr.getScaledHeight_double(), 200);
@@ -119,7 +120,7 @@ public class EventsEffectOverlay
 			WyRenderHelper.drawColourOnScreen(WyHelper.hexToRGB("#3e4247").getRGB(), 100, 0, 0, sr.getScaledWidth_double(), sr.getScaledHeight_double(), 200);
 		else if (props.hasExtraEffects(ID.EXTRAEFFECT_HAO))
 		{
-			if(player.isPotionActive(Potion.blindness.id))
+			if(player.isPotionActive(Potion.getPotionById(15)))
 				WyRenderHelper.drawColourOnScreen(WyHelper.hexToRGB("#000000").getRGB(), 240, 0, 0, sr.getScaledWidth_double(), sr.getScaledHeight_double(), 200);
 			else
 				WyRenderHelper.drawColourOnScreen(WyHelper.hexToRGB("#72399d").getRGB(), 100, 0, 0, sr.getScaledWidth_double(), sr.getScaledHeight_double(), 200);

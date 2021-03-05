@@ -49,7 +49,7 @@ public class FishKarateAbilities
 			
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new FishKarateProjectiles.Uchimizu(player.worldObj, player, attr);
+			this.projectile = new FishKarateProjectiles.Uchimizu(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -63,7 +63,7 @@ public class FishKarateAbilities
 			
 		public void use(EntityPlayer player)
 		{
-			this.projectile = new FishKarateProjectiles.Soshark(player.worldObj, player, attr);
+			this.projectile = new FishKarateProjectiles.Soshark(player.world, player, attr);
 			super.use(player);
 		}
 	}
@@ -79,7 +79,7 @@ public class FishKarateAbilities
 		{
 			super.hitEntity(player, target);
 			int damage = 10;
-			if(player.isInsideOfMaterial(Material.water))
+			if(player.isInsideOfMaterial(Material.WATER))
 				damage = 40;
 			target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
 		}

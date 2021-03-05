@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.commands;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,15 +31,15 @@ public class CommandIssueBounty extends CommandBase
 			player = CommandBase.getCommandSenderAsPlayer(sender);
 			
 		ExtendedEntityData props = ExtendedEntityData.get(player);
-		ExtendedWorldData worldData = ExtendedWorldData.get(player.worldObj);
+		ExtendedWorldData worldData = ExtendedWorldData.get(player.world);
 		
 		if(!allFlag)
 		{
-			worldData.issueBounty(player.getCommandSenderName(), props.getBounty());
+			worldData.issueBounty(player.getCommandSenderEntity().getName(), props.getBounty());
 		}
 		else
 		{
-			player.worldObj.loadedEntityList.stream().filter(x -> 
+			player.world.loadedEntityList.stream().filter(x ->
 			{
 				return x instanceof EntityPlayer && (ExtendedEntityData.get((EntityLivingBase) x).isPirate() || ExtendedEntityData.get((EntityLivingBase) x).isRevolutionary()) && ExtendedEntityData.get((EntityLivingBase) x).getBounty() > 0;
 			}).forEach(x ->

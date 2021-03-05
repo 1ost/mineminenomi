@@ -15,7 +15,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.ResourceLocation;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -109,7 +109,7 @@ public class GUIWantedPoster extends GuiScreen
         
 		if(name.length() > 13)
 			name = name.substring(0, 10) + "...";
-		mc.fontRenderer.drawString(EnumChatFormatting.BOLD + name, 47 - mc.fontRenderer.getStringWidth(name) / 2, 62, WyHelper.hexToRGB("513413").getRGB());
+		mc.fontRenderer.drawString(TextFormatting.BOLD + name, 47 - mc.fontRenderer.getStringWidth(name) / 2, 62, WyHelper.hexToRGB("513413").getRGB());
 		
         String bounty = decimalFormat.format(this.wantedData.getLong("Bounty"));
 		boolean flag = bounty.length() > 10;		
@@ -121,7 +121,7 @@ public class GUIWantedPoster extends GuiScreen
 			GL11.glScaled(.82, 0.89, 0);	
 			GL11.glTranslated(-128, -128, -512);
 		}
-		mc.fontRenderer.drawString(EnumChatFormatting.BOLD + bounty, 22, 76, WyHelper.hexToRGB("513413").getRGB());
+		mc.fontRenderer.drawString(TextFormatting.BOLD + bounty, 22, 76, WyHelper.hexToRGB("513413").getRGB());
 		if(flag)
 			GL11.glPopMatrix();
 		
@@ -131,7 +131,7 @@ public class GUIWantedPoster extends GuiScreen
 		GL11.glScaled(.78, .92, 0);	
 		GL11.glTranslated(-128, -128, -512);
 		
-		mc.fontRenderer.drawString(EnumChatFormatting.BOLD + this.wantedData.getString("Date"), 36 - mc.fontRenderer.getStringWidth(this.wantedData.getString("Date")) / 2, 90, WyHelper.hexToRGB("513413").getRGB());
+		mc.fontRenderer.drawString(TextFormatting.BOLD + this.wantedData.getString("Date"), 36 - mc.fontRenderer.getStringWidth(this.wantedData.getString("Date")) / 2, 90, WyHelper.hexToRGB("513413").getRGB());
 		
 		super.drawScreen(x, y, f);
 	}

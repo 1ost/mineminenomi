@@ -21,7 +21,7 @@ public class BlockPoneglyph extends BlockContainer
 {
 	public BlockPoneglyph()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 	}
 
 	@Override

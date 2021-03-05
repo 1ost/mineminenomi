@@ -153,9 +153,9 @@ public class ToriPhoenixAbilities
 					double offsetY = (new Random().nextInt(20) + 1.0D - 20.0D) / 10.0D;
 					double offsetZ = (new Random().nextInt(20) + 1.0D - 5.0D) / 5.0D;
 						
-					this.projectile = new ToriPhoenixProjectiles.PhoenixGoen(player.worldObj, player, attr);
+					this.projectile = new ToriPhoenixProjectiles.PhoenixGoen(player.world, player, attr);
 					this.projectile.setLocationAndAngles(player.posX - 1 + offsetX, player.posY + 2 + offsetY, player.posZ + offsetZ, player.cameraPitch, player.cameraYaw);
-					player.worldObj.spawnEntityInWorld(projectile);
+					player.world.spawnEntity(projectile);
 				}
 					
 				WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);

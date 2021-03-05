@@ -40,7 +40,7 @@ public class QuestLogicHelper
 		{
 			if(questProps.getQuestIndexFromTracker(i) != null && questProps.getQuestIndexFromTracker(i).isFinished(player) && isQuestPartofQuestline(questProps.getQuestIndexFromTracker(i), questline))
 			{
-				if(player.worldObj.isRemote)
+				if(player.world.isRemote)
 					return 0;
 				
 				questProps.getQuestIndexFromTracker(i).finishQuest(player);

@@ -34,7 +34,7 @@ public class ParticleEffectDesertEncierro extends ParticleEffect
 				double motionZ = -z / 10;
 
 				MainMod.proxy.spawnCustomParticles(player, 
-						new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_SUNA, 
+						new EntityParticleFX(player.world, ID.PARTICLE_ICON_SUNA,
 								posX + (x * 1.25), 
 								posY + 0.5 + y, 
 								posZ + (z * 1.25), 
@@ -44,7 +44,7 @@ public class ParticleEffectDesertEncierro extends ParticleEffect
 						.setParticleScale(3.3F).setParticleAge(-3));
 				
 				MainMod.proxy.spawnCustomParticles(player, 
-						new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_SUNA, 
+						new EntityParticleFX(player.world, ID.PARTICLE_ICON_SUNA,
 								posX + (x * 1.25), 
 								posY + 2.5 + y, 
 								posZ + (z * 1.25), 

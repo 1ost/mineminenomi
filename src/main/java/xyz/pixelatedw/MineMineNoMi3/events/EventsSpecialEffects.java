@@ -1,6 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.events;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,18 +19,18 @@ public class EventsSpecialEffects
 	@SubscribeEvent
 	public void onLivingAttack(LivingAttackEvent event)
 	{	
-		if (event.source.getSourceOfDamage() instanceof EntityPlayer && !event.source.isExplosion())
+		if (event.getSource().getTrueSource() instanceof EntityPlayer && !event.getSource().isExplosion())
 		{
-			EntityPlayer player = (EntityPlayer) event.source.getSourceOfDamage();
+			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			ItemStack heldItem = player.getHeldItem();
 			
-			if(heldItem != null && heldItem.isItemEnchanted() && !player.worldObj.isRemote)
+			if(heldItem != null && heldItem.isItemEnchanted() && !player.world.isRemote)
 			{
 				int impactDialLevel = EnchantmentHelper.getEnchantmentLevel(ListEffects.dialImpact.effectId, heldItem);
 				if(impactDialLevel > 0)
 				{
-					AbilityExplosion explosion = WyHelper.newExplosion(player, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, impactDialLevel);
+					AbilityExplosion explosion = WyHelper.newExplosion(player, event.getEntityLiving().posX, event.getEntityLiving().posY, event.getEntityLiving().posZ, impactDialLevel);
 					explosion.setDamageOwner(false);
 					explosion.setDestroyBlocks(false);
 					explosion.doExplosion();
@@ -39,7 +39,7 @@ public class EventsSpecialEffects
 				int flashDialLevel = EnchantmentHelper.getEnchantmentLevel(ListEffects.dialFlash.effectId, heldItem);
 				if(flashDialLevel > 0)
 				{
-					event.entityLiving.addPotionEffect(new PotionEffect(Potion.blindness.id, 200 * flashDialLevel, flashDialLevel));
+					event.getEntityLiving().addPotionEffect(new PotionEffect(Potion.getPotionById(15), 200 * flashDialLevel, flashDialLevel));
 				}
 			}
 		}

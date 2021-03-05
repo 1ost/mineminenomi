@@ -20,7 +20,7 @@ public class ParticleEffectElThor extends ParticleEffect
 			double offsetZ = (new Random().nextInt(40) + 1.0D - 20.0D) / 10.0D;
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_GORO,
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_GORO,
 							posX + offsetX,
 							posY + offsetY,
 							posZ + offsetZ,

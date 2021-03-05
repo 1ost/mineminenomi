@@ -60,13 +60,13 @@ public class QuestSniperProgression01 extends Quest implements IProgressionQuest
 
 		if (flagQuestStateInteract || flagQuestFailed)
 		{
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 				WyHelper.sendMsgToPlayer(player, "<Sniper Master> Just watch the sky and destroy the targets !");
 			this.setProgress(player, 0);
 
 			for (int i = 0; i < 6; i++)
 			{
-				EntitySniperTarget target = new EntitySniperTarget(player.worldObj);
+				EntitySniperTarget target = new EntitySniperTarget(player.world);
 				double posX = player.posX + WyMathHelper.randomWithRange(-10, 10);
 				double posY = player.posY + 30;
 				double posZ = player.posZ + WyMathHelper.randomWithRange(-10, 10);
@@ -75,8 +75,8 @@ public class QuestSniperProgression01 extends Quest implements IProgressionQuest
 				target.setOwner(player);
 				target.setActive(true);
 				
-				if (!player.worldObj.isRemote)
-					player.worldObj.spawnEntityInWorld(target);
+				if (!player.world.isRemote)
+					player.world.spawnEntity(target);
 			}
 			
 			WyNetworkHelper.sendToAll(new PacketQuestObjectiveSpawn(player.getEntityId()));

@@ -20,26 +20,26 @@ public class ParticleEffectFubuki extends ParticleEffect
 			double offsetY = (new Random().nextInt(50) + 1.0D - 25.0D) / 1.0D;
 			double offsetZ = (new Random().nextInt(50) + 1.0D - 25.0D) / 1.0D;
 
-	        double motionX = WyMathHelper.randomWithRange(-1, 1) + player.worldObj.rand.nextDouble();
-	        double motionY = WyMathHelper.randomWithRange(-1, 1) + player.worldObj.rand.nextDouble();
-	        double motionZ = WyMathHelper.randomWithRange(-1, 1) + player.worldObj.rand.nextDouble();
+	        double motionX = WyMathHelper.randomWithRange(-1, 1) + player.world.rand.nextDouble();
+	        double motionY = WyMathHelper.randomWithRange(-1, 1) + player.world.rand.nextDouble();
+	        double motionZ = WyMathHelper.randomWithRange(-1, 1) + player.world.rand.nextDouble();
 	        
             double middlePoint = 0.2D;
-            middlePoint *= (double)(player.worldObj.rand.nextFloat() * player.worldObj.rand.nextFloat() + 0.3F);
+            middlePoint *= (double)(player.world.rand.nextFloat() * player.world.rand.nextFloat() + 0.3F);
 	        
 	        motionX *= middlePoint / 2;
 	        motionY *= middlePoint / 2;
 	        motionZ *= middlePoint / 2;
 			
 			MainMod.proxy.spawnCustomParticles(player, 
-					new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_YUKI,
+					new EntityParticleFX(player.world, ID.PARTICLE_ICON_YUKI,
 							posX + offsetX,
 							posY + offsetY,
 							posZ + offsetZ,
 							motionX,
 							motionY,
 							motionZ)
-					.setParticleScale(player.worldObj.rand.nextInt(2) + 1).setParticleGravity(3).setParticleAge(300));
+					.setParticleScale(player.world.rand.nextInt(2) + 1).setParticleGravity(3).setParticleAge(300));
 		}		
 	}
 

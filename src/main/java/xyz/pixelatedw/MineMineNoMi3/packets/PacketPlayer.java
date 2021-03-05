@@ -1,11 +1,11 @@
 package xyz.pixelatedw.MineMineNoMi3.packets;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -84,7 +84,7 @@ public class PacketPlayer implements IMessage
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(PacketPlayer message, MessageContext ctx) 
 		{
-			final EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+			final EntityPlayer player = Minecraft.getMinecraft().player;
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 
@@ -107,10 +107,10 @@ public class PacketPlayer implements IMessage
 				int j = (int) message.mY;
 				int k = (int) message.mZ;
 				
-				player.worldObj.spawnEntityInWorld(new EntityLightningBolt(player.worldObj, i+1, j, k));
-				player.worldObj.spawnEntityInWorld(new EntityLightningBolt(player.worldObj, i, j, k+1));
-				player.worldObj.spawnEntityInWorld(new EntityLightningBolt(player.worldObj, i-1, j, k));
-				player.worldObj.spawnEntityInWorld(new EntityLightningBolt(player.worldObj, i, j, k-1));
+				player.world.spawnEntity(new EntityLightningBolt(player.world, i+1, j, k, false));
+				player.world.spawnEntity(new EntityLightningBolt(player.world, i, j, k+1,false));
+				player.world.spawnEntity(new EntityLightningBolt(player.world, i-1, j, k,false));
+				player.world.spawnEntity(new EntityLightningBolt(player.world, i, j, k-1,false));
 			}
 			
 			if(message.cmd.contains("motion+"))
@@ -151,7 +151,7 @@ public class PacketPlayer implements IMessage
 		@Override
 		public IMessage onMessage(PacketPlayer message, MessageContext ctx) 
 		{
-			EntityPlayer player = ctx.getServerHandler().playerEntity;
+			EntityPlayer player = ctx.getServerHandler().player;
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 

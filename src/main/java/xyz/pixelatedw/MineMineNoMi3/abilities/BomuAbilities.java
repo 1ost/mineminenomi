@@ -39,7 +39,7 @@ public class BomuAbilities
 		
 		public void use(EntityPlayer player)
 		{		
-			this.projectile = new BomuProjectiles.NoseFancyCannon(player.worldObj, player, attr);
+			this.projectile = new BomuProjectiles.NoseFancyCannon(player.world, player, attr);
 			super.use(player);
 		} 
 	}

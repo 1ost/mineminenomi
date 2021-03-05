@@ -56,9 +56,9 @@ public class UltraCola extends ItemFood
 				}
 				else
 				{
-					player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 0));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 100, 0));
 					player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 0));
-					player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 0));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 200, 0));
 					if(props.getCola() <= props.getMaxCola() - 30) 
 						props.alterCola(30);
 					else 
@@ -66,7 +66,7 @@ public class UltraCola extends ItemFood
 				}
 			}
 			else
-				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 250, 0));
+				player.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 250, 0));
 				
 	    	if(!player.capabilities.isCreativeMode)
 	    		WyTelemetry.addMiscStat("bottlesOfUltraColaDrank", "Bottles of Ultra Cola Drank", 1);

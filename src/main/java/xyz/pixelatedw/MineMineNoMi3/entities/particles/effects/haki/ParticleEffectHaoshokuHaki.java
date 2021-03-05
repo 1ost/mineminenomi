@@ -19,7 +19,7 @@ public class ParticleEffectHaoshokuHaki extends ParticleEffect
 	{
 		Timer timer = new Timer(true);
 
-		EntityParticleFX particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MOKU, 
+		EntityParticleFX particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_MOKU,
 				posX * 1.25, 
 				posY + 0.5, 
 				posZ * 1.25, 
@@ -51,7 +51,7 @@ public class ParticleEffectHaoshokuHaki extends ParticleEffect
 					double motionX = (x / 8) + WyMathHelper.randomDouble();
 					double motionZ = (z / 8) + WyMathHelper.randomDouble();
 					
-					particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_MOKU, 
+					particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_MOKU,
 							posX + (x * 1.25), 
 							posY + 0.5, 
 							posZ + (z * 1.25), 
@@ -67,7 +67,7 @@ public class ParticleEffectHaoshokuHaki extends ParticleEffect
 					
 					double motionY = (x / 12) + WyMathHelper.randomDouble();
 
-					particle = new EntityParticleFX(player.worldObj, ID.PARTICLE_ICON_YUKI, 
+					particle = new EntityParticleFX(player.world, ID.PARTICLE_ICON_YUKI,
 							posX + (x * 1.25), 
 							posY + 1.5, 
 							posZ + (z * 1.25), 

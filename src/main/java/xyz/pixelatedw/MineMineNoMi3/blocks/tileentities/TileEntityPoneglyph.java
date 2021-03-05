@@ -62,7 +62,7 @@ public class TileEntityPoneglyph extends TileEntity
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
 	{
 		readFromNBT(pkt.func_148857_g());
-		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		this.world.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
 }
