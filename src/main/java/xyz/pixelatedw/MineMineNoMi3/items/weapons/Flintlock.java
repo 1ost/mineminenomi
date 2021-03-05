@@ -64,10 +64,10 @@ public class Flintlock extends Item
 				}
 				else
 				{
-					if(player.inventory.hasItem(Items.gunpowder))
+					if(player.inventory.hasItem(Items.GUNPOWDER))
 					{
 						itemStack.getTagCompound().setInteger("gunPowder", 10);
-						player.inventory.consumeInventoryItem(Items.gunpowder);
+						player.inventory.consumeInventoryItem(Items.GUNPOWDER);
 					}
 				}
 			}			

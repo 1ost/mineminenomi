@@ -23,7 +23,7 @@ public class EventsSpecialEffects
 		{
 			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
-			ItemStack heldItem = player.getHeldItem();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 			
 			if(heldItem != null && heldItem.isItemEnchanted() && !player.world.isRemote)
 			{

@@ -42,7 +42,7 @@ public class EntityAIGeppo extends EntityAICooldown
 		if (this.entity.getAttackTarget() == null)
 			return false;
 
-		float distance = this.entity.getDistanceToEntity(this.entity.getAttackTarget());
+		float distance = (float) this.entity.getDistanceSq(this.entity.getAttackTarget());
 		if (distance > 5 && this.entity.getHealth() > this.entity.getMaxHealth() / 4)
 			return false;
 

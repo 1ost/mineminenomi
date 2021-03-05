@@ -3,9 +3,13 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.util.math.RayTraceResult;
+
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -102,7 +106,7 @@ public class MeraProjectiles
 		@Override
 		public void tasksImapct(RayTraceResult hit)
 		{
-			this.world.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, Blocks.fire);
+			this.world.setBlockState(new BlockPos((int)this.posX, (int)this.posY, (int)this.posZ), (IBlockState) Blocks.FIRE);
 		}
 		
 		@Override
@@ -201,7 +205,7 @@ public class MeraProjectiles
 			if(hit.entityHit != null)
 				hit.entityHit.setFire(this.ticks);
 
-			this.world.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, Blocks.fire);
+			this.world.setBlockState(new BlockPos((int)this.posX, (int)this.posY, (int)this.posZ), (IBlockState) Blocks.FIRE);
 		};
 		
 		@Override
@@ -244,27 +248,27 @@ public class MeraProjectiles
 					for(int j = -2; j <= 2; j++)
 					{
 						for(int i = -5; i <= 5; i++)
-							if(this.world.isAirBlock((int)hit.entityHit.posX + i, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ))
-								this.world.setBlock((int)hit.entityHit.posX + i, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ, Blocks.fire);
+							if(this.world.isAirBlock(new BlockPos((int)hit.entityHit.posX + i, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ)))
+								this.world.setBlockState(new BlockPos((int)hit.entityHit.posX + i, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ), (IBlockState) Blocks.FIRE);
 							
 						for(int i = -5; i <= 5; i++)
-							if(this.world.isAirBlock((int)hit.entityHit.posX, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ + i))
-								this.world.setBlock((int)hit.entityHit.posX, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ + i, Blocks.fire);
+							if(this.world.isAirBlock(new BlockPos((int)hit.entityHit.posX, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ + i)))
+								this.world.setBlockState(new BlockPos((int)hit.entityHit.posX, (int)hit.entityHit.posY + j, (int)hit.entityHit.posZ + i), (IBlockState) Blocks.FIRE);
 					}
 				}
 			}
-			
+
 			if(MainConfig.enableGriefing)
 			{
 				for(int j = -2; j <= 2; j++)
 				{
 					for(int i = -5; i <= 5; i++)
-						if(this.world.isAirBlock((int)this.posX + i, (int)this.posY + j, (int)this.posZ))
-							this.world.setBlock((int)this.posX + i, (int)this.posY + j, (int)this.posZ, Blocks.fire);
-						
+						if(this.world.isAirBlock(new BlockPos((int)this.posX, (int)this.posY + j, (int)this.posZ + i)))
+							this.world.setBlockState(new BlockPos((int)this.posX, (int)this.posY + j, (int)this.posZ + i), (IBlockState) Blocks.FIRE);
+
 					for(int i = -5; i <= 5; i++)
-						if(this.world.isAirBlock((int)this.posX, (int)this.posY + j, (int)this.posZ + i))
-							this.world.setBlock((int)this.posX, (int)this.posY + j, (int)this.posZ + i, Blocks.fire);
+						if(this.world.isAirBlock(new BlockPos((int)this.posX, (int)this.posY + j, (int)this.posZ + i)))
+							this.world.setBlockState(new BlockPos((int)this.posX, (int)this.posY + j, (int)this.posZ + i), (IBlockState) Blocks.FIRE);
 				}
 			}
 		};

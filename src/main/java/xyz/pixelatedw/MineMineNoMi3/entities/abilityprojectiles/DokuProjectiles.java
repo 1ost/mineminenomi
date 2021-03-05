@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -63,9 +64,9 @@ public class DokuProjectiles
 				
 				if(hit.entityHit == null)
 				{
-					x = hit.blockX;
-					y = hit.blockY;
-					z = hit.blockZ;	
+					x = hit.getBlockPos().getX();
+					y = hit.getBlockPos().getY();
+					z = hit.getBlockPos().getZ();
 				}
 				else
 				{
@@ -75,9 +76,9 @@ public class DokuProjectiles
 				}
 				
 				if (this.getThrower().isRiding())
-					this.getThrower().mountEntity((Entity)null);
+					this.getThrower().dismountEntity((Entity)null);
 				EnderTeleportEvent event = new EnderTeleportEvent(this.getThrower(), x, y, z, 5.0F);
-				this.getThrower().setPositionAndUpdate(event.targetX, event.targetY + 1, event.targetZ);
+				this.getThrower().setPositionAndUpdate(event.getTargetX(), event.getTargetY() + 1, event.getTargetZ());
 				this.getThrower().fallDistance = 0.0F;
 			}
 		}

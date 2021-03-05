@@ -62,9 +62,9 @@ public class EntityDoppelman extends EntityMob
 	public void applyEntityAttributes()
 	{ 
 		super.applyEntityAttributes(); 
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(10);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
+		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(10);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
 	}
@@ -164,7 +164,7 @@ public class EntityDoppelman extends EntityMob
     	if(player == this.owner)
     	{
 			ExtendedEntityData props = ExtendedEntityData.get(this);
-    		ItemStack heldItem = player.getHeldItem();
+    		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
     		
     		if(heldItem != null && heldItem.getItem() == ListMisc.Shadow && heldItem.stackSize >= 10 && props.getDoriki() < 6)
     		{

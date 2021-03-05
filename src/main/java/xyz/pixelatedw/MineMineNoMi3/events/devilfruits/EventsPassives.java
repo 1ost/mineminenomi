@@ -63,7 +63,7 @@ public class EventsPassives
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
-			ItemStack heldItem = player.getHeldItem();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 
 			Ability atomicSpurt = abilityProps.getAbilityFromName(ListAttributes.ATOMIC_SPURT.getAttributeName());
 			if (props.getUsedFruit().equals("supasupa"))
@@ -384,16 +384,16 @@ public class EventsPassives
 	@SubscribeEvent
 	public void onEntityShootProjectile(ArrowLooseEvent event)
 	{
-		if (event.entityPlayer != null)
+		if (event.getEntityPlayer() != null)
 		{
-			ExtendedEntityData props = ExtendedEntityData.get(event.entityPlayer);
-			AbilityProperties abilityProps = AbilityProperties.get(event.entityPlayer);
+			ExtendedEntityData props = ExtendedEntityData.get(event.getEntityPlayer());
+			AbilityProperties abilityProps = AbilityProperties.get(event.getEntityPlayer());
 
 			for (int i = 0; i < abilityProps.countAbilitiesInHotbar(); i++)
 			{
 				if (abilityProps.getAbilityFromSlot(i) != null && !abilityProps.getAbilityFromSlot(i).isOnCooldown() && abilityProps.getAbilityFromSlot(i).getAttribute().isPassive() && abilityProps.getAbilityFromSlot(i).isPassiveActive() && DevilFruitsHelper.isSniperAbility(abilityProps.getAbilityFromSlot(i)))
 				{
-					abilityProps.getAbilityFromSlot(i).use(event.entityPlayer);
+					abilityProps.getAbilityFromSlot(i).use(event.getEntityPlayer());
 					event.setCanceled(true);
 				}
 			}
@@ -403,7 +403,7 @@ public class EventsPassives
 	@SubscribeEvent
 	public void onPlayerAction(PlayerInteractEvent event)
 	{
-		ExtendedEntityData propz = ExtendedEntityData.get(event.entityPlayer);
+		ExtendedEntityData propz = ExtendedEntityData.get(event.getEntityPlayer());
 		if (propz.isInAirWorld())
 		{
 			event.setCanceled(true);
@@ -414,7 +414,7 @@ public class EventsPassives
 	@SubscribeEvent
 	public void onAttack(AttackEntityEvent event)
 	{
-		ExtendedEntityData propz = ExtendedEntityData.get(event.entityPlayer);
+		ExtendedEntityData propz = ExtendedEntityData.get(event.getEntityPlayer());
 		
 		if (propz.isInAirWorld())
 		{
@@ -422,7 +422,7 @@ public class EventsPassives
 		}
 		if (propz.getUsedFruit().equalsIgnoreCase("kachikachi"))
 		{
-			AbilityProperties abilityProps = AbilityProperties.get(event.entityPlayer);
+			AbilityProperties abilityProps = AbilityProperties.get(event.getEntityPlayer());
 			Ability fireFist = abilityProps.getAbilityFromName(ListAttributes.HOT_BOILING_SPECIAL.getAttributeName());
 			if (fireFist != null && fireFist.isPassiveActive())
 			{
@@ -507,10 +507,10 @@ public class EventsPassives
 	{
 		if(event.item.getItem() == Items.milk_bucket)
 		{
-			ExtendedEntityData props = ExtendedEntityData.get(event.entityPlayer);
+			ExtendedEntityData props = ExtendedEntityData.get(event.getEntityPlayer());
 			if(props.getUsedFruit().equalsIgnoreCase("yomiyomi") && props.getZoanPoint().equalsIgnoreCase("yomi"))
 			{
-				event.entityPlayer.heal(4);
+				event.getEntityPlayer().heal(4);
 			}
 		}
 	}

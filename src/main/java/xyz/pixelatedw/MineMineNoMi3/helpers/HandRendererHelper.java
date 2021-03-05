@@ -100,14 +100,14 @@ public class HandRendererHelper
 		float f13 = 0.8F;
 		f5 = player.getSwingProgress(0);
 		f6 = MathHelper.sin(f5 * (float) Math.PI);
-		f7 = MathHelper.sin(MathHelper.sqrt_float(f5) * (float) Math.PI);
-		GL11.glTranslatef(-f7 * 0.3F, MathHelper.sin(MathHelper.sqrt_float(f5) * (float) Math.PI * 2.0F) * 0.4F, -f6 * 0.4F);
+		f7 = MathHelper.sin(MathHelper.sqrt(f5) * (float) Math.PI);
+		GL11.glTranslatef(-f7 * 0.3F, MathHelper.sin(MathHelper.sqrt(f5) * (float) Math.PI * 2.0F) * 0.4F, -f6 * 0.4F);
 		GL11.glTranslatef(0.8F * f13, -0.75F * f13 - (1.0F - 1) * 0.6F, -0.9F * f13);
 		GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		f5 = player.getSwingProgress(0);
 		f6 = MathHelper.sin(f5 * f5 * (float) Math.PI);
-		f7 = MathHelper.sin(MathHelper.sqrt_float(f5) * (float) Math.PI);
+		f7 = MathHelper.sin(MathHelper.sqrt(f5) * (float) Math.PI);
 		GL11.glRotatef(f7 * 70.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-f6 * 20.0F, 0.0F, 0.0F, 1.0F);
 		if (hasHardeningBuso || hasFullBodyHardeningBuso)

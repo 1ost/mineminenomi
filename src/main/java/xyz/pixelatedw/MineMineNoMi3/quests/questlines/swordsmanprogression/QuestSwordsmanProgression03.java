@@ -98,7 +98,7 @@ public class QuestSwordsmanProgression03 extends Quest implements IKillQuest, IP
 	public boolean isTarget(EntityPlayer player, EntityLivingBase target)
 	{
 		BiomeGenBase biome = player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
-		ItemStack heldItem = player.getHeldItem();
+		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 		
 		if((biome.biomeName.equalsIgnoreCase(BiomeGenBase.extremeHills.biomeName) || biome.biomeName.equalsIgnoreCase(BiomeGenBase.extremeHillsPlus.biomeName)) 
 				&& target instanceof EntityMob && heldItem != null && (heldItem.getItem() instanceof ItemCoreWeapon || heldItem.getItem() instanceof ItemSword))

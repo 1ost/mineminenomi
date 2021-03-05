@@ -158,7 +158,7 @@ public class QuestSniperProgression01 extends Quest implements IProgressionQuest
 		}
 		else
 		{
-			ItemStack heldItem = player.getHeldItem();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 
 			boolean flagMob = target instanceof EntitySniperTarget;
 			boolean flagBow = ItemsHelper.isBow(heldItem);

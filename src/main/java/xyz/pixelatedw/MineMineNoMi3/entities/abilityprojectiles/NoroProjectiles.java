@@ -3,6 +3,7 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -44,15 +45,9 @@ public class NoroProjectiles
 			{
 				EntityLivingBase target = ((EntityLivingBase)hit.entityHit);
 				if( target.isPotionActive(Potion.getPotionById(2)) && target.isPotionActive(Potion.getPotionById(4)) )
-				{				
-					int newTimer = 0;
-					int newAmplifier = 0;
-					
-					newTimer = target.getActivePotionEffect(event.getType(2).getDuration() + 240;
-					if(target.getActivePotionEffect(event.getType(2).getAmplifier() + 10 < 200)
-						newAmplifier = target.getActivePotionEffect(event.getType(2).getAmplifier() + 10;
-					else
-						newAmplifier = 200;
+				{
+					int newTimer = 60;
+					int newAmplifier = 200;
 					target.removePotionEffect(Potion.getPotionById(2));
 					target.removePotionEffect(Potion.getPotionById(4));
 					target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), newTimer, newAmplifier));

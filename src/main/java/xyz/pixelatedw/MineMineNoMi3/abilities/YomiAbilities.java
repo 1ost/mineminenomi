@@ -44,7 +44,7 @@ public class YomiAbilities
 		@Override
 		public void duringPassive(EntityPlayer player, int passiveTimer)
 		{
-			if(passiveTimer > 400 || player.getHeldItem() == null || !ItemsHelper.isSword(player.getHeldItem()))
+			if(passiveTimer > 400 || player.getHeldItem(EnumHand.MAIN_HAND) == null || !ItemsHelper.isSword(player.getHeldItem()))
 			{
 				this.setPassiveActive(false);
 				this.startCooldown();

@@ -42,7 +42,7 @@ public class EventsQuestsProgress
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
-			ItemStack heldItem = player.getHeldItem();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 
 			QuestProperties questProps = QuestProperties.get(player);
 
@@ -56,7 +56,7 @@ public class EventsQuestsProgress
 	@SubscribeEvent
 	public void onEntityInteract(EntityInteractEvent event)
 	{
-		EntityPlayer player = event.entityPlayer;
+		EntityPlayer player = event.getEntityPlayer();
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		QuestProperties questProps = QuestProperties.get(player);
 		EntityLivingBase target = null;

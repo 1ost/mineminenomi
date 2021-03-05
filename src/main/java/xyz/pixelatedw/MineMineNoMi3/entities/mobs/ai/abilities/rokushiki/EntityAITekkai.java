@@ -34,7 +34,7 @@ public class EntityAITekkai extends EntityAICooldown
 
 		if(this.isOnCooldown())
 		{
-			IAttributeInstance knockbackResistsance = this.entity.getEntityAttribute(SharedMonsterAttributes.knockbackResistance);
+			IAttributeInstance knockbackResistsance = this.entity.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
 			if(this.cooldown < this.maxCooldown / 2 && knockbackResistsance.getModifier(this.knockbackResistanceUUID) != null)
 				knockbackResistsance.removeModifier(this.knockbackModifier);
 			
@@ -51,7 +51,7 @@ public class EntityAITekkai extends EntityAICooldown
 			this.prevHealth = this.entity.getHealth();
 		}
 		
-		float distance = this.entity.getDistanceToEntity(this.entity.getAttackTarget());
+		float distance = (float) this.entity.getDistanceSq(this.entity.getAttackTarget());
 		if (distance > 3)
 			return false;
 
@@ -72,8 +72,8 @@ public class EntityAITekkai extends EntityAICooldown
 	
 	public void execute()
 	{
-		if(this.entity.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getModifier(this.knockbackResistanceUUID) == null)
-			this.entity.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(this.knockbackModifier);
+		if(this.entity.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getModifier(this.knockbackResistanceUUID) == null)
+			this.entity.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).applyModifier(this.knockbackModifier);
 		
 		this.entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 70, 100));
 		this.entity.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 70, 100));

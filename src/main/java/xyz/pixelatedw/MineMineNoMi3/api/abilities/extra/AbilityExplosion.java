@@ -231,7 +231,7 @@ public class AbilityExplosion
 
 				if (block.getMaterial() == Material.AIR && blockUnder.func_149730_j() && this.world.rand.nextInt(3) == 0)
 				{
-					this.world.setBlock(posX, posY, posZ, Blocks.fire);
+					this.world.setBlock(posX, posY, posZ, Blocks.FIRE);
 				}
 			}
 		}

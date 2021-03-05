@@ -57,7 +57,7 @@ public class KiloAbilities {
                     this.setPassiveActive(false);
                     this.setCooldownActive(true);
                     this.endPassive(player);
-                } else if (player.getHeldItem() != null && player.getHeldItem().getItem() == ListMisc.UmbrellaOpen) {
+                } else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ListMisc.UmbrellaOpen) {
                     double mZ = 0;
                     double mX = 0;
                    WyHelper.Direction dir = WyHelper.get8Directions(player);
@@ -71,7 +71,7 @@ public class KiloAbilities {
                     if(dir == WyHelper.Direction.SOUTH_EAST) {mZ += 0.20; mX += 0.20;}
                     player.fallDistance = 0;
                     movePlayer("=",mX,-0.1,mZ,player);
-                } else if (player.getHeldItem() != null && player.getHeldItem().getItem() == ListMisc.Umbrella) {
+                } else if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ListMisc.Umbrella) {
                     int slot = player.inventory.currentItem;
                     player.inventory.setInventorySlotContents(slot, new ItemStack(ListMisc.UmbrellaOpen));
                 } else {

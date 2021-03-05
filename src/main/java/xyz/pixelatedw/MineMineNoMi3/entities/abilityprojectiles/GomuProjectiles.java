@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
+import net.minecraft.util.math.RayTraceResult;
 import xyz.pixelatedw.MineMineNoMi3.api.EnumParticleTypes;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper.Direction;
@@ -116,9 +117,9 @@ public class GomuProjectiles
 				double mY = 0;
 				double mZ = 0;
 
-				double powerX = Math.abs(hit.blockX - player.posX) / 5;
-				double powerY = (hit.blockY - player.posY) / 4;
-				double powerZ = Math.abs(hit.blockZ - player.posZ) / 5;
+				double powerX = Math.abs(hit.hitVec.x - player.posX) / 5;
+				double powerY = (hit.hitVec.y - player.posY) / 4;
+				double powerZ = Math.abs(hit.hitVec.z - player.posZ) / 5;
 
 				mY += powerY;
 

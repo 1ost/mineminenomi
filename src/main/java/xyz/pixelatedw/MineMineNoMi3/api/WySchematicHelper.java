@@ -78,7 +78,7 @@ public class WySchematicHelper
 									world.setBlockState(new BlockPos (posX + sx, posY + sy, posZ + sz), (IBlockState) Blocks.AIR);
 								
 								if (world.getBlockState(new BlockPos(posX + sx, posY + sy, posZ + sz)) == Blocks.WATER || world.getBlockState(new BlockPos(posX + sx, posY + sy, posZ + sz)) == Blocks.FLOWING_WATER)
-									world.markBlockForUpdate(posX + sx, posY + sy, posZ + sz);
+									world.markBlockRangeForRenderUpdate(posX + sx, posY + sy, posZ + sz);
 							}
 						}
 						i++;

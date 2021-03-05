@@ -26,7 +26,7 @@ public class EntityAISoru extends EntityAICooldown
 	{
 		if(this.isOnCooldown())
 		{
-			IAttributeInstance soruSpeed = this.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+			IAttributeInstance soruSpeed = this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
 			if(this.cooldown < this.maxCooldown / 2 && soruSpeed.getModifier(soruSpeedUUID) != null)
 				soruSpeed.removeModifier(this.speedModifier);
 			
@@ -43,7 +43,7 @@ public class EntityAISoru extends EntityAICooldown
 		if (this.entity.getAttackTarget() == null)
 			return false;
 
-		float distance = this.entity.getDistanceToEntity(this.entity.getAttackTarget());
+		float distance = (float) this.entity.getDistanceSq(this.entity.getAttackTarget());
 		if (distance > 15 && distance <= 25)
 		{
 			this.execute(0.3);
@@ -70,13 +70,13 @@ public class EntityAISoru extends EntityAICooldown
 	
 	public void execute(double level)
 	{
-		IAttributeInstance soruSpeed = this.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+		IAttributeInstance soruSpeed = this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
 		if(soruSpeed.getModifier(this.soruSpeedUUID) != null && this.speedModifier != null)
 			soruSpeed.removeModifier(this.speedModifier);	
 		
 		this.speedModifier = new AttributeModifier(this.soruSpeedUUID, "Soru Speed", level, 0);
 
-		this.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(this.speedModifier);
+		this.entity.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).applyModifier(this.speedModifier);
 		
 		this.entity.setCurrentAI(this);
 	    this.setOnCooldown(true);

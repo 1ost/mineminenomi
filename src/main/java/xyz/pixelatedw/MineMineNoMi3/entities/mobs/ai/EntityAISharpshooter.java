@@ -60,7 +60,7 @@ public class EntityAISharpshooter extends EntityAIBase
 		
 	public boolean continueExecuting()
 	{
-		boolean continueFlag = theEntity.getAttackTarget() != null && theEntity.canEntityBeSeen(theEntity.getAttackTarget()) && theEntity.getDistanceSqToEntity(theEntity.getAttackTarget()) < 120;
+		boolean continueFlag = theEntity.getAttackTarget() != null && theEntity.canEntityBeSeen(theEntity.getAttackTarget()) && theEntity.getDistanceSq(theEntity.getAttackTarget()) < 120;
 			
 		if(continueFlag)
 		{
@@ -68,10 +68,10 @@ public class EntityAISharpshooter extends EntityAIBase
 	
 			if(ticksBeforeShoot <= 0)
 			{ 
-	    		double d0 = theEntity.getDistanceSqToEntity(theEntity.getAttackTarget());
-	    		float f = MathHelper.sqrt_float(MathHelper.sqrt(d0));
+	    		double d0 = theEntity.getDistanceSq(theEntity.getAttackTarget());
+	    		float f = MathHelper.sqrt(MathHelper.sqrt(d0));
 	    		double d1 = theEntity.getAttackTarget().posX - theEntity.posX;
-	    		double d2 = theEntity.getAttackTarget().boundingBox.minY + (double)(theEntity.getAttackTarget().height / 2.0F) - (theEntity.posY + (double)(theEntity.height / 2.0F));
+	    		double d2 = theEntity.getAttackTarget().getCollisionBoundingBox().minY + (double)(theEntity.getAttackTarget().height / 2.0F) - (theEntity.posY + (double)(theEntity.height / 2.0F));
 	    		double d3 = theEntity.getAttackTarget().posZ - theEntity.posZ;
 	
 				AbilityProjectile proj;
@@ -80,7 +80,7 @@ public class EntityAISharpshooter extends EntityAIBase
 				else proj = new ExtraProjectiles.NormalBullet(theEntity.world, theEntity, bullet);
 				
 				proj.posY = theEntity.posY + (double)(theEntity.height / 2.0F) + 0.5D;
-				proj.setThrowableHeading(d1 + theEntity.getRNG().nextGaussian(), d2, d3 + theEntity.getRNG().nextGaussian(), inaccuracy, 0);
+				proj.setLocationAndAngles(d1 + theEntity.getRNG().nextGaussian(), d2, d3 + theEntity.getRNG().nextGaussian(), inaccuracy, 0);
 				theEntity.world.spawnEntity(proj);
 	
 	    		ticksBeforeShoot = maxTicksBeforeShoot; 

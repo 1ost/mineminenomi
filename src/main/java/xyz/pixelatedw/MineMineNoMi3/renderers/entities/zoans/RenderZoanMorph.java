@@ -322,7 +322,7 @@ public class RenderZoanMorph extends Render
 		if (entityLiving.deathTime > 0)
 		{
 			float f3 = (entityLiving.deathTime + v - 1.0F) / 20.0F * 1.6F;
-			f3 = MathHelper.sqrt_float(f3);
+			f3 = MathHelper.sqrt(f3);
 
 			if (f3 > 1.0F)
 			{

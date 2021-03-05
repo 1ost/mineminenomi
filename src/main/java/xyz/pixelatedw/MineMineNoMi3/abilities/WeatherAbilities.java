@@ -86,7 +86,7 @@ public class WeatherAbilities
 		{
 			if(!this.isOnCooldown())
 			{
-				ItemStack stack = player.getHeldItem();
+				ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);
 				if(stack == null || !(stack.getItem() instanceof ClimaTact))
 				{
 					WyHelper.sendMsgToPlayer(player, "Cannot use " + this.getAttribute().getAttributeName() + " without a Clima Tact in hand!");
@@ -156,7 +156,7 @@ public class WeatherAbilities
 		{
 			if(!this.isOnCooldown())
 			{
-				ItemStack stack = player.getHeldItem();
+				ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);
 				if(stack == null || !(stack.getItem() instanceof ClimaTact))
 				{
 					WyHelper.sendMsgToPlayer(player, "Cannot use " + this.getAttribute().getAttributeName() + " without a Clima Tact in hand!");
@@ -229,7 +229,7 @@ public class WeatherAbilities
 		{
 			if(!this.isOnCooldown())
 			{
-				ItemStack stack = player.getHeldItem();
+				ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);
 				if(stack == null || !(stack.getItem() instanceof ClimaTact))
 				{
 					WyHelper.sendMsgToPlayer(player, "Cannot use " + this.getAttribute().getAttributeName() + " without a Clima Tact in hand!");

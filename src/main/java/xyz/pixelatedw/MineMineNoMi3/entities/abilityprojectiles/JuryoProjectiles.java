@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.RayTraceResult;
+
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -83,7 +85,7 @@ public class JuryoProjectiles
 			}
 			else
 			{
-				DevilFruitsHelper.placeBlockIfAllowed(this.world, hit.blockX, hit.blockY, hit.blockZ, Blocks.AIR, "all", "restricted", "ignore liquid");
+				DevilFruitsHelper.placeBlockIfAllowed(this.world, hit.getBlockPos().getX(), hit.getBlockPos().getY(), hit.getBlockPos().getZ(), Blocks.AIR, "all", "restricted", "ignore liquid");
 			}
 		}
 	}

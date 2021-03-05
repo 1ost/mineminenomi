@@ -47,7 +47,7 @@ public class EntityDojoSensei extends EntityNewMob implements IQuestGiver
 	public void applyEntityAttributes()
 	{
 		super.applyEntityAttributes(); 
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(150.0D);
 		

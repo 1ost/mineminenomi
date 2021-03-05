@@ -59,8 +59,8 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
 	}
@@ -180,7 +180,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 			UUID rageModeUUID = UUID.fromString("d760dc58-8275-4ef6-ae34-d197a879c099");
 			AttributeModifier attributeModifier = new AttributeModifier(rageModeUUID, "Rage Mode", 8, 0);
 
-			if (player.getHeldItem() != null)
+			if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
 			{
 				if (attackDamage.getModifier(rageModeUUID) == null)
 				{
@@ -207,7 +207,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
-		ItemStack heldStack = player.getHeldItem();
+		ItemStack heldStack = player.getHeldItem(EnumHand.MAIN_HAND);
 
 		if (this.isTamed() && player == this.owner)
 		{

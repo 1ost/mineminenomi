@@ -1,10 +1,5 @@
 package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -12,10 +7,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -32,6 +29,11 @@ import xyz.pixelatedw.MineMineNoMi3.lists.ListAttributes;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListExtraAttributes;
 import xyz.pixelatedw.MineMineNoMi3.packets.PacketParticles;
 import xyz.pixelatedw.MineMineNoMi3.packets.PacketPlayer;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class WeatherProjectiles
 {
@@ -59,7 +61,7 @@ public class WeatherProjectiles
 		public WeatherEgg(World world, EntityLivingBase player, AbilityAttribute attr) 
 		{		
 			super(world, player, attr);
-			this.weaponUsed = player.getHeldItem() != null ? player.getHeldItem().getItem() : null;
+			this.weaponUsed = player.getHeldItem(EnumHand.MAIN_HAND) != null ? player.getHeldItem(EnumHand.MAIN_HAND).getItem() : null;
 		}
 		
 		@Override
@@ -107,7 +109,7 @@ public class WeatherProjectiles
 							posZ + offsetZ, 
 							0, 0.01F, 0)
 							.setParticleAge(2).setParticleScale(1F);
-					particle.setAlphaF(0.5F);
+					//particle.setAlphaF(0.5F);
 					MainMod.proxy.spawnCustomParticles(this, particle);
 					
 					particle = new EntityParticleFX(this.world, ID.PARTICLE_ICON_MOKU,
@@ -116,7 +118,7 @@ public class WeatherProjectiles
 							posZ + offsetZ, 
 							0, 0.01F, 0)
 							.setParticleAge(2).setParticleScale(1F);
-					particle.setAlphaF(0.7F);
+					//particle.setAlphaF(0.7F);
 					MainMod.proxy.spawnCustomParticles(this, particle);
 				}
 			}
@@ -157,7 +159,7 @@ public class WeatherProjectiles
 		public ThunderBall(World world, EntityLivingBase player, AbilityAttribute attr) 
 		{		
 			super(world, player, attr);
-			this.weaponUsed = player.getHeldItem() != null ? player.getHeldItem().getItem() : null;
+			this.weaponUsed = player.getHeldItem(EnumHand.MAIN_HAND) != null ? player.getHeldItem(EnumHand.MAIN_HAND).getItem() : null;
 		}
 	}
 	
@@ -172,7 +174,7 @@ public class WeatherProjectiles
 		public CoolBall(World world, EntityLivingBase player, AbilityAttribute attr) 
 		{		
 			super(world, player, attr);
-			this.weaponUsed = player.getHeldItem() != null ? player.getHeldItem().getItem() : null;
+			this.weaponUsed = player.getHeldItem(EnumHand.MAIN_HAND) != null ? player.getHeldItem(EnumHand.MAIN_HAND).getItem() : null;
 		}
 		
 		@Override
@@ -226,7 +228,7 @@ public class WeatherProjectiles
 		public HeatBall(World world, EntityLivingBase player, AbilityAttribute attr) 
 		{		
 			super(world, player, attr);		
-			this.weaponUsed = player.getHeldItem() != null ? player.getHeldItem().getItem() : null;
+			this.weaponUsed = player.getHeldItem(EnumHand.MAIN_HAND) != null ? player.getHeldItem(EnumHand.MAIN_HAND).getItem() : null;
 		}
 	}
 	
@@ -347,7 +349,7 @@ public class WeatherProjectiles
 							if(this.ticksExisted % thunderTimer == 0)
 							{
 								WyNetworkHelper.sendTo(new PacketPlayer("ElThorThunder", entity.posX, entity.posY, entity.posZ), (EntityPlayerMP) this.getThrower());
-								EntityLightningBolt thunder = new EntityLightningBolt(world, entity.posX, entity.posY, entity.posZ);
+								EntityLightningBolt thunder = new EntityLightningBolt(world, entity.posX, entity.posY, entity.posZ, true);
 								AbilityExplosion exp = WyHelper.newExplosion(this, entity.posX, entity.posY, entity.posZ, 1);
 								exp.setFireAfterExplosion(false);
 								exp.setDestroyBlocks(false);
@@ -402,7 +404,7 @@ public class WeatherProjectiles
 					if(coolBalls.size() >= 2)
 					{					
 						DevilFruitsHelper.sendShounenScream(getThrower(), "Rain Tempo", 0);
-				        WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
+				        WorldInfo worldinfo = FMLCommonHandler.instance().getMinecraftServerInstance().worlds[0].getWorldInfo();
 				        worldinfo.setRaining(true);
 				        
 						for(CoolBall cb : coolBalls)

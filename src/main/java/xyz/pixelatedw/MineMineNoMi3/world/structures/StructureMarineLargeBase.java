@@ -104,7 +104,7 @@ public class StructureMarineLargeBase extends Structure
 			addChestLoot(world, chest, 50, ListMisc.Bullets, 5, 10);
 			addChestLoot(world, chest, 50, ListMisc.Bullets, 5, 10);
 			addChestLoot(world, chest, 40, ListMisc.BellyPouch, 2, 4);
-			addChestLoot(world, chest, 30, Items.gunpowder, 5, 10);
+			addChestLoot(world, chest, 30, Items.GUNPOWDER, 5, 10);
 			addChestLoot(world, chest, 30, ListMisc.BellyPouch, 1, 2);
 			addChestLoot(world, chest, 20, ListMisc.Bullets, 10, 20);
 			addChestLoot(world, chest, 20, ListMisc.KairosekiBullets, 5, 10);

@@ -94,7 +94,7 @@ public class StructureCamp extends Structure
 			addChestLoot(world, chest, 70, ListMisc.Bullets, 5, 10);
 			addChestLoot(world, chest, 70, Items.cookie, 10, 20);
 			addChestLoot(world, chest, 50, ListMisc.BellyPouch, 1, 0);
-			addChestLoot(world, chest, 50, Items.gunpowder, 5, 10);
+			addChestLoot(world, chest, 50, Items.GUNPOWDER, 5, 10);
 		}
 		
 		TileEntityChest largeTentChest = new TileEntityChest();
@@ -103,7 +103,7 @@ public class StructureCamp extends Structure
 		addChestLoot(world, largeTentChest, 90, ListMisc.KairosekiBullets, 1, 7);
 		addChestLoot(world, largeTentChest, 70, Items.cooked_chicken, 2, 4);
 		addChestLoot(world, largeTentChest, 70, Items.cooked_beef, 2, 4);
-		addChestLoot(world, largeTentChest, 70, Items.gunpowder, 2, 5);
+		addChestLoot(world, largeTentChest, 70, Items.GUNPOWDER, 2, 5);
 		addChestLoot(world, largeTentChest, 50, Item.getItemFromBlock(ListMisc.DenDenMushi), 0, 1);
 		addChestLoot(world, largeTentChest, 50, ListMisc.Cola, 0, 2);
 		addChestLoot(world, largeTentChest, 30, ListMisc.BellyPouch, 1, 2);

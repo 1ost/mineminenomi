@@ -49,18 +49,18 @@ public class BlockCannon extends BlockContainer
 	{
 		TileEntityCannon cannonTE = (TileEntityCannon) world.getTileEntity(posX, posY, posZ);
 
-		if (player.getHeldItem() != null)
+		if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
 		{
-			if (cannonTE.getGunpowederLoaded() < 5 && player.getHeldItem().getItem() == Items.gunpowder)
+			if (cannonTE.getGunpowederLoaded() < 5 && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.GUNPOWDER)
 			{
-				player.getHeldItem().stackSize--;
+				player.getHeldItem(EnumHand.MAIN_HAND).stackSize--;
 				cannonTE.addGunpoweder();
 				return true;
 			}
 
-			if (!cannonTE.hasCannonBall() && player.getHeldItem().getItem() == ListMisc.CannonBall)
+			if (!cannonTE.hasCannonBall() && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ListMisc.CannonBall)
 			{
-				player.getHeldItem().stackSize--;
+				player.getHeldItem(EnumHand.MAIN_HAND).stackSize--;
 				cannonTE.setHasCannonBall(true);
 				return true;
 			}

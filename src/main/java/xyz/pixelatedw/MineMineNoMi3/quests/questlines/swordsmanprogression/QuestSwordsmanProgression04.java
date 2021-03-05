@@ -101,7 +101,7 @@ public class QuestSwordsmanProgression04 extends Quest implements IHitCounterQue
 
 	public boolean checkHit(EntityPlayer player, EntityLivingBase target, DamageSource source)
 	{
-		ItemStack heldItem = player.getHeldItem();
+		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 		
 		boolean flag = player.fallDistance > 0.0F && !player.onGround && !player.isOnLadder() && !player.isInWater() && !player.isRiding() && heldItem != null && (heldItem.getItem() instanceof ItemCoreWeapon || heldItem.getItem() instanceof ItemSword);
 

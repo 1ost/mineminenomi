@@ -1,6 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.entities.mobs.ai.abilities;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.EntityNewMob;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.ai.EntityAICooldown;
@@ -18,12 +19,12 @@ public class EntityAIKnockback extends EntityAICooldown
 	@Override
 	public boolean shouldExecute()
 	{
-		ItemStack itemStack = this.entity.getHeldItem();
+		ItemStack itemStack = this.entity.getHeldItem(EnumHand.MAIN_HAND);
 
 		if(itemStack != null || this.entity.getAttackTarget() == null)
 			return false;
 	
-		if(this.entity.getDistanceToEntity(this.entity.getAttackTarget()) > 3)
+		if(this.entity.getDistanceSq(this.entity.getAttackTarget()) > 3)
 			return false;
 
 		if(this.isOnCooldown())

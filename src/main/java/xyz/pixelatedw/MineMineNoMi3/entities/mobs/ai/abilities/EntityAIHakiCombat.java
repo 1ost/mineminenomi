@@ -40,7 +40,7 @@ public class EntityAIHakiCombat extends EntityAIBase
 			
 			WyNetworkHelper.sendToAllAround(new PacketSyncInfo(this.entity.getEntityId(), props), this.entity.dimension, this.entity.posX, this.entity.posY, this.entity.posZ, 256);
 
-			ItemStack itemStack = this.entity.getHeldItem();
+			ItemStack itemStack = this.entity.getHeldItem(EnumHand.MAIN_HAND);
 			
 			if(itemStack != null)
 			{
@@ -59,7 +59,7 @@ public class EntityAIHakiCombat extends EntityAIBase
 
 			WyNetworkHelper.sendToAllAround(new PacketSyncInfo(this.entity.getEntityId(), props), this.entity.dimension, this.entity.posX, this.entity.posY, this.entity.posZ, 256);
 
-			ItemStack itemStack = this.entity.getHeldItem();
+			ItemStack itemStack = this.entity.getHeldItem(EnumHand.MAIN_HAND);
 			
 			if(itemStack != null)
 			{

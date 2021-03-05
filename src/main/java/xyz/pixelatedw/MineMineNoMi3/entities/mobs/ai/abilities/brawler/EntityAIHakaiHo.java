@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.AbilityExplosion;
@@ -28,7 +29,7 @@ public class EntityAIHakaiHo extends EntityAICooldown
 
 	public boolean shouldExecute()
 	{
-		ItemStack itemStack = this.entity.getHeldItem();
+		ItemStack itemStack = this.entity.getHeldItem(EnumHand.MAIN_HAND);
 		
 		//if(this.entity.getPreviousAI() != null && this.entity.getPreviousAI() == this.entity.getCurrentAI())
 		//	return false;
@@ -37,7 +38,7 @@ public class EntityAIHakaiHo extends EntityAICooldown
 			return false;
 
 
-		if(this.entity.getDistanceToEntity(this.entity.getAttackTarget()) > 2)
+		if(this.entity.getDistanceSq(this.entity.getAttackTarget()) > 2)
 			return false;
 		
 		if(this.isOnCooldown())

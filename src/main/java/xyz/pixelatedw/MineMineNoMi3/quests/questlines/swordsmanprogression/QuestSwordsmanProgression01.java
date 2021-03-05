@@ -103,7 +103,7 @@ public class QuestSwordsmanProgression01 extends Quest implements IInteractQuest
 	@Override
 	public boolean isTarget(EntityPlayer player, EntityLivingBase target)
 	{
-		ItemStack heldItem = player.getHeldItem();
+		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 		QuestProperties questProps = QuestProperties.get(player);
 		
 		if(!(target instanceof EntityDojoSensei))

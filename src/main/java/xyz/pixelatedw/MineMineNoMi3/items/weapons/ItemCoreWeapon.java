@@ -268,7 +268,7 @@ public class ItemCoreWeapon extends Item
 		
 		if(stack.getTagCompound() != null)
     	{
-			if (player.getHeldItem() != null && player.getHeldItem().equals(stack))
+			if (player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).equals(stack))
 			{
 				if(imbuingBuso != null && imbuingBuso.isPassiveActive())
 				{

@@ -27,14 +27,14 @@ public class EventsDrops
     {
 		if(event.target instanceof EntityLivingBase)
 		{
-			ExtendedEntityData props = ExtendedEntityData.get(event.entityPlayer);
+			ExtendedEntityData props = ExtendedEntityData.get(event.getEntityPlayer());
 			ExtendedEntityData propz = ExtendedEntityData.get((EntityLivingBase) event.target);
-			ItemStack heldItem = event.entityPlayer.getHeldItem();
+			ItemStack heldItem = event.getEntityPlayer().getHeldItem();
 			
 			if(props.getUsedFruit().equalsIgnoreCase("kagekage") && propz.hasShadow() && heldItem != null && heldItem.getItem() == ListMisc.Scissors)
 			{
 				propz.setHasShadow(false);
-				event.entityPlayer.inventory.addItemStackToInventory(new ItemStack(ListMisc.Shadow));
+				event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(ListMisc.Shadow));
 			}
 		}
     }

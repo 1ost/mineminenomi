@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
+import net.minecraft.util.math.RayTraceResult;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
 import xyz.pixelatedw.MineMineNoMi3.abilities.effects.DFEffectHieSlowness;

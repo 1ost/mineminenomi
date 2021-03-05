@@ -48,7 +48,7 @@ public class EntityAIGapCloser extends EntityAIBase
 			this.prevHealth = this.entity.getHealth();
 		}
 
-		float distance = this.entity.getDistanceToEntity(this.entity.getAttackTarget());
+		float distance = (float) this.entity.getDistanceSq(this.entity.getAttackTarget());
 		if(distance > 14 && distance < 2)
 			return false;
 

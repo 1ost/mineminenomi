@@ -19,7 +19,7 @@ public class EntityAIEvade extends EntityAIBase
 	
 	public boolean shouldExecute() 
 	{
-		if(theEntity.getAITarget() != null)
+		if(theEntity.getRevengeTarget() != null)
 			return true;
 		else 
 			return false;

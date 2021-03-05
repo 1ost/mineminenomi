@@ -31,7 +31,7 @@ public class EntityAILapahnJump extends EntityAICooldown
 			this.prevHealth = this.entity.getHealth();
 		}
 
-		float distance = this.entity.getDistanceToEntity(this.entity.getAttackTarget());
+		float distance = (float) this.entity.getDistanceSq(this.entity.getAttackTarget());
 		if (distance > 10 && distance < 2)
 			return false;
 

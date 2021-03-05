@@ -55,7 +55,7 @@ public class EventsMorphs
 	@SubscribeEvent
 	public void onArmorRendering(SetArmorModel event)
 	{
-		EntityPlayer player = event.entityPlayer;
+		EntityPlayer player = event.getEntityPlayer();
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		AbilityProperties abilityProps = AbilityProperties.get(player);
 		
@@ -68,14 +68,14 @@ public class EventsMorphs
 				GL11.glEnable(GL11.GL_BLEND);
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
 							
-	            float f2 = this.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, event.partialRenderTick);
-	            float f3 = this.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, event.partialRenderTick);
-	            float f4 = this.handleRotationFloat(player, event.partialRenderTick);
+	            float f2 = this.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, event.getPartialRenderTick());
+	            float f3 = this.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, event.getPartialRenderTick());
+	            float f4 = this.handleRotationFloat(player, event.getPartialRenderTick());
 	            
-	            float f6 = player.prevLimbSwingAmount + (player.limbSwingAmount - player.prevLimbSwingAmount) * event.partialRenderTick;
-	            float f7 = player.limbSwing - player.limbSwingAmount * (1.0F - event.partialRenderTick);
+	            float f6 = player.prevLimbSwingAmount + (player.limbSwingAmount - player.prevLimbSwingAmount) * event.getPartialRenderTick();
+	            float f7 = player.limbSwing - player.limbSwingAmount * (1.0F - event.getPartialRenderTick());
 				
-	            float f13 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * event.partialRenderTick;
+	            float f13 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * event.getPartialRenderTick();
 	            
 				ModelBiped fullBodyHakiModel = new ModelBiped(0.05F);
 				GL11.glScaled(0.1, 0.1, 0.1);
@@ -156,7 +156,7 @@ public class EventsMorphs
 	@SubscribeEvent
 	public void onRenderPlayerEvent(RenderPlayerEvent.Pre event)
 	{
-		ExtendedEntityData propz = ExtendedEntityData.get(event.entityPlayer);
+		ExtendedEntityData propz = ExtendedEntityData.get(event.getEntityPlayer());
 		if (propz.isInAirWorld())
 		{
 			event.setCanceled(true);
@@ -289,7 +289,7 @@ public class EventsMorphs
 		boolean hasHotBoilingSpecial = (hotBoilingSpecial != null && hotBoilingSpecial.isPassiveActive());
 		boolean hasHardeningBuso = (hardeningBuso != null && hardeningBuso.isPassiveActive());
 		boolean hasFullBodyHardeningBuso = (fullBodyHardeningBuso != null && fullBodyHardeningBuso.isPassiveActive());
-		if (player.getHeldItem() == null && (hasFullBodyHardeningBuso || hasHardeningBuso || hasHotBoilingSpecial))
+		if (player.getHeldItem(EnumHand.MAIN_HAND) == null && (hasFullBodyHardeningBuso || hasHardeningBuso || hasHotBoilingSpecial))
 		{
 			renderHandFlag = true;
 		}

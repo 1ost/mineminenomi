@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.api.EnumParticleTypes;
@@ -79,7 +80,7 @@ public class MaguProjectiles
 				hit.entityHit.setFire(100);
 			
 			if(MainConfig.enableGriefing)
-				DevilFruitsHelper.placeBlockIfAllowed(world, hit.blockX, hit.blockY, hit.blockZ, Blocks.FLOWING_LAVA, "core", "foliage");
+				DevilFruitsHelper.placeBlockIfAllowed(world, hit.getBlockPos().getX(), hit.getBlockPos().getY(), hit.getBlockPos().getZ(), Blocks.FLOWING_LAVA, "core", "foliage");
 		};
 		
 		@Override

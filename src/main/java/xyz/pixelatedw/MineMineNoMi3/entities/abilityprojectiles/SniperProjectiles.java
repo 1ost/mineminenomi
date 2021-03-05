@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;

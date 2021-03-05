@@ -120,7 +120,7 @@ public class MeraAbilities
 		{
 			if(!isOnCooldown)
 			{
-				WyHelper.createEmptySphere(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 13, Blocks.fire, "air", "foliage");
+				WyHelper.createEmptySphere(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 13, Blocks.FIRE, "air", "foliage");
 					
 				for(EntityLivingBase l : WyHelper.getEntitiesNear(player, 12))
 				{l.setFire(20);}

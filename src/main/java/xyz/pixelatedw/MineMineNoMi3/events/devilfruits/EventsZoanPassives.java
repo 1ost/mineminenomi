@@ -46,7 +46,7 @@ public class EventsZoanPassives
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
-			ItemStack heldItem = player.getHeldItem();
+			ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 			
 			if(props.getUsedFruit().equalsIgnoreCase("mogumogu") && props.getZoanPoint().equalsIgnoreCase("power"))
 			{

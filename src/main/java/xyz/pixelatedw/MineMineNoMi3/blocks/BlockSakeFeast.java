@@ -29,14 +29,14 @@ public class BlockSakeFeast extends BlockContainer
 		if (world.isRemote)
 			return true;
 
-		boolean isItem = player.getHeldItem() != null && player.getHeldItem().getItem() == ListMisc.SakeCup;
-		boolean isCupFilledFlag = isItem && player.getHeldItem().getTagCompound() != null && player.getHeldItem().getTagCompound().getBoolean("IsFilled");
+		boolean isItem = player.getHeldItem(EnumHand.MAIN_HAND) != null && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ListMisc.SakeCup;
+		boolean isCupFilledFlag = isItem && player.getHeldItem(EnumHand.MAIN_HAND).getTagCompound() != null && player.getHeldItem(EnumHand.MAIN_HAND).getTagCompound().getBoolean("IsFilled");
 		boolean hasFills = sakeFeast.getAmount() > 0;
 		if (isItem && !isCupFilledFlag && hasFills)
 		{
 			player.inventory.setInventorySlotContents(player.inventory.currentItem ,new ItemStack(ListMisc.SakeCup, 1, 0));
-			player.getHeldItem().setTagCompound(new NBTTagCompound());
-			player.getHeldItem().getTagCompound().setBoolean("IsFilled", true);
+			player.getHeldItem(EnumHand.MAIN_HAND).setTagCompound(new NBTTagCompound());
+			player.getHeldItem(EnumHand.MAIN_HAND).getTagCompound().setBoolean("IsFilled", true);
 			sakeFeast.reduceAmount();
 			return true;
 		}

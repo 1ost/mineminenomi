@@ -3,10 +3,13 @@ package xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.util.math.RayTraceResult;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -45,7 +48,7 @@ public class YamiProjectiles
 		
 		public void tasksImapct(RayTraceResult hit)
 		{
-			this.world.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, randomBlocks[this.rand.nextInt(randomBlocks.length)]);
+			this.world.setBlockState(new BlockPos((int)this.posX, (int)this.posY, (int)this.posZ), (IBlockState) randomBlocks[this.rand.nextInt(randomBlocks.length)]);
 		}
 	}	
 	

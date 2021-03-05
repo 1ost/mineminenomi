@@ -17,8 +17,8 @@ public class EntityMr0 extends PirateData
 	public void applyEntityAttributes()
 	{ 
 		super.applyEntityAttributes(); 
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(55.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.2D);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(55.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
 		
