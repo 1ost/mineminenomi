@@ -38,7 +38,7 @@ public class DoctorAbilities
 			if(this.isOnCooldown())
 				return;
 			
-			if(player.getCurrentArmor(2) == null || player.getCurrentArmor(2).getItem() != ListMisc.MedicBag)
+			if(player.inventory.armorInventory.get(2) == null || player.inventory.armorInventory.get(2).getItem() != ListMisc.MedicBag)
 			{
 				WyHelper.sendMsgToPlayer(player, "You need a medic bag equipped to use this ability !");
 				return;
@@ -50,12 +50,12 @@ public class DoctorAbilities
 		@Override
 		public void endCharging(EntityPlayer player)
 		{
-			EntityPotion entitypotion = new EntityPotion(player.world, player, 32732);
+			/*EntityPotion entitypotion = new EntityPotion(player.world, player, 32732);
 			entitypotion.rotationPitch -= -20.0F;
 
 			int potionType = (int) WyMathHelper.randomWithRange(0, 3);
 			
-			switch(potionType)
+			*//*switch(potionType)
 			{
 				case 0:
 					entitypotion.setPotionDamage(32698); break;
@@ -63,17 +63,17 @@ public class DoctorAbilities
 					entitypotion.setPotionDamage(32660); break;
 				case 2:
 					entitypotion.setPotionDamage(32696); break;
-			}
+			}*//*
 			
-			player.world.spawnEntity(entitypotion);
+			player.world.spawnEntity(entitypotion);*/
 
-			int damage = player.getCurrentArmor(2).getItemDamage() + 10 <= player.getCurrentArmor(2).getMaxDamage() ? 10 : player.getCurrentArmor(2).getMaxDamage() - player.getCurrentArmor(2).getItemDamage();
-			
-			player.getCurrentArmor(2).damageItem(damage, player);
-			if(player.getCurrentArmor(2).getItemDamage() >= player.getCurrentArmor(2).getMaxDamage())
+			int damage = player.inventory.armorInventory.get(2).getItemDamage() + 10 <= player.inventory.armorInventory.get(2).getMaxDamage() ? 10 : player.inventory.armorInventory.get(2).getMaxDamage() - player.inventory.armorInventory.get(2).getItemDamage();
+
+			player.inventory.armorInventory.get(2).damageItem(damage, player);
+			if(player.inventory.armorInventory.get(2).getItemDamage() >= player.inventory.armorInventory.get(2).getMaxDamage())
 			{
-				WyNetworkHelper.sendTo(new PacketBrokenItemParticles(player.getCurrentArmor(2)), (EntityPlayerMP) player);
-				WyHelper.removeStackFromArmorSlots(player, player.getCurrentArmor(2));
+				WyNetworkHelper.sendTo(new PacketBrokenItemParticles(player.inventory.armorInventory.get(2)), (EntityPlayerMP) player);
+				WyHelper.removeStackFromArmorSlots(player, player.inventory.armorInventory.get(2));
 			}
 			
 			super.endCharging(player);
@@ -93,7 +93,7 @@ public class DoctorAbilities
 			if(this.isOnCooldown())
 				return;
 			
-			if(player.getCurrentArmor(2) == null || player.getCurrentArmor(2).getItem() != ListMisc.MedicBag)
+			if(player.inventory.armorInventory.get(2) == null || player.inventory.armorInventory.get(2).getItem() != ListMisc.MedicBag)
 			{
 				WyHelper.sendMsgToPlayer(player, "You need a medic bag equipped to use this ability !");
 				return;
@@ -126,13 +126,13 @@ public class DoctorAbilities
 			
 			WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_MEDIC_BAG_EXPLOSION, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 
-			int damage = player.getCurrentArmor(2).getItemDamage() + 100 <= player.getCurrentArmor(2).getMaxDamage() ? 100 : player.getCurrentArmor(2).getMaxDamage() - player.getCurrentArmor(2).getItemDamage();
+			int damage = player.inventory.armorInventory.get(2).getItemDamage() + 100 <= player.inventory.armorInventory.get(2).getMaxDamage() ? 100 : player.inventory.armorInventory.get(2).getMaxDamage() - player.inventory.armorInventory.get(2).getItemDamage();
 			
-			player.getCurrentArmor(2).damageItem(damage, player);
-			if(player.getCurrentArmor(2).getItemDamage() >= player.getCurrentArmor(2).getMaxDamage())
+			player.inventory.armorInventory.get(2).damageItem(damage, player);
+			if(player.inventory.armorInventory.get(2).getItemDamage() >= player.inventory.armorInventory.get(2).getMaxDamage())
 			{
-				WyNetworkHelper.sendTo(new PacketBrokenItemParticles(player.getCurrentArmor(2)), (EntityPlayerMP) player);
-				WyHelper.removeStackFromArmorSlots(player, player.getCurrentArmor(2));
+				WyNetworkHelper.sendTo(new PacketBrokenItemParticles(player.inventory.armorInventory.get(2)), (EntityPlayerMP) player);
+				WyHelper.removeStackFromArmorSlots(player, player.inventory.armorInventory.get(2));
 			}
 			
 			super.use(player);
@@ -149,7 +149,7 @@ public class DoctorAbilities
 		@Override
 		public void hitEntity(EntityPlayer player, EntityLivingBase target)
 		{
-			if(player.getCurrentArmor(2) == null || player.getCurrentArmor(2).getItem() != ListMisc.MedicBag)
+			if(player.inventory.armorInventory.get(2) == null || player.inventory.armorInventory.get(2).getItem() != ListMisc.MedicBag)
 			{
 				WyHelper.sendMsgToPlayer(player, "You need a medic bag equipped to use this ability !");
 				return;
@@ -165,12 +165,12 @@ public class DoctorAbilities
 			explosion.setSmokeParticles(ID.PARTICLEFX_FIRST_AID);
 			explosion.doExplosion();
 			
-			int damage = player.getCurrentArmor(2).getItemDamage() + 10 <= player.getCurrentArmor(2).getMaxDamage() ? 10 : player.getCurrentArmor(2).getMaxDamage() - player.getCurrentArmor(2).getItemDamage();
-			player.getCurrentArmor(2).damageItem(damage, player);
-			if(player.getCurrentArmor(2).getItemDamage() >= player.getCurrentArmor(2).getMaxDamage())
+			int damage = player.inventory.armorInventory.get(2).getItemDamage() + 10 <= player.inventory.armorInventory.get(2).getMaxDamage() ? 10 : player.inventory.armorInventory.get(2).getMaxDamage() - player.inventory.armorInventory.get(2).getItemDamage();
+			player.inventory.armorInventory.get(2).damageItem(damage, player);
+			if(player.inventory.armorInventory.get(2).getItemDamage() >= player.inventory.armorInventory.get(2).getMaxDamage())
 			{
-				WyNetworkHelper.sendTo(new PacketBrokenItemParticles(player.getCurrentArmor(2)), (EntityPlayerMP) player);
-				WyHelper.removeStackFromArmorSlots(player, player.getCurrentArmor(2));
+				WyNetworkHelper.sendTo(new PacketBrokenItemParticles(player.inventory.armorInventory.get(2)), (EntityPlayerMP) player);
+				WyHelper.removeStackFromArmorSlots(player, player.inventory.armorInventory.get(2));
 			}
 
 			super.hitEntity(player, target);

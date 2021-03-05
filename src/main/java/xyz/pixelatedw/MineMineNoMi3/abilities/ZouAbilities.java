@@ -230,7 +230,7 @@ public class ZouAbilities
 			
 			props.setZoanPoint("full");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 		
 		@Override
@@ -242,7 +242,7 @@ public class ZouAbilities
 			
 			props.setZoanPoint("n/a");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 	}
 	
@@ -276,7 +276,7 @@ public class ZouAbilities
 			
 			props.setZoanPoint("hybrid");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 		
 		@Override
@@ -288,7 +288,7 @@ public class ZouAbilities
 			
 			props.setZoanPoint("n/a");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 	}
 	

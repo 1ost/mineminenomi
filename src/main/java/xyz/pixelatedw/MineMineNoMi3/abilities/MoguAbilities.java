@@ -212,7 +212,7 @@ public class MoguAbilities
 
 			props.setZoanPoint("power");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 
 		public void endPassive(EntityPlayer player)
@@ -225,7 +225,7 @@ public class MoguAbilities
 
 			props.setZoanPoint("n/a");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 	}
 

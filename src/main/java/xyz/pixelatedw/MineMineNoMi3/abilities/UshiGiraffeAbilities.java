@@ -72,7 +72,7 @@ public class UshiGiraffeAbilities
 			
 			props.setZoanPoint("power");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 		
 		@Override
@@ -84,7 +84,7 @@ public class UshiGiraffeAbilities
 			
 			props.setZoanPoint("n/a");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 	}
 
@@ -118,7 +118,7 @@ public class UshiGiraffeAbilities
 			
 			props.setZoanPoint("speed");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 		
 		@Override
@@ -133,7 +133,7 @@ public class UshiGiraffeAbilities
 			
 			props.setZoanPoint("n/a");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 	}
 	

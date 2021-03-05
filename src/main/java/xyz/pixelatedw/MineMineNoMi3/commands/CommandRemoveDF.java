@@ -50,7 +50,7 @@ public class CommandRemoveDF extends CommandBase
 		player.clearActivePotions();
 		
 		WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP)player);	
-		WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));	
+		WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		WyNetworkHelper.sendTo(new PacketAbilitySync(abilityProps), (EntityPlayerMP)player);	
 	}
 

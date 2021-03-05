@@ -4,6 +4,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
 import xyz.pixelatedw.MineMineNoMi3.api.math.WyMathHelper;
@@ -61,7 +63,7 @@ public class DoaAbilities {
         }
 
         public static boolean isBlock(int[] coords, EntityPlayer player) {
-            if (player.getEntityWorld().getBlock(coords[0], coords[1], coords[2]) == Blocks.AIR && player.getEntityWorld().getBlock(coords[0], (coords[1] + 1), coords[2]) == Blocks.AIR) {
+            if (player.getEntityWorld().getBlockState(new BlockPos(coords[0], coords[1], coords[2])) == Blocks.AIR && player.getEntityWorld().getBlockState(new BlockPos(coords[0], (coords[1] + 1), coords[2])) == Blocks.AIR) {
                 return true;
             }
             return false;
@@ -72,13 +74,13 @@ public class DoaAbilities {
 
             RayTraceResult MOP = WyHelper.rayTraceBlocks(player);
 
-            if (MOP != null && (MOP.blockY >= (player.posY + 1))) {
-                int checkX = MOP.blockX - (int) player.posX;
-                int checkZ = MOP.blockZ - (int) player.posZ;
+            if (MOP != null && (MOP.getBlockPos().getY() >= (player.posY + 1))) {
+                int checkX = MOP.getBlockPos().getX() - (int) player.posX;
+                int checkZ = MOP.getBlockPos().getZ() - (int) player.posZ;
 
                 if ((checkX > -3 && checkX < 3) && (checkZ > -3 && checkZ < 3)) {
 
-                    int[] coords = new int[]{MOP.blockX, (int) player.posY, MOP.blockZ};
+                    int[] coords = new int[]{MOP.getBlockPos().getX(), (int) player.posY, MOP.getBlockPos().getZ()};
                     int timer = 0;
                     while (!isBlock(coords, player)) {
                         coords = WyMathHelper.moveAway(player, coords);
