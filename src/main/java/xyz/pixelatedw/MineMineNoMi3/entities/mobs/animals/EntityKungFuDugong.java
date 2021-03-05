@@ -37,7 +37,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 {
 	private Item[] food = new Item[]
 		{
-				Items.cooked_beef, Items.cooked_chicken, Items.cooked_fished, Items.cooked_porkchop
+				Items.cooked_beef, Items.cooked_chicken, Items.COOKED_FISH, Items.cooked_porkchop
 		};
 	private boolean isHappy, isTamed, isWaiting, isEnraged, isTraining;
 	private EntityPlayer owner;
@@ -245,9 +245,9 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 		for (int k = 0; k < j; ++k)
 		{
 			if (this.isBurning())
-				this.dropItem(Items.cooked_fished, 1);
+				this.dropItem(Items.COOKED_FISH, 1);
 			else
-				this.dropItem(Items.fish, 1);
+				this.dropItem(Items.FISH, 1);
 		}
 	}
 

@@ -28,7 +28,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 {
 	private Item[] food = new Item[]
 		{
-				Items.cooked_fished, Items.fish
+				Items.COOKED_FISH, Items.FISH
 		};
 	private boolean isTamed, isSaddled;
 	private boolean is2ndSeatEmpty;
@@ -140,7 +140,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 				double d0 = this.rand.nextGaussian() * 0.02D;
 				double d1 = this.rand.nextGaussian() * 0.02D;
 				double d2 = this.rand.nextGaussian() * 0.02D;
-				this.world.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
+				this.world.spawnParticle((EnumParticleTypes.HEART.getParticleName()), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 			}
 			this.timesFed++;
 				
@@ -152,7 +152,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 					double d0 = this.rand.nextGaussian() * 0.03D;
 					double d1 = this.rand.nextGaussian() * 0.03D;
 					double d2 = this.rand.nextGaussian() * 0.03D;
-					this.world.spawnParticle(EnumParticleTypes.HEART.getParticleName(), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
+					this.world.spawnParticle((EnumParticleTypes.HEART.getParticleName()), this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2);
 				}
 				this.updateNBT();
 			}
@@ -166,7 +166,7 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
 				if (heldStack == null)
 					return false;
 
-				if (heldStack.getItem() == Items.saddle)
+				if (heldStack.getItem() == Items.SADDLE)
 				{
 					--heldStack.stackSize;
 					this.setSaddled(true);
@@ -248,13 +248,13 @@ public class EntityYagaraBull extends EntityNewMob implements IEntityOwnable
         for (int k = 0; k < j; ++k)
         {
             if (this.isBurning())
-                this.dropItem(Items.cooked_fished, 1);
+                this.dropItem(Items.COOKED_FISH, 1);
             else
-                this.dropItem(Items.fish, 1);
+                this.dropItem(Items.FISH, 1);
         }
 
         if (this.isSaddled())
-            this.dropItem(Items.saddle, 1);
+            this.dropItem(Items.SADDLE, 1);
     }
 	
 	@Override

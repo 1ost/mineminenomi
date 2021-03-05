@@ -85,7 +85,7 @@ public enum EnumParticleTypes
 
     public net.minecraft.util.EnumParticleTypes getParticleName()
     {
-        return this.particleName;
+        return net.minecraft.util.EnumParticleTypes.valueOf(this.particleName);
     }
 
     public int getParticleID()
@@ -123,7 +123,7 @@ public enum EnumParticleTypes
         for (EnumParticleTypes enumparticletypes : values())
         {
             PARTICLES.put(Integer.valueOf(enumparticletypes.getParticleID()), enumparticletypes);
-            BY_NAME.put(enumparticletypes.getParticleName(), enumparticletypes);
+            BY_NAME.put(String.valueOf(enumparticletypes.getParticleName()), enumparticletypes);
         }
 }
 	
