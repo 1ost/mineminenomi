@@ -50,7 +50,7 @@ public class CommandPouch extends CommandBase
 		player.inventory.addItemStackToInventory(pouch);
 		
 		WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP)player);
-		WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+		WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 	}
 	
 	@Override

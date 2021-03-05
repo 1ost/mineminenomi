@@ -51,7 +51,7 @@ public class PacketQuestExtra implements IMessage
 				System.err.println("Checking different objects to check for nulls \n"
 						+ "Quest Props - " + props + "\n"
 						+ "Quest - " + props.getQuestIndexFromTracker(message.questId) + "\n"
-						+ "Player - " + player.getDisplayName() + "\n");
+						+ "Player - " + player.getName() + "\n");
 			}
 
 			return null;
@@ -75,7 +75,7 @@ public class PacketQuestExtra implements IMessage
 				System.err.println("Checking different objects to check for nulls \n"
 						+ "Quest Props - " + props + "\n"
 						+ "Quest - " + props.getQuestIndexFromTracker(message.questId) + "\n"
-						+ "Player - " + player.getDisplayName() + "\n");
+						+ "Player - " + player.getName() + "\n");
 			}
 				
 			return null;
