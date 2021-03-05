@@ -2,6 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.helpers;
 
 import java.util.HashMap;
 
+import net.minecraft.entity.player.EntityPlayerMP;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
@@ -41,7 +42,7 @@ public class HandRendererHelper
 				});
 	}
 	
-	public static void renderHand(EntityClientPlayerMP player)
+	public static void renderHand(EntityPlayerMP player)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 

@@ -1,5 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
+import net.minecraft.util.EnumHand;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -53,7 +55,7 @@ public class EventsPassives
 			EntityLivingBase entity = event.getEntityLiving();
 			ExtendedEntityData propz = ExtendedEntityData.get(entity);
 
-			if (!propz.hasShadow() && entity.getBrightness(1.0F) > 0.8F)
+			if (!propz.hasShadow() && entity.getBrightness() > 0.8F)
 				entity.setFire(3);
 
 		}
@@ -110,7 +112,7 @@ public class EventsPassives
 			{
 				player.getFoodStats().addStats(9999, 9999);
 
-				player.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 100, 0, true));
+				player.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 100, 0, true, false));
 
 				if (player.world.getBlock((int) player.posX, (int) player.boundingBox.minY, (int) player.posZ) == Blocks.WATER && player.isSprinting())
 				{
@@ -241,7 +243,7 @@ public class EventsPassives
 
 			if(!player.world.isRemote)
 			{
-				if(props.hasExtraEffects(ID.EXTRAEFFECT_HAO) && player.isPotionActive(Potion.blindness))
+				if(props.hasExtraEffects(ID.EXTRAEFFECT_HAO) && player.isPotionActive(Potion.getPotionById(15)))
 				{
 	
 					for (int i = 0; i < abilityProps.countAbilitiesInHotbar(); i++)
@@ -303,9 +305,9 @@ public class EventsPassives
 				ItemStack waterCan = null;
 		        for (int i = 0; i < attacked.inventory.mainInventory.length; ++i)
 		        {
-		            if (attacked.inventory.mainInventory[i] != null && attacked.inventory.mainInventory[i].getItem() == ListMisc.WateringCan)
+		            if (attacked.inventory.mainInventory.get(i) != null && attacked.inventory.mainInventory.get(i).getItem() == ListMisc.WateringCan)
 		            {
-		                waterCan = attacked.inventory.mainInventory[i];
+		                waterCan = attacked.inventory.mainInventory.get(i);
 		            }
 		        }
 
@@ -346,10 +348,10 @@ public class EventsPassives
 
 			if (props.getUsedFruit().equalsIgnoreCase("kilokilo"))
 			{
-				if (attacker.isPotionActive(Potion.damageBoost))
+				if (attacker.isPotionActive(Potion.getPotionById(5)))
 				{
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_KILO, attacked.posX, attacked.posY, attacked.posZ), attacker.dimension, attacker.posX, attacker.posY, attacker.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
-					attacker.removePotionEffect(Potion.damageBoost.id);
+					attacker.removePotionEffect(Potion.getPotionById(5));
 				}
 			}
 
@@ -370,13 +372,13 @@ public class EventsPassives
 			if (hardeningBuso != null && hardeningBuso.isPassiveActive())
 			{
 				double power = props.getDoriki() / 500;
-				event.ammount += power * props.getDamageMultiplier();
+				event.setAmount((float) (event.getAmount() + power * props.getDamageMultiplier()));
 			}
 			
 			if (fullBodyHardeningBuso != null && fullBodyHardeningBuso.isPassiveActive())
 			{
 				double power = props.getDoriki() / 700;
-				event.ammount += power * props.getDamageMultiplier();
+				event.setAmount((float) (event.getAmount() + power * props.getDamageMultiplier()));
 			}
 		}
 	}
@@ -426,7 +428,7 @@ public class EventsPassives
 			Ability fireFist = abilityProps.getAbilityFromName(ListAttributes.HOT_BOILING_SPECIAL.getAttributeName());
 			if (fireFist != null && fireFist.isPassiveActive())
 			{
-				event.target.setFire(4);
+				event.getTarget().setFire(4);
 			}
 		}
 
@@ -446,7 +448,7 @@ public class EventsPassives
 				event.setCanceled(true);
 			}
 			
-			if(player.getHealth() - event.ammount <= 0)
+			if(player.getHealth() - event.getAmount() <= 0)
 			{			
 				if (props.getUsedFruit().equalsIgnoreCase("yomiyomi") && !props.getZoanPoint().equalsIgnoreCase("yomi"))
 				{
@@ -463,7 +465,7 @@ public class EventsPassives
 					player.setHealth(player.getMaxHealth());
 					
 					WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-					WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+					WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 					
 					for(Ability a : YomiAbilities.abilitiesArray)
 						if(!DevilFruitsHelper.verifyIfAbilityIsBanned(a) && !abilityProps.hasDevilFruitAbility(a))
@@ -482,14 +484,14 @@ public class EventsPassives
 					KenbunshokuHakiFutureSight futureSight = (KenbunshokuHakiFutureSight) abilityProps.getAbilityFromName(ListAttributes.KENBUNSHOKU_HAKI_FUTURE_SIGHT.getAttributeName());			
 					if(futureSight != null && futureSight.isPassiveActive())
 					{
-						futureSight.reduceProtection(event.ammount);
+						futureSight.reduceProtection(event.getAmount());
 						event.setCanceled(true);
 					}
 					
-					if (attacker.getHeldItem() != null && ItemsHelper.isSword(attacker.getHeldItem()) && propz.getUsedFruit().equals("sabisabi") && !attacker.world.isRemote)
+					if (attacker.getHeldItem(EnumHand.MAIN_HAND) != null && ItemsHelper.isSword(attacker.getHeldItem()) && propz.getUsedFruit().equals("sabisabi") && !attacker.world.isRemote)
 					{
 						event.setCanceled(true);
-						attacker.getHeldItem().damageItem(30, attacker);
+						attacker.getHeldItem(EnumHand.MAIN_HAND).damageItem(30, attacker);
 						if (attacker instanceof EntityPlayer && attacker.getHeldItem().getItemDamage() <= 0)
 							WyHelper.removeStackFromInventory((EntityPlayer) attacker, attacker.getHeldItem());
 						else if(!(attacker instanceof EntityPlayer) && attacker.getHeldItem().getItemDamage() <= 0)
@@ -503,14 +505,14 @@ public class EventsPassives
 	}
 	
 	@SubscribeEvent
-	public void onDrinkMilk(PlayerUseItemEvent.Finish event)
+	public void onDrinkMilk(LivingEntityUseItemEvent.Finish event)
 	{
-		if(event.item.getItem() == Items.milk_bucket)
+		if(event.getItem().getItem() == Items.MILK_BUCKET)
 		{
-			ExtendedEntityData props = ExtendedEntityData.get(event.getEntityPlayer());
+			ExtendedEntityData props = ExtendedEntityData.get(event.getEntityLiving());
 			if(props.getUsedFruit().equalsIgnoreCase("yomiyomi") && props.getZoanPoint().equalsIgnoreCase("yomi"))
 			{
-				event.getEntityPlayer().heal(4);
+				event.getEntityLiving().heal(4);
 			}
 		}
 	}

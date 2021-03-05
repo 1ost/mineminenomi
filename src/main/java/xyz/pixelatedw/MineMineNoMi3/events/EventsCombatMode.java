@@ -35,7 +35,8 @@ import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 public class EventsCombatMode extends Gui
 {
 	private Minecraft mc;
-	protected static final RenderItem itemRenderer = new RenderItem();
+	//uncomment
+	// protected static final RenderItem itemRenderer = new RenderItem();
 	private int trackDistance = 15;
 	private EntityLivingBase trackMob = null;
 
@@ -82,7 +83,8 @@ public class EventsCombatMode extends Gui
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-			this.mc.getTextureManager().bindTexture(icons);
+			//uncomment
+			// this.mc.getTextureManager().bindTexture(icons);
 			double f2 = player.getAbsorptionAmount();
 
 			for (int i = MathHelper.ceil((maxHealth) / 2.0F) - 1; i >= 0; i--)

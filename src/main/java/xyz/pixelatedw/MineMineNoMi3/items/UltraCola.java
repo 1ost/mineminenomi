@@ -57,7 +57,7 @@ public class UltraCola extends ItemFood
 				else
 				{
 					player.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 100, 0));
-					player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 0));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 200, 0));
 					player.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 200, 0));
 					if(props.getCola() <= props.getMaxCola() - 30) 
 						props.alterCola(30);

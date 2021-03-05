@@ -19,7 +19,7 @@ public class DFEffectTensionHormone extends DFEffect
 	{
 		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 600, 1));
 		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 600, 1));
-		entity.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 600, 1));
+		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 600, 1));
 		entity.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 600, 1));
 	}
 

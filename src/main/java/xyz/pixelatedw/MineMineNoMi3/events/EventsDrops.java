@@ -43,7 +43,8 @@ public class EventsDrops
 	@SubscribeEvent	
 	public void onBreak(BreakEvent event)
 	{
-		if(MainConfig.enableDFtoDrop && (event.block == Blocks.LEAVES || event.block == Blocks.LEAVES2))
+		//uncomment
+		// if(MainConfig.enableDFtoDrop && (event.block == Blocks.LEAVES || event.block == Blocks.LEAVES2))
 		{
 			Random rand = new Random();
 			double chance = rand.nextInt(99) + rand.nextDouble();

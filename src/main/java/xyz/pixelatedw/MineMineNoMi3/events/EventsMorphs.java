@@ -2,6 +2,9 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.Arrays;
 
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -10,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.EntityLivingBase;
@@ -51,14 +53,14 @@ public class EventsMorphs
 		this.mc = mc;
 	}
 
-	
+
 	@SubscribeEvent
 	public void onArmorRendering(SetArmorModel event)
 	{
 		EntityPlayer player = event.getEntityPlayer();
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		AbilityProperties abilityProps = AbilityProperties.get(player);
-		
+
 		Ability fullBodyHakiAbility = abilityProps.getAbilityFromName(ListAttributes.BUSOSHOKU_HAKI_FULL_BODY_HARDENING.getAttributeName());
 
 		if (fullBodyHakiAbility != null && fullBodyHakiAbility.isPassiveActive())
@@ -67,16 +69,16 @@ public class EventsMorphs
 			{
 				GL11.glEnable(GL11.GL_BLEND);
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
-							
+
 	            float f2 = this.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, event.getPartialRenderTick());
 	            float f3 = this.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, event.getPartialRenderTick());
 	            float f4 = this.handleRotationFloat(player, event.getPartialRenderTick());
-	            
+
 	            float f6 = player.prevLimbSwingAmount + (player.limbSwingAmount - player.prevLimbSwingAmount) * event.getPartialRenderTick();
 	            float f7 = player.limbSwing - player.limbSwingAmount * (1.0F - event.getPartialRenderTick());
-				
+
 	            float f13 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * event.getPartialRenderTick();
-	            
+
 				ModelBiped fullBodyHakiModel = new ModelBiped(0.05F);
 				GL11.glScaled(0.1, 0.1, 0.1);
 				Minecraft.getMinecraft().getTextureManager().bindTexture(ID.HANDTEXTURE_ZOANMORPH_BUSO);
@@ -84,19 +86,20 @@ public class EventsMorphs
 				fullBodyHakiModel.bipedHeadwear.isHidden = false;
 				fullBodyHakiModel.isSneak = player.isSneaking();
 				fullBodyHakiModel.isChild = false;
-				event.renderer.setRenderPassModel(fullBodyHakiModel);
+				//Uncomment
+				// event.renderer.setRenderPassModel(fullBodyHakiModel);
 				fullBodyHakiModel.render(player, f7, f6, f4, f3 - f2, f13, 0.625F);
-				
+
 			}
 			GL11.glPopMatrix();
 		}
 	}
-	
+
     protected float handleRotationFloat(EntityLivingBase p_77044_1_, float p_77044_2_)
     {
         return p_77044_1_.ticksExisted + p_77044_2_;
     }
-	
+
     private float interpolateRotation(float p_77034_1_, float p_77034_2_, float p_77034_3_)
     {
         float f3;
@@ -113,7 +116,7 @@ public class EventsMorphs
 
         return p_77034_1_ + p_77034_3_ * f3;
     }
-	
+
 	@SubscribeEvent
 	public void onRenderTick(TickEvent.RenderTickEvent event)
 	{
@@ -123,7 +126,7 @@ public class EventsMorphs
 			return;
 
 		ExtendedEntityData props = ExtendedEntityData.get(this.mc.player);
-		
+
 		if (prevRenderer != null && props.getZoanPoint().equalsIgnoreCase("n/a"))
 		{
 			mc.entityRenderer = prevRenderer;
@@ -166,11 +169,11 @@ public class EventsMorphs
 	@SubscribeEvent
 	public void onEntityRendered(RenderLivingEvent.Pre event)
 	{
-		ExtendedEntityData props = ExtendedEntityData.get(event.entity);
+		ExtendedEntityData props = ExtendedEntityData.get(event.getEntity());
 
 		if (!props.getZoanPoint().toLowerCase().equals("n/a"))
 		{
-			if (event.entity.hurtTime > 0)
+			if (event.getEntity().hurtTime > 0)
 			{
 				GL11.glPushMatrix();
 				GL11.glColor3f(1.0f, 0, 0);
@@ -185,35 +188,36 @@ public class EventsMorphs
 				{
 					if (props.getZoanPoint().equalsIgnoreCase((String) x[0]))
 					{
-						this.doRenderZoanMorph((RenderZoanMorph) x[1], event.x, event.y, event.z, event.entity);
+						this.doRenderZoanMorph((RenderZoanMorph) x[1], event.getX(), event.getY(), event.getZ(), event.getEntity());
 					}
 				});
 			}
 		}
-
-		if (props.getUsedFruit().equalsIgnoreCase("sukesuke") && event.entity.isInvisible())
+//UNCOMMENT
+		if (props.getUsedFruit().equalsIgnoreCase("sukesuke") && event.getEntity().isInvisible())
 			event.setCanceled(true);
 
-		if (event.entity instanceof EntityPlayer)
+		if (event.getEntity() instanceof EntityPlayer)
 		{
 			if (props.hasExtraEffects(ID.EXTRAEFFECT_ABAREHIMATSURI))
 			{
-				if (event.entity.onGround)
+				if (event.getEntity().onGround)
 				{
-					Block block = event.entity.world.getBlock((int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ);
-					String texture = Blocks.DIRT.getIcon(1, 0).getIconName();
-					int blockTint = event.entity.world.getBlock((int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ).colorMultiplier(event.entity.world, (int) event.entity.posX, (int) event.entity.posY - 2, (int) event.entity.posZ);
+					Block block = (Block) event.getEntity().world.getBlockState(new BlockPos((int) event.getEntity().posX, (int) event.getEntity().posY - 2, (int) event.getEntity().posZ));
+					//String texture = Blocks.DIRT.getIcon(1, 0).getIconName();
+					Block blockTint = ((Block) event.getEntity().world.getBlockState(new BlockPos((int) event.getEntity().posX, (int) event.getEntity().posY - 2, (int) event.getEntity().posZ)));
+					//int blockTint = ((Block) event.getEntity().world.getBlockState(new BlockPos((int) event.getEntity().posX, (int) event.getEntity().posY - 2, (int) event.getEntity().posZ))).getBeaconColorMultiplier(new BlockPos(event.getEntity().world, (int) event.getEntity().posX, (int) event.getEntity().posY - 2, (int) event.getEntity().posZ));
 
-					if (block.getIcon(1, 0) != null)
-						texture = block.getIcon(1, 0).getIconName();
+					//if (block.getIcon(1, 0) != null)
+						//texture = block.getIcon(1, 0).getIconName();
 
-					abareHimatsuri.setTextureAndTint(texture, blockTint);
+					//abareHimatsuri.setTextureAndTint(texture, blockTint);
 				}
 
-				System.out.println(event.entity.onGround);
+				System.out.println(event.getEntity().onGround);
 
-				if (!event.entity.onGround)
-					abareHimatsuri.doRender(event.entity, event.x, event.y, event.z, 0F, 0.0625F);
+				if (!event.getEntity().onGround)
+					abareHimatsuri.doRender(event.getEntity(), event.getX(), event.getY(), event.getZ(), 0F, 0.0625F);
 			}
 		}
 
@@ -257,9 +261,9 @@ public class EventsMorphs
 	@SubscribeEvent
 	public void onEntityConstructing(EntityJoinWorldEvent event)
 	{
-		if (event.entity instanceof EntityPlayer)
+		if (event.getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer owner = (EntityPlayer) event.entity;
+			EntityPlayer owner = (EntityPlayer) event.getEntity();
 			ExtendedEntityData props = ExtendedEntityData.get(owner);
 
 			if (!props.getZoanPoint().toLowerCase().equals("n/a") && !props.getZoanPoint().toLowerCase().equals("yomi"))
@@ -267,7 +271,7 @@ public class EventsMorphs
 				props.setZoanPoint("n/a");
 
 				WyNetworkHelper.sendToServer(new PacketSync(props));
-				WyNetworkHelper.sendToAll(new PacketSyncInfo(owner.getDisplayName(), props));
+				WyNetworkHelper.sendToAll(new PacketSyncInfo(owner.getName(), props));
 			}
 		}
 	}
@@ -353,7 +357,7 @@ public class EventsMorphs
 		if (renderHandFlag)
 		{
 			event.setCanceled(true);
-			HandRendererHelper.renderHand((EntityClientPlayerMP) player);
+			HandRendererHelper.renderHand((EntityPlayerMP) player);
 		}
 
 		/*

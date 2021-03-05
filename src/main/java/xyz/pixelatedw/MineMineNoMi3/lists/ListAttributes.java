@@ -288,7 +288,7 @@ public class ListAttributes
 	public static final AbilityAttribute O_TATSUMAKI = new AbilityAttribute("O Tatsumaki").setAbilityCooldown(7);
 
 	public static final AbilityAttribute FRESH_FIRE = new AbilityAttribute("Fresh Fire").setAbilityCooldown(1.5).setProjectileTicks(7).setProjectileSize(.01, .01, .01).setProjectileDamage(1);
-	public static final AbilityAttribute COLA_OVERDRIVE = new AbilityAttribute("Cola Overdrive").setAbilityCooldown(7).addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(1).id, 200, 0), new PotionEffect(Potion.damageBoost.id, 200, 1));
+	public static final AbilityAttribute COLA_OVERDRIVE = new AbilityAttribute("Cola Overdrive").setAbilityCooldown(7).addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(1).id, 200, 0), new PotionEffect(Potion.getPotionById(5), 200, 1));
 	public static final AbilityAttribute RADICAL_BEAM = new AbilityAttribute("Radical Beam").setAbilityCooldown(10).setProjectileModel(new ModelCube()).setProjectileColor("FFFF00").setProjectileSize(.5, .5, 1).setProjectileDamage(25).setProjectileExplosion(4, false);
 	public static final AbilityAttribute STRONG_RIGHT = new AbilityAttribute("Strong Right").setAbilityCooldown(2.5).setProjectileModel(new ModelCube()).setProjectileColor("F5DEB3").setProjectileTicks(5).setProjectileSize(1, 1, 1.5).setProjectileDamage(20);
 	public static final AbilityAttribute COUP_DE_VENT = new AbilityAttribute("Coup de Vent").setAbilityCooldown(10).setProjectileTicks(7).setProjectileSize(.01, .01, .01).setProjectileDamage(10).setAbilityCharges(30);
