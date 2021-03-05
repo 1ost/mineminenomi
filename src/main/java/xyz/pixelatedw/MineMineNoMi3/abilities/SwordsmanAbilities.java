@@ -3,10 +3,11 @@ package xyz.pixelatedw.MineMineNoMi3.abilities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.server.S0BPacketAnimation;
+import net.minecraft.network.play.server.SPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -49,7 +50,7 @@ public class SwordsmanAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			if (!ItemsHelper.isSword(player.getHeldItem()) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
+			if (!ItemsHelper.isSword(player.getHeldItem(EnumHand.MAIN_HAND)) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
 			{
 				WyHelper.sendMsgToPlayer(player, "You need a sword to use this ability !");
 				return;
@@ -62,13 +63,13 @@ public class SwordsmanAbilities
 				for(EntityLivingBase e : WyHelper.getEntitiesNear(player, 2.5))
 				{
 					e.attackEntityFrom(DamageSource.causePlayerDamage(player), 12 * props.getDamageMultiplier());					
-					e.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 10 * 20, 1, true));
+					e.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 10 * 20, 1, true, false));
 				}
 					
 				WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_KOKUTEICROSS, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 					
 				if (player.world instanceof WorldServer)
-					((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+					((WorldServer)player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 			}
 			super.use(player);
 		}
@@ -84,7 +85,7 @@ public class SwordsmanAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			if (!ItemsHelper.isSword(player.getHeldItem()) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
+			if (!ItemsHelper.isSword(player.getHeldItem(EnumHand.MAIN_HAND)) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
 			{
 				WyHelper.sendMsgToPlayer(player, "You need a sword to use this ability !");
 				return;
@@ -93,7 +94,7 @@ public class SwordsmanAbilities
 			this.projectile = new SwordsmanProjectiles.Yakkodori(player.world, player, ListAttributes.YAKKODORI);
 			if(!this.isOnCooldown)
 				if (player.world instanceof WorldServer)
-					((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+					((WorldServer)player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 			super.use(player);
 		}
 	}
@@ -108,7 +109,7 @@ public class SwordsmanAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			if (!ItemsHelper.isSword(player.getHeldItem()) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
+			if (!ItemsHelper.isSword(player.getHeldItem(EnumHand.MAIN_HAND)) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
 			{
 				WyHelper.sendMsgToPlayer(player, "You need a sword to use this ability !");
 				return;
@@ -130,7 +131,7 @@ public class SwordsmanAbilities
 				motion("=", mX, player.motionY, mZ, player);
 					
 				if (player.world instanceof WorldServer)
-					((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+					((WorldServer)player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 			}
 				
 			super.use(player);
@@ -159,7 +160,7 @@ public class SwordsmanAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			if (!ItemsHelper.isSword(player.getHeldItem()) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
+			if (!ItemsHelper.isSword(player.getHeldItem(EnumHand.MAIN_HAND)) && !DevilFruitsHelper.canUseSwordsmanAbilities(player))
 			{
 				WyHelper.sendMsgToPlayer(player, "You need a sword to use this ability !");
 				return;
@@ -168,7 +169,7 @@ public class SwordsmanAbilities
 			this.projectile = new SwordsmanProjectiles.SanbyakurokujuPoundHo(player.world, player, ListAttributes.SANBYAKUROKUJU_POUND_HO);
 			if(!this.isOnCooldown)
 				if (player.world instanceof WorldServer)
-					((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+					((WorldServer)player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 			super.use(player);
 		}
 	}

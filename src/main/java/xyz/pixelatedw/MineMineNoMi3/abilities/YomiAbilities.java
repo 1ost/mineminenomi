@@ -89,7 +89,7 @@ public class YomiAbilities
 					motion("=", mX, player.motionY, mZ, player);
 					
 					if (player.world instanceof WorldServer)
-						((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+						((WorldServer)player.world).getEntityTracker().sendToTracking(player, new S0BPacketAnimation(player, 0));
 				}
 				
 				super.use(player);

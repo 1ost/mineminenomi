@@ -83,7 +83,7 @@ public class HoruAbilities
 			
 			target.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 600, 1));
 			target.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 600, 1));
-			target.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 600, 0));
+			target.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 600, 0));
 		}
 	}
 }

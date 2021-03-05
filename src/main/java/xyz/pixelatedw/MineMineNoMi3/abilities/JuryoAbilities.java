@@ -3,10 +3,12 @@ package xyz.pixelatedw.MineMineNoMi3.abilities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.network.play.server.S0BPacketAnimation;
+import net.minecraft.network.play.server.SPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.abilities.effects.DFEffect;
@@ -86,7 +88,7 @@ public class JuryoAbilities
 		{
 			if(!this.isOnCooldown())
 			{
-				if (!ItemsHelper.isSword(player.getHeldItem()))
+				if (!ItemsHelper.isSword(player.getHeldItem(EnumHand.MAIN_HAND)))
 				{
 					WyHelper.sendMsgToPlayer(player, "You need a sword to use this ability !");
 					return;
@@ -104,7 +106,7 @@ public class JuryoAbilities
 					player.world.spawnEntity(proj);
 				}
 				if (player.world instanceof WorldServer)
-					((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+					((WorldServer)player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 				super.use(player);
 			}
 		}
@@ -179,9 +181,9 @@ public class JuryoAbilities
 				
 				if(mop != null)
 				{
-					double x = mop.blockX;
-					double y = mop.blockY;
-					double z = mop.blockZ;
+					double x = mop.hitVec.x;
+					double y = mop.hitVec.y;
+					double z = mop.hitVec.z;
 
 					AbilityProjectile proj = new JuryoProjectiles.SagariNoRyusei(player.world, player, ListAttributes.SAGARI_NO_RYUSEI);	
 					proj.setLocationAndAngles(x, (y + 90), z, 0, 0);

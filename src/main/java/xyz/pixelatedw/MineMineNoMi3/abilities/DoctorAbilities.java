@@ -118,7 +118,7 @@ public class DoctorAbilities
 					case 4:
 						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(19), 200, 1)); break;
 					case 5:
-						entity.addPotionEffect(new PotionEffect(Potion.wither.id, 200, 1)); break;
+						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(20), 200, 1)); break;
 					case 6:
 						entity.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 200, 1)); break;
 				}

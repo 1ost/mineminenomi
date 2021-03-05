@@ -2,35 +2,26 @@ package xyz.pixelatedw.MineMineNoMi3.abilities;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityTracker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.server.S0BPacketAnimation;
+import net.minecraft.network.play.server.SPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
-import xyz.pixelatedw.MineMineNoMi3.api.WyHelper.Direction;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.AbilityProperties;
-import xyz.pixelatedw.MineMineNoMi3.api.math.WyMathHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.network.PacketAbilitySync;
 import xyz.pixelatedw.MineMineNoMi3.api.network.WyNetworkHelper;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListAttributes;
-import xyz.pixelatedw.MineMineNoMi3.packets.PacketEntityVelocity;
-import xyz.pixelatedw.MineMineNoMi3.packets.PacketNewAABB;
-import xyz.pixelatedw.MineMineNoMi3.packets.PacketParticles;
-import xyz.pixelatedw.MineMineNoMi3.packets.PacketPlayer;
-import xyz.pixelatedw.MineMineNoMi3.packets.PacketSync;
-import xyz.pixelatedw.MineMineNoMi3.packets.PacketSyncInfo;
+import xyz.pixelatedw.MineMineNoMi3.packets.*;
 
 public class MoguAbilities
 {
@@ -73,8 +64,8 @@ public class MoguAbilities
 										int posY = (int) player.posY - y;
 										int posZ = (int) player.posZ + z;
 										
-										player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 50, 100, true));
-										player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 400, 2, true));
+										player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 50, 100, true, false));
+										player.addPotionEffect(new PotionEffect(Potion.getPotionById(3), 400, 2, true, false));
 		
 										Block tempBlock = player.world.getBlock(posX, posY, posZ);
 										if (DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, Blocks.AIR, "all", "restricted", "ignore liquid"))
@@ -130,7 +121,7 @@ public class MoguAbilities
 							player.inventory.addItemStackToInventory(new ItemStack(tempBlock));
 							WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_BAKUMUNCH, location[0], location[1], location[2]), player.dimension, location[0], location[1], location[2], ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 							if (player.world instanceof WorldServer)
-								((WorldServer)player.world).getEntityTracker().func_151248_b(player, new S0BPacketAnimation(player, 0));
+								((WorldServer)player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 						}
 					}
 				}
@@ -206,7 +197,7 @@ public class MoguAbilities
 			if (props.getZoanPoint().isEmpty())
 				props.setZoanPoint("n/a");
 
-			 player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, Integer.MAX_VALUE, 3, true));
+			 player.addPotionEffect(new PotionEffect(Potion.getPotionById(3), Integer.MAX_VALUE, 3, true, false));
 
 			WyNetworkHelper.sendTo(new PacketNewAABB(0.5F, 1.5F), (EntityPlayerMP) player);
 
@@ -219,7 +210,7 @@ public class MoguAbilities
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 
-			player.removePotionEffect(Potion.digSpeed.id);
+			player.removePotionEffect(Potion.getPotionById(3));
 
 			WyNetworkHelper.sendTo(new PacketNewAABB(0.6F, 1.8F), (EntityPlayerMP) player);
 
