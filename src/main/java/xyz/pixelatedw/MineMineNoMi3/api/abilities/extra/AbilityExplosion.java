@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.util.math.BlockPos;
@@ -159,7 +160,7 @@ public class AbilityExplosion
 		Block block;
 
 		if(this.canProduceExplosionSound)
-			this.world.playSoundEffect(this.explosionX, this.explosionY, this.explosionZ, "random.explode", 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
+		this.world.playSound(this.explosionX, this.explosionY, this.explosionZ, SoundCategory,"random.explode", 4.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F);
 		
 		if (this.canDamageEntities)
 		{
@@ -187,7 +188,7 @@ public class AbilityExplosion
 	                damageMultiplier = ExtendedEntityData.get((EntityLivingBase) this.exploder).getDamageMultiplier();
                 }
                 else
-	                damageSource = DamageSource.magic;
+						damageSource = DamageSource.MAGIC;
                 	
                 entity.attackEntityFrom(this.setExplosionSource(this), damage * damageMultiplier);
 			}

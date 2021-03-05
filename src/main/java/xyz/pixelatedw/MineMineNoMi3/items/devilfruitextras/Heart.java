@@ -36,7 +36,7 @@ public class Heart extends Item
 			}
 			else
 			{
-				owner.attackEntityFrom(DamageSource.magic, 5);
+				owner.attackEntityFrom(DamageSource.MAGIC, 5);
 				owner.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 250, 1));
 				owner.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 250, 1));
 				if(owner.getHealth() <= 0)
@@ -60,7 +60,7 @@ public class Heart extends Item
 			boolean flagIsDead = entityItem.isBurning();
 			
 			if(target != null && flagIsDead)
-				target.attackEntityFrom(DamageSource.magic, Float.MAX_VALUE);
+				target.attackEntityFrom(DamageSource.MAGIC, Float.MAX_VALUE);
 		}
     	
         return false;
