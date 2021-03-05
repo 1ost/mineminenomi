@@ -48,7 +48,7 @@ public class NoroAbilities
 		
 		public void endPassive(EntityPlayer player) 
 		{
-			player.inventory.clearInventory(ListMisc.NoroNoroBeamSword, -1);
+			player.inventory.clearMatchingItems(ListMisc.NoroNoroBeamSword, 0,1,null);
 		}
 	}
 		
@@ -66,10 +66,10 @@ public class NoroAbilities
 			
 			if(target.isPotionActive(Potion.getPotionById(2)))
 			{
-				damageFromSlowness = (float) (Math.sqrt(target.getActivePotionEffect(event.getType(2).getDuration()) / 2);
+				damageFromSlowness = 1;
 				
-				int newTime = target.getActivePotionEffect(event.getType(2).getDuration() / 2;
-				int newAmplifier = target.getActivePotionEffect(event.getType(2).getAmplifier() - 5;
+				int newTime = 60;
+				int newAmplifier = 1;
 				
 				target.removePotionEffect(Potion.getPotionById(2));
 				target.removePotionEffect(Potion.getPotionById(4));

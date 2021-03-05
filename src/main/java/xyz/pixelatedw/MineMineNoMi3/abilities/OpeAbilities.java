@@ -6,16 +6,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.server.S0BPacketAnimation;
+import net.minecraft.network.play.server.SPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.Values;
@@ -84,7 +87,7 @@ public class OpeAbilities
 		{
 			if (DevilFruitsHelper.isEntityInRoom(player))
 			{
-				if (!ItemsHelper.isSword(player.getHeldItem()))
+				if (!ItemsHelper.isSword(player.getHeldItemMainhand()))
 				{
 					WyHelper.sendMsgToPlayer(player, "You need a sword to use this ability !");
 					return;
@@ -106,7 +109,7 @@ public class OpeAbilities
 					motion("=", mX, player.motionY, mZ, player);
 
 					if (player.world instanceof WorldServer)
-						((WorldServer) player.world).getEntityTracker().sendToTracking(player, new S0BPacketAnimation(player, 0));
+						((WorldServer) player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 				}
 
 				super.use(player);
@@ -219,9 +222,9 @@ public static class Shambles extends Ability
 
 				if (mop != null)
 				{
-					double i = mop.blockX;
-					double j = mop.blockY;
-					double k = mop.blockZ;
+					double i = mop.getBlockPos().getX();
+					double j = mop.getBlockPos().getY();
+					double k = mop.getBlockPos().getZ();
 
 					List<EntityLivingBase> entityList = WyHelper.getEntitiesNear((int) i, (int) j, (int) k, player.world, 4, EntityLivingBase.class);
 
@@ -283,7 +286,7 @@ public static class Mes extends Ability
 		{
 			ItemStack heart = new ItemStack(ListMisc.Heart);
 			((Heart) heart.getItem()).setHeartOwner(heart, target);
-			heart.setStackDisplayName(target.getCommandSenderName() + "'s Heart");
+			heart.setStackDisplayName(target.getName() + "'s Heart");
 
 			player.inventory.addItemStackToInventory(heart);
 
@@ -326,7 +329,7 @@ public static class Room extends Ability
 			if (this.blockList.isEmpty())
 			{
 				this.blockList.addAll(WyHelper.createEmptySphere(player.world, (int) player.posX, (int) player.posY, (int) player.posZ, 20, ListMisc.Ope, "air", "foliage", "liquids", "nogrief"));
-				player.world.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.OpeMid);
+				player.world.setBlockState(new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ), (IBlockState) ListMisc.OpeMid);
 				this.blockList.add(new int[]
 					{
 							(int) player.posX, (int) player.posY, (int) player.posZ
@@ -342,8 +345,8 @@ public static class Room extends Ability
 	{
 		for (int[] blockPos : this.blockList)
 		{
-			if (player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.Ope || player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.OpeMid)
-				player.world.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.AIR);
+			if (player.world.getBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2])) == ListMisc.Ope || player.world.getBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2])) == ListMisc.OpeMid)
+				player.world.setBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2]), (IBlockState) Blocks.AIR);
 		}
 		this.blockList = new ArrayList<int[]>();
 		this.startCooldown();

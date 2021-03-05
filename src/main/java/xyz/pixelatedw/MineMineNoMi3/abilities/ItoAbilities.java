@@ -3,12 +3,14 @@ package xyz.pixelatedw.MineMineNoMi3.abilities;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -92,7 +94,7 @@ public class ItoAbilities
 				if(this.blockList.isEmpty())
 				{
 					this.blockList.addAll(WyHelper.createEmptySphere(player.world, (int)player.posX, (int)player.posY, (int)player.posZ, 20, ListMisc.StringWall, "air", "foliage", "liquids", "nogrief"));
-					player.world.setBlock((int) player.posX, (int) player.posY, (int) player.posZ, ListMisc.StringMid);
+					player.world.setBlockState(new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ), (IBlockState) ListMisc.StringMid);
 					this.blockList.add(new int[] {(int) player.posX, (int) player.posY, (int) player.posZ});
 				}
 				
@@ -104,8 +106,8 @@ public class ItoAbilities
 		{
 			for(int[] blockPos : this.blockList)
 			{
-				if(player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.StringWall || player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.StringMid)
-					player.world.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.AIR);
+				if(player.world.getBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2])) == ListMisc.StringWall || player.world.getBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2])) == ListMisc.StringMid)
+					player.world.setBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2]), (IBlockState) Blocks.AIR);
 			}
             this.blockList = new ArrayList<int[]>();
             this.startCooldown();

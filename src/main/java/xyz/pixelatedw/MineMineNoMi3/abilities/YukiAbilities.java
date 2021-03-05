@@ -1,5 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.abilities;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -8,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -56,28 +59,28 @@ public class YukiAbilities
 						for(int x = -3; x <  3; x++)
 						for(int y = 0; y <= 3; y++)
 						for(int z = -1; z <= 1; z++)
-							player.world.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ - 3) - z, Blocks.SNOW);
+							player.world.setBlockState(new BlockPos((int) player.posX - x, (int) player.posY + y, ((int) player.posZ - 3) - z), (IBlockState) Blocks.SNOW);
 					}
 					if(WyHelper.get4Directions(player) == WyHelper.Direction.SOUTH)
 					{
 						for(int x = -3; x <  3; x++)
 						for(int y = 0; y <= 3; y++)
 						for(int z = -1; z <= 1; z++)
-							player.world.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ + 2) - z, Blocks.SNOW);
+							player.world.setBlockState(new BlockPos((int) player.posX - x, (int) player.posY + y, ((int) player.posZ + 2) - z), (IBlockState) Blocks.SNOW);
 					}
 					if(WyHelper.get4Directions(player) == WyHelper.Direction.EAST)
 					{
 						for(int x = -1; x < 1; x++)
 						for(int y = 0; y <= 3; y++)
 						for(int z = -3; z <= 3; z++)
-							player.world.setBlock(((int) player.posX + 2) - x, (int) player.posY + y, (int) player.posZ - z, Blocks.SNOW);
+							player.world.setBlockState(new BlockPos(((int) player.posX + 2) - x, (int) player.posY + y, (int) player.posZ - z), (IBlockState) Blocks.SNOW);
 					}
 					if(WyHelper.get4Directions(player) == WyHelper.Direction.WEST)
 					{
 						for(int x = -1; x < 1; x++)
 						for(int y = 0; y <= 3; y++)
 						for(int z = -3; z <= 3; z++)
-							player.world.setBlock(((int) player.posX - 3) - x, (int) player.posY + y, (int) player.posZ - z, Blocks.SNOW);
+							player.world.setBlockState(new BlockPos(((int) player.posX - 3) - x, (int) player.posY + y, (int) player.posZ - z), (IBlockState) Blocks.SNOW);
 					}
 				}
 					
@@ -106,7 +109,7 @@ public class YukiAbilities
 		
 		public void endPassive(EntityPlayer player) 
 		{
-			player.inventory.clearInventory(ListMisc.TabiraYuki, -1);
+			player.inventory.clearMatchingItems(ListMisc.TabiraYuki, 0,1,null);
 		}
 	}
 	
@@ -128,8 +131,8 @@ public class YukiAbilities
 						public void call(int x, int y, int z)
 						{
 			    			for(int i = -4; i <= 4; i++)
-					    		if(player.world.isAirBlock(x, y, z) && player.world.getBlock(x, y - 1, z) != Blocks.AIR && player.world.getBlock(x, y - 1, z) != Blocks.SNOW_LAYER)
-					    			player.world.setBlock(x, y, z, Blocks.SNOW_LAYER);
+					    		if(player.world.isAirBlock(new BlockPos(x, y, z)) && player.world.getBlockState(new BlockPos(x, y - 1, z)) != Blocks.AIR && player.world.getBlockState(new BlockPos(x, y - 1, z)) != Blocks.SNOW_LAYER)
+					    			player.world.setBlockState(new BlockPos(x, y, z), (IBlockState) Blocks.SNOW_LAYER);
 						}
 				    });
 				}
@@ -170,11 +173,11 @@ public class YukiAbilities
 					}
 					else
 					{
-						if(mop != null && world.getBlock(mop.blockX, mop.blockY, mop.blockZ) != Blocks.AIR)
+						if(mop != null && world.getBlockState(new BlockPos(mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ())) != Blocks.AIR)
 						{
-							WyHelper.createEmptySphere(world, mop.blockX, mop.blockY, mop.blockZ, 4, Blocks.SNOW, "air", "foliage", "liquids");
-							WyHelper.createEmptySphere(world, mop.blockX, mop.blockY, mop.blockZ, 6, Blocks.SNOW, "air", "foliage", "liquids");
-							WyHelper.createEmptySphere(world, mop.blockX, mop.blockY, mop.blockZ, 8, Blocks.SNOW, "air", "foliage", "liquids");
+							WyHelper.createEmptySphere(world, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 4, Blocks.SNOW, "air", "foliage", "liquids");
+							WyHelper.createEmptySphere(world, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 6, Blocks.SNOW, "air", "foliage", "liquids");
+							WyHelper.createEmptySphere(world, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 8, Blocks.SNOW, "air", "foliage", "liquids");
 						}
 					}
 				}
@@ -220,9 +223,9 @@ public class YukiAbilities
 					}
 					else
 					{
-						if(mop != null && world.getBlock(mop.blockX, mop.blockY, mop.blockZ) != Blocks.AIR)
+						if(mop != null && world.getBlockState(new BlockPos(mop.getBlockPos().getX(), mop.getBlockPos().getY(),mop.getBlockPos().getZ())) != Blocks.AIR)
 						{
-							WyHelper.createEmptySphere(world, mop.blockX, mop.blockY, mop.blockZ, 4, Blocks.SNOW, "air", "foliage", "liquids");
+							WyHelper.createEmptySphere(world, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 4, Blocks.SNOW, "air", "foliage", "liquids");
 						}
 					}
 				}

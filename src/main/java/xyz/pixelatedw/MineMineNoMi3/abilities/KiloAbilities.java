@@ -4,8 +4,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
@@ -26,7 +28,7 @@ public class KiloAbilities {
         Object[] effects = player.getActivePotionEffects().toArray();
         for (int i = 0; i < effects.length; i++) {
             PotionEffect currentEffect = (PotionEffect) effects[i];
-            if (currentEffect.getPotionID() == 5 && currentEffect.getAmplifier() == 8) {
+            if (currentEffect.getPotion() == Potion.getPotionById(5) && currentEffect.getAmplifier() == 8) {
                 return true;
             }
         } return false;

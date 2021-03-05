@@ -42,10 +42,10 @@ public class SukeAbilities
 
 		public void hitEntity(EntityPlayer player, EntityLivingBase target)
 		{
-			if (target.isPotionActive(Potion.invisibility))
+			if (target.isPotionActive(Potion.getPotionById(14)))
 				target.removePotionEffect(Potion.getPotionById(14));
 			else
-				target.addPotionEffect(new PotionEffect(Potion.getPotionById(14), 400, 5, true));
+				target.addPotionEffect(new PotionEffect(Potion.getPotionById(14), 400, 5));
 
 			super.hitEntity(player, target);
 		}

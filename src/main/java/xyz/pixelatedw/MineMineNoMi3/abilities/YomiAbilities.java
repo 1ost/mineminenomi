@@ -3,7 +3,7 @@ package xyz.pixelatedw.MineMineNoMi3.abilities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.server.S0BPacketAnimation;
+import net.minecraft.network.play.server.SPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -35,7 +35,7 @@ public class YomiAbilities
 		@Override
 		public void passive(EntityPlayer player)
 		{
-			if(ItemsHelper.isSword(player.getHeldItem()))
+			if(ItemsHelper.isSword(player.getHeldItemMainhand()))
 				super.passive(player);
 			else
 				WyHelper.sendMsgToPlayer(player, "You need a sword to use this ability !");
@@ -44,7 +44,7 @@ public class YomiAbilities
 		@Override
 		public void duringPassive(EntityPlayer player, int passiveTimer)
 		{
-			if(passiveTimer > 400 || player.getHeldItem(EnumHand.MAIN_HAND) == null || !ItemsHelper.isSword(player.getHeldItem()))
+			if(passiveTimer > 400 || player.getHeldItemMainhand() == null || !ItemsHelper.isSword(player.getHeldItemMainhand()))
 			{
 				this.setPassiveActive(false);
 				this.startCooldown();
@@ -71,7 +71,7 @@ public class YomiAbilities
 		@Override
 		public void use(EntityPlayer player)
 		{
-			if(ItemsHelper.isSword(player.getHeldItem()))
+			if(ItemsHelper.isSword(player.getHeldItemMainhand()))
 			{
 				if(!this.isOnCooldown)
 				{
@@ -89,7 +89,7 @@ public class YomiAbilities
 					motion("=", mX, player.motionY, mZ, player);
 					
 					if (player.world instanceof WorldServer)
-						((WorldServer)player.world).getEntityTracker().sendToTracking(player, new S0BPacketAnimation(player, 0));
+						((WorldServer)player.world).getEntityTracker().sendToTracking(player, new SPacketAnimation(player, 0));
 				}
 				
 				super.use(player);

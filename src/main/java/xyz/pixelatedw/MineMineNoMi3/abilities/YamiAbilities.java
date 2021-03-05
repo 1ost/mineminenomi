@@ -8,6 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.Values;
@@ -138,9 +140,9 @@ public class YamiAbilities
 					
 					if(mop != null)
 					{
-						double x = mop.blockX;
-						double y = mop.blockY;
-						double z = mop.blockZ;
+						double x = mop.getBlockPos().getX();
+						double y = mop.getBlockPos().getY();
+						double z = mop.getBlockPos().getZ();
 
 						while(liberationCount > 0)
 						{
@@ -160,9 +162,9 @@ public class YamiAbilities
 					for(int y = -40; y < 40; y++)
 					for(int z = -40; z < 40; z++)
 					{
-						if( player.world.getBlock((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z) == ListMisc.Darkness)
+						if( player.world.getBlockState(new BlockPos((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z)) == ListMisc.Darkness)
 						{
-							player.world.setBlockToAir((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z);
+							player.world.setBlockToAir(new BlockPos((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z));
 							libCount++;
 							if(libCount % 10 == 0)
 								liberationCount++;
@@ -198,9 +200,9 @@ public class YamiAbilities
 			this.entities.clear();
 			if(mop != null)
 			{
-				double i = mop.blockX;
-				double j = mop.blockY;
-				double k = mop.blockZ;
+				double i = mop.getBlockPos().getX();
+				double j = mop.getBlockPos().getY();
+				double k = mop.getBlockPos().getZ();
 
 				WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_KOROUZU, i, j, k), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 				

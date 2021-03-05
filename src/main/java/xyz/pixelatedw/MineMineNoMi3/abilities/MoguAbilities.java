@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketAnimation;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -67,7 +68,7 @@ public class MoguAbilities
 										player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 50, 100, true, false));
 										player.addPotionEffect(new PotionEffect(Potion.getPotionById(3), 400, 2, true, false));
 		
-										Block tempBlock = player.world.getBlock(posX, posY, posZ);
+										Block tempBlock = player.world.getBlockState(new BlockPos(posX, posY, posZ)).getBlock();
 										if (DevilFruitsHelper.placeBlockIfAllowed(player.world, posX, posY, posZ, Blocks.AIR, "all", "restricted", "ignore liquid"))
 										{
 											player.inventory.addItemStackToInventory(new ItemStack(tempBlock));
@@ -115,7 +116,7 @@ public class MoguAbilities
 				{
 					if(location[1] >= player.posY)
 					{
-						Block tempBlock = player.world.getBlock(location[0], location[1], location[2]);
+						Block tempBlock = player.world.getBlockState(new BlockPos(location[0], location[1], location[2])).getBlock();
 						if(DevilFruitsHelper.placeBlockIfAllowed(player.world, location[0], location[1], location[2], Blocks.AIR, "core", "foliage"))
 						{
 							player.inventory.addItemStackToInventory(new ItemStack(tempBlock));

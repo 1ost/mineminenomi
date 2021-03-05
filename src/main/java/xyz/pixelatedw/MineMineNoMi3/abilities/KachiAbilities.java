@@ -4,7 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.BlockPos;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -37,11 +39,11 @@ public class KachiAbilities {
         }
 
         public void duringPassive(EntityPlayer player, int timer) {
-            player.addPotionEffect(new PotionEffect(11, 8, 2));
+            player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 8, 2));
         }
 
         public void endPassive(EntityPlayer player) {
-            player.removePotionEffect(1);
+            player.removePotionEffect(Potion.getPotionById(1));
             this.startExtUpdate(player);
             this.startCooldown();
         }
@@ -63,7 +65,7 @@ public class KachiAbilities {
             List<int[]> coords = WyHelper.createFilledSphere(player.getEntityWorld(), (int) player.posX, (int) player.posY, (int) player.posZ, 6,Blocks.AIR, "liquids");
             for (int count = 0; count < coords.size(); count++) {
                 int[] ints = coords.get(count);
-                if (player.getEntityWorld().getBlock(ints[0], ints[1], ints[2]).equals(Blocks.AIR)) {
+                if (player.getEntityWorld().getBlockState(new BlockPos(ints[0], ints[1], ints[2])).equals(Blocks.AIR)) {
                     WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_EVAPORATE, ints[0], ints[1], ints[2]), player.dimension, ints[0], ints[1], ints[2], ID.GENERIC_PARTICLES_RENDER_DISTANCE);
                 }
             }

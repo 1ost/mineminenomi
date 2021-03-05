@@ -5,6 +5,7 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.math.RayTraceResult;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
@@ -144,9 +145,9 @@ public class KageAbilities
 
 				if (mop != null)
 				{
-					double i = mop.blockX;
-					double j = mop.blockY;
-					double k = mop.blockZ;
+					double i = mop.getBlockPos().getX();
+					double j = mop.getBlockPos().getY();
+					double k = mop.getBlockPos().getZ();
 
 					TsunotokagePillar pillar = new TsunotokagePillar(player.world, player, ListExtraAttributes.TSUNOTOKAGE_PILLAR);
 					pillar.setLocationAndAngles(i, j + 1, k, 0, 0);

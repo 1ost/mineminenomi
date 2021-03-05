@@ -126,7 +126,7 @@ public class UshiGiraffeAbilities
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 
-			player.removePotionEffect(Potion.getPotionById(1).id);
+			player.removePotionEffect(Potion.getPotionById(1));
 			player.removePotionEffect(Potion.getPotionById(8));
 
 			WyNetworkHelper.sendTo(new PacketNewAABB(0.6F, 1.8F), (EntityPlayerMP) player);

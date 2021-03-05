@@ -5,6 +5,7 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -69,7 +70,7 @@ public class PikaAbilities
 		
 		public void endPassive(EntityPlayer player) 
 		{
-			player.inventory.clearInventory(ListMisc.AmaNoMurakumo, -1);
+			player.inventory.clearMatchingItems(ListMisc.AmaNoMurakumo, 0,1,null);
 		}
 	}
 	
@@ -124,14 +125,14 @@ public class PikaAbilities
 				{
 					RayTraceResult mop = WyHelper.rayTraceBlocks(player);
 					
-					int x = mop.blockX;
-					int y = mop.blockY;
-					int z = mop.blockZ;
+					int x = mop.getBlockPos().getX();
+					int y = mop.getBlockPos().getY();
+					int z = mop.getBlockPos().getZ();
 					if (player.isRiding())
-						player.mountEntity((Entity)null);
+						player.dismountRidingEntity();
 					EnderTeleportEvent event = new EnderTeleportEvent(player, x, y, z, 5.0F);
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_YATANOKAGAMI, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
-	                player.setPositionAndUpdate(event.targetX, event.targetY + 1, event.targetZ);
+	                player.setPositionAndUpdate(event.getTargetX(), event.getTargetY() + 1, event.getTargetZ());
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_YATANOKAGAMI, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 	                player.fallDistance = 0.0F;
 				}
