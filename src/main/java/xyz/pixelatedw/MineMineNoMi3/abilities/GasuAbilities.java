@@ -50,7 +50,7 @@ public class GasuAbilities
 		@Override
 		public void endPassive(EntityPlayer player) 
 		{
-			player.inventory.clearInventory(ListMisc.BlueSword, -1);
+			player.inventory.clearMatchingItems(ListMisc.BlueSword, 0,1,null);
 		}
 	}
 	

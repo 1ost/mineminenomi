@@ -67,7 +67,7 @@ public class GomuAbilities
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 25, 2, false));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 25, 2));
 			
 			if(passiveTimer >= 600)
 			{
@@ -152,7 +152,7 @@ public class GomuAbilities
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 
-			player.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 40, 6, false));
+			player.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 40, 6));
 	    	WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_GEARSECOND, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 			
 			if(passiveTimer >= 1200)

@@ -1,9 +1,11 @@
 package xyz.pixelatedw.MineMineNoMi3.abilities;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -54,7 +56,7 @@ public class HieAbilities
 		@Override
 		public void endPassive(EntityPlayer player) 
 		{
-			player.inventory.clearInventory(ListMisc.IceSaber, -1);
+			player.inventory.clearMatchingItems(ListMisc.IceSaber, 0,1,null);
 		}
 	}
 		
@@ -98,9 +100,9 @@ public class HieAbilities
 						int posY = (int) player.posY + j;
 						int posZ = (int) (player.posZ + k + (k < -WyMathHelper.randomWithRange(8, 12) || k > WyMathHelper.randomWithRange(8, 12) ? WyMathHelper.randomWithRange(-5, 5) : 0));
 						
-						if(!player.world.isAirBlock(posX, posY, posZ) && player.world.getBlock(posX, posY, posZ) != ListMisc.Ope
-								&& player.world.getBlock(posX, posY, posZ) != ListMisc.OpeMid && player.world.getBlock(posX, posY, posZ) != Blocks.BEDROCK)
-							player.world.setBlock(posX, posY, posZ, Blocks.PACKED_ICE);				
+						if(!player.world.isAirBlock(new BlockPos(posX,posY,posZ)) && player.world.getBlockState(new BlockPos(posX, posY, posZ)) != ListMisc.Ope
+								&& player.world.getBlockState(new BlockPos(posX, posY, posZ)) != ListMisc.OpeMid && player.world.getBlockState(new BlockPos(posX, posY, posZ)) != Blocks.BEDROCK)
+							player.world.setBlockState(new BlockPos(posX, posY, posZ), (IBlockState) Blocks.PACKED_ICE);
 					}
 					
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_ICEAGE, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);

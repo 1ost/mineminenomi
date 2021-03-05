@@ -1,8 +1,10 @@
 package xyz.pixelatedw.MineMineNoMi3.abilities;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -58,7 +60,7 @@ public class DoruAbilities
 		
 		public void endPassive(EntityPlayer player) 
 		{
-			player.inventory.clearInventory(ListMisc.DoruDoruArtsKen, -1);
+			player.inventory.clearMatchingItems(ListMisc.DoruDoruArtsKen, 0,1,null);
 		}
 	}
 	
@@ -79,21 +81,21 @@ public class DoruAbilities
 					{
 						for(int x = 0; x < 1; x++)
 							for(int z = -5; z < 5; z++)
-								player.world.setBlock(((int) player.posX + 6) - x, (int) player.posY + y, (int) player.posZ - z, ListMisc.WaxBlock);
+								player.world.setBlockState(new BlockPos(((int) player.posX + 6) - x, (int) player.posY + y, (int) player.posZ - z), (IBlockState) ListMisc.WaxBlock);
 						for(int x = 0; x < 1; x++)
 							for(int z = -5; z < 5; z++)
-								player.world.setBlock(((int) player.posX - 5) - x, (int) player.posY + y, (int) player.posZ - z, ListMisc.WaxBlock);
+								player.world.setBlockState(new BlockPos(((int) player.posX - 5) - x, (int) player.posY + y, (int) player.posZ - z), (IBlockState) ListMisc.WaxBlock);
 						for(int x = -5; x < 5; x++)
 							for(int z = 0; z < 1; z++)
-								player.world.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ + 6) - z, ListMisc.WaxBlock);
+								player.world.setBlockState(new BlockPos((int) player.posX - x, (int) player.posY + y, ((int) player.posZ + 6) - z), (IBlockState) ListMisc.WaxBlock);
 						for(int x = -5; x < 5; x++)
 							for(int z = 0; z < 1; z++)
-								player.world.setBlock((int) player.posX - x, (int) player.posY + y, ((int) player.posZ - 5) - z, ListMisc.WaxBlock);
+								player.world.setBlockState(new BlockPos((int) player.posX - x, (int) player.posY + y, ((int) player.posZ - 5) - z), (IBlockState) ListMisc.WaxBlock);
 					}
 					for(int x = -5; x < 5; x++)
 						for(int y = 0; y < 1; y++)
 							for(int z = -5; z < 5; z++)
-						  		player.world.setBlock((int) player.posX - x, ((int) player.posY + 4) + y, (int) player.posZ - z, ListMisc.WaxBlock);
+						  		player.world.setBlockState(new BlockPos((int) player.posX - x, ((int) player.posY + 4) + y, (int) player.posZ - z), (IBlockState) ListMisc.WaxBlock);
 				}
 				
 				super.use(player);

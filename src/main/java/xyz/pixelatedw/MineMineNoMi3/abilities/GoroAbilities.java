@@ -3,6 +3,8 @@ package xyz.pixelatedw.MineMineNoMi3.abilities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -67,9 +69,9 @@ public class GoroAbilities
 			
 			if(mop != null)
 			{
-				double i = mop.blockX;
-				double j = mop.blockY;
-				double k = mop.blockZ;
+				double i = mop.getBlockPos().getX();
+				double j = mop.getBlockPos().getY();
+				double k = mop.getBlockPos().getZ();
 
 				WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_ELTHOR, i, j, k), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 			}
@@ -82,9 +84,9 @@ public class GoroAbilities
 
 			if(mop != null)
 			{
-				double i = mop.blockX;
-				double j = mop.blockY;
-				double k = mop.blockZ;
+				double i = mop.getBlockPos().getX();
+				double j = mop.getBlockPos().getY();
+				double k = mop.getBlockPos().getZ();
 
 				if(hasTomoeDrumsEquipped(player))
 				{
@@ -258,9 +260,9 @@ public class GoroAbilities
 				
 				if(mop != null)
 				{
-					double x = mop.blockX;
-					double y = mop.blockY;
-					double z = mop.blockZ;
+					double x = mop.getBlockPos().getX();
+					double y = mop.getBlockPos().getY();
+					double z = mop.getBlockPos().getZ();
 					
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_RAIGO, x, player.posY, z), player.dimension, x, y, z, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 					
@@ -324,13 +326,13 @@ public class GoroAbilities
 				if(WyHelper.rayTraceBlocks(player) != null)
 				{
 					RayTraceResult blockTracer = WyHelper.rayTraceBlocks(player);
-					int[] blockLocation = new int[]{blockTracer.blockX,blockTracer.blockY,blockTracer.blockZ};
-					while (!(player.getEntityWorld().getBlock(blockLocation[0],(blockLocation[1]),blockLocation[2]) == Blocks.AIR)) {
+					int[] blockLocation = new int[]{blockTracer.getBlockPos().getX(),blockTracer.getBlockPos().getY(),blockTracer.getBlockPos().getZ()};
+					while (!(player.getEntityWorld().getBlockState(new BlockPos(blockLocation[0],(blockLocation[1]),blockLocation[2])) == Blocks.AIR)) {
 						blockLocation[1] += 1;
 					}
 					EnderTeleportEvent event = new EnderTeleportEvent(player, blockLocation[0], blockLocation[1], blockLocation[2], 0);
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_ELTHOR, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
-					player.setPositionAndUpdate(event.targetX, event.targetY + 1, event.targetZ);
+					player.setPositionAndUpdate(event.getTargetX(), event.getTargetY() + 1, event.getTargetZ());
 					WyNetworkHelper.sendToAllAround(new PacketParticles(ID.PARTICLEFX_ELTHOR, player), player.dimension, player.posX, player.posY, player.posZ, ID.GENERIC_PARTICLES_RENDER_DISTANCE);
 					player.fallDistance = 0.0F;
 
@@ -344,6 +346,6 @@ public class GoroAbilities
 	
 	private static boolean hasTomoeDrumsEquipped(EntityPlayer player)
 	{
-		return player.getEquipmentInSlot(3) != null && player.getEquipmentInSlot(3).getItem() == ListMisc.TomoeDrums;
+		return player.inventory.armorInventory.get(3) != null && player.inventory.armorInventory.get(3).getItem() == ListMisc.TomoeDrums;
 	}
 }
