@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -230,8 +231,8 @@ public class DevilFruitsHelper
 	
 	public static boolean isAffectedByWater(EntityLivingBase entity)
 	{
-		Block level1Block = entity.world.getBlock((int) entity.posX, (int) entity.posY - 1, (int) entity.posZ);
-		Block level2Block = entity.world.getBlock((int) entity.posX, (int) entity.posY - 2, (int) entity.posZ);
+		Block level1Block = (Block) entity.world.getBlockState(new BlockPos((int) entity.posX, (int) entity.posY - 1, (int) entity.posZ));
+		Block level2Block = (Block) entity.world.getBlockState(new BlockPos((int) entity.posX, (int) entity.posY - 2, (int) entity.posZ));
 		if(entity.isInsideOfMaterial(Material.WATER) ||
 				(entity.isWet() && !entity.isRiding() && 
 				((level1Block == Blocks.WATER || level1Block == Blocks.FLOWING_WATER) && (level2Block == Blocks.WATER || level2Block == Blocks.FLOWING_WATER)) ))

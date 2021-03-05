@@ -49,10 +49,10 @@ public class ItemsHelper
     	{
     		WyHelper.getEntitiesNear(posX, posY, posZ, world, 10).stream().filter(x -> 
     		{
-    			return x instanceof EntityPlayer && (ExtendedEntityData.get(x).isPirate() || ExtendedEntityData.get(x).isRevolutionary()) && worldData.getBounty(x.getCommandSenderName()) != 0;
+    			return x instanceof EntityPlayer && (ExtendedEntityData.get(x).isPirate() || ExtendedEntityData.get(x).isRevolutionary()) && worldData.getBounty(x.getCommandSenderEntity().getName()) != 0;
     		}).forEach(x -> 
     		{
-    			SimpleEntry<String, Long> se = new SimpleEntry<String, Long>( x.getCommandSenderName(), worldData.getBounty(x.getCommandSenderName()) );
+    			SimpleEntry<String, Long> se = new SimpleEntry<String, Long>( x.getCommandSenderEntity().getName(), worldData.getBounty(x.getCommandSenderEntity().getName()));
     			bountiesInPackage.add( se );
     		});
     	}
@@ -106,7 +106,7 @@ public class ItemsHelper
 		if(itemStack == null)
 			return false;
 		
-		if (itemStack.getItemUseAction() == EnumAction.bow)
+		if (itemStack.getItemUseAction() == EnumAction.BOW)
 			return true;
 		
 		return false;
@@ -121,7 +121,7 @@ public class ItemsHelper
 			return true;
 
 		Multimap multimap = itemStack.getAttributeModifiers();
-		if (multimap.containsKey(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName()))
+		if (multimap.containsKey(SharedMonsterAttributes.ATTACK_DAMAGE.getName()))
 			return true;
 		
 		return false;

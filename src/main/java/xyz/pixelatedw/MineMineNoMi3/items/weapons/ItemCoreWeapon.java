@@ -107,7 +107,7 @@ public class ItemCoreWeapon extends Item
     @Override
 	public EnumAction getItemUseAction(ItemStack itemStack)
     {
-        return EnumAction.block;
+        return EnumAction.BLOCK;
     }
 	
     @Override

@@ -90,9 +90,9 @@ public class StructureCamp extends Structure
 		for(TileEntityChest chest : smallTentChests)
 		{
 			addChestLoot(world, chest, 100, ListMisc.Bullets, 5, 10);
-			addChestLoot(world, chest, 90, Items.apple, 1, 3);
+			addChestLoot(world, chest, 90, Items.APPLE, 1, 3);
 			addChestLoot(world, chest, 70, ListMisc.Bullets, 5, 10);
-			addChestLoot(world, chest, 70, Items.cookie, 10, 20);
+			addChestLoot(world, chest, 70, Items.COOKIE, 10, 20);
 			addChestLoot(world, chest, 50, ListMisc.BellyPouch, 1, 0);
 			addChestLoot(world, chest, 50, Items.GUNPOWDER, 5, 10);
 		}
@@ -101,8 +101,8 @@ public class StructureCamp extends Structure
 		world.setTileEntity(posX + 18, posY + 1, posZ + 4, largeTentChest);
 
 		addChestLoot(world, largeTentChest, 90, ListMisc.KairosekiBullets, 1, 7);
-		addChestLoot(world, largeTentChest, 70, Items.cooked_chicken, 2, 4);
-		addChestLoot(world, largeTentChest, 70, Items.cooked_beef, 2, 4);
+		addChestLoot(world, largeTentChest, 70, Items.COOKED_CHICKEN, 2, 4);
+		addChestLoot(world, largeTentChest, 70, Items.COOKED_BEEF, 2, 4);
 		addChestLoot(world, largeTentChest, 70, Items.GUNPOWDER, 2, 5);
 		addChestLoot(world, largeTentChest, 50, Item.getItemFromBlock(ListMisc.DenDenMushi), 0, 1);
 		addChestLoot(world, largeTentChest, 50, ListMisc.Cola, 0, 2);

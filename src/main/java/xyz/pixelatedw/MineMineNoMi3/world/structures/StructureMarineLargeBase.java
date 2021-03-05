@@ -75,17 +75,17 @@ public class StructureMarineLargeBase extends Structure
 
 		Consumer<TileEntityChest> foodChestLoot = (chest) -> 
 		{
-			addChestLoot(world, chest, 100, Items.apple, 5, 10);
-			addChestLoot(world, chest, 90, Items.pumpkin_pie, 1, 3);
-			addChestLoot(world, chest, 90, Items.mushroom_stew, 3, 7);
-			addChestLoot(world, chest, 50, Items.cooked_beef, 1, 5);
-			addChestLoot(world, chest, 50, Items.cooked_chicken, 1, 5);
-			addChestLoot(world, chest, 50, Items.cooked_porkchop, 1, 5);
-			addChestLoot(world, chest, 50, Items.cookie, 5, 10);
+			addChestLoot(world, chest, 100, Items.APPLE, 5, 10);
+			addChestLoot(world, chest, 90, Items.PUMPKIN_PIE, 1, 3);
+			addChestLoot(world, chest, 90, Items.MUSHROOM_STEW, 3, 7);
+			addChestLoot(world, chest, 50, Items.COOKED_BEEF, 1, 5);
+			addChestLoot(world, chest, 50, Items.COOKED_CHICKEN, 1, 5);
+			addChestLoot(world, chest, 50, Items.COOKED_PORKCHOP, 1, 5);
+			addChestLoot(world, chest, 50, Items.COOKIE, 5, 10);
 			addChestLoot(world, chest, 30, ListMisc.Cola, 2, 5);
 			addChestLoot(world, chest, 10, ListMisc.UltraCola, 0, 2);
 			addChestLoot(world, chest, 10, ListMisc.SeaKingMeat, 0, 2);
-			addChestLoot(world, chest, 10, Items.cake, 1, 0);
+			addChestLoot(world, chest, 10, Items.CAKE, 1, 0);
 			addChestLoot(world, chest, 5, ListMisc.UltraCola, 1, 2);
 		};
 		
@@ -110,7 +110,7 @@ public class StructureMarineLargeBase extends Structure
 			addChestLoot(world, chest, 20, ListMisc.KairosekiBullets, 5, 10);
 			addChestLoot(world, chest, 20, ListMisc.KairosekiBullets, 2, 5);
 			addChestLoot(world, chest, 20, ListMisc.Kairoseki, 7, 10);
-			addChestLoot(world, chest, 20, Items.gold_ingot, 5, 7);
+			addChestLoot(world, chest, 20, Items.GOLD_INGOT, 5, 7);
 			addChestLoot(world, chest, 15, ListMisc.DialFire, 5, 7);
 			addChestLoot(world, chest, 15, ListMisc.DialAxe, 2, 5);
 			addChestLoot(world, chest, 15, ListMisc.DialEisen, 5, 10);
@@ -118,11 +118,11 @@ public class StructureMarineLargeBase extends Structure
 			addChestLoot(world, chest, 15, ListMisc.DialMilky, 5, 10);
 			addChestLoot(world, chest, 15, ListMisc.DialBreath, 2, 10);
 			addChestLoot(world, chest, 15, ListMisc.DialFlash, 5, 7);
-			addChestLoot(world, chest, 15, Items.iron_ingot, 5, 7);
-			addChestLoot(world, chest, 15, Items.diamond, 1, 3);
+			addChestLoot(world, chest, 15, Items.IRON_INGOT, 5, 7);
+			addChestLoot(world, chest, 15, Items.DIAMOND, 1, 3);
 			addChestLoot(world, chest, 15, ListMisc.BlackMetal, 3, 5);
 			addChestLoot(world, chest, 10, Item.getItemFromBlock(ListMisc.DenDenMushi), 1, 0);
-			addChestLoot(world, chest, 5, Items.diamond, 0, 5);
+			addChestLoot(world, chest, 5, Items.DIAMOND, 0, 5);
 			addChestLoot(world, chest, 5, ListMisc.BlackMetal, 0, 5);
 		};
 		
@@ -135,19 +135,19 @@ public class StructureMarineLargeBase extends Structure
 		
 		Consumer<TileEntityChest> specialChestLoot = (chest) -> 
 		{
-			addChestLoot(world, chest, 40, Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
+			addChestLoot(world, chest, 40, Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
 			addChestLoot(world, chest, 40, ListMisc.Kairoseki, 10, 20);
-			addChestLoot(world, chest, 40, Items.gold_ingot, 10, 15);
-			addChestLoot(world, chest, 35, Items.iron_ingot, 5, 10);
-			addChestLoot(world, chest, 35, Items.diamond, 2, 5);
-			addChestLoot(world, chest, 30, Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
+			addChestLoot(world, chest, 40, Items.GOLD_INGOT, 10, 15);
+			addChestLoot(world, chest, 35, Items.IRON_INGOT, 5, 10);
+			addChestLoot(world, chest, 35, Items.DIAMOND, 2, 5);
+			addChestLoot(world, chest, 30, Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
 			addChestLoot(world, chest, 25, ListMisc.BlackMetal, 5, 7);
 			addChestLoot(world, chest, 20, ListMisc.Kairoseki, 15, 20);
-			addChestLoot(world, chest, 20, Items.gold_ingot, 10, 15);
-			addChestLoot(world, chest, 20, Items.iron_ingot, 7, 12);
-			addChestLoot(world, chest, 10, Items.diamond, 5, 6);
+			addChestLoot(world, chest, 20, Items.GOLD_INGOT, 10, 15);
+			addChestLoot(world, chest, 20, Items.IRON_INGOT, 7, 12);
+			addChestLoot(world, chest, 10, Items.DIAMOND, 5, 6);
 			addChestLoot(world, chest, 10, ListMisc.BlackMetal, 6, 8);
-			addChestLoot(world, chest, 10, Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 3)));
+			addChestLoot(world, chest, 10, Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 3)));
 		};
 		
 		addChestTileEntity(world, specialChestPositions, 0, specialChestLoot);
@@ -159,16 +159,16 @@ public class StructureMarineLargeBase extends Structure
 		
 		Consumer<TileEntityChest> captainChestLoot = (chest) -> 
 		{
-			addChestLoot(world, chest, 50, Items.compass, 1, 0);
+			addChestLoot(world, chest, 50, Items.COMPASS, 1, 0);
 			addChestLoot(world, chest, 40, ListMisc.Cola, 1, 5);
-			addChestLoot(world, chest, 40, Items.map, 1, 0);
+			addChestLoot(world, chest, 40, Items.MAP, 1, 0);
 			addChestLoot(world, chest, 30, ListMisc.BellyPouch, 1, 2);
-			addChestLoot(world, chest, 20, Items.diamond, 0, 5);
+			addChestLoot(world, chest, 20, Items.DIAMOND, 0, 5);
 			addChestLoot(world, chest, 20, ListMisc.Flintlock, 1, 0);
 			addChestLoot(world, chest, 20, ListMisc.UltraCola, 1, 0);
 			addChestLoot(world, chest, 20, ListMisc.BlackMetal, 1, 5);
-			addChestLoot(world, chest, 15, Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
-			addChestLoot(world, chest, 10, Items.diamond, 3, 7);
+			addChestLoot(world, chest, 15, Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
+			addChestLoot(world, chest, 10, Items.DIAMOND, 3, 7);
 			addChestLoot(world, chest, 10, ListMisc.Box1, 1, 0);
 			addChestLoot(world, chest, 5, ListMisc.Box2, 1, 0);
 		};
@@ -182,8 +182,8 @@ public class StructureMarineLargeBase extends Structure
 		
 		Consumer<TileEntityChest> commodoreChestLoot = (chest) -> 
 		{
-			addChestLoot(world, chest, 40, Items.clock, 1, 0);
-			addChestLoot(world, chest, 40, Items.map, 1, 0);
+			addChestLoot(world, chest, 40, Items.CLOCK, 1, 0);
+			addChestLoot(world, chest, 40, Items.MAP, 1, 0);
 			addChestLoot(world, chest, 30, ListMisc.UltraCola, 1, 0);
 			addChestLoot(world, chest, 20, ListMisc.Box1, 1, 0);
 			addChestLoot(world, chest, 10, ListMisc.Box2, 1, 0);

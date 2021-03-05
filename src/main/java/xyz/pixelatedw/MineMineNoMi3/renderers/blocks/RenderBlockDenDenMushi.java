@@ -28,7 +28,7 @@ public class RenderBlockDenDenMushi extends TileEntitySpecialRenderer
 		TileEntityDenDenMushi te2 = (TileEntityDenDenMushi)te;
 		
 		int rotation = 0;
-	    if (te2.getWorldObj() != null)
+	    if (te2.getWorld() != null)
 	        rotation = te2.getBlockMetadata();
 		
 		bindTexture(texture);

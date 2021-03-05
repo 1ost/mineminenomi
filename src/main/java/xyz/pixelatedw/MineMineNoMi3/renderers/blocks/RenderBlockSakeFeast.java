@@ -36,8 +36,7 @@ public class RenderBlockSakeFeast extends TileEntitySpecialRenderer
 
 	}
 
-	@Override
-	public void renderTileEntityAt(TileEntity te, double posX, double posY, double posZ, float timeSinceLastTick) 
+	public void renderTileEntityAt(TileEntity te, double posX, double posY, double posZ, float timeSinceLastTick)
 	{	
 		TileEntitySakeFeast sakeFeast = (TileEntitySakeFeast) te;
 		

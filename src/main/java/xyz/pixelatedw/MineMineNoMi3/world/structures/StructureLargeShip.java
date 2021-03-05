@@ -90,20 +90,20 @@ public class StructureLargeShip extends Structure
 		if(getRandomChance(world) <= 10)
 			addChestLoot(world, foodChest, 45, Items.melon, 5, 10);
 		addChestLoot(world, foodChest, 45, Items.baked_potato, 0, 5);
-		addChestLoot(world, foodChest, 45, Items.apple, 1, 10);
+		addChestLoot(world, foodChest, 45, Items.APPLE, 1, 10);
 		if(getRandomChance(world) <= 70)
 			addChestLoot(world, foodChest, 45, Items.melon, 5, 10);
 		addChestLoot(world, foodChest, 20, ListMisc.Cola, 0, 3);
 		if(getRandomChance(world) <= 50)
 		{
-			addChestLoot(world, foodChest, 10, Items.cooked_chicken, 0, 2);
+			addChestLoot(world, foodChest, 10, Items.COOKED_CHICKEN, 0, 2);
 			if(getRandomChance(world) <= 50)
 				addChestLoot(world, foodChest, 10, Items.cooked_fished, 1, 4);
 			else
 				addChestLoot(world, foodChest, 10, Items.cooked_fished, 1, 1, 4);
 		}
 		else
-			addChestLoot(world, foodChest, 10, Items.cooked_chicken, 1, 2);
+			addChestLoot(world, foodChest, 10, Items.COOKED_CHICKEN, 1, 2);
 		addChestLoot(world, foodChest, 10, ListMisc.Cola, 0, 5);
 
 		TileEntityChest specialChest = new TileEntityChest();

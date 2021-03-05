@@ -1,10 +1,10 @@
 package xyz.pixelatedw.MineMineNoMi3;
 
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.settings.KeyBinding;
@@ -55,11 +55,11 @@ public class MainKeys
 	}
 	
 	@SubscribeEvent
-	public void onKeyInput(KeyInputEvent event) 
+	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{		
     	Minecraft minecraft = Minecraft.getMinecraft();
-    	EntityPlayer player = minecraft.thePlayer; 
-    	WorldClient world = minecraft.theWorld;  
+    	EntityPlayer player = minecraft.player;
+    	WorldClient world = minecraft.world;
     	ExtendedEntityData props = ExtendedEntityData.get(player);
     	
 		if(guiPlayer.isPressed())

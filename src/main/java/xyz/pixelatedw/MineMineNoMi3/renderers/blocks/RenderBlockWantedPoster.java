@@ -31,10 +31,9 @@ public class RenderBlockWantedPoster extends TileEntitySpecialRenderer
 		this.posterModel = new ModelWantedPoster();
 	}
 
-	@Override
 	public void renderTileEntityAt(TileEntity te, double posX, double posY, double posZ, float timeSinceLastTick)
 	{
-		ExtendedWorldData worldData = ExtendedWorldData.get(te.getWorldObj());
+		ExtendedWorldData worldData = ExtendedWorldData.get(te.getWorld());
 
 		TileEntityWantedPoster te2 = (TileEntityWantedPoster) te;
 
@@ -120,9 +119,9 @@ public class RenderBlockWantedPoster extends TileEntitySpecialRenderer
 				if(name == null || name.isEmpty())
 					return;
 				
-				ResourceLocation rs = AbstractClientPlayer.locationStevePng;
+				ResourceLocation rs = AbstractClientPlayer.getLocationSkin("steve");
 				
-				EntityPlayer player = minecraft.theWorld.getPlayerEntityByName(name);
+				EntityPlayer player = minecraft.world.getPlayerEntityByName(name);
 								
 				if(player != null)
 					rs = ((AbstractClientPlayer)player).getLocationSkin();

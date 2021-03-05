@@ -37,7 +37,7 @@ public class EntityKungFuDugong extends EntityMob implements INBTEntity, IEntity
 {
 	private Item[] food = new Item[]
 		{
-				Items.cooked_beef, Items.cooked_chicken, Items.COOKED_FISH, Items.cooked_porkchop
+				Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.COOKED_FISH, Items.COOKED_PORKCHOP
 		};
 	private boolean isHappy, isTamed, isWaiting, isEnraged, isTraining;
 	private EntityPlayer owner;

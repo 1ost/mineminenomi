@@ -57,7 +57,7 @@ public class MainMod
 
 		ListPackets.init();
 		ListEntities.init();
-		ListBiomes.init();
+		//uncoment ListBiomes.init();
 
 		proxy.preInit();
 	}

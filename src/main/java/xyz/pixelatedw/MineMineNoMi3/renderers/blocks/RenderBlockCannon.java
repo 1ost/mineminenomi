@@ -23,11 +23,10 @@ public class RenderBlockCannon extends TileEntitySpecialRenderer
 		this.texture = new ResourceLocation(ID.PROJECT_ID, "textures/models/blocks/cannon.png");
 	}
 
-	@Override
-	public void renderTileEntityAt(TileEntity te, double posX, double posY, double posZ, float timeSinceLastTick) 
+	public void renderTileEntityAt(TileEntity te, double posX, double posY, double posZ, float timeSinceLastTick)
 	{
 		int rotation = 0;
-	    if (te.getWorldObj() != null)
+	    if (te.getWorld() != null)
 	        rotation = te.getBlockMetadata();
 		
 		bindTexture(texture);

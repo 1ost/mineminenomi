@@ -58,15 +58,15 @@ public class HandRendererHelper
 			setupViewBobbing(0.07F);
 		
 		RenderHelper.enableStandardItemLighting();
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 		
-        int i2 = mc.theWorld.getLightBrightnessForSkyBlocks(MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ), 0);
+        int i2 =  mc.world.getLightBrightness(MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ), 0);
         int j = i2 % 65536;
         int k = i2 / 65536;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		
-		if (mc.gameSettings.thirdPersonView == 0 && !mc.renderViewEntity.isPlayerSleeping() && !mc.gameSettings.hideGUI)
+		if (mc.gameSettings.thirdPersonView == 0 && !mc.gameSettings.hideGUI)
 		{
 			if (player.inventory.getCurrentItem() != null)
 				Minecraft.getMinecraft().entityRenderer.itemRenderer.renderItemInFirstPerson(0.07F);
@@ -74,11 +74,11 @@ public class HandRendererHelper
 				renderCustomHand(player);
 		}
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(0);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		RenderHelper.disableStandardItemLighting();
 	}
 	
-	private static void renderCustomHand(EntityClientPlayerMP player)
+	private static void renderCustomHand(EntityPlayerMP player)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		ExtendedEntityData props = ExtendedEntityData.get(player);
@@ -119,7 +119,7 @@ public class HandRendererHelper
 			mc.getTextureManager().bindTexture(getTextureFromMorph(player));
 		GL11.glTranslatef(-1.0F, 3.6F, 3.5F);
 		GL11.glRotatef(120.0F, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(200.0F, 1.0F, 0.0F, 0.0F);
+		GL11.glRotatef(200.0F, 1.0F3, 0.0F, 0.0F);
 		GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glScalef(1.0F, 1.0F, 1.0F);
 		GL11.glTranslatef(5.6F, 0.0F, 0.0F);
@@ -157,7 +157,7 @@ public class HandRendererHelper
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 	}
 	
-	private static ResourceLocation getTextureFromMorph(EntityClientPlayerMP player)
+	private static ResourceLocation getTextureFromMorph(EntityPlayerMP player)
 	{
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		RenderZoanMorph render = null;

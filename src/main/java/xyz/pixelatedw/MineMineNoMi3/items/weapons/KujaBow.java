@@ -105,7 +105,7 @@ public class KujaBow extends Item
 	@Override
 	public EnumAction getItemUseAction(ItemStack p_77661_1_)
 	{
-		return EnumAction.bow;
+		return EnumAction.BOW;
 	}
 
 	@Override

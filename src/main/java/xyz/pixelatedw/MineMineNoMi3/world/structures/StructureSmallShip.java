@@ -83,15 +83,15 @@ public class StructureSmallShip extends Structure
 		addChestLoot(world, foodChest, 100, Items.bread, 4, 6);
 		addChestLoot(world, foodChest, 100, Items.bread, 2, 3);
 		addChestLoot(world, foodChest, 100, Items.potato, 1, 5);
-		addChestLoot(world, foodChest, 85, Items.apple, 1, 4);
+		addChestLoot(world, foodChest, 85, Items.APPLE, 1, 4);
 		addChestLoot(world, foodChest, 45, Items.baked_potato, 1, 5);
 		if(getRandomChance(world) <= 70)
 			addChestLoot(world, foodChest, 45, Items.bread, 1, 3);
 		addChestLoot(world, foodChest, 20, ListMisc.Cola, 1, 3);
 		if(getRandomChance(world) <= 50)
-			addChestLoot(world, foodChest, 60, Items.cooked_chicken, 3, 4);
+			addChestLoot(world, foodChest, 60, Items.COOKED_CHICKEN, 3, 4);
 		else
-			addChestLoot(world, foodChest, 10, Items.cooked_beef, 5, 6);
+			addChestLoot(world, foodChest, 10, Items.COOKED_BEEF, 5, 6);
 		addChestLoot(world, foodChest, 10, ListMisc.Cola, 1, 5);
 
 		world.setBlock(posX + 11, posY + 2, posZ + 24, Blocks.AIR);

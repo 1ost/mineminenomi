@@ -38,7 +38,7 @@ public class EntityDenDenMushi extends EntityAnimal
 	public boolean interact(EntityPlayer player)
 	{
 		ItemStack heldItem = player.inventory.getCurrentItem();
-		if (heldItem != null && heldItem.getItem() == Items.iron_ingot)
+		if (heldItem != null && heldItem.getItem() == Items.IRON_INGOT)
 		{
 			player.inventory.addItemStackToInventory(new ItemStack(ListMisc.DenDenMushi));
 			heldItem.stackSize--;

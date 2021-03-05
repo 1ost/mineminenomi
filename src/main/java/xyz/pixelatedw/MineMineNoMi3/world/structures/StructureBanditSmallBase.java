@@ -52,18 +52,18 @@ public class StructureBanditSmallBase extends Structure
 		
 		Consumer<TileEntityChest> mineChestLoot = (chest) -> 
 		{
-			addChestLoot(world, chest, 70, Items.iron_ingot, 5, 10);
+			addChestLoot(world, chest, 70, Items.IRON_INGOT, 5, 10);
 			addChestLoot(world, chest, 70, new ItemStack(Items.dye, (int) WyMathHelper.randomWithRange(2, 7), 4));
 			addChestLoot(world, chest, 60, Items.iron_pickaxe, 1, 0);
-			addChestLoot(world, chest, 60, Items.gold_ingot, 2, 5);
+			addChestLoot(world, chest, 60, Items.GOLD_INGOT, 2, 5);
 			addChestLoot(world, chest, 60, ListMisc.Kairoseki, 5, 10);
 			addChestLoot(world, chest, 40, Items.emerald, 0, 5);
-			addChestLoot(world, chest, 20, Items.iron_ingot, 7, 10);
+			addChestLoot(world, chest, 20, Items.IRON_INGOT, 7, 10);
 			addChestLoot(world, chest, 20, Items.emerald, 3, 7);
-			addChestLoot(world, chest, 20, Items.diamond_pickaxe, 1, 0);
+			addChestLoot(world, chest, 20, Items.DIAMOND_pickaxe, 1, 0);
 			addChestLoot(world, chest, 20, ListMisc.Kairoseki, 5, 10);
-			addChestLoot(world, chest, 10, Items.diamond, 2, 5);
-			addChestLoot(world, chest, 10, Items.diamond, 3, 4);
+			addChestLoot(world, chest, 10, Items.DIAMOND, 2, 5);
+			addChestLoot(world, chest, 10, Items.DIAMOND, 3, 4);
 			
 		};
 		
@@ -80,12 +80,12 @@ public class StructureBanditSmallBase extends Structure
 			addChestLoot(world, chest, 50, Items.glowstone_dust, 2, 15);
 			addChestLoot(world, chest, 50, ListMisc.Kairoseki, 2, 7);
 			addChestLoot(world, chest, 40, Items.redstone, 5, 7);
-			addChestLoot(world, chest, 40, Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
+			addChestLoot(world, chest, 40, Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 2)));
 			addChestLoot(world, chest, 30, Items.redstone, 7, 10);
 			addChestLoot(world, chest, 30, Items.blaze_powder, 2, 5);
 			addChestLoot(world, chest, 20, ListMisc.BlackMetal, 5, 8);
 			addChestLoot(world, chest, 20, Items.glowstone_dust, 5, 7);
-			addChestLoot(world, chest, 10, Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 3)));
+			addChestLoot(world, chest, 10, Items.ENCHANTED_BOOK.getEnchantedItemStack(new EnchantmentData(getEnchantment(), 3)));
 			addChestLoot(world, chest, 10, ListMisc.BlackMetal, 2, 7);
 			
 		};

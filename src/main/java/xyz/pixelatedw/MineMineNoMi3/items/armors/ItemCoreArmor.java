@@ -50,7 +50,7 @@ public class ItemCoreArmor extends ItemArmor
 
 			EntityPlayer player = (EntityPlayer) entityLiving;
 
-			ItemStack held_item = player.getEquipmentInSlot(0);
+			ItemStack held_item = player.inventory.armorItemInSlot(0);
 
 			if (held_item != null)
 			{
@@ -61,10 +61,10 @@ public class ItemCoreArmor extends ItemArmor
 
 					EnumAction enumaction = held_item.getItemUseAction();
 
-					if (enumaction == EnumAction.bow)
+					if (enumaction == EnumAction.BOW)
 					{
 						armorModel.aimedBow = true;
-					} else if (enumaction == EnumAction.block)
+					} else if (enumaction == EnumAction.BLOCK)
 					{
 						armorModel.heldItemRight = 3;
 					}
