@@ -99,7 +99,7 @@ public class QuestPoneglyphChallengeCrocodile extends Quest implements IInteract
 		{
 			this.setProgress(player, this.getMaxProgress());
 			WyNetworkHelper.sendTo(new PacketQuestSync(QuestProperties.get(player)), (EntityPlayerMP) player);
-			target.playSound("mob.villager.yes", 1, 1);
+			//UNCOMMENT target.playSound("mob.villager.yes", 1, 1);
 			this.isFinished(player);
 			return true;
 		}

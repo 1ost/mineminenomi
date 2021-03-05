@@ -12,12 +12,14 @@ public class ListEffects
 	
 	public static void init()
 	{		
+		/*uNCOMMENT
 		dialImpact = new MainEnchantment(MainConfig.enchantmentDialImpactId, 1, EnumEnchantmentType.weapon, "Impact Dial");
+
 		kairoseki  = new MainEnchantment(MainConfig.enchantmentKairosekiId, 1, EnumEnchantmentType.weapon, "Kairoseki");
 		dialFlash = new MainEnchantment(MainConfig.enchantmentDialFlashId, 1, EnumEnchantmentType.weapon, "Breath Dial");
 
 		WyRegistry.registerEnchantment(dialImpact, "Impact Dial");
 		WyRegistry.registerEnchantment(kairoseki, "Kairoseki");
-		WyRegistry.registerEnchantment(dialFlash, "Flash Dial");
+		WyRegistry.registerEnchantment(dialFlash, "Flash Dial");*/
 	}
 }

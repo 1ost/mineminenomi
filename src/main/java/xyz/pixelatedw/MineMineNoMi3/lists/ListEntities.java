@@ -2,8 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.lists;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
 import xyz.pixelatedw.MineMineNoMi3.api.WyRegistry;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityAttribute;

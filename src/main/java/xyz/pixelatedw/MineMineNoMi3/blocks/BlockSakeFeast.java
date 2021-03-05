@@ -17,7 +17,7 @@ public class BlockSakeFeast extends BlockContainer
 
 	public BlockSakeFeast()
 	{
-		super(Material.clay);
+		super(Material.CLAY);
 		this.setHardness(1);
 	}
 

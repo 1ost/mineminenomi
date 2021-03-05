@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.EnumHand;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.Quest;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.QuestProperties;
@@ -117,7 +118,7 @@ public class QuestSwordsmanProgression01 extends Quest implements IInteractQuest
 			{
 				Entry entry = (Entry)iterator.next();
 				
-				if(entry.getKey().equals(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName()))
+				if(entry.getKey().equals(SharedMonsterAttributes.ATTACK_DAMAGE.getName()))
 				{
 					AttributeModifier attrmodif = (AttributeModifier)entry.getValue();
 					double damage = attrmodif.getAmount();

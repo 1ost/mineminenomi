@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.util.EnumHand;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.Quest;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.QuestProperties;
@@ -104,12 +104,11 @@ public class QuestSniperProgression02 extends Quest implements IProgressionQuest
 	@Override
 	public boolean isTarget(EntityPlayer player, EntityLivingBase target)
 	{
-		BiomeGenBase biome = player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
 		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 		
 		boolean flagMob = target instanceof EntityMob;
 		boolean flagBow = ItemsHelper.isBow(heldItem);
-		boolean flagDistance = player.getDistanceToEntity(target) >= 35;
+		boolean flagDistance = player.getDistanceSq(target) >= 35;
 
 		if(flagMob && flagBow && flagDistance)
 			return true;

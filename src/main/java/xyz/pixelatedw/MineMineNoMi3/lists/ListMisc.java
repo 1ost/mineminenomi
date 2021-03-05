@@ -98,8 +98,8 @@ public class ListMisc
 {
 	public static Block Ope = new BlockOpe();
 	public static Block OpeMid = new BlockOpeMid();
-	public static Block KairosekiBlock = new NewBlock(Material.rock).setHardness(10);
-	public static Block KairosekiOre = new NewBlock(Material.rock)
+	public static Block KairosekiBlock = new NewBlock(Material.ROCK).setHardness(10);
+	public static Block KairosekiOre = new NewBlock(Material.ROCK)
 	{
 		@Override
 		public int quantityDropped(Random random)
@@ -107,7 +107,6 @@ public class ListMisc
 			return 2 + random.nextInt(3);
 		}
 
-		@Override
 		public Item getItemDropped(int id, Random rand, int fortune)
 		{
 			return Kairoseki;
@@ -153,7 +152,7 @@ public class ListMisc
 			return Item.getItemFromBlock(KairosekiBars);
 		}
 	};
-	public static Block WaxBlock = new NewBlock(Material.clay);
+	public static Block WaxBlock = new NewBlock(Material.CLAY);
 	public static Block AbilityProtectionBlock = new BlockAbilityProtection();
 	public static Block AbilityProtectionAreaBlock = new BlockAbilityProtectionArea();
 	public static Block AbilityProtectionCenterBlock = new BlockAbilityProtectionArea();
@@ -269,9 +268,10 @@ public class ListMisc
 
 	public static void init()
 	{
+		/*Uncomment
 		ID.DIMENSION_ID_SCENARIOARENA = DimensionManager.getNextFreeDimId();
 		DimensionManager.registerProviderType(ID.DIMENSION_ID_SCENARIOARENA, WorldProviderScenarioArena.class, true);
-		DimensionManager.registerDimension(ID.DIMENSION_ID_SCENARIOARENA, ID.DIMENSION_ID_SCENARIOARENA);
+		DimensionManager.registerDimension(ID.DIMENSION_ID_SCENARIOARENA, ID.DIMENSION_ID_SCENARIOARENA);*/
 
 		Box1 = new AkumaNoMiBox(1).setMaxStackSize(1);
 		Box2 = new AkumaNoMiBox(2).setMaxStackSize(1);
