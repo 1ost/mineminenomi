@@ -6,12 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Vec3;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.*;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -25,6 +20,7 @@ import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,19 +34,19 @@ public class WyHelper
 
 	public enum Direction
 	{
-		SOUTH, SOUTH_EAST, EAST, NORTH, NORTH_EAST, NORTH_WEST, WEST, SOUTH_WEST;
+		SOUTH, SOUTH_EAST, EAST, NORTH, NORTH_EAST, NORTH_WEST, WEST, SOUTH_WEST
 	}
 
-	public static AxisAlignedBB NULL_AABB = AxisAlignedBB.get(0, 0, 0, 0, 0, 0);
+	public static AxisAlignedBB NULL_AABB = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
 	
 	public static EntityLivingBase getEntityByUUID(World world, UUID uuid)
 	{
-		List<EntityLivingBase> entities = (List<EntityLivingBase>) world.loadedEntityList.stream().filter(x -> x instanceof EntityLivingBase).collect(Collectors.toList());
-		for(EntityLivingBase entity : entities)
+		List<Entity> entities = world.loadedEntityList.stream().filter(x -> x instanceof EntityLivingBase).collect(Collectors.toList());
+		for(Entity entity : entities)
 		{
 			if(entity.getUniqueID().equals(uuid))
 			{
-				return entity;
+				return (EntityLivingBase) entity;
 			}
 		}
 		
@@ -78,10 +74,8 @@ public class WyHelper
 	
 	public static boolean isNullOrEmpty(String str) 
 	{
-        if(str != null && !str.isEmpty())
-            return false;
-        return true;
-    }
+		return str == null || str.isEmpty();
+	}
 	
 	public static AbilityExplosion newExplosion(Entity entity, double posX, double posY, double posZ, double size)
 	{
@@ -103,7 +97,7 @@ public class WyHelper
 				for (int y = -radius; y < radius; y++)
 					for (int z = -radius; z < radius; z++)
 					{
-						if (player.world.getBlockState(new BlockPos (int) player.posX + x, (int) player.posY + y, (int) player.posZ + z) == b)
+						if (player.world.getBlockState(new BlockPos( (int) player.posX + x, (int) player.posY + y, (int) player.posZ + z)) == b)
 						{
 							return true;
 						}
@@ -192,7 +186,7 @@ public class WyHelper
 
 		if (langFolder.exists())
 		{
-			try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Values.RESOURCES_FOLDER + "/assets/" + ID.PROJECT_ID + "/lang/en_US.lang"), "UTF-8")))
+			try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Values.RESOURCES_FOLDER + "/assets/" + ID.PROJECT_ID + "/lang/en_US.lang"), StandardCharsets.UTF_8)))
 			{
 				while (i.hasNext())
 				{
@@ -241,19 +235,6 @@ public class WyHelper
 	 * 0) is burning; 1) is sneaking; 2) is riding something; 3) is sprinting;
 	 * 4) is eating; 5) is invisible
 	 */
-	public static void setEntityFlag(Entity player, int id, boolean bool)
-	{
-		byte b0 = player.getDataWatcher().getWatchableObjectByte(0);
-
-		if (bool)
-		{
-			player.getDataWatcher().updateObject(0, Byte.valueOf((byte) (b0 | 1 << id)));
-		}
-		else
-		{
-			player.getDataWatcher().updateObject(0, Byte.valueOf((byte) (b0 & ~(1 << id))));
-		}
-	}
 
 	public static Color hslToColor(float h, float s, float l)
 	{
@@ -363,7 +344,7 @@ public class WyHelper
 
 	public static List<EntityLivingBase> getEntitiesNear(int x, int y, int z, World world, double radius, Class<? extends Entity> classEntity)
 	{
-		AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(radius, radius, radius);
+		AxisAlignedBB aabb = new AxisAlignedBB(x, y, z, x + 1, y + 1, z + 1).expand(radius, radius, radius);
 		List list = world.getEntitiesWithinAABB(classEntity, aabb);
 		return list;
 	}
@@ -377,7 +358,7 @@ public class WyHelper
 	{
 		try
 		{
-			AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius, radius, radius);
+			AxisAlignedBB aabb = new AxisAlignedBB(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius, radius, radius);
 			List list = new ArrayList();
 			for(Class<? extends Entity> clz : classEntities)
 				list.addAll(e.world.getEntitiesWithinAABB(clz, aabb));
@@ -392,13 +373,13 @@ public class WyHelper
 		return null;
 	}
 
-	public static <T> List<T> getEntitiesNear(Entity e, double[] radius, Class<? extends T>... classEntities)
+	public static <T> List<T> getEntitiesNear(Entity e, double[] radius, Class<? extends Entity>... classEntities)
 	{
 		try
 		{
-			AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius[0], radius[1], radius[2]);
-			List<T> list = new ArrayList<T>();
-			for(Class<? extends T> clz : classEntities)
+			AxisAlignedBB aabb = new AxisAlignedBB(e.posX, e.posY, e.posZ, e.posX + 1, e.posY + 1, e.posZ + 1).expand(radius[0], radius[1], radius[2]);
+			List list = new ArrayList();
+			for(Class<? extends Entity> clz : classEntities)
 				list.addAll(e.world.getEntitiesWithinAABB(clz, aabb));
 			list.remove(e);
 			return list;
@@ -407,7 +388,7 @@ public class WyHelper
 		{
 			exception.printStackTrace();
 		}
-		
+
 		return null;
 	}
 	
@@ -418,8 +399,9 @@ public class WyHelper
 
 	public static List<EntityLivingBase> getEntitiesNear(TileEntity e, double radius, Class<? extends Entity> classEntity)
 	{
-		AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(e.xCoord, e.yCoord, e.zCoord, e.xCoord + 1, e.yCoord + 1, e.zCoord + 1).expand(radius, radius, radius);
-		List list = e.getWorldObj().getEntitiesWithinAABB(classEntity, aabb);
+		BlockPos tePos = e.getPos();
+		AxisAlignedBB aabb = new AxisAlignedBB(tePos.getX(),tePos.getY(), tePos.getZ(), tePos.getX() + 1, tePos.getY() + 1, tePos.getZ() + 1).expand(radius, radius, radius);
+		List list = e.getWorld().getEntitiesWithinAABB(classEntity, aabb);
 		return list;
 	}
 
@@ -471,7 +453,7 @@ public class WyHelper
 		double d = e.prevPosX + (e.posX - e.prevPosX) * f;
 		double d1 = (e.prevPosY + (e.posY - e.prevPosY) * f + 1.6200000000000001D) - e.getYOffset();
 		double d2 = e.prevPosZ + (e.posZ - e.prevPosZ) * f;
-		Vec3 vec3d = Vec3.createVectorHelper(d, d1, d2);
+		Vec3d vec3d = new Vec3d(d, d1, d2);
 		float f3 = MathHelper.cos(-f2 * 0.01745329F - 3.141593F);
 		float f4 = MathHelper.sin(-f2 * 0.01745329F - 3.141593F);
 		float f5 = -MathHelper.cos(-f1 * 0.01745329F);
@@ -480,7 +462,7 @@ public class WyHelper
 		float f9 = f3 * f5;
 		double d3 = 5000D;
 
-		Vec3 vec3 = vec3d.addVector(f7 * d3, f6 * d3, f9 * d3);
+		Vec3d vec3 = vec3d.addVector(f7 * d3, f6 * d3, f9 * d3);
 		RayTraceResult ray = e.world.rayTraceBlocks(vec3d, vec3, false);
 
 		return ray;
@@ -595,8 +577,8 @@ public class WyHelper
 	
 	public static void removeStackFromArmorSlots(EntityPlayer player, ItemStack stack)
 	{
-		int x = player.inventory.mainInventory.length;
-		for (int i = x; i < x + player.inventory.armorInventory.length; i++)
+		int x = player.inventory.mainInventory.size();
+		for (int i = x; i < x + player.inventory.armorInventory.size(); i++)
 		{
 			if (stack == player.inventory.getStackInSlot(i))
 			{
@@ -608,7 +590,7 @@ public class WyHelper
 	
 	public static void removeStackFromInventory(EntityPlayer player, ItemStack stack)
 	{
-		for (int i = 0; i < player.inventory.mainInventory.length; i++)
+		for (int i = 0; i < player.inventory.mainInventory.size(); i++)
 		{
 			if (stack == player.inventory.getStackInSlot(i))
 			{
@@ -620,8 +602,8 @@ public class WyHelper
 
 	public static void removeStackFromSlot(EntityPlayer player, int index)
 	{
-		if (player.inventory.mainInventory[index] != null)
-			player.inventory.mainInventory[index] = null;
+		if (player.inventory.mainInventory.get(index) != null)
+			player.inventory.mainInventory.set(index,null);
 	}
 
 	public static int getPatreonLevel(EntityPlayer player)
@@ -680,9 +662,6 @@ public class WyHelper
 		
 		if(isDevBuild() && patreon >= 4)
 			return true;
-		else if(isEarlyAccessBuild() && patreon >= 3)
-			return true;
-		else
-			return false;
+		else return isEarlyAccessBuild() && patreon >= 3;
 	}
 }

@@ -101,45 +101,6 @@ public class WyRenderHelper
 		}
 		GL11.glPopMatrix();
 	}
-
-	public static void renderTestStencil()
-	{
-		// Basic stencil test
-		Minecraft mc = Minecraft.getMinecraft();
-		ScaledResolution reso = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-		EntityPlayer player = mc.player;
-		
-		GL11.glEnable(GL11.GL_STENCIL_TEST);
-
-		GL11.glColorMask(false, false, false, false);
-		GL11.glDepthMask(false);
-
-		GL11.glStencilFunc(GL11.GL_NEVER, 1, 0xFF);
-		GL11.glStencilOp(GL11.GL_REPLACE, GL11.GL_KEEP, GL11.GL_KEEP);
-
-		GL11.glStencilMask(0xFF);
-		GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
-		GL11.glColor3d(255, 0, 0);
-		WyRenderHelper.drawEntityOnScreen((int)reso.getScaledWidth_double() / 2, (int)reso.getScaledHeight_double() / 2, 64, 0, 0, mc.player);
-		
-		//drawColourOnScreen(0xffffff, 255, 0, 0, 60, 60, 0);
-
-		GL11.glColorMask(true, true, true, true);
-		GL11.glDepthMask(true);
-
-		GL11.glStencilMask(0x00);
-
-		GL11.glStencilFunc(GL11.GL_EQUAL, 0, 0xFF);
-
-		GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
-		GL11.glColor3d(255, 0, 0);
-		WyRenderHelper.drawEntityOnScreen((int)reso.getScaledWidth_double() / 2, (int)reso.getScaledHeight_double() / 2, 64, 0, 0, mc.player);
-
-		//drawColourOnScreen(0xffffff, 255, 0, 0, reso.getScaledWidth_double(), reso.getScaledHeight_double(), 0);
-
-		GL11.glDisable(GL11.GL_STENCIL_TEST);
-	
-	}
 		
 	public static void drawAbilityIcon(String iconName, int x, int y, int u, int v)
 	{
