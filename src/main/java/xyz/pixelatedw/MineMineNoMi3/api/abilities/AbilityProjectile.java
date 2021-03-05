@@ -89,7 +89,7 @@ public class AbilityProjectile extends EntityThrowable
 		{
 			Vec3d vec31 = Vec3d.ZERO.addVector(this.posX, this.posY, this.posZ);
 			Vec3d vec3 = Vec3d.ZERO.addVector(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-			RayTraceResult movingobjectposition = this.world.func_147447_a(vec31, vec3, false, true, false);
+			RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec31, vec3, false, true, false);
 			vec31 = Vec3d.ZERO.addVector(this.posX, this.posY, this.posZ);
 			vec3 = Vec3d.ZERO.addVector(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 			
