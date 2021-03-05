@@ -101,9 +101,9 @@ public class EventsOnGain
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.entity instanceof EntityPlayer)
+		if (event.getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.entity;
+			EntityPlayer player = (EntityPlayer) event.getEntity();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			AbilityProperties abilityProps = AbilityProperties.get(player);
 
@@ -116,9 +116,9 @@ public class EventsOnGain
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
 		}
 
-		if (event.getSource().getEntity() instanceof EntityPlayer)
+		if (event.getSource().getTrueSource() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			EntityLivingBase target = event.getEntityLiving();
 

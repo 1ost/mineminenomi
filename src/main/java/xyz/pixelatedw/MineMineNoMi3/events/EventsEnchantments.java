@@ -1,5 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.events;
 
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
@@ -15,9 +16,9 @@ public class EventsEnchantments
 	@SubscribeEvent
 	public void onLivingAttackEvent(LivingAttackEvent event)
 	{
-		if (((event.getSource().getEntity() instanceof EntityPlayer)) && ((event.getEntityLiving() instanceof EntityLiving)))
+		if (((event.getSource().getTrueSource() instanceof EntityPlayer)) && ((event.getEntityLiving() instanceof EntityLiving)))
 		{
-			EntityPlayer player = (EntityPlayer)event.getSource().getEntity();
+			EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
 			EntityLiving living = (EntityLiving)event.getEntityLiving();
 			ItemStack hand = player.inventory.getCurrentItem();
 			
@@ -25,7 +26,7 @@ public class EventsEnchantments
 			{
 				if(!living.world.isRemote)
 				{
-					if (EnchantmentHelper.getEnchantmentLevel(ListEffects.dialImpact.effectId, player.getHeldItem()) == 1)
+					if (EnchantmentHelper.getEnchantmentLevel(ListEffects.dialImpact, player.getHeldItem(EnumHand.MAIN_HAND)) == 1)
 					{
 						int r = living.world.rand.nextInt(10);
 						if(r < 2)

@@ -2,6 +2,8 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.List;
 
+import net.minecraft.util.EnumHand;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.MainMod;
@@ -54,14 +55,14 @@ public class EventsQuestsProgress
 	}
 
 	@SubscribeEvent
-	public void onEntityInteract(EntityInteractEvent event)
+	public void onEntityInteract(PlayerInteractEvent event)
 	{
 		EntityPlayer player = event.getEntityPlayer();
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		QuestProperties questProps = QuestProperties.get(player);
 		EntityLivingBase target = null;
-		if (event.target instanceof EntityLivingBase)
-			target = (EntityLivingBase) event.target;
+		if (event.getEntity() instanceof EntityLivingBase)
+			target = (EntityLivingBase) event.getEntity();
 
 		if (target != null && MainConfig.enableQuests)
 		{
@@ -117,9 +118,9 @@ public class EventsQuestsProgress
 	@SubscribeEvent
 	public void onEntityDeath(LivingDeathEvent event)
 	{
-		if (event.getSource().getEntity() instanceof EntityPlayer)
+		if (event.getSource().getTrueSource() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			QuestProperties questProps = QuestProperties.get(player);
 			EntityLivingBase target = event.getEntityLiving();
@@ -148,9 +149,9 @@ public class EventsQuestsProgress
 	@SubscribeEvent
 	public void onEntityAttackEvent(LivingHurtEvent event)
 	{
-		if (event.getSource().getEntity() instanceof EntityPlayer)
+		if (event.getSource().getTrueSource() instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) event.getSource().getEntity();
+			EntityPlayer player = (EntityPlayer) event.getSource().getTrueSource();
 			ExtendedEntityData props = ExtendedEntityData.get(player);
 			QuestProperties questProps = QuestProperties.get(player);
 			EntityLivingBase target = event.getEntityLiving();
@@ -178,7 +179,7 @@ public class EventsQuestsProgress
 	@SubscribeEvent
 	public void onToolTip(ItemTooltipEvent event)
 	{
-		ItemStack itemStack = event.itemStack;
+		ItemStack itemStack = event.getItemStack();
 		
 		if(!itemStack.hasTagCompound())
 			return;
@@ -195,7 +196,7 @@ public class EventsQuestsProgress
 			if(WyHelper.isNullOrEmpty(loreLine))
 				continue;
 				
-			event.toolTip.add(loreLine);
+			event.getToolTip().add(loreLine);
 		}
 	}
 }

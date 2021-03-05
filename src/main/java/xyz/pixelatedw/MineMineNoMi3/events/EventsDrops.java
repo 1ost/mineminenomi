@@ -2,6 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.Random;
 
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,11 +26,11 @@ public class EventsDrops
 	@SubscribeEvent
     public void onInteractEvent(PlayerInteractEvent event)
     {
-		if(event.target instanceof EntityLivingBase)
+		if(event.getEntity() instanceof EntityLivingBase)
 		{
 			ExtendedEntityData props = ExtendedEntityData.get(event.getEntityPlayer());
-			ExtendedEntityData propz = ExtendedEntityData.get((EntityLivingBase) event.target);
-			ItemStack heldItem = event.getEntityPlayer().getHeldItem();
+			ExtendedEntityData propz = ExtendedEntityData.get((EntityLivingBase) event.getEntity());
+			ItemStack heldItem = event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND);
 			
 			if(props.getUsedFruit().equalsIgnoreCase("kagekage") && propz.hasShadow() && heldItem != null && heldItem.getItem() == ListMisc.Scissors)
 			{
@@ -54,9 +55,9 @@ public class EventsDrops
 				
 				if(MainConfig.enableOneFruitPerWorld)
 				{
-					ExtendedWorldData worldProps = ExtendedWorldData.get(event.world);
+					ExtendedWorldData worldProps = ExtendedWorldData.get(event.getWorld());
 					int chanceForNewFruit = 0;
-					while(DevilFruitsHelper.isDevilFruitInWorld(event.world, df))
+					while(DevilFruitsHelper.isDevilFruitInWorld(event.getWorld(), df))
 					{
 						if(chanceForNewFruit >= 10)
 						{

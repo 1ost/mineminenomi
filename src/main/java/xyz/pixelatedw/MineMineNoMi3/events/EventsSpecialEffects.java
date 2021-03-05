@@ -1,5 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.events;
 
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +28,7 @@ public class EventsSpecialEffects
 			
 			if(heldItem != null && heldItem.isItemEnchanted() && !player.world.isRemote)
 			{
-				int impactDialLevel = EnchantmentHelper.getEnchantmentLevel(ListEffects.dialImpact.effectId, heldItem);
+				int impactDialLevel = EnchantmentHelper.getEnchantmentLevel(ListEffects.dialImpact, heldItem);
 				if(impactDialLevel > 0)
 				{
 					AbilityExplosion explosion = WyHelper.newExplosion(player, event.getEntityLiving().posX, event.getEntityLiving().posY, event.getEntityLiving().posZ, impactDialLevel);
@@ -36,7 +37,7 @@ public class EventsSpecialEffects
 					explosion.doExplosion();
 				}
 				
-				int flashDialLevel = EnchantmentHelper.getEnchantmentLevel(ListEffects.dialFlash.effectId, heldItem);
+				int flashDialLevel = EnchantmentHelper.getEnchantmentLevel(ListEffects.dialFlash, heldItem);
 				if(flashDialLevel > 0)
 				{
 					event.getEntityLiving().addPotionEffect(new PotionEffect(Potion.getPotionById(15), 200 * flashDialLevel, flashDialLevel));
