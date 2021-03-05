@@ -37,7 +37,7 @@ public class ItemVivreCard extends Item
     {
     	this.setOwner(itemStack, player);
     	String itemName = itemStack.getDisplayName();
-    	itemStack.setStackDisplayName(player.getDisplayName() + "'s " + itemName);
+    	itemStack.setStackDisplayName(player.getName() + "'s " + itemName);
     }
 
 	public void setOwner(ItemStack itemStack, EntityLivingBase e)

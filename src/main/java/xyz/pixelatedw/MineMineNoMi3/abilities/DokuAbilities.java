@@ -95,7 +95,7 @@ public class DokuAbilities
 			
 			props.setZoanPoint("venomDemon");
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		}
 		
 		public void duringPassive(EntityPlayer player, int passiveTimer) 
@@ -131,7 +131,7 @@ public class DokuAbilities
 			
 			props.setZoanPoint("n/a");	
 			WyNetworkHelper.sendTo(new PacketSync(props), (EntityPlayerMP) player);
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 			
 			this.startCooldown();
 			this.startExtUpdate(player);

@@ -130,7 +130,7 @@ public class AkumaNoMi extends ItemFood
 					abilityProps.addDevilFruitAbility(a);
 		
 		if(!world.isRemote)
-			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getDisplayName(), props));
+			WyNetworkHelper.sendToAll(new PacketSyncInfo(player.getName(), props));
 		if(!world.isRemote && !player.capabilities.isCreativeMode)
 			WyTelemetry.addDevilFruitStat(props.getUsedFruit(), (String) WyRegistry.getItemsMap().get(this), 1);
 		

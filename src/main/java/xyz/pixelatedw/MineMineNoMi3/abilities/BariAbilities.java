@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.Values;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -60,8 +63,8 @@ public class BariAbilities
 		{
 			for(int[] blockPos : this.blockList)
 			{
-				if(player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.Barrier)
-					player.world.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.AIR);
+				if(player.world.getBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2])) == ListMisc.Barrier)
+					player.world.setBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2]), (IBlockState) Blocks.AIR);
 			}
             this.blockList = new ArrayList<int[]>();
 		}
@@ -123,9 +126,9 @@ public class BariAbilities
 					}
 					else
 					{
-						if(mop != null && world.getBlock(mop.blockX, mop.blockY, mop.blockZ) != Blocks.AIR)
+						if(mop != null && world.getBlockState(new BlockPos(mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ())) != Blocks.AIR)
 						{
-							blockList.addAll(WyHelper.createEmptySphere(world, mop.blockX, mop.blockY, mop.blockZ, 5, ListMisc.Barrier, "air", "foliage", "nogrief"));
+							blockList.addAll(WyHelper.createEmptySphere(world, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 5, ListMisc.Barrier, "air", "foliage", "nogrief"));
 						}
 					}
 				}
@@ -138,8 +141,8 @@ public class BariAbilities
 		{
 			for(int[] blockPos : this.blockList)
 			{
-				if(player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.Barrier)
-					player.world.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.AIR);
+				if(player.world.getBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2])) == ListMisc.Barrier)
+					player.world.setBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2]), (IBlockState) Blocks.AIR);
 			}
             this.blockList = new ArrayList<int[]>();
             this.startCooldown();
@@ -179,8 +182,8 @@ public class BariAbilities
 		{
 			for(int[] blockPos : this.blockList)
 			{
-				if(player.world.getBlock(blockPos[0], blockPos[1], blockPos[2]) == ListMisc.Barrier)
-					player.world.setBlock(blockPos[0], blockPos[1], blockPos[2], Blocks.AIR);
+				if(player.world.getBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2])) == ListMisc.Barrier)
+					player.world.setBlockState(new BlockPos(blockPos[0], blockPos[1], blockPos[2]), (IBlockState) Blocks.AIR);
 			}
             this.blockList = new ArrayList<int[]>();
             this.startCooldown();

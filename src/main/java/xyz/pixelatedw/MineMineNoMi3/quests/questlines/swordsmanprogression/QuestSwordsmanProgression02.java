@@ -108,7 +108,7 @@ public class QuestSwordsmanProgression02 extends Quest implements ITimedQuest, I
 			WyHelper.sendMsgToPlayer(player, "There was a major problem with this quest, please contact the mod owner asap, it has been completed however so enjoy the rest of the storyline !");
 			System.err.println("Checking different objects to check for nulls \n"
 					+ "Extra Data, Stored as NBT - " + this.extraData + "\n"
-					+ "Player - " + player.getDisplayName() + "\n"
+					+ "Player - " + player.getName() + "\n"
 					+ "Logic done on - " + (player.world.isRemote ? "Client" : "Server") + "\n");
 			e.printStackTrace();
 			return true;
