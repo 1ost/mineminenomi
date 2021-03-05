@@ -150,9 +150,9 @@ public class ListAttributes
 	public static final AbilityAttribute DAI_FUNKA = new AbilityAttribute("Dai Funka").setAbilityCooldown(8).setProjectileDamage(20).setProjectileModel(new ModelFist()).setProjectileTexture("daifunka").setProjectileSize(4, 4, 4).setModelOffsets(0, 1, 0);
 	
 	public static final AbilityAttribute DESERT_GIRASOLE = new AbilityAttribute("Desert Girasole").setAbilityCooldown(25).setAbilityCharges(100);
-	public static final AbilityAttribute DESERT_ENCIERRO = new AbilityAttribute("Desert Encierro").setAbilityCooldown(10).setAbilityPunch().addEffects(EffectType.HIT, new PotionEffect(Potion.hunger.id, 100, 1), new PotionEffect(Potion.getPotionById(18), 100, 1), new PotionEffect(Potion.getPotionById(2), 100, 1), new PotionEffect(Potion.getPotionById(4), 100, 1));
+	public static final AbilityAttribute DESERT_ENCIERRO = new AbilityAttribute("Desert Encierro").setAbilityCooldown(10).setAbilityPunch().addEffects(EffectType.HIT, new PotionEffect(Potion.getPotionById(17), 100, 1), new PotionEffect(Potion.getPotionById(18), 100, 1), new PotionEffect(Potion.getPotionById(2), 100, 1), new PotionEffect(Potion.getPotionById(4), 100, 1));
 	public static final AbilityAttribute GROUND_DEATH = new AbilityAttribute("Ground Death").setAbilityCooldown(15);
-	public static final AbilityAttribute BARJAN = new AbilityAttribute("Barjan").setAbilityCooldown(5).setProjectileDamage(15).setProjectileModel(new ModelCube()).setProjectileColor("967117").setProjectileSize(6, 0.4, 1.5).addEffects(EffectType.PROJECTILE, new PotionEffect(Potion.hunger.id, 500, 1)).setProjectileMoveThroughBlocks(true).setProjectileCollisionSizes(1.25, 0.3, 1.25);
+	public static final AbilityAttribute BARJAN = new AbilityAttribute("Barjan").setAbilityCooldown(5).setProjectileDamage(15).setProjectileModel(new ModelCube()).setProjectileColor("967117").setProjectileSize(6, 0.4, 1.5).addEffects(EffectType.PROJECTILE, new PotionEffect(Potion.getPotionById(17), 500, 1)).setProjectileMoveThroughBlocks(true).setProjectileCollisionSizes(1.25, 0.3, 1.25);
 	public static final AbilityAttribute SABLES = new AbilityAttribute("Sables").setAbilityCooldown(3).setAbilityPassive().setAbilityPunch();
 	public static final AbilityAttribute DESERT_SPADA = new AbilityAttribute("Desert Spada").setAbilityCooldown(10);
 	
@@ -205,7 +205,7 @@ public class ListAttributes
 
 	public static final AbilityAttribute SUKE_PUNCH = new AbilityAttribute("Suke Punch").setAbilityPassive().setAbilityPunch();
 	public static final AbilityAttribute SHISHA_NO_TE = new AbilityAttribute("Shisha no Te").setAbilityCooldown(3).setProjectileDamage(5).setProjectileModel(new ModelCube()).setProjectileSize(0, 0, 0).setProjectileExplosion(3, false);
-	public static final AbilityAttribute SKATTING = new AbilityAttribute("Skatting").addEffects(EffectType.USER, new PotionEffect(Potion.invisibility.id, 30, 5)).setAbilityPassive();  	
+	public static final AbilityAttribute SKATTING = new AbilityAttribute("Skatting").addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(14), 30, 5)).setAbilityPassive();
 	 
 	public static final AbilityAttribute GEAR_SECOND = new AbilityAttribute("Gear Second").setAbilityCooldown(60).setAbilityPassive();
 	public static final AbilityAttribute GEAR_THIRD = new AbilityAttribute("Gear Third").setAbilityCooldown(90).setAbilityPassive();
@@ -244,7 +244,7 @@ public class ListAttributes
 	public static final AbilityAttribute AWASE_BAORI = new AbilityAttribute("Awase Baori").setAbilityCooldown(12).setProjectileModel(new ModelSphere()).setProjectileColor("000000").setProjectileSize(7, 7, 7);
 	public static final AbilityAttribute BIND = new AbilityAttribute("Bind").setAbilityCooldown(10).setAbilityPassive().setAbilityPunch();
 
-	public static final AbilityAttribute SORU = new AbilityAttribute("Soru").addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(1).id, 30, 6)).setAbilityPassive();
+	public static final AbilityAttribute SORU = new AbilityAttribute("Soru").addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(1), 30, 6)).setAbilityPassive();
 	public static final AbilityAttribute TEKKAI = new AbilityAttribute("Tekkai").setAbilityCooldown(10).addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(11), 30, 100), new PotionEffect(Potion.getPotionById(2), 30, 100), new PotionEffect(Potion.getPotionById(4), 30, 5), new PotionEffect(Potion.getPotionById(8), 30, -100)).setAbilityPassive();
 	public static final AbilityAttribute GEPPO = new AbilityAttribute("Geppo").setAbilityCooldown(0.9);
 	public static final AbilityAttribute RANKYAKU = new AbilityAttribute("Rankyaku").setAbilityCooldown(9).setProjectileTicks(100).setProjectileModel(new ModelCube()).setProjectileSize(6, 0.4, 1.5).setProjectileColor("69E3FF").setProjectileDamage(20).setProjectileExplosion(2, false).setProjectileCollisionSizes(1.5, 0.3, 1.5).setProjectileMoveThroughBlocks(true);
@@ -288,7 +288,7 @@ public class ListAttributes
 	public static final AbilityAttribute O_TATSUMAKI = new AbilityAttribute("O Tatsumaki").setAbilityCooldown(7);
 
 	public static final AbilityAttribute FRESH_FIRE = new AbilityAttribute("Fresh Fire").setAbilityCooldown(1.5).setProjectileTicks(7).setProjectileSize(.01, .01, .01).setProjectileDamage(1);
-	public static final AbilityAttribute COLA_OVERDRIVE = new AbilityAttribute("Cola Overdrive").setAbilityCooldown(7).addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(1).id, 200, 0), new PotionEffect(Potion.getPotionById(5), 200, 1));
+	public static final AbilityAttribute COLA_OVERDRIVE = new AbilityAttribute("Cola Overdrive").setAbilityCooldown(7).addEffects(EffectType.USER, new PotionEffect(Potion.getPotionById(1), 200, 0), new PotionEffect(Potion.getPotionById(5), 200, 1));
 	public static final AbilityAttribute RADICAL_BEAM = new AbilityAttribute("Radical Beam").setAbilityCooldown(10).setProjectileModel(new ModelCube()).setProjectileColor("FFFF00").setProjectileSize(.5, .5, 1).setProjectileDamage(25).setProjectileExplosion(4, false);
 	public static final AbilityAttribute STRONG_RIGHT = new AbilityAttribute("Strong Right").setAbilityCooldown(2.5).setProjectileModel(new ModelCube()).setProjectileColor("F5DEB3").setProjectileTicks(5).setProjectileSize(1, 1, 1.5).setProjectileDamage(20);
 	public static final AbilityAttribute COUP_DE_VENT = new AbilityAttribute("Coup de Vent").setAbilityCooldown(10).setProjectileTicks(7).setProjectileSize(.01, .01, .01).setProjectileDamage(10).setAbilityCharges(30);

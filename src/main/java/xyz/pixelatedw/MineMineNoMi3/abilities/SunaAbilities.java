@@ -114,7 +114,7 @@ public class SunaAbilities
 			double newPosX = 0, newPosY = 0, newPosZ = 0;
 			
 			newPosY += 25;
-			target.addPotionEffect(new PotionEffect(Potion.hunger.id, 500, 1));
+			target.addPotionEffect(new PotionEffect(Potion.getPotionById(17), 500, 1));
 			Direction dir = WyHelper.get4Directions(player);
 			if(dir == WyHelper.Direction.SOUTH)
 				newPosX += WyMathHelper.randomWithRange(-10, 10);

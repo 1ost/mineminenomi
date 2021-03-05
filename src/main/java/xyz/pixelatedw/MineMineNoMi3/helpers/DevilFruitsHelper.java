@@ -139,7 +139,7 @@ public class DevilFruitsHelper
 				if(targetHakiExp < (userHakiExp / 2))
 				{
 					target.addPotionEffect(new PotionEffect(Potion.getPotionById(15), duration, 1));
-					target.addPotionEffect(new PotionEffect(Potion.hunger.id, duration, 1));
+					target.addPotionEffect(new PotionEffect(Potion.getPotionById(17), duration, 1));
 					target.addPotionEffect(new PotionEffect(Potion.getPotionById(2), duration, 500));
 					hasBlindness = true;
 					new DFEffectHaoHaki(target, duration + 200);
