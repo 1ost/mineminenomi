@@ -57,13 +57,11 @@ public enum EnumParticleTypes
     DAMAGE_INDICATOR("damageIndicator", 44, true),
     SWEEP_ATTACK("sweepAttack", 45, true),
     FALLING_DUST("fallingdust", 46, false, 1);
-
     private final String particleName;
     private final int particleID;
     private final boolean shouldIgnoreRange;
     private final int argumentCount;
-    private static final Map<Integer, EnumParticleTypes> PARTICLES = Maps.<Integer, EnumParticleTypes>newHashMap();
-    private static final Map<String, EnumParticleTypes> BY_NAME = Maps.<String, EnumParticleTypes>newHashMap();
+
 
     private EnumParticleTypes(String particleNameIn, int particleIDIn, boolean shouldIgnoreRangeIn, int argumentCountIn)
     {
@@ -76,11 +74,6 @@ public enum EnumParticleTypes
     private EnumParticleTypes(String particleNameIn, int particleIDIn, boolean shouldIgnoreRangeIn)
     {
         this(particleNameIn, particleIDIn, shouldIgnoreRangeIn, 0);
-    }
-
-    public static Set<String> getParticleNames()
-    {
-        return BY_NAME.keySet();
     }
 
     public net.minecraft.util.EnumParticleTypes getParticleName()
@@ -102,29 +95,5 @@ public enum EnumParticleTypes
     {
         return this.shouldIgnoreRange;
     }
-
-    @Nullable
-
-    /**
-     * Gets the relative EnumParticleTypes by id.
-     */
-    public static EnumParticleTypes getParticleFromId(int particleId)
-    {
-        return (EnumParticleTypes)PARTICLES.get(Integer.valueOf(particleId));
-    }
-
-    @Nullable
-    public static EnumParticleTypes getByName(String nameIn)
-    {
-        return (EnumParticleTypes)BY_NAME.get(nameIn);
-    }
-
-    static {
-        for (EnumParticleTypes enumparticletypes : values())
-        {
-            PARTICLES.put(Integer.valueOf(enumparticletypes.getParticleID()), enumparticletypes);
-            BY_NAME.put(String.valueOf(enumparticletypes.getParticleName()), enumparticletypes);
-        }
 }
-	
-}
+
