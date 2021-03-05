@@ -27,7 +27,7 @@ public class ParticleEffectHaoshokuHaki extends ParticleEffect
 				0, 
 				0);
 		
-		particle.setRBGColorF(0.7F, 0, 0.7F);
+		//particle.setRBGColorF(0.7F, 0, 0.7F);
 		particle.setParticleScale(0.8F);
 		particle.setParticleAge(-3);
 		

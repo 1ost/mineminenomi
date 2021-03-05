@@ -170,12 +170,9 @@ public class EventsCore
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 
 			if (!player.world.isRemote)
-			{
+			{3
 				if(!WyHelper.isReleaseBuild())
 				{
-					if(!WyHelper.hasPatreonAccess(player))
-					{
-						((EntityPlayerMP)player).playerNetServerHandler.kickPlayerFromServer(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! \n\n " + TextFormatting.RESET + "You don't have access to this version yet!");
 						if(!WyDebug.isDebug())
 						{
 							WyTelemetry.addMiscStat("onlinePlayers", "Online Players", -1);

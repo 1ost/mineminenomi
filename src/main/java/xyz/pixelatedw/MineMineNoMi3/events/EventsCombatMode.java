@@ -3,6 +3,7 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 import java.awt.Color;
 import java.util.List;
 
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import org.lwjgl.opengl.GL11;
 
@@ -12,7 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,8 +51,8 @@ public class EventsCombatMode extends Gui
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		AbilityProperties abilityProps = AbilityProperties.get(player);
 		
-		int posX = event.resolution.getScaledWidth();
-		int posY = event.resolution.getScaledHeight();
+		int posX = event.getResolution().getScaledWidth();
+		int posY = event.getResolution().getScaledHeight();
 
 		GuiIngameForge.left_height += 1;
 

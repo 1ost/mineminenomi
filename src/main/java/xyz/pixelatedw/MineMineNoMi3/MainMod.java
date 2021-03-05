@@ -1,16 +1,16 @@
 package xyz.pixelatedw.MineMineNoMi3;
 
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.debug.WyDebug;
@@ -43,13 +43,13 @@ import xyz.pixelatedw.MineMineNoMi3.world.MainWorldGen;
 @Mod(modid = ID.PROJECT_ID, name = ID.PROJECT_NAME, version = ID.PROJECT_VERSION, acceptedMinecraftVersions = "[1.7.10]")
 public class MainMod
 {
-	@Instance(ID.PROJECT_ID)
+	@Mod.Instance(ID.PROJECT_ID)
 	private static MainMod instance;
 	@SidedProxy(clientSide = "xyz.pixelatedw.MineMineNoMi3.proxy.ClientProxy", serverSide = "xyz.pixelatedw.MineMineNoMi3.proxy.CommonProxy")
 	public static CommonProxy proxy;
 	public static SimpleNetworkWrapper dispatcher;
 
-	@EventHandler
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel("mineminenomi");
@@ -62,11 +62,11 @@ public class MainMod
 		proxy.preInit();
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
-		GameRegistry.registerWorldGenerator(new MainWorldGen(), 1);
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, (IGuiHandler) new GUIHandler());
+		GameRegistry.registerWorldGenerator((IWorldGenerator) new MainWorldGen(), 1);
 
 		ListDevilFruits.init();
 		ListMisc.init();
@@ -89,7 +89,7 @@ public class MainMod
 		}
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent evt)
 	{
 		/*
@@ -103,7 +103,7 @@ public class MainMod
 		 */
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void serverInit(FMLServerStartingEvent event)
 	{
 		// event.registerServerCommand(new CommandAbility());

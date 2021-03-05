@@ -148,7 +148,7 @@ public class EventsPassives
 				if (props.isFishman() && props.getUsedFruit().equalsIgnoreCase("n/a"))
 				{
 					player.setAir(300);
-					player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 300, 1));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(16), 300, 1));
 
 					if ((player.motionX >= 5.0D) || (player.motionZ >= 5.0D))
 					{

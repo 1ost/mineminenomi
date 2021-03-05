@@ -323,7 +323,7 @@ public class ItemCoreWeapon extends Item
         else
         {
             Material material = block.getMaterial();
-            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.gourd ? 1.0F : 1.5F;
+            return material != Material.PLANTS && material != Material.VINE && material != Material.coral && material != Material.leaves && material != Material.gourd ? 1.0F : 1.5F;
         }
     }
 }

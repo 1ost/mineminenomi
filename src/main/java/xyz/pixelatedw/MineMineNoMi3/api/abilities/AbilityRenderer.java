@@ -1,5 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.api.abilities;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,6 +25,7 @@ public class AbilityRenderer extends Render
 		ablAttr = attr;
 		this.texture = ablAttr.getProjectileTexture();	
 	}
+
 
 	@Override
 	public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9)

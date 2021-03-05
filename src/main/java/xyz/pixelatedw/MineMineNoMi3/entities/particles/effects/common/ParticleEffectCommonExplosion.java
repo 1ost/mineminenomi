@@ -1,6 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.entities.particles.effects.common;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumParticleTypes;
 import xyz.pixelatedw.MineMineNoMi3.api.math.WyMathHelper;
 import xyz.pixelatedw.MineMineNoMi3.entities.particles.effects.ParticleEffect;
 
@@ -9,7 +10,7 @@ public class ParticleEffectCommonExplosion extends ParticleEffect
 
 	public void spawn(EntityPlayer player, double posX, double posY, double posZ)
 	{	
-        player.world.spawnParticle("hugeexplosion", posX, posY, posZ, 1.0D, 0.0D, 0.0D);
+        player.world.spawnParticle(EnumParticleTypes.valueOf("hugeexplosion"), posX, posY, posZ, 1.0D, 0.0D, 0.0D);
 		
 		for (int i = 0; i < 256; i++)
 		{
@@ -26,8 +27,8 @@ public class ParticleEffectCommonExplosion extends ParticleEffect
 	        motionY *= middlePoint / 2;
 	        motionZ *= middlePoint / 2;
 			
-            player.world.spawnParticle("explode", posX, posY + 1, posZ, motionX, motionY, motionZ);
-            player.world.spawnParticle("smoke", posX, posY + 1, posZ, motionX, motionY, motionZ);
+            player.world.spawnParticle(EnumParticleTypes.valueOf("explode"), posX, posY + 1, posZ, motionX, motionY, motionZ);
+            player.world.spawnParticle(EnumParticleTypes.valueOf("smoke"), posX, posY + 1, posZ, motionX, motionY, motionZ);
 		}
 	}
 

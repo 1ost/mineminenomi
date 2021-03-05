@@ -8,12 +8,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.Vec3;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.AbilityExplosion;
@@ -53,8 +49,9 @@ public class AbilityProjectile extends EntityThrowable
 			this.setLocationAndAngles(this.user.posX, this.user.posY + this.user.getEyeHeight(), this.user.posZ, this.user.rotationYaw, this.user.rotationPitch);
 			this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * 0.4;
 			this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * 0.4;
-			this.motionY = -MathHelper.sin((this.rotationPitch + this.func_70183_g()) / 180.0F * (float) Math.PI) * 0.4;
-			this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, attr.getProjectileSpeed(), 1.0F);
+			//probably not getMaxInPortalTime
+			this.motionY = -MathHelper.sin((this.rotationPitch + this.getMaxInPortalTime()) / 180.0F * (float) Math.PI) * 0.4;
+			this.setLocationAndAngles(this.motionX, this.motionY, this.motionZ, attr.getProjectileSpeed(), 1.0F);
 		}
 
 	}
@@ -90,18 +87,18 @@ public class AbilityProjectile extends EntityThrowable
 
 		if(this.attr != null)
 		{
-			Vec3 vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-			Vec3 vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+			Vec3d vec31 = Vec3d.ZERO.addVector(this.posX, this.posY, this.posZ);
+			Vec3d vec3 = Vec3d.ZERO.addVector(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 			RayTraceResult movingobjectposition = this.world.func_147447_a(vec31, vec3, false, true, false);
-			vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-			vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+			vec31 = Vec3d.ZERO.addVector(this.posX, this.posY, this.posZ);
+			vec3 = Vec3d.ZERO.addVector(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 			
 			double sizeX = this.attr.getProjectileCollisionSizes()[0];
 			double sizeY = this.attr.getProjectileCollisionSizes()[1];
 			double sizeZ = this.attr.getProjectileCollisionSizes()[2];
 			
 			Entity entity = null;
-			List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(sizeX, sizeY, sizeZ));
+			List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getRenderBoundingBox().expand(this.motionX, this.motionY, this.motionZ).expand(sizeX, sizeY, sizeZ));
 			double d0 = 0.0D;
 			int i;
 			float f1;
@@ -112,7 +109,7 @@ public class AbilityProjectile extends EntityThrowable
 				
 				if (entity1.canBeCollidedWith() && (entity1 != this.getThrower() || this.ticksExisted >= 5))
 				{
-					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(sizeX, sizeY, sizeZ);
+					AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand(sizeX, sizeY, sizeZ);
 					RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 					
 					if (movingobjectposition1 != null)
@@ -184,9 +181,9 @@ public class AbilityProjectile extends EntityThrowable
 
 					tasksImapct(hit);
 
-					Material hitMat = this.world.getBlock(hit.blockX, hit.blockY, hit.blockZ).getMaterial();
+					Material hitMat = this.world.getBlockState(new BlockPos(hit.hitVec.x, hit.hitVec.y, hit.hitVec.z)).getMaterial();
 
-					if (!this.attr.canProjectileMoveThroughBlocks() && (hitMat != Material.plants && hitMat != Material.vine && hitMat != Material.WATER))
+					if (!this.attr.canProjectileMoveThroughBlocks() && (hitMat != Material.PLANTS && hitMat != Material.VINE && hitMat != Material.WATER))
 						this.setDead();
 				}
 			}

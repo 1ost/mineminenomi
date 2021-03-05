@@ -1,5 +1,7 @@
 package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,13 +29,13 @@ public class EventsZoanPassives
 			EntityLivingBase attacked = event.getEntityLiving();
 			
 			if(props.getUsedFruit().equalsIgnoreCase("ushiushibison") && props.getZoanPoint().equalsIgnoreCase("power"))
-				event.ammount += 3;
+				event.setAmount(event.getAmount()+ 3);
 			
 			if(props.getUsedFruit().equalsIgnoreCase("zouzou") && props.getZoanPoint().equalsIgnoreCase("hybrid"))
-				event.ammount += 3;
+				event.setAmount(event.getAmount()+ 3);
 				
 			if(props.getUsedFruit().equalsIgnoreCase("mogumogu") && props.getZoanPoint().equalsIgnoreCase("power"))
-				event.ammount += 3;
+				event.setAmount(event.getAmount()+ 3);
 		}
 	}
 	
@@ -50,9 +52,9 @@ public class EventsZoanPassives
 			
 			if(props.getUsedFruit().equalsIgnoreCase("mogumogu") && props.getZoanPoint().equalsIgnoreCase("power"))
 			{
-				if(!player.world.isRemote && player.world.getBlockLightValue((int)player.posX, (int)player.posY, (int)player.posZ) < 7)
+				if(!player.world.isRemote && player.world.getBlockLightOpacity(new BlockPos((int)player.posX, (int)player.posY, (int)player.posZ))< 7)
 				{
-					player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 300, 1, true));					
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(16), 300, 1, true, false));
 				}
 			}
 			
@@ -60,12 +62,12 @@ public class EventsZoanPassives
 			{
 				if(props.getZoanPoint().equals("full"))
 				{
-					player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 2 * 20, 1, true));
-					player.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 2 * 20, 0, true));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 2 * 20, 1, true, false));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 2 * 20, 0, true, false));
 				}
 				if(props.getZoanPoint().equals("hybrid"))
 				{
-					player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 2 * 20, 0, true));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 2 * 20, 0, true, false));
 				}
 			}
 			
@@ -73,8 +75,8 @@ public class EventsZoanPassives
 			{
 				if(props.getZoanPoint().equalsIgnoreCase("speed"))
 				{
-					player.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 2 * 20, 1, true));
-					player.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 2 * 20, 1, true));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 2 * 20, 1, true, false));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 2 * 20, 1, true, false));
 				}
 			}
 			
@@ -82,7 +84,7 @@ public class EventsZoanPassives
 			{
 				if(props.getZoanPoint().equals("speed"))
 				{
-					player.addPotionEffect(new PotionEffect(Potion.getPotionById(1).id, 2 * 20, 1, true));
+					player.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 2 * 20, 1, true, false));
 					
 					double mX = -MathHelper.sin(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4;
 					double mZ = MathHelper.cos(player.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(player.rotationPitch / 180.0F * (float)Math.PI) * 0.4;
@@ -104,7 +106,7 @@ public class EventsZoanPassives
 				}
 				else
 				{
-					player.removePotionEffect(Potion.getPotionById(1).id);
+					player.removePotionEffect(Potion.getPotionById(1));
 				}
 			}
 

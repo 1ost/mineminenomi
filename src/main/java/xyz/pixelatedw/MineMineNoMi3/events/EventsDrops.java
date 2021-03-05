@@ -2,13 +2,13 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.Random;
 
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.Values;
@@ -23,7 +23,7 @@ public class EventsDrops
 {
 
 	@SubscribeEvent
-    public void onInteractEvent(EntityInteractEvent event)
+    public void onInteractEvent(PlayerInteractEvent event)
     {
 		if(event.target instanceof EntityLivingBase)
 		{

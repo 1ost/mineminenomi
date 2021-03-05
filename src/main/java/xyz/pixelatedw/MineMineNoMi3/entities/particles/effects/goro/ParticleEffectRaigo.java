@@ -28,10 +28,11 @@ public class ParticleEffectRaigo extends ParticleEffect
 					0, 0, 0)
 			.setParticleScale(100).setParticleAge(100);
 			
-			if(i % 2 == 0)
+			/*if(i % 2 == 0)
 				particle.setRBGColorF(0.4F, 0.4F, 0.4F);
 			else
-				particle.setRBGColorF(0.3F, 0.3F, 0.3F);			
+				particle.setRBGColorF(0.3F, 0.3F, 0.3F);
+			 */
 			
 			MainMod.proxy.spawnCustomParticles(player, particle);
 		}

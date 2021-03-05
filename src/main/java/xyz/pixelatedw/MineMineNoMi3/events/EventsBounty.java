@@ -2,6 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.events;
 
 import java.util.HashMap;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -69,7 +70,7 @@ public class EventsBounty
 					if(player.world.isDaytime())
 					{
 						float lightLevel = player.getBrightness();
-						boolean canSeeSky = player.world.canBlockSeeTheSky((int)player.posX, (int)player.posY, (int)player.posZ);
+						boolean canSeeSky = player.world.canBlockSeeSky(new BlockPos((int)player.posX, (int)player.posY, (int)player.posZ));
 		
 						if(player.ticksExisted % MainConfig.rateAmbushesSpawn == 0 && lightLevel > 0.9 && canSeeSky)
 						{

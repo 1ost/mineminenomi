@@ -28,7 +28,7 @@ public class ParticleEffectVenomDemon extends ParticleEffect
 					0.0D, 0.0D, 0.0D)
 			.setParticleScale(0.5F).setParticleAge(1 + player.world.rand.nextInt(4));
 			
-			clone.setRBGColorF(1, 0, 0);
+			//clone.setRBGColorF(1, 0, 0);
 			
 			MainMod.proxy.spawnCustomParticles(player, clone);
 

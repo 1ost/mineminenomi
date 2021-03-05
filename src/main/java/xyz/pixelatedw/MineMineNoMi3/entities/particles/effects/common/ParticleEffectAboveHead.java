@@ -3,6 +3,7 @@ package xyz.pixelatedw.MineMineNoMi3.entities.particles.effects.common;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumParticleTypes;
 import xyz.pixelatedw.MineMineNoMi3.api.math.WyMathHelper;
 import xyz.pixelatedw.MineMineNoMi3.entities.particles.effects.ParticleEffect;
 
@@ -30,7 +31,7 @@ public class ParticleEffectAboveHead extends ParticleEffect
 			double motionZ = rand.nextGaussian() * 0.02D;
 			
 			
-			player.world.spawnParticle(this.particle, locX, locY, locZ, motionX, motionY, motionZ);
+			player.world.spawnParticle(EnumParticleTypes.valueOf(this.particle), locX, locY, locZ, motionX, motionY, motionZ);
 		}
 	}
 

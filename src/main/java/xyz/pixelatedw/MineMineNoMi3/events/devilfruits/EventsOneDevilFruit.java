@@ -30,11 +30,11 @@ public class EventsOneDevilFruit
 	@SubscribeEvent
 	public void onDFItemExpires(ItemExpireEvent event)
 	{
-		if(event.entityItem.getEntityItem().getItem() instanceof AkumaNoMi)
+		if(event.getEntityItem().getItem().getItem() instanceof AkumaNoMi)
 		{
-			ExtendedWorldData worldData = ExtendedWorldData.get(event.entity.world);
+			ExtendedWorldData worldData = ExtendedWorldData.get(event.getEntity().world);
 			
-			worldData.removeDevilFruitFromWorld((AkumaNoMi) event.entityItem.getEntityItem().getItem());
+			worldData.removeDevilFruitFromWorld((AkumaNoMi) event.getEntityItem().getItem().getItem());
 		}
 	}
 	
