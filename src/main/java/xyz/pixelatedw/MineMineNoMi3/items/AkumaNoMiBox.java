@@ -110,7 +110,7 @@ public class AkumaNoMiBox extends Item
 	{
 		if(!world.isRemote)
 		{			
-			for(int i = 0; i < player.inventory.mainInventory.length; i++)
+			for(int i = 0; i < player.inventory.mainInventory.size(); i++)
 			{
 				if(player.inventory.getStackInSlot(i) != null && player.inventory.getStackInSlot(i).getItem() == ListMisc.Key)
 				{

@@ -16,7 +16,7 @@ public class QuestLogicHelper
 	
 	public static ItemStack getQuestItemStack(InventoryPlayer inventory, String forQuest)
 	{
-		for(int i = 0; i < inventory.mainInventory.length; i++)
+		for(int i = 0; i < inventory.mainInventory.size(); i++)
 		{
 			ItemStack itemStack = inventory.getStackInSlot(i);
 			if(itemStack != null && itemStack.hasTagCompound())

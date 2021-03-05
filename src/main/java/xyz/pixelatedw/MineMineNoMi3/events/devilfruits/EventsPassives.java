@@ -1,6 +1,8 @@
 package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
+import net.minecraft.block.BlockSponge;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.material.Material;
@@ -21,7 +23,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.abilities.HakiAbilities.KenbunshokuHakiFutureSight;
 import xyz.pixelatedw.MineMineNoMi3.abilities.RokushikiAbilities;
@@ -114,7 +115,7 @@ public class EventsPassives
 
 				player.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 100, 0, true, false));
 
-				if (player.world.getBlock((int) player.posX, (int) player.boundingBox.minY, (int) player.posZ) == Blocks.WATER && player.isSprinting())
+				if (player.world.getBlockState(new BlockPos((int) player.posX, (int) player.getEntityBoundingBox().minY, (int) player.posZ)) == Blocks.WATER && player.isSprinting())
 				{
 					player.onGround = true;
 					if (player.motionY < 0.0D)
@@ -280,7 +281,7 @@ public class EventsPassives
 			
 			if (props.getTempPreviousAbility().equals("geppo") || props.getTempPreviousAbility().equals("soranomichi"))
 			{
-				if (!player.onGround && player.world.getBlock((int) player.posX, (int) player.posY - 1, (int) player.posZ) == Blocks.AIR)
+				if (!player.onGround && player.world.getBlockState(new BlockPos((int) player.posX, (int) player.posY - 1, (int) player.posZ)) == Blocks.AIR)
 					player.fallDistance = 0;
 				else
 				{
@@ -303,7 +304,7 @@ public class EventsPassives
 			if (props.getUsedFruit().equals("chiyuchiyu"))
 			{
 				ItemStack waterCan = null;
-		        for (int i = 0; i < attacked.inventory.mainInventory.length; ++i)
+		        for (int i = 0; i < attacked.inventory.mainInventory.size(); ++i)
 		        {
 		            if (attacked.inventory.mainInventory.get(i) != null && attacked.inventory.mainInventory.get(i).getItem() == ListMisc.WateringCan)
 		            {
@@ -488,14 +489,15 @@ public class EventsPassives
 						event.setCanceled(true);
 					}
 					
-					if (attacker.getHeldItem(EnumHand.MAIN_HAND) != null && ItemsHelper.isSword(attacker.getHeldItem()) && propz.getUsedFruit().equals("sabisabi") && !attacker.world.isRemote)
+					if (attacker.getHeldItem(EnumHand.MAIN_HAND) != null && ItemsHelper.isSword(attacker.getHeldItem(EnumHand.MAIN_HAND)) && propz.getUsedFruit().equals("sabisabi") && !attacker.world.isRemote)
 					{
 						event.setCanceled(true);
 						attacker.getHeldItem(EnumHand.MAIN_HAND).damageItem(30, attacker);
-						if (attacker instanceof EntityPlayer && attacker.getHeldItem().getItemDamage() <= 0)
-							WyHelper.removeStackFromInventory((EntityPlayer) attacker, attacker.getHeldItem());
-						else if(!(attacker instanceof EntityPlayer) && attacker.getHeldItem().getItemDamage() <= 0)
-							attacker.setCurrentItemOrArmor(0, null);
+						if (attacker instanceof EntityPlayer && attacker.getHeldItem(EnumHand.MAIN_HAND).getItemDamage() <= 0)
+							WyHelper.removeStackFromInventory((EntityPlayer) attacker, attacker.getHeldItem(EnumHand.MAIN_HAND));
+						else if(!(attacker instanceof EntityPlayer) && attacker.getHeldItem(EnumHand.MAIN_HAND).getItemDamage() <= 0);
+							//uncomment
+							// attacker.setCurrentItemOrArmor(0, null);
 					}
 
 				}
@@ -531,9 +533,9 @@ public class EventsPassives
 				for(int y = -128; y < 128; y++)
 				for(int z = -128; z < 128; z++)
 				{
-					if( player.world.getBlock((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z) == ListMisc.Darkness)
+					if( player.world.getBlockState(new BlockPos((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z)) == ListMisc.Darkness)
 					{
-						player.world.setBlockToAir((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z);
+						player.world.setBlockToAir(new BlockPos((int) player.posX + x, (int) player.posY + y, (int) player.posZ + z));
 					}
 				}
 			}
