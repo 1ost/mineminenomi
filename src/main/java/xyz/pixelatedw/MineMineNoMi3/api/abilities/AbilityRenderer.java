@@ -26,6 +26,10 @@ public class AbilityRenderer extends Render
 		this.texture = ablAttr.getProjectileTexture();	
 	}
 
+	protected AbilityRenderer(RenderManager p_i46179_1_) {
+		super(p_i46179_1_);
+	}
+
 
 	@Override
 	public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9)

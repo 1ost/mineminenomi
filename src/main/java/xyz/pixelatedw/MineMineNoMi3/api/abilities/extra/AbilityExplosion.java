@@ -13,11 +13,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.Vec3;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
@@ -140,7 +140,7 @@ public class AbilityExplosion
 							}
 
 							if (f1 > 0.0F)
-								blocksData.add(new ChunkPosition(j1, k1, l1));
+								blocksData.add(new ChunkPos(new BlockPos(j1, k1, l1)));
 
 							newExplosionPosX += d0 * f2;
 							newExplosionPosY += d1 * f2;
@@ -155,7 +155,7 @@ public class AbilityExplosion
 		// Destroying the blocks, damaging entities and spawning particles if
 		// necessary
 		Iterator iterator;
-		ChunkPosition chunkposition;
+		ChunkPos chunkposition;
 		int posX, posY, posZ;
 		Block block;
 
