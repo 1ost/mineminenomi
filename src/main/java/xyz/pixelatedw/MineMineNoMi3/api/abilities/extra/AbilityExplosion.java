@@ -7,16 +7,15 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.ID;
@@ -136,6 +135,7 @@ public class AbilityExplosion
 							if (block.getMaterial() != Material.AIR)
 							{
 								float f3 = (float) (block.getExplosionResistance(this.exploder, world, j1, k1, l1, explosionX, explosionY, explosionZ) / 1.25);
+
 								f1 -= (f3 + 0.1F) * f2;
 							}
 
@@ -173,9 +173,9 @@ public class AbilityExplosion
 				newExplosionPosY = entity.posY + entity.getEyeHeight() - this.explosionY;
 				newExplosionPosZ = entity.posZ - this.explosionZ;
 
-				Vec3 vec3 = Vec3.createVectorHelper(this.explosionX, this.explosionY, this.explosionZ);
+				Vec3d vec3 = Vec3d.ZERO.addVector(this.explosionX, this.explosionY, this.explosionZ);
 				double d4 = entity.getDistance(this.explosionX, this.explosionY, this.explosionZ) / this.explosionSize;
-				double d10 = this.world.getBlockDensity(vec3, entity.boundingBox);
+				double d10 = this.world.getBlockDensity(vec3, entity.getEntityBoundingBox());
                 double d11 = (1.0D - d4) * d10;
                 float damage = ((int)((d11 * d11 + d11) / 2.0D * 8.0D * this.explosionSize + 1.0D));
 
@@ -232,7 +232,7 @@ public class AbilityExplosion
 
 				if (block.getMaterial() == Material.AIR && blockUnder.func_149730_j() && this.world.rand.nextInt(3) == 0)
 				{
-					this.world.setBlock(posX, posY, posZ, Blocks.FIRE);
+					this.world.setBlockState(new BlockPos (posX, posY, posZ), (IBlockState) Blocks.FIRE);
 				}
 			}
 		}
