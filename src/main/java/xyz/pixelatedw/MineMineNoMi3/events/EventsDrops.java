@@ -7,7 +7,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
@@ -17,7 +16,6 @@ import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedWorldData;
 import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMi;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
 
 public class EventsDrops

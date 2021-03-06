@@ -6,7 +6,6 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedWorldData;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMi;
 
 public class EventsOneDevilFruit
 {

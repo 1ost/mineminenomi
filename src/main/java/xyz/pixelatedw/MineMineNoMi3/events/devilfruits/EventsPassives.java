@@ -1,6 +1,5 @@
 package xyz.pixelatedw.MineMineNoMi3.events.devilfruits;
 
-import net.minecraft.block.BlockSponge;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -38,7 +37,7 @@ import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.misc.EntityDoppelman;
 import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
 import xyz.pixelatedw.MineMineNoMi3.helpers.ItemsHelper;
-import xyz.pixelatedw.MineMineNoMi3.items.armors.ItemCoreArmor;
+import xyz.pixelatedw.MineMineNoMi3.item.armor.ItemCoreArmor;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListAttributes;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
 import xyz.pixelatedw.MineMineNoMi3.packets.PacketParticles;
@@ -306,7 +305,7 @@ public class EventsPassives
 				ItemStack waterCan = null;
 		        for (int i = 0; i < attacked.inventory.mainInventory.size(); ++i)
 		        {
-		            if (attacked.inventory.mainInventory.get(i) != null && attacked.inventory.mainInventory.get(i).getItem() == ListMisc.WateringCan)
+		            //if (attacked.inventory.mainInventory.get(i) != null && attacked.inventory.mainInventory.get(i).getItem() == ListMisc.WateringCan)
 		            {
 		                waterCan = attacked.inventory.mainInventory.get(i);
 		            }

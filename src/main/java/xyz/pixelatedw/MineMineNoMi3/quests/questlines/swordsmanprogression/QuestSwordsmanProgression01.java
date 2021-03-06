@@ -16,7 +16,7 @@ import xyz.pixelatedw.MineMineNoMi3.api.quests.Quest;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.QuestProperties;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.quest.givers.EntityDojoSensei;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.ItemCoreWeapon;
+import xyz.pixelatedw.MineMineNoMi3.item.armor.ItemCoreArmor;
 import xyz.pixelatedw.MineMineNoMi3.quests.EnumQuestlines;
 import xyz.pixelatedw.MineMineNoMi3.quests.IInteractQuest;
 import xyz.pixelatedw.MineMineNoMi3.quests.IProgressionQuest;
@@ -104,13 +104,13 @@ public class QuestSwordsmanProgression01 extends Quest implements IInteractQuest
 	@Override
 	public boolean isTarget(EntityPlayer player, EntityLivingBase target)
 	{
-		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
+		/*ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 		QuestProperties questProps = QuestProperties.get(player);
 		
 		if(!(target instanceof EntityDojoSensei))
 			return false;
 		
-		if(heldItem != null && (heldItem.getItem() instanceof ItemSword || heldItem.getItem() instanceof ItemCoreWeapon))
+		if(heldItem != null && (heldItem.getItem() instanceof ItemSword || heldItem.getItem() instanceof ItemCoreArmor))
 		{
 			Iterator iterator = heldItem.getAttributeModifiers().entries().iterator();
 
@@ -134,7 +134,7 @@ public class QuestSwordsmanProgression01 extends Quest implements IInteractQuest
 					}
 				}
 			}		
-		}
+		}*/
 		
 		return false;
 	}

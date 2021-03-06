@@ -29,7 +29,7 @@ import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.OpeProjectiles;
 import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
 import xyz.pixelatedw.MineMineNoMi3.helpers.ItemsHelper;
-import xyz.pixelatedw.MineMineNoMi3.items.devilfruitextras.Heart;
+import xyz.pixelatedw.MineMineNoMi3.item.devilfruitextras.Heart;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListAttributes;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
 import xyz.pixelatedw.MineMineNoMi3.packets.PacketParticles;

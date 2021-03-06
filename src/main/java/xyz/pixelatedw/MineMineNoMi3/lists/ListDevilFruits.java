@@ -97,7 +97,6 @@ import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.WeatherProjectil
 import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.YamiProjectiles;
 import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.YukiProjectiles;
 import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.ZouProjectiles;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMi;
 
 public class ListDevilFruits 
 {

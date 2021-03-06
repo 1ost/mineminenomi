@@ -4,10 +4,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
 import xyz.pixelatedw.MineMineNoMi3.abilities.SwordsmanAbilities;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
@@ -15,7 +13,6 @@ import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.AbilityProperties;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.Quest;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.QuestProperties;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.ItemCoreWeapon;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListQuests;
 import xyz.pixelatedw.MineMineNoMi3.quests.EnumQuestlines;
 import xyz.pixelatedw.MineMineNoMi3.quests.IHitCounterQuest;
@@ -104,10 +101,10 @@ public class QuestSwordsmanProgression04 extends Quest implements IHitCounterQue
 	{
 		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 		
-		boolean flag = player.fallDistance > 0.0F && !player.onGround && !player.isOnLadder() && !player.isInWater() && !player.isRiding() && heldItem != null && (heldItem.getItem() instanceof ItemCoreWeapon || heldItem.getItem() instanceof ItemSword);
+		/*boolean flag = player.fallDistance > 0.0F && !player.onGround && !player.isOnLadder() && !player.isInWater() && !player.isRiding() && heldItem != null && (heldItem.getItem() instanceof ItemCoreWeapon || heldItem.getItem() instanceof ItemSword);
 
         if (flag) 
-        	return true;
+        	return true;*/
 
 		return false;
 	}

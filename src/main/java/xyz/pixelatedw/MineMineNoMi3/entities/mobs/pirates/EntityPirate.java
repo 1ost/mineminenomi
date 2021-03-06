@@ -30,8 +30,8 @@ public class EntityPirate extends PirateData
     @Override
 	protected void addRandomArmor()
     {
-    	Item[] randomSword = new Item[] {ListMisc.PirateCutlass, Items.iron_sword};
-        this.setCurrentItemOrArmor(0, new ItemStack(randomSword[this.rand.nextInt(randomSword.length)]));
+    	//Item[] randomSword = new Item[] {ListMisc.PirateCutlass, Items.iron_sword};
+        //this.setCurrentItemOrArmor(0, new ItemStack(randomSword[this.rand.nextInt(randomSword.length)]));
     }
     
 	@Override
@@ -40,10 +40,9 @@ public class EntityPirate extends PirateData
 		return new double[] {0, 0, -0.1};
 	}
 	
-    @Override
 	protected void dropRareDrop(int i)
     {
-        switch (this.rand.nextInt(4))
+        /*switch (this.rand.nextInt(4))
         {
             case 0:
                 this.dropItem(ListMisc.PirateChestplate, 1); break;
@@ -51,6 +50,6 @@ public class EntityPirate extends PirateData
                 this.dropItem(ListMisc.PirateLeggings, 1); break;
             case 2:
                 this.dropItem(ListMisc.PirateBoots, 1); break;
-        }
+        }*/
     }
 }

@@ -1,30 +1,13 @@
 package xyz.pixelatedw.MineMineNoMi3.proxy;
 
-import java.util.ArrayList;
-
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityAttribute;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityRenderer;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityAxeDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityBreathDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityCannon;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityDenDenMushi;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityEisenDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityFlameDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityFlashDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityImpactDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityMilkyDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityRejectDial;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntitySakeFeast;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityWantedPoster;
-import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityWantedPostersPackage;
+import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.*;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.animals.EntityDenDenMushi;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.animals.EntityKungFuDugong;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.animals.EntityLapahn;
@@ -55,72 +38,23 @@ import xyz.pixelatedw.MineMineNoMi3.entities.mobs.quest.objectives.models.ModelS
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.temp.TempEntityDugong;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.temp.TempEntityLapahn;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.temp.TempEntityYagaraBull;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityBlueno;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityFukuro;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityJabra;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityJabraL;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityKaku;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityKakuL;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityKalifa;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityKumadori;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityLucci;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntityLucciL;
-import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.EntitySpandam;
+import xyz.pixelatedw.MineMineNoMi3.entities.mobs.worldGovernment.*;
 import xyz.pixelatedw.MineMineNoMi3.entities.particles.EntityParticleFX;
 import xyz.pixelatedw.MineMineNoMi3.gui.GUIQuestYesNo;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListDevilFruits;
-import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
-import xyz.pixelatedw.MineMineNoMi3.models.blocks.ModelFlameDial;
-import xyz.pixelatedw.MineMineNoMi3.models.blocks.ModelImpactDial;
-import xyz.pixelatedw.MineMineNoMi3.models.blocks.ModelMilkyDial;
-import xyz.pixelatedw.MineMineNoMi3.models.blocks.ModelRejectDial;
-import xyz.pixelatedw.MineMineNoMi3.models.blocks.ModelWantedPostersPackage;
+import xyz.pixelatedw.MineMineNoMi3.models.blocks.*;
 import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.animals.ModelDenDenMushi;
 import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.animals.ModelKungFuDugong;
 import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.animals.ModelLapahn;
 import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.animals.ModelYagaraBull;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelArlong;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelBlueno;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelChew;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelDojoSensei;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelFatPirate;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelFukuro;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelGin;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelJabra;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelJabraWolf;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelKaku;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelKakuGiraffe;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelKalifa;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelKrieg;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelKumadori;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelKuroobi;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelLucci;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelLucciLeopard;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelMarine;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelMarineCaptain;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelMarineWithGun;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelMorgan;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelMr0;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelPearl;
-import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.ModelSpandam;
+import xyz.pixelatedw.MineMineNoMi3.models.entities.mobs.humanoids.*;
 import xyz.pixelatedw.MineMineNoMi3.quests.EnumQuestlines;
-import xyz.pixelatedw.MineMineNoMi3.renderers.blocks.RenderBlockCannon;
-import xyz.pixelatedw.MineMineNoMi3.renderers.blocks.RenderBlockDenDenMushi;
-import xyz.pixelatedw.MineMineNoMi3.renderers.blocks.RenderBlockDial;
-import xyz.pixelatedw.MineMineNoMi3.renderers.blocks.RenderBlockSakeFeast;
-import xyz.pixelatedw.MineMineNoMi3.renderers.blocks.RenderBlockWantedPoster;
-import xyz.pixelatedw.MineMineNoMi3.renderers.blocks.RenderBlockWantedPostersPackage;
+import xyz.pixelatedw.MineMineNoMi3.renderers.blocks.*;
 import xyz.pixelatedw.MineMineNoMi3.renderers.entities.MobRenderer;
 import xyz.pixelatedw.MineMineNoMi3.renderers.entities.mobs.humanoids.RenderBlackKnight;
 import xyz.pixelatedw.MineMineNoMi3.renderers.entities.mobs.humanoids.RenderDoppelman;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderCoreWeapon;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderCoreWeapon2;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderWeaponBisento;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderWeaponDurandal;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderWeaponKatana;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderWeaponKiribachi;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderWeaponMace;
-import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderWeaponPipe;
+
+import java.util.ArrayList;
 
 public class ClientProxy extends CommonProxy
 {
@@ -220,7 +154,7 @@ public class ClientProxy extends CommonProxy
 		//RenderingRegistry.registerEntityRenderingHandler(TempEntityDummy.class, new RenderZoanMorph(new Model(), texture));
 
 		//Items
-		MinecraftForgeClient.registerItemRenderer(ListMisc.MarineSword, new RenderCoreWeapon());
+		/*MinecraftForgeClient.registerItemRenderer(ListMisc.MarineSword, new RenderCoreWeapon());
 		MinecraftForgeClient.registerItemRenderer(ListMisc.Scissors, new RenderCoreWeapon());
 		MinecraftForgeClient.registerItemRenderer(ListMisc.Yoru, new RenderCoreWeapon());		
 		MinecraftForgeClient.registerItemRenderer(ListMisc.Hammer5t, new RenderCoreWeapon());
@@ -256,7 +190,7 @@ public class ClientProxy extends CommonProxy
 
 		MinecraftForgeClient.registerItemRenderer(ListMisc.Durandal, new RenderWeaponDurandal());
 		
-		MinecraftForgeClient.registerItemRenderer(ListMisc.Mace, new RenderWeaponMace());
+		MinecraftForgeClient.registerItemRenderer(ListMisc.Mace, new RenderWeaponMace());*/
 
 
 	}
@@ -264,7 +198,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void spawnCustomParticles(Entity theEntity, EntityParticleFX particle)
 	{
-		Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+		//Minecraft.getMinecraft().effectRenderer.addEffect(particle);
 	}
 
 	public void openQuestYesOrNoWorkaround(EntityPlayer player, EnumQuestlines questline)

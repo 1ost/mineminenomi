@@ -26,7 +26,7 @@ import xyz.pixelatedw.MineMineNoMi3.abilities.WeatherAbilities;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.Ability;
 import xyz.pixelatedw.MineMineNoMi3.api.abilities.AbilityAttribute;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMi;
+import xyz.pixelatedw.MineMineNoMi3.item.base.AkumaNoMi;
 
 public class WebAppHelper
 {
@@ -56,10 +56,10 @@ public class WebAppHelper
 			for (Item f : Values.devilfruits)
 			{
 				AkumaNoMi fruit = (AkumaNoMi) f;
-				ItemStack itemStack = new ItemStack(GameRegistry.findItem(ID.PROJECT_ID, fruit.getUnlocalizedName().substring(5)));
+				//ItemStack itemStack = new ItemStack(GameRegistry.findItem(ID.PROJECT_ID, fruit.getUnlocalizedName().substring(5)));
 				Map<String, Object> devilFruitElements = new LinkedHashMap<String, Object>();
 
-				devilFruitElements.put("name", "\"" + itemStack.getDisplayName() + "\"");
+				//devilFruitElements.put("name", "\"" + itemStack.getDisplayName() + "\"");
 				devilFruitElements.put("type", "\"" + fruit.getType().getName() + "\"");
 				devilFruitElements.put("abilities", "[ " + WebAppHelper.generateAbilitiesString(fruit.abilities) + " ]");
 

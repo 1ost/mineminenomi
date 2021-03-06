@@ -91,12 +91,12 @@ public class ItemsHelper
 	public static int getClimaTactLevel(Item item)
 	{
 
-		if(item == ListMisc.ClimaTact)
+		/*if(item instanceof ListMisc.ClimaTact)
 			return 1;
 		else if(item == ListMisc.PerfectClimaTact)
 			return 2;
 		else if(item == ListMisc.SorceryClimaTact)
-			return 3;
+			return 3;*/
 		
 		return 0;
 	}
@@ -120,9 +120,9 @@ public class ItemsHelper
 		if (itemStack.getItem() instanceof ItemSword)
 			return true;
 
-		Multimap multimap = itemStack.getAttributeModifiers();
+		/*Multimap multimap = itemStack.getAttributeModifiers();
 		if (multimap.containsKey(SharedMonsterAttributes.ATTACK_DAMAGE.getName()))
-			return true;
+			return true;*/
 		
 		return false;
 	}
@@ -131,10 +131,10 @@ public class ItemsHelper
 	{
 		for (Item itm : Values.KAIROSEKI_ITEMS)
 		{
-			if (player.inventory.hasItem(itm))
+			/*if (player.inventory.hasItem(itm))
 			{
 				return true;
-			}
+			}*/
 		}
 
 		return false;

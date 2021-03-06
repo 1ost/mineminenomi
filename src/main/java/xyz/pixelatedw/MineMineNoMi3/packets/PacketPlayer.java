@@ -20,7 +20,7 @@ import xyz.pixelatedw.MineMineNoMi3.api.network.WyNetworkHelper;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.gui.GUIWantedPoster;
 import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
-import xyz.pixelatedw.MineMineNoMi3.items.CharacterCreator;
+import xyz.pixelatedw.MineMineNoMi3.item.base.CharacterCreator;
 
 public class PacketPlayer implements IMessage
 {

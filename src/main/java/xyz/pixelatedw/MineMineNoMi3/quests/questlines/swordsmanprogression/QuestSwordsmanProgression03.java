@@ -2,16 +2,11 @@ package xyz.pixelatedw.MineMineNoMi3.quests.questlines.swordsmanprogression;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.util.EnumHand;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.Quest;
 import xyz.pixelatedw.MineMineNoMi3.api.quests.QuestProperties;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.ItemCoreWeapon;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListQuests;
 import xyz.pixelatedw.MineMineNoMi3.quests.EnumQuestlines;
 import xyz.pixelatedw.MineMineNoMi3.quests.IKillQuest;
@@ -94,14 +89,14 @@ public class QuestSwordsmanProgression03 extends Quest implements IKillQuest, IP
 	@Override
 	public boolean isTarget(EntityPlayer player, EntityLivingBase target)
 	{
-		BiomeGenBase biome = player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
+		/*BiomeGenBase biome = player.world.getBiomeGenForCoordsBody((int)player.posX, (int)player.posZ);
 		ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
 		
 		if((biome.biomeName.equalsIgnoreCase(BiomeGenBase.extremeHills.biomeName) || biome.biomeName.equalsIgnoreCase(BiomeGenBase.extremeHillsPlus.biomeName)) 
 				&& target instanceof EntityMob && heldItem != null && (heldItem.getItem() instanceof ItemCoreWeapon || heldItem.getItem() instanceof ItemSword))
 		{
 			return true;
-		}
+		}*/
 		
 		return false;
 	}

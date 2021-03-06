@@ -8,7 +8,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.DimensionManager;
 import xyz.pixelatedw.MineMineNoMi3.ID;
 import xyz.pixelatedw.MineMineNoMi3.NewBlock;
 import xyz.pixelatedw.MineMineNoMi3.Values;
@@ -61,38 +60,30 @@ import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntitySakeFeast;
 import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityString;
 import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityWantedPoster;
 import xyz.pixelatedw.MineMineNoMi3.blocks.tileentities.TileEntityWantedPostersPackage;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMiBox;
-import xyz.pixelatedw.MineMineNoMi3.items.BellyPouch;
-import xyz.pixelatedw.MineMineNoMi3.items.CharacterCreator;
-import xyz.pixelatedw.MineMineNoMi3.items.Cola;
-import xyz.pixelatedw.MineMineNoMi3.items.ItemRumbleBall;
-import xyz.pixelatedw.MineMineNoMi3.items.ItemSakeBottle;
-import xyz.pixelatedw.MineMineNoMi3.items.ItemVivreCard;
-import xyz.pixelatedw.MineMineNoMi3.items.SakeCup;
-import xyz.pixelatedw.MineMineNoMi3.items.SeaKingMeat;
-import xyz.pixelatedw.MineMineNoMi3.items.UltraCola;
-import xyz.pixelatedw.MineMineNoMi3.items.WantedPoster;
-import xyz.pixelatedw.MineMineNoMi3.items.armors.ItemCoreArmor;
-import xyz.pixelatedw.MineMineNoMi3.items.armors.ItemMedicBag;
-import xyz.pixelatedw.MineMineNoMi3.items.armors.ItemTomoeDrums;
-import xyz.pixelatedw.MineMineNoMi3.items.devilfruitextras.Heart;
-import xyz.pixelatedw.MineMineNoMi3.items.devilfruitextras.Shadow;
-import xyz.pixelatedw.MineMineNoMi3.items.devilfruitextras.WateringCan;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialAxe;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialBreath;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialEisen;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialFire;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialFlash;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialImpact;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialMilky;
-import xyz.pixelatedw.MineMineNoMi3.items.dials.DialReject;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.ClimaTact;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.Flintlock;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.ItemAbilityWeapon;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.ItemCoreWeapon;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.Kabuto;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.KujaBow;
-import xyz.pixelatedw.MineMineNoMi3.world.WorldProviderScenarioArena;
+import xyz.pixelatedw.MineMineNoMi3.item.base.AkumaNoMiBox;
+import xyz.pixelatedw.MineMineNoMi3.item.base.BellyPouch;
+import xyz.pixelatedw.MineMineNoMi3.item.base.CharacterCreator;
+import xyz.pixelatedw.MineMineNoMi3.item.base.Cola;
+import xyz.pixelatedw.MineMineNoMi3.item.base.ItemRumbleBall;
+import xyz.pixelatedw.MineMineNoMi3.item.base.ItemSakeBottle;
+import xyz.pixelatedw.MineMineNoMi3.item.base.ItemVivreCard;
+import xyz.pixelatedw.MineMineNoMi3.item.base.SeaKingMeat;
+import xyz.pixelatedw.MineMineNoMi3.item.base.UltraCola;
+import xyz.pixelatedw.MineMineNoMi3.item.base.WantedPoster;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialAxe;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialBreath;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialEisen;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialFire;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialFlash;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialImpact;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialMilky;
+import xyz.pixelatedw.MineMineNoMi3.item.dials.DialReject;
+import xyz.pixelatedw.MineMineNoMi3.item.weapons.ClimaTact;
+import xyz.pixelatedw.MineMineNoMi3.item.weapons.Flintlock;
+import xyz.pixelatedw.MineMineNoMi3.item.weapons.ItemAbilityWeapon;
+import xyz.pixelatedw.MineMineNoMi3.item.weapons.ItemCoreWeapon;
+import xyz.pixelatedw.MineMineNoMi3.item.weapons.Kabuto;
+import xyz.pixelatedw.MineMineNoMi3.item.weapons.KujaBow;
 
 public class ListMisc
 {
@@ -173,8 +164,8 @@ public class ListMisc
 	public static Item Kairoseki = new Item();
 	public static Item DenseKairoseki = new Item();
 	public static Item BlackMetal = new Item();
-	public static Item Shadow = new Shadow();
-	public static Item Heart = new Heart().setMaxStackSize(1);
+	//public static Item Shadow = new Shadow();
+	//public static Item Heart = new Heart().setMaxStackSize(1);
 	public static Item BellyPouch = new BellyPouch().setMaxStackSize(16);
 	public static Item Key = new Item();
 	public static Item Box1;
@@ -182,7 +173,7 @@ public class ListMisc
 	public static Item Box3;
 	public static WantedPoster WantedPoster = (WantedPoster) new WantedPoster().setMaxStackSize(1);
 	public static Item SeaKingMeat = new SeaKingMeat();
-	public static Item WateringCan = new WateringCan();
+	//public static Item WateringCan = new WateringCan();
 	
 	public static Item Note = new Item().setMaxStackSize(1);
 	
@@ -202,12 +193,11 @@ public class ListMisc
 	public static Item CannonBall = new Item();
 	public static Item Cola = new Cola();
 	public static Item UltraCola = new UltraCola();
-	public static Item SakeCup = new SakeCup();
 	public static Item SakeBottle = new ItemSakeBottle();
 	public static Item VivreCard = new ItemVivreCard();
 	public static Item RumbleBall = new ItemRumbleBall();
 
-	public static Item MarineHelm = new ItemCoreArmor("marine", ID.ARMORMAT_USELESS, 0);
+	/*public static Item MarineHelm = new ItemCoreArmor("marine", ID.ARMORMAT_USELESS, 0);
 	public static Item MarineChestplate = new ItemCoreArmor("marine", ID.ARMORMAT_USELESS, 1);
 	public static Item MarineLeggings = new ItemCoreArmor("marine", ID.ARMORMAT_USELESS, 2);
 	public static Item MarineBoots = new ItemCoreArmor("marine", ID.ARMORMAT_USELESS, 3);
@@ -218,7 +208,7 @@ public class ListMisc
 
 	public static Item ColaBackpack = new ItemCoreArmor("colabackpack", ID.ARMORMAT_COLABACKPACK, 1);
 	public static Item TomoeDrums = new ItemTomoeDrums();
-	public static Item MedicBag = new ItemMedicBag();
+	public static Item MedicBag = new ItemMedicBag();*/
 
 	public static Item Flintlock = new Flintlock().setMaxStackSize(1).setFull3D();
 	public static Item Kabuto = new Kabuto("kabuto").setMaxStackSize(1).setFull3D();
@@ -280,8 +270,8 @@ public class ListMisc
 		addITEM(Kairoseki, "Kairoseki", ListCreativeTabs.tabMisc);
 		addITEM(DenseKairoseki, "Dense Kairoseki", ListCreativeTabs.tabMisc);
 		addITEM(BlackMetal, "Black Metal", ListCreativeTabs.tabMisc);
-		addITEM(Shadow, "Shadow", ListCreativeTabs.tabMisc);
-		addITEM(Heart, "Heart", null);
+		//addITEM(Shadow, "Shadow", ListCreativeTabs.tabMisc);
+		//addITEM(Heart, "Heart", null);
 		addITEM(Cola, "Cola", ListCreativeTabs.tabMisc);
 		addITEM(UltraCola, "Ultra Cola", ListCreativeTabs.tabMisc);
 		addITEM(BellyPouch, "Belly Pouch", ListCreativeTabs.tabMisc);
@@ -291,8 +281,7 @@ public class ListMisc
 		addITEM(Box3, "Golden Box", ListCreativeTabs.tabMisc);
 		addITEM(WantedPoster, "Wanted Poster", null);
 		addITEM(SeaKingMeat, "Sea King Meat", ListCreativeTabs.tabMisc);
-		addITEM(WateringCan, "Watering Can", ListCreativeTabs.tabMisc);
-		addITEM(SakeCup, "Sake Cup", ListCreativeTabs.tabMisc);
+		//addITEM(WateringCan, "Watering Can", ListCreativeTabs.tabMisc);
 		addITEM(SakeBottle, "Sake Bottle", ListCreativeTabs.tabMisc);
 		
 		addITEM(KujaArrow, "Kuja Arrow", ListCreativeTabs.tabWeapons);
@@ -301,19 +290,19 @@ public class ListMisc
 		addITEM(KairosekiBullets, "Kairoseki Bullets", ListCreativeTabs.tabWeapons);
 		addITEM(CannonBall, "Cannon Ball", ListCreativeTabs.tabWeapons);
 
-		addITEM(MarineHelm, "Marine Helmet", ListCreativeTabs.tabWeapons);
+		/*addITEM(MarineHelm, "Marine Helmet", ListCreativeTabs.tabWeapons);
 		addITEM(MarineChestplate, "Marine Chestplate", ListCreativeTabs.tabWeapons);
 		addITEM(MarineLeggings, "Marine Leggings", ListCreativeTabs.tabWeapons);
 		addITEM(MarineBoots, "Marine Boots", ListCreativeTabs.tabWeapons);
 
 		addITEM(PirateChestplate, "Pirate Chestplate", ListCreativeTabs.tabWeapons);
 		addITEM(PirateLeggings, "Pirate Leggings", ListCreativeTabs.tabWeapons);
-		addITEM(PirateBoots, "Pirate Boots", ListCreativeTabs.tabWeapons);
+		addITEM(PirateBoots, "Pirate Boots", ListCreativeTabs.tabWeapons);*/
 
-		addITEM(ColaBackpack, "Cola Backpack", ListCreativeTabs.tabWeapons);
-		addITEM(TomoeDrums, "Tomoe Drums", ListCreativeTabs.tabWeapons);
+		//addITEM(ColaBackpack, "Cola Backpack", ListCreativeTabs.tabWeapons);
+		//addITEM(TomoeDrums, "Tomoe Drums", ListCreativeTabs.tabWeapons);
 		addITEM(Note, "Note", null);
-		addITEM(MedicBag, "Medic Bag", ListCreativeTabs.tabWeapons);
+		//addITEM(MedicBag, "Medic Bag", ListCreativeTabs.tabWeapons);
 		addITEM(VivreCard, "Vivre Card", null);
 		//addITEM(RumbleBall, "Rumble Ball", ListCreativeTabs.tabWeapons);
 

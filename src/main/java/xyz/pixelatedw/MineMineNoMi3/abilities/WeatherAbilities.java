@@ -17,7 +17,7 @@ import xyz.pixelatedw.MineMineNoMi3.entities.abilityprojectiles.WeatherProjectil
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.misc.EntityMirageClone;
 import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
 import xyz.pixelatedw.MineMineNoMi3.helpers.ItemsHelper;
-import xyz.pixelatedw.MineMineNoMi3.items.weapons.ClimaTact;
+import xyz.pixelatedw.MineMineNoMi3.item.weapons.ClimaTact;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListAttributes;
 import xyz.pixelatedw.MineMineNoMi3.packets.PacketParticles;
 

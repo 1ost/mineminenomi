@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -42,7 +43,7 @@ import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedWorldData;
 import xyz.pixelatedw.MineMineNoMi3.entities.mobs.EntityNewMob;
 import xyz.pixelatedw.MineMineNoMi3.events.customevents.EventDoriki;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMi;
+import xyz.pixelatedw.MineMineNoMi3.item.base.AkumaNoMi;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListAttributes;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListQuests;
@@ -77,9 +78,9 @@ public class DevilFruitsHelper
 		
 		map.put("core", Arrays.asList(new Block[]
 				{
-						Blocks.ICE, Blocks.PACKED_ICE, Blocks.STONE, Blocks.GRASS, Blocks.DIRT, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SAND, Blocks.SANDSTONE, Blocks.SANDSTONE_STAIRS, Blocks.wooden_door,
+						Blocks.ICE, Blocks.PACKED_ICE, Blocks.STONE, Blocks.GRASS, Blocks.DIRT, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SAND, Blocks.SANDSTONE, Blocks.SANDSTONE_STAIRS, Blocks.OAK_DOOR,
 						Blocks.WOODEN_SLAB, Blocks.LOG, Blocks.LOG2, Blocks.CARPET,Blocks.CAKE, ListMisc.Poison, ListMisc.DemonPoison, Blocks.TORCH, Blocks.REDSTONE_TORCH, Blocks.REDSTONE_WIRE,
-						Blocks.COBBLESTONE, Blocks.fence, Blocks.FARMLAND, Blocks.fence_gate, Blocks.FLOWER_POT, Blocks.CLAY, Blocks.GRAVEL, ListMisc.SunaSand, ListMisc.WaxBlock
+						Blocks.COBBLESTONE, Blocks.DARK_OAK_FENCE, Blocks.FARMLAND, Blocks.OAK_FENCE_GATE, Blocks.FLOWER_POT, Blocks.CLAY, Blocks.GRAVEL, ListMisc.SunaSand, ListMisc.WaxBlock
 				}));
 		
 		map.put("air", Arrays.asList(new Block[]
@@ -245,7 +246,7 @@ public class DevilFruitsHelper
 	
 	public static boolean isNearbyKairoseki(EntityPlayer player)
 	{
-		if (WyHelper.isBlockNearby(player, 4, ListMisc.KairosekiBlock, ListMisc.KairosekiOre, ListMisc.KairosekiBars) || ItemsHelper.hasKairosekiItem(player) || player.inventory.hasItem(Item.getItemFromBlock(ListMisc.KairosekiBlock)) || player.inventory.hasItem(Item.getItemFromBlock(ListMisc.KairosekiOre)) || player.inventory.hasItem(Item.getItemFromBlock(ListMisc.KairosekiBars))  || isAffectedByWater(player))
+		if (WyHelper.isBlockNearby(player, 4, ListMisc.KairosekiBlock, ListMisc.KairosekiOre, ListMisc.KairosekiBars) || ItemsHelper.hasKairosekiItem(player) /*|| player.inventory.hasItem(Item.getItemFromBlock(ListMisc.KairosekiBlock)) || player.inventory.hasItem(Item.getItemFromBlock(ListMisc.KairosekiOre)) || player.inventory.hasItem(Item.getItemFromBlock(ListMisc.KairosekiBars))*/  || isAffectedByWater(player))
 		{
 			return true;
 		}
@@ -447,17 +448,17 @@ public class DevilFruitsHelper
 			{
 				if (formula.equalsIgnoreCase("add"))
 				{
-					Block.blockRegistry.forEach(block ->
-					{
-						bannedBlocks.add((Block) block);
-					});
+					//Block.blockRegistry.forEach(block ->
+					//{
+						//bannedBlocks.add((Block) block);
+					//});
 				}
 				else if (formula.equalsIgnoreCase("ignore"))
 				{
-					Block.blockRegistry.forEach(block ->
-					{
-						bannedBlocks.remove(block);
-					});
+					//(Block.blockRegistry.forEach(block ->
+					//{
+					//	bannedBlocks.remove(block);
+					//});
 				}
 			}
 			else if (rule.equalsIgnoreCase("restricted"))
@@ -478,7 +479,7 @@ public class DevilFruitsHelper
 			{
 				if (b == blk)
 				{
-					world.setBlockState(new BlockPos(posX, posY, posZ), toPlace);
+					world.setBlockState(new BlockPos(posX, posY, posZ), (IBlockState) toPlace);
 					return true;
 				}
 			}
@@ -487,7 +488,7 @@ public class DevilFruitsHelper
 		return false;
 	}
 
-	public static ItemStack getDevilFruitItem(String fullName)
+	/*public static ItemStack getDevilFruitItem(String fullName)
 	{
 		String model = "";
 		String fullModel = "";
@@ -506,7 +507,7 @@ public class DevilFruitsHelper
 			fullName = "yamiyami";
 
 		return new ItemStack(GameRegistry.findItem(ID.PROJECT_ID, fullName.replace(model, "") + "nomi" + fullModel));
-	}
+	}*/
 
 	public static boolean isEntityInRoom(EntityLivingBase entity)
 	{
@@ -514,7 +515,7 @@ public class DevilFruitsHelper
 			for (int j = -20; j < 20; j++)
 				for (int k = -20; k < 20; k++)
 				{
-					if (entity.world.getBlock((int) entity.posX + i, (int) entity.posY + j, (int) entity.posZ + k) == ListMisc.OpeMid)
+					if (entity.world.getBlockState(new BlockPos((int) entity.posX + i, (int) entity.posY + j, (int) entity.posZ + k)) == ListMisc.OpeMid)
 						return true;
 				}
 

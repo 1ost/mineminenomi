@@ -31,8 +31,8 @@ public class EntityMarine extends MarineData
     @Override
 	protected void addRandomArmor()
     {
-    	Item[] randomSword = new Item[] {ListMisc.MarineSword, Items.iron_sword};
-    	this.setCurrentItemOrArmor(0, new ItemStack(randomSword[this.rand.nextInt(randomSword.length)]));
+    	//Item[] randomSword = new Item[] {ListMisc.MarineSword, Items.iron_sword};
+    	//this.setCurrentItemOrArmor(0, new ItemStack(randomSword[this.rand.nextInt(randomSword.length)]));
     }
     
 	@Override
@@ -41,10 +41,10 @@ public class EntityMarine extends MarineData
 		return new double[] {0, 0, -0.1};
 	}
 
-    @Override
+   // @Override
 	protected void dropRareDrop(int i)
     {
-        switch (this.rand.nextInt(4))
+       /* switch (this.rand.nextInt(4))
         {
             case 0:
                 this.dropItem(ListMisc.MarineHelm, 1); break;
@@ -54,6 +54,6 @@ public class EntityMarine extends MarineData
                 this.dropItem(ListMisc.MarineLeggings, 1); break;
             case 3:
                 this.dropItem(ListMisc.MarineBoots, 1); break;
-        }
+        }*/
     }
 }

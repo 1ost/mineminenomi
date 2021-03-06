@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 import xyz.pixelatedw.MineMineNoMi3.MainConfig;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMi;
+import xyz.pixelatedw.MineMineNoMi3.item.base.AkumaNoMi;
 
 public class ExtendedWorldData extends WorldSavedData
 {

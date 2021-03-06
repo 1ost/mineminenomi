@@ -8,7 +8,6 @@ import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.Render;
@@ -28,7 +27,7 @@ public class HandRendererHelper
 {
 
 	private static HashMap<String, Object[][]> handEffectsMap = new HashMap<String, Object[][]>();
-	
+
 	public static HashMap<String, Object[][]> getMap()
 	{
 		return handEffectsMap;
@@ -36,63 +35,63 @@ public class HandRendererHelper
 
 	static
 	{
-		handEffectsMap.put("baribari", new Object[][] 
+		handEffectsMap.put("baribari", new Object[][]
 				{
-						{ "power", "" },			
+						{ "power", "" },
 				});
 	}
-	
-	public static void renderHand(EntityPlayerMP player)
+
+	/*public static void renderHand(EntityPlayerMP player)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		
+
 		Project.gluPerspective(mc.gameSettings.fovSetting, (float) mc.displayWidth / (float) mc.displayHeight, 0.20F, mc.gameSettings.renderDistanceChunks * 16 * 2.0F);
-		
+
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
-		
+
 		if (mc.gameSettings.viewBobbing)
 			setupViewBobbing(0.07F);
-		
+
 		RenderHelper.enableStandardItemLighting();
 		Minecraft.getMinecraft().entityRenderer.enableLightmap();
-		
+
         int i2 =  mc.world.getLightBrightness(MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ), 0);
         int j = i2 % 65536;
         int k = i2 / 65536;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		
+
 		if (mc.gameSettings.thirdPersonView == 0 && !mc.gameSettings.hideGUI)
 		{
 			if (player.inventory.getCurrentItem() != null)
 				Minecraft.getMinecraft().entityRenderer.itemRenderer.renderItemInFirstPerson(0.07F);
-			else			
+			else
 				renderCustomHand(player);
 		}
-		
+
 		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		RenderHelper.disableStandardItemLighting();
 	}
-	
+
 	private static void renderCustomHand(EntityPlayerMP player)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		AbilityProperties abilityProps = AbilityProperties.get(player);
-		
+
 		Ability hotBoilingSpecial = abilityProps.getAbilityFromName(ListAttributes.HOT_BOILING_SPECIAL.getAttributeName());
 		boolean hasHotBoilingSpecial = (hotBoilingSpecial != null && hotBoilingSpecial.isPassiveActive());
-		
+
 		Ability hardeningBuso = abilityProps.getAbilityFromName(ListAttributes.BUSOSHOKU_HAKI_HARDENING.getAttributeName());
 		boolean hasHardeningBuso = (hardeningBuso != null && hardeningBuso.isPassiveActive());
-		
+
 		Ability fullBodyHardeningBuso = abilityProps.getAbilityFromName(ListAttributes.BUSOSHOKU_HAKI_FULL_BODY_HARDENING.getAttributeName());
 		boolean hasFullBodyHardeningBuso = (fullBodyHardeningBuso != null && fullBodyHardeningBuso.isPassiveActive());
-		
+
 		float f5;
 		float f6;
 		float f7;
@@ -143,7 +142,7 @@ public class HandRendererHelper
 						render = (RenderZoanMorph) x[1];
 				}
 			}
-			
+
 			RenderZoanMorph renderZoan = (RenderZoanMorph) render;
 			float i = 1.0F;
 			GL11.glScalef(i, i, i);
@@ -156,12 +155,12 @@ public class HandRendererHelper
 
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 	}
-	
+
 	private static ResourceLocation getTextureFromMorph(EntityPlayerMP player)
 	{
 		ExtendedEntityData props = ExtendedEntityData.get(player);
 		RenderZoanMorph render = null;
-		
+
 		if(MorphsHelper.getMorphsMap().containsKey(props.getUsedFruit()))
 		{
 			for(Object[] x : MorphsHelper.getMorphsMap().get(props.getUsedFruit()))
@@ -196,6 +195,5 @@ public class HandRendererHelper
 			GL11.glRotatef(Math.abs(MathHelper.cos(f2 * (float) Math.PI - 0.2F) * f3) * 5.0F, 1.0F, 0.0F, 0.0F);
 			GL11.glRotatef(f4, 1.0F, 0.0F, 0.0F);
 		}
-	}
+	}*/
 }
-	
