@@ -415,7 +415,7 @@ public class DevilFruitsHelper
 	
 	public static boolean placeBlockIfAllowed(World world, int posX, int posY, int posZ, Block toPlace, int meta, int flag, String... rules)
 	{
-		Block b = world.getBlock(posX, posY, posZ);
+		Block b = (Block) world.getBlockState(new BlockPos(posX, posY, posZ));
 		List<Block> bannedBlocks = new ArrayList<Block>();
 		boolean noGriefFlag = Arrays.toString(rules).contains("nogrief");
 		
@@ -478,7 +478,7 @@ public class DevilFruitsHelper
 			{
 				if (b == blk)
 				{
-					world.setBlock(posX, posY, posZ, toPlace, meta, flag);
+					world.setBlockState(new BlockPos(posX, posY, posZ), toPlace);
 					return true;
 				}
 			}

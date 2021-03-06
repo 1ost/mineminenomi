@@ -125,6 +125,7 @@ import xyz.pixelatedw.MineMineNoMi3.renderers.items.RenderWeaponPipe;
 public class ClientProxy extends CommonProxy
 {
 
+
 	@Override
 	public void preInit()
 	{

@@ -1,5 +1,6 @@
 package xyz.pixelatedw.MineMineNoMi3.blocks;
 
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -12,45 +13,40 @@ import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
 
 public class BlockAbilityProtectionArea extends Block
 {
-	private static final AxisAlignedBB BOUNDING_BOX = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
+	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
+
 
 	public BlockAbilityProtectionArea()
 	{
 		super(Material.IRON);
 	}
 
-	@Override
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		return BOUNDING_BOX;
 	}
 
-	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		return WyHelper.NULL_AABB;
 	}
 
-	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
 
-	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
 	{
 		return 1;
 	}
 
-	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return false;
 	}
 
-	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
 	{
@@ -66,6 +62,6 @@ public class BlockAbilityProtectionArea extends Block
 			return false;
 		}
 
-		return block == this ? false : super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return block != this && super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 }

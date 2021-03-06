@@ -69,11 +69,10 @@ public class ClimaTact extends Item
 		return this;
 	}
 
-	@Override
-	public Multimap getAttributeModifiers(ItemStack stack)
+	/*UNCOMMENT public Multimap getAttributeModifiers(ItemStack stack)
 	{
 		Multimap multimap = super.getAttributeModifiers(stack);
-		multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.damage, 0));
+		multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.damage, 0));
 		return multimap;
-	}
+	}*/
 }

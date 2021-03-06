@@ -33,7 +33,7 @@ public class UltraCola extends ItemFood
     @Override
 	public EnumAction getItemUseAction(ItemStack itemStack)
     {
-        return EnumAction.drink;
+        return EnumAction.DRINK;
     }
 	
 	@Override

@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 public class WateringCan extends Item
 {
 
-    @Override
 	public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
     {		
 		if (!world.isRemote)
@@ -36,10 +35,12 @@ public class WateringCan extends Item
     @Override
 	public EnumAction getItemUseAction(ItemStack itemStack)
     {
-        return EnumAction.drink;
+        return EnumAction.DRINK;
     }
     
+    /*UNCOMMENT
     @Override
+
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
 		if(!itemStack.hasTagCompound())
@@ -52,9 +53,8 @@ public class WateringCan extends Item
 			player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
 		}
         return itemStack;
-    }
-    
-	@Override
+    }*/
+
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4)
 	{
 		if(!itemStack.hasTagCompound())

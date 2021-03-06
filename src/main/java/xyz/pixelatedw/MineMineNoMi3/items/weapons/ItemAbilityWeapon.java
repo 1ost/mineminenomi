@@ -44,23 +44,23 @@ public class ItemAbilityWeapon extends ItemCoreWeapon
 						{
 							String ablName = WyHelper.getFancyName(abilityProps.getAbilityFromSlot(i).getAttribute().getAttributeName());
 							if(ablName.equals(WyHelper.getFancyName(ListAttributes.ICE_SABER.getAttributeName())))
-								owner.inventory.clearInventory(this, -1);
+								owner.inventory.clearMatchingItems(this, 0,1,null);
 							else if(ablName.equals(WyHelper.getFancyName(ListAttributes.AMA_NO_MURAKUMO.getAttributeName())))
-								owner.inventory.clearInventory(this, -1);
+								owner.inventory.clearMatchingItems(this, 0,1,null);
 							else if(ablName.equals(WyHelper.getFancyName(ListAttributes.NORO_NORO_BEAM_SWORD.getAttributeName())))
-								owner.inventory.clearInventory(this, -1);
+								owner.inventory.clearMatchingItems(this, 0,1,null);
 							else if(ablName.equals(WyHelper.getFancyName(ListAttributes.DORU_DORU_ARTS_KEN.getAttributeName())))
-								owner.inventory.clearInventory(this, -1);
+								owner.inventory.clearMatchingItems(this, 0,1,null);
 							else if(ablName.equals(WyHelper.getFancyName(ListAttributes.BLUE_SWORD.getAttributeName())))
-								owner.inventory.clearInventory(this, -1);
+								owner.inventory.clearMatchingItems(this, 0,1,null);
 							else if(ablName.equals(WyHelper.getFancyName(ListAttributes.TABIRA_YUKI.getAttributeName())))
-								owner.inventory.clearInventory(this, -1);
+								owner.inventory.clearMatchingItems(this, 0,1,null);
 						}
 					}
 				}
 			}
 			else
-				owner.inventory.clearInventory(this, -1);
+				owner.inventory.clearMatchingItems(this, 0,1,null);
 			
 		}	
 	}

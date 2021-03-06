@@ -20,7 +20,6 @@ import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
 public class Flintlock extends Item
 {
 
-	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		if (player.isSneaking())
@@ -42,8 +41,8 @@ public class Flintlock extends Item
 			{
 				if(itemStack.getTagCompound().getInteger("gunPowder") > 0)
 				{
-					if ((player.inventory.hasItem(ListMisc.Bullets) && itemStack.getTagCompound().getInteger("bulletType") == 0) 
-							|| (player.inventory.hasItem(ListMisc.KairosekiBullets) && itemStack.getTagCompound().getInteger("bulletType") == 1))
+					/*UNCOMMENT if ((player.inventory.hasItem(ListMisc.Bullets) && itemStack.getTagCompound().getInteger("bulletType") == 0)
+							|| (player.inventory.hasItem(ListMisc.KairosekiBullets) && itemStack.getTagCompound().getInteger("bulletType") == 1))*/
 					{
 						AbilityProjectile proj = null;
 						int powder = itemStack.getTagCompound().getInteger("gunPowder");
@@ -59,16 +58,16 @@ public class Flintlock extends Item
 	
 						itemStack.getTagCompound().setBoolean("canUse", false);
 						itemStack.getTagCompound().setInteger("gunPowder", --powder);
-						player.inventory.consumeInventoryItem(itemStack.getTagCompound().getInteger("bulletType") == 0 ? ListMisc.Bullets : ListMisc.KairosekiBullets);
+						//player.inventory.consumeInventoryItem(itemStack.getTagCompound().getInteger("bulletType") == 0 ? ListMisc.Bullets : ListMisc.KairosekiBullets);
 					}
 				}
 				else
 				{
-					if(player.inventory.hasItem(Items.GUNPOWDER))
+					/*UNCOMMENT if(player.inventory.hasItem(Items.GUNPOWDER))
 					{
 						itemStack.getTagCompound().setInteger("gunPowder", 10);
 						player.inventory.consumeInventoryItem(Items.GUNPOWDER);
-					}
+					}*/
 				}
 			}			
 		}
@@ -106,7 +105,6 @@ public class Flintlock extends Item
 		}
 	}
 	
-	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4)
 	{
 		if (itemStack.hasTagCompound())

@@ -32,7 +32,7 @@ public class AnvilRecipe
 		
 		if(enchantmentBonus != null)
 		{
-			int level = actualRightSlot.stackSize / 3;
+			int level = actualRightSlot.getCount() / 3;
 			
 			if(level > 3)
 				level = 3;

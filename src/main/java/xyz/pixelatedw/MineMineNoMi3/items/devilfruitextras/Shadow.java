@@ -17,7 +17,8 @@ public class Shadow extends Item
     	ExtendedEntityData props = ExtendedEntityData.get(player);
 
     	props.setHasShadow(true);
-    	--itemStack.stackSize;
+
+    	itemStack.setCount(itemStack.getCount() -1);
 		
 		return itemStack;
     }
@@ -29,16 +30,17 @@ public class Shadow extends Item
     
     public EnumAction getItemUseAction(ItemStack p_77661_1_)
     {
-        return EnumAction.drink;
+        return EnumAction.DRINK;
     }
-    
+        	/*UNCOMMENT
+
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
     	ExtendedEntityData props = ExtendedEntityData.get(player);
 
     	if(!world.isRemote && !props.hasShadow())
+
     		player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
         return itemStack;
-    }
-    
+    }*/
 }

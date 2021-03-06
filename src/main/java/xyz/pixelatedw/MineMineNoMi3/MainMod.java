@@ -27,7 +27,6 @@ import xyz.pixelatedw.MineMineNoMi3.commands.CommandPouch;
 import xyz.pixelatedw.MineMineNoMi3.commands.CommandRemoveDF;
 import xyz.pixelatedw.MineMineNoMi3.gui.GUIHandler;
 import xyz.pixelatedw.MineMineNoMi3.helpers.WebAppHelper;
-import xyz.pixelatedw.MineMineNoMi3.lists.ListBiomes;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListCraftingRecipes;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListCreativeTabs;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListDevilFruits;

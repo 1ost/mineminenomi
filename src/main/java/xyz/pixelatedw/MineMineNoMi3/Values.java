@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import xyz.pixelatedw.MineMineNoMi3.items.AkumaNoMi;
+import xyz.pixelatedw.MineMineNoMi3.item.base.AkumaNoMi;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListMisc;
 
 public class Values 

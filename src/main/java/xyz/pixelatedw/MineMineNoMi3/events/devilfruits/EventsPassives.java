@@ -236,8 +236,8 @@ public class EventsPassives
 					player.addPotionEffect(new PotionEffect(Potion.getPotionById(18), 100, 5));
 					player.addPotionEffect(new PotionEffect(Potion.getPotionById(2), 100, 5));
 					player.addPotionEffect(new PotionEffect(Potion.getPotionById(15), 100, 5));
-					// player.attackEntityFrom(DamageSource.generic,
-					// Integer.MAX_VALUE);
+					 player.attackEntityFrom(DamageSource.GENERIC,
+					 Integer.MAX_VALUE);
 				}
 			}
 			boolean updateDisabledAbilities = false;

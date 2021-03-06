@@ -57,7 +57,7 @@ public class AkumaNoMi extends ItemFood
     {
     	ExtendedWorldData worldProps = ExtendedWorldData.get(entityItem.world);
 
-    	if( entityItem.isBurning())
+    	if(entityItem.isBurning())
     		worldProps.removeDevilFruitFromWorld(this);
     	
         return false;
@@ -78,7 +78,7 @@ public class AkumaNoMi extends ItemFood
 
 		if (flag1 || flag2 || flag3)
 		{
-			player.attackEntityFrom(DamageSource.wither, Float.POSITIVE_INFINITY);
+			player.attackEntityFrom(DamageSource.WITHER, Float.POSITIVE_INFINITY);
 			return;
 		}
 

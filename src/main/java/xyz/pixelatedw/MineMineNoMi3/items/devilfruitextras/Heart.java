@@ -20,7 +20,6 @@ import xyz.pixelatedw.MineMineNoMi3.packets.PacketSync;
 
 public class Heart extends Item
 {
-	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		if(itemStack.getTagCompound() != null && world.getEntityByID(itemStack.getTagCompound().getInteger("owner")) != null)
@@ -50,7 +49,7 @@ public class Heart extends Item
     @Override
 	public boolean onEntityItemUpdate(EntityItem entityItem)
     {
-    	ItemStack itemStack = entityItem.getEntityItem();
+    	ItemStack itemStack = entityItem.getItem();
     	World world = entityItem.world;
     	
 		if(itemStack.getTagCompound() != null)
@@ -66,14 +65,13 @@ public class Heart extends Item
         return false;
     }
 	
-	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4)
 	{
 		if(itemStack.getTagCompound() != null)
 		{
 			if(player.world.getEntityByID(itemStack.getTagCompound().getInteger("owner")) != null)
 			{
-				list.add(TextFormatting.GOLD + "[Owner] " + TextFormatting.RESET + player.world.getEntityByID(itemStack.getTagCompound().getInteger("owner")).getCommandSenderName());
+				list.add(TextFormatting.GOLD + "[Owner] " + TextFormatting.RESET + player.world.getEntityByID(itemStack.getTagCompound().getInteger("owner")).getCommandSenderEntity());
 				list.add(TextFormatting.GOLD + "[HP] " + TextFormatting.RESET + ((EntityLivingBase) player.world.getEntityByID(itemStack.getTagCompound().getInteger("owner"))).getHealth());
 				list.add(TextFormatting.GOLD + "[Location] " + TextFormatting.RESET + (int)player.world.getEntityByID(itemStack.getTagCompound().getInteger("owner")).posX + "X " + (int)player.world.getEntityByID(itemStack.getTagCompound().getInteger("owner")).posY + "Y " + (int)player.world.getEntityByID(itemStack.getTagCompound().getInteger("owner")).posZ +"Z");
 			}

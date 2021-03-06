@@ -2,6 +2,7 @@ package xyz.pixelatedw.MineMineNoMi3.items.weapons;
 
 import com.google.common.collect.Multimap;
 
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -37,7 +38,7 @@ public class ItemCoreWeapon extends Item
 	protected boolean isPoisonous = false, isFireAspect = false, isSlownessInducing = false, isStackable = false;
 	protected int poisonTimer = 100, fireAspectTimer = 100, slownessTimer = 100;
 	
-	private IIcon baseIcon, sheathedIcon, hakiImbuedIcon;
+	private IItemColor baseIcon, sheathedIcon, hakiImbuedIcon;
 
 	public ItemCoreWeapon(int damage)
 	{
@@ -232,7 +233,7 @@ public class ItemCoreWeapon extends Item
 		{
 			multiplier = 1;
 		}
-		multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.damage * multiplier, 0));
+		multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.damage * multiplier, 0));
 		return multimap;
 	}
 

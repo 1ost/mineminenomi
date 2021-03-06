@@ -12,9 +12,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import xyz.pixelatedw.MineMineNoMi3.api.WyHelper;
-import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.AbilityExplosion;
 import xyz.pixelatedw.MineMineNoMi3.data.ExtendedEntityData;
 import xyz.pixelatedw.MineMineNoMi3.helpers.DevilFruitsHelper;
+import xyz.pixelatedw.MineMineNoMi3.api.abilities.extra.AbilityExplosion;
 
 public class AbilityProjectile extends EntityThrowable
 {
@@ -154,6 +154,7 @@ public class AbilityProjectile extends EntityThrowable
 
 					if (this.attr.getProjectileExplosionPower() > 0)
 					{
+
 						AbilityExplosion explosion = WyHelper.newExplosion(this.getThrower(), this.posX, this.posY, this.posZ, this.attr.getProjectileExplosionPower());
 						explosion.setDamageOwner(false);
 						explosion.setFireAfterExplosion(this.attr.canProjectileExplosionSetFire());

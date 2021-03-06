@@ -7,11 +7,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IExtendedEntityProperties;
 import xyz.pixelatedw.MineMineNoMi3.ID;
+import xyz.pixelatedw.MineMineNoMi3.api.player.IPlayerClass;
 import xyz.pixelatedw.MineMineNoMi3.lists.ListQuests;
 
-public class QuestProperties implements IExtendedEntityProperties 
+	public class QuestProperties implements IPlayerClass
 {
 
 	public final static String EXT_QUESTPROP_NAME = ID.PROJECT_ID + "_QuestIEEP";
@@ -27,22 +27,23 @@ public class QuestProperties implements IExtendedEntityProperties
 		this.thePlayer = entity;	
 	}
 	
-	public static final void register(EntityPlayer entity) 
+	public static final void register(EntityPlayer entity)
 	{
-		entity.registerExtendedProperties(QuestProperties.EXT_QUESTPROP_NAME, new QuestProperties(entity));
+		//entity.registerExtendedProperties(QuestProperties.EXT_QUESTPROP_NAME, new QuestProperties(entity));
 	}
 
-	public static final QuestProperties get(EntityPlayer entity) 
+	public static final QuestProperties get(EntityPlayer entity)
 	{
-		return (QuestProperties) entity.getExtendedProperties(EXT_QUESTPROP_NAME);
+		//return (QuestProperties) entity.getExtendedProperties(EXT_QUESTPROP_NAME);
+		return null;
 	}
 
-	public void saveNBTData(NBTTagCompound compound)
+	public NBTTagCompound saveNBTData(NBTTagCompound compound)
 	{
 		NBTTagCompound props = new NBTTagCompound();
-		
+
 		props.setBoolean("hasPrimaryActive", this.hasPrimaryActive);
-			
+
 		for(int i = 0; i < questsList.length; i++)
 		{
 			if(this.questsList[i] != null)
@@ -53,7 +54,7 @@ public class QuestProperties implements IExtendedEntityProperties
 					props.setTag("extraData_" + i, this.questsList[i].extraData);
 			}
 		}
-		
+
 		for(int i = 0; i < completedQuests.length; i++)
 		{
 			if(this.completedQuests[i] != null)
@@ -63,6 +64,7 @@ public class QuestProperties implements IExtendedEntityProperties
 		}
 
 		compound.setTag(EXT_QUESTPROP_NAME, props);
+		return props;
 	}
 
 	public void loadNBTData(NBTTagCompound compound)
